@@ -40,4 +40,21 @@ const logger = (...args) =>
 const a = {smthToHide: 'sensitive data', foo: 'bar'}
 maskedStore.set(a, {...a, smthToHide: '***'})
 ```
-[`Reflect.metadata`](https://github.com/rbuckton/reflect-metadata) can also be used for the same purpose. Or even [cls-context](https://github.com/jeff-lewis/cls-hooked). 
+[`Reflect.metadata`](https://github.com/rbuckton/reflect-metadata) can also be used for the same purpose. Or even [cls-context](https://github.com/jeff-lewis/cls-hooked).
+ 
+### Directives
+The next stage of abstraction is the transition from the direct masked object creation and binding to the delegation of this function to a separate subsystem.
+This feature requires a declarative contract instructions or masking directives which can be interpreted.
+By analogy with how [json-schema](https://json-schema.org/), we'll be able to use various implementations in the future. _Depend upon abstractions, not concretions._
+It is advisable to inherit well-known contract as a basis.
+```typescript
+interface IMaskerDirective {
+  type: string    // masking type
+  value?: any     // replacement entity reference
+  options?: any   // options for current `type` of masker
+  description?: string // optional comment 
+  properties?: Record<string, IMaskerDirective> // Directives for nested props
+  definitions?: Record<string, IMaskerDirective>,
+  $ref?: string
+}
+```
