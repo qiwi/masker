@@ -93,7 +93,7 @@ interface IMasker {
 ```
 Simple, clear and easy to compose, but it also involves some limitations.  
 Here's the case: 
-```
+```typescript
 {
   token: {
     type: 'bearer',
@@ -108,7 +108,7 @@ What should be the final result?
 4) `token: {type: 'bearer', value: '***'}}`
 
 If we strive for option 4, we need to place additional logic somewhere, that transcends the liability of `detect` and `modify`. Let it be in a _controller_. 
-```
+```typescript
 interface IMasker {
   (target: any, next: IMasker) => any
 }
