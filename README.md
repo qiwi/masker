@@ -81,4 +81,35 @@ Recipient: J.S***d
 Sum: $25.00
 Paymethod: credit card 4245 **** **** **54
 ```
-So modificators should provide the minimum necessary, but not the maximum possible level of data distortion required in a specific context.
+So modificators should provide the minimum necessary, but not the maximum possible level of data distortion required for a specific context.
+
+### Chain of responsibility
+The reasoning above suggests the following `IMasker` contract.
+```typescript
+interface IMasker {
+  detect: (target: any) => any,
+  modify: (target: any, detected: any[]) => any
+}
+```
+Simple, clear and easy to compose, but it also involves some limitations.  
+Here's the case: 
+```
+{
+  token: {
+    type: 'bearer',
+    value: 'some string'    
+  }
+}
+```
+What should be the final result?
+1) `token: '***'`
+2) `token: '*** (object)'`
+3) `token: {type: '***', value: '***'}}`
+4) `token: {type: 'bearer', value: '***'}}`
+
+If we strive for option 4, we need to place additional logic somewhere, that transcends the liability of `detect` and `modify`. Let it be in a _controller_. 
+```
+interface IMasker {
+  (target: any, next: IMasker) => any
+}
+```
