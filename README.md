@@ -58,3 +58,27 @@ interface IMaskerDirective {
   $ref?: string
 }
 ```
+
+## Masker
+Reflecting on what the masker does, it is obvious that everything comes to two fundamental things: search and change data.
+### Detection
+Schema-based approach applicable if we know the essence of masked data, if we control the point where its created. 
+In practice, we use frameworks that manage internal layers of data independently and unmanageable from the outside.
+On very lucky, there is a way to inject your custom _masking logger_. Often, for greater reliability, we have to hang a hook on `stdout/stderr` or override native `console`.
+Anyway, detection of sensitive data is also crucial. This process can be implemented in different ways: regexps, functions, binary ops (pan checksums).
+
+### Modification
+Masking is not always a complete replacement for content. It is important to strike a balance between security and perception.
+For clarity, imagine user payments history:
+```
+Recipient: *** (personal data)
+Sum: $25.00
+Paymethod: credit card *** (sensitive data)
+```
+With a comparable level of security, this might be in more useful form.
+```
+Recipient: J.S***d
+Sum: $25.00
+Paymethod: credit card 4245 **** **** **54
+```
+So modificators should provide the minimum necessary, but not the maximum possible level of data distortion required in a specific context.
