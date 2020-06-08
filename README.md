@@ -68,7 +68,7 @@ On very lucky, there is a way to inject your custom _masking logger_. Often, for
 Anyway, detection of sensitive data is also crucial. This process can be implemented in different ways: regexps, functions, binary ops (pan checksums).
 
 ### Modification
-Masking is not always a complete replacement for content. It is important to strike a balance between security and perception.
+Masking is not always a complete replacement for content. It is important to maintain a balance between security and perception.
 For clarity, imagine user payments history:
 ```
 Recipient: *** (personal data)
@@ -79,7 +79,7 @@ With a comparable level of security, this might be in more useful form.
 ```
 Recipient: J.S***d
 Sum: $25.00
-Paymethod: credit card 4245 **** **** **54
+Paymethod: credit card 4256 **** **** 3770
 ```
 So modificators should provide the minimum necessary, but not the maximum possible level of data distortion required for a specific context.
 
@@ -110,6 +110,20 @@ What should be the final result?
 If we strive for option 4, we need to place additional logic somewhere, that transcends the liability of `detect` and `modify`. Let it be in a _controller_. 
 ```typescript
 interface IMasker {
-  (target: any, next: IMasker) => any
+  (target: any, next: IMasker): any
 }
 ```
+
+### Strategies
+It is important to perform masking clearly. The main reason is that masking may be a subject of audit.
+For example, if you just replace [PAN](https://en.wikipedia.org/wiki/Payment_card_number) with random numbers, it will still raise questions from the [PSI DSS](https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard).
+Canonical masking symbol is * (asterisk), less commonly applied — X char, even less often — • (bullet, for interactive elements like input fields).
+A sequence of three characters or more indicates the masking.
+
+The easiest way to hide is to replace content. `foobar` becomes `***`, `some long string`, right, equals `***` after masking. This is **plain** masking.  
+
+If there's a need to keep the length of the origin text, we could replace each symbol as if crossing out. When `another string` turns into `******* ******` that means **strike** masking was applied.
+Usually spaces are not masked. **NOTE** This type of symbol mapping must not be applied to passwords. **** looks like an invitation for brute force.
+
+For some types of data, it's important to keep the format specificity. In this case, the **partial** replacement will affect only a certain fragment.
+Examples: phone number `+7 *** *** 23 50`, PAN `5310 **** **** 9668`.
