@@ -166,3 +166,16 @@ I do not dare to say that there are no libraries suitable for enterprise. Unfort
 * [https://www.google.com/search?q=js+data+masking](https://www.google.com/search?q=js+data+masking)
 * [https://www.npmjs.com/search?q=sensitive%20data](https://www.npmjs.com/search?q=sensitive%20data)
 * [https://www.npmjs.com/search?q=data%20masking](https://www.npmjs.com/search?q=data%20masking)
+
+Well-known projects implement their own maskers where necessary. For example, [semantic-release/lib/hide-sensitive.js](https://github.com/semantic-release/semantic-release/blob/eed1d3c8cbab0ef05df39866c90ff74dff77dfa4/lib/hide-sensitive.js)
+```javascript
+module.exports = (env) => {
+  const toReplace = Object.keys(env).filter((envVar) => {
+    return /token|password|credential|secret|private/i.test(envVar) && size(env[envVar].trim()) >= SECRET_MIN_SIZE;
+  });
+
+  const regexp = new RegExp(toReplace.map((envVar) => escapeRegExp(env[envVar])).join('|'), 'g');
+  return (output) =>
+    output && isString(output) && toReplace.length > 0 ? output.toString().replace(regexp, SECRET_REPLACEMENT) : output;
+};
+```
