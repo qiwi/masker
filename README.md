@@ -144,7 +144,7 @@ The list goes on. These features should be implemented in such a way that the ma
 ### Asynchronicity
 There're several JS engines, which support synchronous (Rhino, Nashorn) and asynchronous (V8, Chakra) flow.
 To be honest, today V8 completely dominates among them.
-Therefore, it is advisable to follow async paradigm out of box if masking is resource intensive. Recommended, but optional.
+Therefore, it is advisable to follow async paradigm out of box especially if masking is resource intensive.
 
 Usually sync/async versions of api are presented by different functions: `fs.readFile` and `fs.readFileSync`, `execa`/`execa.sync`, etc.
 
