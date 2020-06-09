@@ -152,10 +152,17 @@ export {
 Although high-level maskers reuse part of the functionality of basic maskers, it’s better to avoid direct dependencies.
 The solution can be based on DI/IoC-container system or the plug-in system. Each custom masker should be declared as provider and be available by alias (interface / name).
 In modern JS the context providers is becoming popular ([inversify](https://github.com/inversify/InversifyJS), [awilix](https://github.com/jeffijoe/awilix), [nestjs di](https://docs.nestjs.com/providers)), but not yet widespread enough.
-Let there be a registry of plugins.
+Let there be a registry of plugins at least.
 ```typescript
 interface MaskerRegistry {
   add(type: string, masker: IMasker): void
   remove(type: string, masker: IMasker): boolean
 }
 ```
+
+## Ready-made solutions
+I do not dare to say that there are no libraries suitable for enterprise. Unfortunately, I could not find something noticeable that can be taken as a basis for refinement.
+* [https://www.google.com/search?q=js+sensitive+data](https://www.google.com/search?q=js+sensitive+data)
+* [https://www.google.com/search?q=js+data+masking](https://www.google.com/search?q=js+data+masking)
+* [https://www.npmjs.com/search?q=sensitive%20data](https://www.npmjs.com/search?q=sensitive%20data)
+* [https://www.npmjs.com/search?q=data%20masking](https://www.npmjs.com/search?q=data%20masking)
