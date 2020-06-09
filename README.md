@@ -138,12 +138,24 @@ Usually sync/async versions of api are presented by different functions: `fs.rea
 ```typescript
 interface IMasker {
   (target: any, next: IMasker): Promise<any>
-  sync?: (target: any, next: IMasker): any
+  sync?: (target: any, next: IMasker) => any
 }
 ```
 ```typescript
 export {
    masker,
    maskerSync
+}
+```
+
+### Composability
+Although high-level maskers reuse part of the functionality of basic maskers, it’s better to avoid direct dependencies.
+The solution can be based on DI/IoC-container system or the plug-in system. Each custom masker should be declared as provider and be available by alias (interface / name).
+In modern JS the context providers is becoming popular ([inversify](https://github.com/inversify/InversifyJS), [awilix](https://github.com/jeffijoe/awilix), [nestjs di](https://docs.nestjs.com/providers)), but not yet widespread enough.
+Let there be a registry of plugins.
+```typescript
+interface MaskerRegistry {
+  add(type: string, masker: IMasker): void
+  remove(type: string, masker: IMasker): boolean
 }
 ```
