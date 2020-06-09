@@ -5,7 +5,10 @@ Composite data masking utility.
 Implement instruments, describe practices, contracts to solve sensitive data masking problem in JS/TS.
 For logs, for public data output and so on.
 
-## Roadmap
+## Status
+🚧 Work in progress 🚧 / Experimental / Early preview
+
+### Roadmap
 - [ ] Introduce (declarative?) masking directives  
 - [ ] Describe masking strategies and add masking utils  
 - [ ] Implement masking composer/processor  
@@ -129,8 +132,7 @@ For some types of data, it's important to keep the format specificity. In this c
 Examples: phone number `+7 *** *** 23 50`, PAN `5310 **** **** 9668`.
 
 ### Parsing
-Log subsystems are the main consumer of maskers. JS log API (console-like) accepts various input types. 
-Depending on structure, they pose simple or complex task for masking.
+Masking is required for various input types. Depending on structure, they pose simple or complex task.
 * **json** is pretty easy to iterate through `recursive map`/`deepMap`.
 * **xml** requires resource-intensive parsing. Potentially contains sensitive data in text nodes or attributes.
 * **url** may contain credentials in path or query parts. Access token is easy to confuse with ID, because both may be [UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier).
