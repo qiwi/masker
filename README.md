@@ -128,6 +128,17 @@ Usually spaces are not masked. **NOTE** This type of symbol mapping must not be 
 For some types of data, it's important to keep the format specificity. In this case, the **partial** replacement will affect only a certain fragment.
 Examples: phone number `+7 *** *** 23 50`, PAN `5310 **** **** 9668`.
 
+### Parsing
+Log subsystems are the main consumer of maskers. JS log API (console-like) accepts various input types. 
+Depending on structure, they pose simple or complex task for masking.
+* **json** is pretty easy to iterate through `recursive map`/`deepMap`.
+* **xml** requires resource-intensive parsing. Potentially contains sensitive data in text nodes or attributes.
+* **url** may contain credentials in path or query parts. Access token is easy to confuse with ID, because both may be [UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+* custom **thrift** models attaches [sensitive data flags](https://github.com/qiwi/thrift/pull/3/files).
+* **pan** requires checksum verification. 
+
+The list goes on. These features should be implemented in such a way that the masker does not become a parser. They are related, but not identical.
+
 ### Asynchronicity
 There're several JS engines, which support synchronous (Rhino, Nashorn) and asynchronous (V8, Chakra) flow.
 To be honest, today V8 completely dominates among them.
