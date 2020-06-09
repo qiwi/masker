@@ -65,7 +65,7 @@ Reflecting on what the masker does, it is obvious that everything comes to two f
 Schema-based approach applicable if we know the essence of masked data, if we control the point where its created. 
 In practice, we use frameworks that manage internal layers of data independently and unmanageable from the outside.
 On very lucky, there is a way to inject your custom _masking logger_. Often, for greater reliability, we have to hang a hook on `stdout/stderr` or override native `console`.
-Anyway, detection of sensitive data is also crucial. This process can be implemented in different ways: regexps, functions, binary ops (pan checksums).
+Anyway, detection of sensitive data is also crucial. This process can be implemented in different ways: regexps, functions, binary ops (PAN checksums).
 
 ### Modification
 Masking is not always a complete replacement for content. It is important to maintain a balance between security and perception.
@@ -127,3 +127,23 @@ Usually spaces are not masked. **NOTE** This type of symbol mapping must not be 
 
 For some types of data, it's important to keep the format specificity. In this case, the **partial** replacement will affect only a certain fragment.
 Examples: phone number `+7 *** *** 23 50`, PAN `5310 **** **** 9668`.
+
+### Asynchronicity
+There're several JS engines, which support synchronous (Rhino, Nashorn) and asynchronous (V8, Chakra) flow.
+To be honest, today V8 completely dominates among them.
+Therefore, it is advisable to follow async paradigm out of box if masking is resource intensive. Recommended, but optional.
+
+Usually sync/async versions of api are presented by different functions: `fs.readFile` and `fs.readFileSync`, `execa`/`execa.sync`, etc.
+
+```typescript
+interface IMasker {
+  (target: any, next: IMasker): Promise<any>
+  sync?: (target: any, next: IMasker): any
+}
+```
+```typescript
+export {
+   masker,
+   maskerSync
+}
+```
