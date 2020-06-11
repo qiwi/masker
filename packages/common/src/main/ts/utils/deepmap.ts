@@ -1,8 +1,8 @@
-export function deepMap (
+export function deepMap(
   input: any,
   fn: (input: Record<string, any>, key?: string) => any,
   refs = new WeakMap(),
-  key?: string
+  key?: string,
 ) {
   if (typeof input === 'object' && input !== null) {
     const ref = refs.get(input)

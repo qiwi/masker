@@ -1,5 +1,9 @@
 // import once from 'lodash.once'
 
+import {
+  isPromiseLike,
+  promisify} from './utils'
+
 export const foo = 'bar'
 
 export type IMaskerType = string
@@ -10,19 +14,28 @@ export interface IMasker {
   sync?: (context: IMaskerContext) => any
 }
 
-export interface IMakerPipe {
+export interface IMakerPipeSync {
   (input: IMaskerPipeInput): IMaskerPipeOutput
+}
+
+export interface IMakerPipeAsync {
+  (input: IMaskerPipeInput): Promise<IMaskerPipeOutput>
+}
+
+export interface IMaskerPipe {
+  exec: IMakerPipeAsync
+  execSync: IMakerPipeSync
 }
 
 export interface IMaskerPipeOutput {
   value: any
-  pipeline?: Array<IMakerPipe>,
+  pipeline?: Array<IMaskerPipe>,
   final?: boolean
 }
 
 export interface IMaskerPipeInput extends ISharedContext {
   value: any
-  pipeline: Array<IMakerPipe>
+  pipeline: Array<IMaskerPipe>
 }
 
 export interface IMaskerContext {
@@ -38,39 +51,69 @@ export interface IMaskerRegistry {
 
 type IExecutorContext = {
   value: any
-  pipeline?: Array<IMakerPipe>
+  pipeline?: Array<IMaskerPipe>
   registry?: any
   refs?: any
+  mode?: IExecutionMode
 }
 
 type ISharedContext = {
   registry: any
   refs: any,
-  execute: IExecutor
+  execute: IExecutor,
+  mode: IExecutionMode
 }
 
-export type IExecutor = (context: IExecutorContext) => IMaskerPipeOutput
+type IExecutionMode = 'sync' | 'async'
 
-export const execute: IExecutor = (context: IExecutorContext): IMaskerPipeOutput => {
-  const {pipeline=[], value, refs = new WeakMap(), registry = new Map()} = context
+export interface IExecutor {
+  (context: IExecutorContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
+  sync: IExecutorSync,
+  execSync: IExecutorSync
+  exec: IExecutor
+}
+export type IExecutorSync = (context: IExecutorContext) => IMaskerPipeOutput
+
+export const execute: IExecutor = (context: IExecutorContext) => {
+  const {pipeline= [], value, refs = new WeakMap(), registry = new Map(), mode = 'async'} = context
   const pipe = pipeline[0]
 
   if (!pipe) {
     return context
   }
 
-  const sharedContext: ISharedContext = {refs, registry, execute}
-  const res = pipe({
+  const sharedContext: ISharedContext = {refs, registry, execute, mode}
+  const fn = mode === 'sync' ? pipe.execSync : pipe.exec
+  const res = fn({
     value,
     pipeline,
     ...sharedContext,
   })
 
-  return res.final
-    ? res
-    : execute({
-      ...sharedContext,
-      ...res,
-      pipeline: res.pipeline || pipeline.slice(1),
-    })
+  const next = (res: IMaskerPipeOutput) =>
+    res.final
+      ? res
+      : execute({
+        ...sharedContext,
+        ...res,
+        pipeline: res.pipeline || pipeline.slice(1),
+      })
+
+  return isPromiseLike(res) ?
+    (res as Promise<IMaskerPipeOutput>).then(next)
+    : next(res as IMaskerPipeOutput)
+}
+const execSync = ((opts) => execute({...opts, mode: 'sync'})) as IExecutorSync
+execute.sync = execSync
+execute.execSync = execSync
+execute.exec = execute
+
+export const createPipe = (execSync?: IMakerPipeSync, exec?: IMakerPipeAsync): IMaskerPipe => {
+  const _execSync: IMakerPipeSync = execSync || (() => ({value: '****** masker not implemented'}))
+  const _exec = exec || promisify(_execSync)
+
+  return {
+    execSync: _execSync,
+    exec: _exec,
+  }
 }
