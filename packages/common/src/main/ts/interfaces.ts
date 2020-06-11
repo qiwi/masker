@@ -8,8 +8,7 @@ export interface IMasker {
 
 export interface IMaskerContext {
   target: any,
-  next: IMasker
-  registry: IMaskerRegistry
+  next: Function
 }
 
 export interface IMaskerRegistry {
