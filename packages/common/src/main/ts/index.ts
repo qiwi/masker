@@ -1,8 +1,4 @@
-// import once from 'lodash.once'
-
-import {
-  isPromiseLike,
-  promisify} from './utils'
+import {isPromiseLike, promisify} from './utils'
 
 export const foo = 'bar'
 
@@ -99,8 +95,8 @@ export const execute: IExecutor = (context: IExecutorContext) => {
         pipeline: res.pipeline || pipeline.slice(1),
       })
 
-  return isPromiseLike(res) ?
-    (res as Promise<IMaskerPipeOutput>).then(next)
+  return isPromiseLike(res)
+    ? (res as Promise<IMaskerPipeOutput>).then(next)
     : next(res as IMaskerPipeOutput)
 }
 const execSync = ((opts) => execute({...opts, mode: 'sync'})) as IExecutorSync

@@ -88,5 +88,4 @@ describe('executor', () => {
       expect(result).toMatchObject({value: 'pipe3', final: true})
     })
   })
-
 })
