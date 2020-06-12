@@ -1,6 +1,40 @@
-import {execute, IMaskerPipeInput, createPipe as cp} from '../../main/ts'
+import {
+  execute,
+  IMaskerPipeInput,
+  getPipe,
+  createPipe as cp,
+} from '../../main/ts'
 
-describe('executor', () => {
+import {IExecutionMode} from '@qiwi/substrate'
+
+describe('#getPipe', () => {
+  const registry = new Map()
+  const pipe = cp(() => ({value: 'pipe'}))
+  const opts = {}
+
+  registry.set('pipe', pipe)
+
+  const cases: Array<[string, Parameters<typeof getPipe>, ReturnType<typeof getPipe>]> = [
+    ['returns fn pipe as is', [pipe], {masker: pipe, opts: undefined}],
+    ['finds the pipe by name', ['pipe', registry], {masker: pipe, opts: undefined}],
+    ['returns undefined if not found', ['otherpipe', registry], undefined],
+    ['returns undefined if registry was not passed', ['pipe'], undefined],
+    ['supports options notation', [[pipe, opts]], {masker: pipe, opts}],
+    ['named ref and options', [['pipe', opts], registry], {masker: pipe, opts}],
+    // @ts-ignore
+    ['boxed ref with no options', [['pipe'], registry], {masker: pipe, opts: undefined}],
+    // @ts-ignore
+    ['undefined if pipe is not a function', [[undefined]], undefined]
+  ]
+
+  cases.forEach(([description, input, output]) => {
+    it(description, () => {
+      expect(getPipe(...input)).toEqual(output)
+    })
+  })
+})
+
+describe('#execute', () => {
   describe('sync', () => {
     it('processes the pipeline', () => {
       const plain = cp(() => ({value: '***'}))
@@ -26,7 +60,7 @@ describe('executor', () => {
       const pipeline = [pipe1, pipe2, pipe3, pipe4]
 
       const value = 'foobar'
-      const result = execute({pipeline, value, mode: 'sync'})
+      const result = execute({pipeline, value, mode: IExecutionMode.SYNC})
 
       expect(result).toMatchObject({value: 'pipe4pipe4', final: true})
     })

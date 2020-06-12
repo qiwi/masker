@@ -26,13 +26,13 @@ export interface IMaskerPipe {
 
 export interface IMaskerPipeOutput {
   value: any
-  pipeline?: Array<IMaskerPipe>,
+  pipeline?: IMaskerPipeline,
   final?: boolean
 }
 
 export interface IMaskerPipeInput extends ISharedContext {
   value: any
-  pipeline: Array<IMaskerPipe>
+  pipeline: IMaskerPipeline
 }
 
 export interface IMaskerContext {
@@ -40,22 +40,18 @@ export interface IMaskerContext {
   next: Function
 }
 
-export interface IMaskerRegistry {
-  get(type: IMaskerType): IMasker | undefined
-  add(type: IMaskerType, masker: IMasker): void
-  remove(type: IMaskerType, masker: IMasker): boolean
-}
+export type IMaskerRegistry = Map<IMaskerPipeName, IMaskerPipe>
 
 type IExecutorContext = {
   value: any
-  pipeline?: Array<IMaskerPipe>
-  registry?: any
+  pipeline?: IMaskerPipeline
+  registry?: IMaskerRegistry
   refs?: any
   mode?: IExecutionMode
 }
 
 type ISharedContext = {
-  registry: any
+  registry: IMaskerRegistry
   refs: any,
   execute: IExecutor,
   mode: IExecutionMode
@@ -72,14 +68,15 @@ export type IExecutorSync = (context: IExecutorContext) => IMaskerPipeOutput
 
 export const execute: IExecutor = (context: IExecutorContext) => {
   const {pipeline= [], value, refs = new WeakMap(), registry = new Map(), mode = IExecutionMode.ASYNC} = context
-  const pipe = pipeline[0]
+  const pipe = getPipe(pipeline[0])
 
   if (!pipe) {
     return context
   }
 
+  const {execSync, exec} = pipe.masker
   const sharedContext: ISharedContext = {refs, registry, execute, mode}
-  const fn = mode === IExecutionMode.SYNC ? pipe.execSync : pipe.exec
+  const fn = mode === IExecutionMode.SYNC ? execSync : exec
   const res = fn({
     value,
     pipeline,
@@ -103,6 +100,49 @@ const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IE
 execute.sync = execSync
 execute.execSync = execSync
 execute.exec = execute
+
+export type IMaskerPipeName = string
+
+export type IMaskerPipeRef = IMaskerPipeName | IMaskerPipe
+
+export type IMaskerOpts = Record<string, any>
+
+export type IMaskerPipeRefWithOpts = [IMaskerPipeRef, IMaskerOpts]
+
+export type IMaskerPipeDeclaration = IMaskerPipeRef | IMaskerPipeRefWithOpts
+
+export type IMaskerPipeline = Array<IMaskerPipeDeclaration>
+
+export type IMaskerPipelineNormalized = {
+  masker: IMaskerPipe,
+  opts?: IMaskerOpts
+}
+
+export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry): IMaskerPipelineNormalized | undefined => {
+  let masker
+  let opts
+
+  if (Array.isArray(pipe)) {
+    [masker, opts] = pipe
+  } else {
+    masker = pipe
+  }
+
+  if (typeof masker === 'string') {
+    masker = registry
+      ? registry.get(masker)
+      : undefined
+  }
+
+  if (!masker) {
+    return undefined
+  }
+
+  return {
+    masker,
+    opts
+  }
+}
 
 export const createPipe = (execSync?: IMakerPipeSync, exec?: IMakerPipeAsync): IMaskerPipe => {
   const _execSync: IMakerPipeSync = execSync || (() => ({value: '****** masker not implemented'}))
