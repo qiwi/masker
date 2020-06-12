@@ -1,4 +1,5 @@
-import {isPromiseLike, promisify} from './utils'
+import { isPromiseLike, promisify } from './utils'
+import { IExecutionMode } from '@qiwi/substrate'
 
 export const foo = 'bar'
 
@@ -60,7 +61,6 @@ type ISharedContext = {
   mode: IExecutionMode
 }
 
-type IExecutionMode = 'sync' | 'async'
 
 export interface IExecutor {
   (context: IExecutorContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
@@ -71,7 +71,7 @@ export interface IExecutor {
 export type IExecutorSync = (context: IExecutorContext) => IMaskerPipeOutput
 
 export const execute: IExecutor = (context: IExecutorContext) => {
-  const {pipeline= [], value, refs = new WeakMap(), registry = new Map(), mode = 'async'} = context
+  const {pipeline= [], value, refs = new WeakMap(), registry = new Map(), mode = IExecutionMode.ASYNC} = context
   const pipe = pipeline[0]
 
   if (!pipe) {
@@ -79,7 +79,7 @@ export const execute: IExecutor = (context: IExecutorContext) => {
   }
 
   const sharedContext: ISharedContext = {refs, registry, execute, mode}
-  const fn = mode === 'sync' ? pipe.execSync : pipe.exec
+  const fn = mode === IExecutionMode.SYNC ? pipe.execSync : pipe.exec
   const res = fn({
     value,
     pipeline,
@@ -99,7 +99,7 @@ export const execute: IExecutor = (context: IExecutorContext) => {
     ? (res as Promise<IMaskerPipeOutput>).then(next)
     : next(res as IMaskerPipeOutput)
 }
-const execSync = ((opts) => execute({...opts, mode: 'sync'})) as IExecutorSync
+const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IExecutorSync
 execute.sync = execSync
 execute.execSync = execSync
 execute.exec = execute
