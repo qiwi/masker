@@ -24,7 +24,7 @@ describe('#getPipe', () => {
     // @ts-ignore
     ['boxed ref with no options', [['pipe'], registry], {masker: pipe, opts: undefined}],
     // @ts-ignore
-    ['undefined if pipe is not a function', [[undefined]], undefined]
+    ['undefined if pipe is not a function', [[undefined]], undefined],
   ]
 
   cases.forEach(([description, input, output]) => {
@@ -93,9 +93,9 @@ describe('#execute', () => {
 
     it('delegates control to the pipe', async() => {
       const pipe1 = cp(() => ({value: 'pipe1'}))
-      const pipe2 = cp(undefined, async({value, refs, registry, pipeline}) =>
+      const pipe2 = cp(undefined, async(context) =>
         ({
-          value: (await execute({value, refs, registry, pipeline: pipeline.slice(1)})).value.repeat(2),
+          value: (await execute({...context, pipeline: context.pipeline.slice(1)})).value.repeat(2),
           final: true,
         }),
       )

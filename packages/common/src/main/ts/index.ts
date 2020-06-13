@@ -1,5 +1,8 @@
-import { isPromiseLike, promisify } from './utils'
-import { IExecutionMode } from '@qiwi/substrate'
+import {IExecutionMode} from '@qiwi/substrate'
+import {
+  isPromiseLike,
+  promisify,
+} from './utils'
 
 export const foo = 'bar'
 
@@ -48,15 +51,18 @@ type IExecutorContext = {
   registry?: IMaskerRegistry
   refs?: any
   mode?: IExecutionMode
+  originPipeline?: IMaskerPipeline
 }
 
 type ISharedContext = {
+  value: any,
   registry: IMaskerRegistry
   refs: any,
   execute: IExecutor,
-  mode: IExecutionMode
+  mode: IExecutionMode,
+  pipeline: IMaskerPipeline
+  originPipeline: IMaskerPipeline
 }
-
 
 export interface IExecutor {
   (context: IExecutorContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
@@ -67,7 +73,8 @@ export interface IExecutor {
 export type IExecutorSync = (context: IExecutorContext) => IMaskerPipeOutput
 
 export const execute: IExecutor = (context: IExecutorContext) => {
-  const {pipeline= [], value, refs = new WeakMap(), registry = new Map(), mode = IExecutionMode.ASYNC} = context
+  const sharedContext: ISharedContext = normalizeContext(context)
+  const {pipeline, mode} = sharedContext
   const pipe = getPipe(pipeline[0])
 
   if (!pipe) {
@@ -75,13 +82,8 @@ export const execute: IExecutor = (context: IExecutorContext) => {
   }
 
   const {execSync, exec} = pipe.masker
-  const sharedContext: ISharedContext = {refs, registry, execute, mode}
   const fn = mode === IExecutionMode.SYNC ? execSync : exec
-  const res = fn({
-    value,
-    pipeline,
-    ...sharedContext,
-  })
+  const res = fn(sharedContext)
 
   const next = (res: IMaskerPipeOutput) =>
     res.final
@@ -124,7 +126,8 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry
 
   if (Array.isArray(pipe)) {
     [masker, opts] = pipe
-  } else {
+  }
+  else {
     masker = pipe
   }
 
@@ -140,9 +143,18 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry
 
   return {
     masker,
-    opts
+    opts,
   }
 }
+
+export const normalizeContext = ({
+  pipeline = [],
+  value,
+  refs = new WeakMap(),
+  registry = new Map(),
+  mode = IExecutionMode.ASYNC,
+  originPipeline = pipeline,
+}: IExecutorContext): ISharedContext => ({value, refs, registry, execute, mode, pipeline, originPipeline})
 
 export const createPipe = (execSync?: IMakerPipeSync, exec?: IMakerPipeAsync): IMaskerPipe => {
   const _execSync: IMakerPipeSync = execSync || (() => ({value: '****** masker not implemented'}))
