@@ -33,7 +33,7 @@ export interface IMaskerPipeOutput {
   final?: boolean
 }
 
-export interface IMaskerPipeInput extends ISharedContext {
+export interface IMaskerPipeInput extends IEnrichedContext {
   value: any
   pipeline: IMaskerPipeline
 }
@@ -45,7 +45,7 @@ export interface IMaskerContext {
 
 export type IMaskerRegistry = Map<IMaskerPipeName, IMaskerPipe>
 
-type IExecutorContext = {
+type IRawContext = {
   value: any
   pipeline?: IMaskerPipeline
   registry?: IMaskerRegistry
@@ -54,26 +54,27 @@ type IExecutorContext = {
   originPipeline?: IMaskerPipeline
 }
 
-type ISharedContext = {
+type IEnrichedContext = {
   value: any,
   registry: IMaskerRegistry
   refs: any,
   execute: IExecutor,
   mode: IExecutionMode,
   pipeline: IMaskerPipeline
-  originPipeline: IMaskerPipeline
+  originPipeline: IMaskerPipeline,
+  context: IEnrichedContext
 }
 
 export interface IExecutor {
-  (context: IExecutorContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
+  (context: IRawContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
   sync: IExecutorSync,
   execSync: IExecutorSync
   exec: IExecutor
 }
-export type IExecutorSync = (context: IExecutorContext) => IMaskerPipeOutput
+export type IExecutorSync = (context: IRawContext) => IMaskerPipeOutput
 
-export const execute: IExecutor = (context: IExecutorContext) => {
-  const sharedContext: ISharedContext = normalizeContext(context)
+export const execute: IExecutor = (context: IRawContext) => {
+  const sharedContext: IEnrichedContext = normalizeContext(context)
   const {pipeline, mode} = sharedContext
   const pipe = getPipe(pipeline[0])
 
@@ -102,6 +103,11 @@ const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IE
 execute.sync = execSync
 execute.execSync = execSync
 execute.exec = execute
+
+export type IMaskerScheme = {
+  masker: any,
+  properties: Record<string, IMaskerScheme>
+}
 
 export type IMaskerPipeName = string
 
@@ -154,7 +160,12 @@ export const normalizeContext = ({
   registry = new Map(),
   mode = IExecutionMode.ASYNC,
   originPipeline = pipeline,
-}: IExecutorContext): ISharedContext => ({value, refs, registry, execute, mode, pipeline, originPipeline})
+}: IRawContext): IEnrichedContext => {
+  const context = {value, refs, registry, execute, mode, pipeline, originPipeline} as IEnrichedContext
+  context.context = context
+
+  return context
+}
 
 export const createPipe = (execSync?: IMakerPipeSync, exec?: IMakerPipeAsync): IMaskerPipe => {
   const _execSync: IMakerPipeSync = execSync || (() => ({value: '****** masker not implemented'}))
