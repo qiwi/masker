@@ -1,4 +1,4 @@
-## In search of JS data masker
+## In search of JS data masker: practice
 
 It is always interesting to watch how a coherent theory breaks down into harsh reality.
 
