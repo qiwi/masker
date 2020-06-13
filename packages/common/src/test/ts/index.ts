@@ -4,6 +4,7 @@ import {
   getPipe,
   createPipe as cp,
 } from '../../main/ts'
+import {deepMap} from '../../main/ts/utils'
 
 import {IExecutionMode} from '@qiwi/substrate'
 
@@ -122,4 +123,53 @@ describe('#execute', () => {
       expect(result).toMatchObject({value: 'pipe3', final: true})
     })
   })
+
+  it('supports recursive flow', () => {
+    const striper = cp(({value}) =>
+      (typeof value === 'string'
+        ? {value: value.replace(/[^\s]/g, '*')}
+        : {value}))
+    const splitter = cp(({value, execute, context, originPipeline}) =>
+      (typeof value === 'object' ?
+        {value: deepMap(value, (v) => execute.sync({...context, pipeline: originPipeline, value: v}).value)}
+        : {value}))
+    const pipeline = [striper, splitter]
+
+    const value = {
+      foo: {
+        bar: 'bar bar bar',
+      },
+      a: {
+        b: [
+          'bb bb',
+          {
+            c: {
+              d: 'dddd dddd d',
+            },
+            e: '****',
+          },
+        ],
+      },
+    }
+    const expected = {
+      foo: {
+        bar: '*** *** ***',
+      },
+      a: {
+        b: [
+          '** **',
+          {
+            c: {
+              d: '**** **** *',
+            },
+            e: '****',
+          },
+        ],
+      },
+    }
+    const result = execute.sync({pipeline, value})
+    expect(result).toMatchObject({value: expected})
+  })
+
+  // describe('builds scheme while processes the pipeline', () => {})
 })

@@ -1,6 +1,6 @@
 export function deepMap(
   input: any,
-  fn: (input: Record<string, any>, key?: string) => any,
+  fn: (input: any, key?: string) => any,
   refs = new WeakMap(),
   key?: string,
 ) {
