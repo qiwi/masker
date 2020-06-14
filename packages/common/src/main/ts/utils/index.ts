@@ -31,4 +31,3 @@ export const mapValues = (
   }
   return fn(input, key)
 }
-

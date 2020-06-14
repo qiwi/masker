@@ -3,7 +3,7 @@ import {
   isPromiseLike,
   promisify,
   isEqual,
-  generateId
+  generateId,
 } from './utils'
 
 export const foo = 'bar'
@@ -54,8 +54,6 @@ export type IContextId = string
 
 export type IMaskerSharedRefs = Map<IContextId, any>
 
-
-
 type IRawContext = {
   value: any
   context?: IEnrichedContext
@@ -104,21 +102,18 @@ export const execute: IExecutor = (context: IRawContext) => {
     parent.children.push(sharedContext)
   }
 
-
   const {execSync, exec} = pipe.masker
   const fn = mode === IExecutionMode.SYNC ? execSync : exec
   const res = fn(sharedContext)
 
-
-  //console.log('!!value', value, 'fn=', fn)
-
+  // console.log('!!value', value, 'fn=', fn)
 
   const next = (res: IMaskerPipeOutput) => res.final
     ? res
     : execute({
       ...sharedContext,
       ...res,
-      parent: undefined, //sharedContext,
+      parent: undefined, // sharedContext,
       pipeline: res.pipeline || pipeline.slice(1),
     })
 
@@ -147,7 +142,7 @@ export const normalizeContext = ({
   registry = new Map(),
   mode = IExecutionMode.ASYNC,
   originPipeline = pipeline,
-  context: parent
+  context: parent,
 }: IRawContext): IEnrichedContext => {
   const id = generateId()
   const children: IEnrichedContext[] = []
@@ -156,7 +151,6 @@ export const normalizeContext = ({
 
   return context
 }
-
 
 export type ISchemaContext = {
   before: IMaskerPipeInput,
@@ -168,14 +162,18 @@ const generateSchema = ({before, after}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
   let maskerDirectives
 
+  if (after.schema) {
+    return after.schema
+  }
 
   if (!isEqual(before.value, after.value)) {
-    maskerDirectives = ['test']
+    maskerDirectives = before?.schema?.maskerDirectives || []
+    maskerDirectives.push('test')
   }
 
   return {
     type,
-    maskerDirectives
+    maskerDirectives,
   }
 }
 

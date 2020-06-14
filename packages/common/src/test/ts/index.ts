@@ -131,7 +131,16 @@ describe('#execute', () => {
         : {value}))
     const splitter = cp(({value, execute, context, originPipeline}) =>
       (typeof value === 'object'
-        ? {value: mapValues(value, (v) => execute.sync({...context, pipeline: originPipeline, value: v}).value)}
+        ? ((origin) => {
+          const mapped = mapValues(origin, (v) => execute.sync({...context, pipeline: originPipeline, value: v}))
+          const value = mapValues(mapped, ({value}) => value)
+          const schema = {
+            type: 'object',
+            properties: mapValues(mapped, ({schema}) => schema),
+          }
+
+          return {value, schema}
+        })(value)
         : {value}))
 
     it('supports recursive flow', () => {
@@ -209,11 +218,11 @@ describe('#execute', () => {
         },
       }
       const expectedSchema = {
-        type: 'object'
+        type: 'object',
       }
 
       const result = execute.sync({pipeline, value})
-      // console.log('result=', JSON.stringify(result.schema, null, 2))
+      console.log('result=', JSON.stringify(result.schema, null, 2))
       expect(result).toMatchObject({value: expectedValue, schema: expectedSchema})
     })
   })
