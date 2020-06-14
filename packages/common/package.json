@@ -33,8 +33,8 @@
   "dependencies": {
     "@qiwi/substrate": "^1.18.33",
     "tslib": "^2.0.0",
-    "@types/lodash.once": "^4.1.6",
-    "lodash.once": "^4.1.1"
+    "@types/lodash.topairs": "^4.3.6",
+    "lodash.topairs": "^4.3.0"
   },
   "devDependencies": {
     "@qiwi/libdefkit": "^1.0.2",

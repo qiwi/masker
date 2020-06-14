@@ -2,6 +2,8 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {
   isPromiseLike,
   promisify,
+  isEqual,
+  generateId
 } from './utils'
 
 export const foo = 'bar'
@@ -27,10 +29,13 @@ export interface IMaskerPipe {
   execSync: IMakerPipeSync
 }
 
+export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerOpts]
+
 export interface IMaskerPipeOutput {
   value: any
-  pipeline?: IMaskerPipeline,
+  pipeline?: IMaskerPipeline
   final?: boolean
+  schema?: IMaskerSchema
 }
 
 export interface IMaskerPipeInput extends IEnrichedContext {
@@ -45,8 +50,16 @@ export interface IMaskerContext {
 
 export type IMaskerRegistry = Map<IMaskerPipeName, IMaskerPipe>
 
+export type IContextId = string
+
+export type IMaskerSharedRefs = Map<IContextId, any>
+
+
+
 type IRawContext = {
   value: any
+  context?: IEnrichedContext
+  parent?: IEnrichedContext
   pipeline?: IMaskerPipeline
   registry?: IMaskerRegistry
   refs?: any
@@ -56,57 +69,127 @@ type IRawContext = {
 
 type IEnrichedContext = {
   value: any,
+  id: IContextId
+  parent?: IEnrichedContext
+  children: Array<IEnrichedContext>
   registry: IMaskerRegistry
-  refs: any,
-  execute: IExecutor,
-  mode: IExecutionMode,
+  refs: any
+  execute: IExecutor
+  mode: IExecutionMode
   pipeline: IMaskerPipeline
-  originPipeline: IMaskerPipeline,
+  originPipeline: IMaskerPipeline
   context: IEnrichedContext
+  schema?: IMaskerSchema
 }
 
 export interface IExecutor {
   (context: IRawContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
-  sync: IExecutorSync,
+  sync: IExecutorSync
   execSync: IExecutorSync
   exec: IExecutor
+  id?: string
 }
 export type IExecutorSync = (context: IRawContext) => IMaskerPipeOutput
 
 export const execute: IExecutor = (context: IRawContext) => {
   const sharedContext: IEnrichedContext = normalizeContext(context)
-  const {pipeline, mode} = sharedContext
+  const {pipeline, mode, parent} = sharedContext
   const pipe = getPipe(pipeline[0])
 
   if (!pipe) {
     return context
   }
 
+  if (parent) {
+    parent.children.push(sharedContext)
+  }
+
+
   const {execSync, exec} = pipe.masker
   const fn = mode === IExecutionMode.SYNC ? execSync : exec
   const res = fn(sharedContext)
 
-  const next = (res: IMaskerPipeOutput) =>
-    res.final
-      ? res
-      : execute({
-        ...sharedContext,
-        ...res,
-        pipeline: res.pipeline || pipeline.slice(1),
-      })
+
+  //console.log('!!value', value, 'fn=', fn)
+
+
+  const next = (res: IMaskerPipeOutput) => res.final
+    ? res
+    : execute({
+      ...sharedContext,
+      ...res,
+      parent: undefined, //sharedContext,
+      pipeline: res.pipeline || pipeline.slice(1),
+    })
+
+  const appendSchema = (res: IMaskerPipeOutput): IMaskerPipeOutput => {
+    const before = sharedContext
+    const after = res
+
+    before.schema = after.schema = generateSchema({before, after, pipe})
+
+    return after
+  }
 
   return isPromiseLike(res)
-    ? (res as Promise<IMaskerPipeOutput>).then(next)
-    : next(res as IMaskerPipeOutput)
+    ? (res as Promise<IMaskerPipeOutput>).then(next).then(appendSchema)
+    : appendSchema(next(res as IMaskerPipeOutput) as IMaskerPipeOutput)
 }
 const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IExecutorSync
 execute.sync = execSync
 execute.execSync = execSync
 execute.exec = execute
 
-export type IMaskerScheme = {
-  masker: any,
-  properties: Record<string, IMaskerScheme>
+export const normalizeContext = ({
+  pipeline = [],
+  value,
+  refs = new WeakMap(),
+  registry = new Map(),
+  mode = IExecutionMode.ASYNC,
+  originPipeline = pipeline,
+  context: parent
+}: IRawContext): IEnrichedContext => {
+  const id = generateId()
+  const children: IEnrichedContext[] = []
+  const context = {id, parent, children, value, refs, registry, execute, mode, pipeline, originPipeline} as IEnrichedContext
+  context.context = context
+
+  return context
+}
+
+
+export type ISchemaContext = {
+  before: IMaskerPipeInput,
+  after: IMaskerPipeOutput,
+  pipe: IMaskerPipelineNormalized
+}
+
+const generateSchema = ({before, after}: ISchemaContext): IMaskerSchema => {
+  const type = getSchemaType(before.value)
+  let maskerDirectives
+
+
+  if (!isEqual(before.value, after.value)) {
+    maskerDirectives = ['test']
+  }
+
+  return {
+    type,
+    maskerDirectives
+  }
+}
+
+const getSchemaType = (value: any): string =>
+  typeof value === 'string'
+    ? 'string'
+    : typeof value === 'object' && value !== null
+      ? 'object'
+      : 'unknown'
+
+export type IMaskerSchema = {
+  type: any
+  maskerDirectives?: Array<IMaskerDirective>
+  properties?: Record<string, IMaskerSchema>
 }
 
 export type IMaskerPipeName = string
@@ -151,20 +234,6 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry
     masker,
     opts,
   }
-}
-
-export const normalizeContext = ({
-  pipeline = [],
-  value,
-  refs = new WeakMap(),
-  registry = new Map(),
-  mode = IExecutionMode.ASYNC,
-  originPipeline = pipeline,
-}: IRawContext): IEnrichedContext => {
-  const context = {value, refs, registry, execute, mode, pipeline, originPipeline} as IEnrichedContext
-  context.context = context
-
-  return context
 }
 
 export const createPipe = (execSync?: IMakerPipeSync, exec?: IMakerPipeAsync): IMaskerPipe => {

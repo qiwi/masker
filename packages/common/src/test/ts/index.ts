@@ -4,7 +4,7 @@ import {
   getPipe,
   createPipe as cp,
 } from '../../main/ts'
-import {deepMap} from '../../main/ts/utils'
+import {mapValues} from '../../main/ts/utils'
 
 import {IExecutionMode} from '@qiwi/substrate'
 
@@ -50,9 +50,9 @@ describe('#execute', () => {
 
     it('delegates control to the pipe', () => {
       const pipe1 = cp(() => ({value: 'pipe1'}))
-      const pipe2 = cp(({value, refs, registry, pipeline}) =>
+      const pipe2 = cp(({context, pipeline}) =>
         ({
-          value: execute.sync({value, refs, registry, pipeline: pipeline.slice(1)}).value.repeat(2),
+          value: execute.sync({...context, pipeline: pipeline.slice(1)}).value.repeat(2),
           final: true,
         }),
       )
@@ -124,52 +124,97 @@ describe('#execute', () => {
     })
   })
 
-  it('supports recursive flow', () => {
-    const striper = cp(({value}) =>
+  describe('behaviour', () => {
+    const striker = cp(({value}) =>
       (typeof value === 'string'
         ? {value: value.replace(/[^\s]/g, '*')}
         : {value}))
     const splitter = cp(({value, execute, context, originPipeline}) =>
-      (typeof value === 'object' ?
-        {value: deepMap(value, (v) => execute.sync({...context, pipeline: originPipeline, value: v}).value)}
+      (typeof value === 'object'
+        ? {value: mapValues(value, (v) => execute.sync({...context, pipeline: originPipeline, value: v}).value)}
         : {value}))
-    const pipeline = [striper, splitter]
 
-    const value = {
-      foo: {
-        bar: 'bar bar bar',
-      },
-      a: {
-        b: [
-          'bb bb',
-          {
-            c: {
-              d: 'dddd dddd d',
+    it('supports recursive flow', () => {
+      const pipeline = [striker, splitter]
+
+      const value = {
+        foo: {
+          bar: 'bar bar bar',
+        },
+        a: {
+          b: [
+            'bb bb',
+            {
+              c: {
+                d: 'dddd dddd d',
+              },
+              e: 'eeeee',
             },
-            e: '****',
-          },
-        ],
-      },
-    }
-    const expected = {
-      foo: {
-        bar: '*** *** ***',
-      },
-      a: {
-        b: [
-          '** **',
-          {
-            c: {
-              d: '**** **** *',
+          ],
+        },
+      }
+      const expected = {
+        foo: {
+          bar: '*** *** ***',
+        },
+        a: {
+          b: [
+            '** **',
+            {
+              c: {
+                d: '**** **** *',
+              },
+              e: '*****',
             },
-            e: '****',
-          },
-        ],
-      },
-    }
-    const result = execute.sync({pipeline, value})
-    expect(result).toMatchObject({value: expected})
+          ],
+        },
+      }
+      const result = execute.sync({pipeline, value})
+      expect(result.value).toEqual(expected)
+    })
+
+    fit('builds schema while processes the pipeline', () => {
+      const pipeline = [striker, splitter]
+
+      const value = {
+        foo: {
+          bar: 'bar bar bar',
+        },
+        a: {
+          b: [
+            'bb bb',
+            {
+              c: {
+                d: 'dddd dddd d',
+              },
+              e: 'eeee',
+            },
+          ],
+        },
+      }
+      const expectedValue = {
+        foo: {
+          bar: '*** *** ***',
+        },
+        a: {
+          b: [
+            '** **',
+            {
+              c: {
+                d: '**** **** *',
+              },
+              e: '****',
+            },
+          ],
+        },
+      }
+      const expectedSchema = {
+        type: 'object'
+      }
+
+      const result = execute.sync({pipeline, value})
+      // console.log('result=', JSON.stringify(result.schema, null, 2))
+      expect(result).toMatchObject({value: expectedValue, schema: expectedSchema})
+    })
   })
-
-  // describe('builds scheme while processes the pipeline', () => {})
 })
