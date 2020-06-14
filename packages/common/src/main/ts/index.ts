@@ -105,26 +105,19 @@ export const execute: IExecutor = (context: IRawContext) => {
   const {execSync, exec} = pipe.masker
   const fn = mode === IExecutionMode.SYNC ? execSync : exec
   const res = fn(sharedContext)
-
-  // console.log('!!value', value, 'fn=', fn)
-
   const next = (res: IMaskerPipeOutput) => res.final
     ? res
     : execute({
       ...sharedContext,
       ...res,
-      parent: undefined, // sharedContext,
+      parent: sharedContext,
       pipeline: res.pipeline || pipeline.slice(1),
     })
 
-  const appendSchema = (res: IMaskerPipeOutput): IMaskerPipeOutput => {
-    const before = sharedContext
-    const after = res
-
-    before.schema = after.schema = generateSchema({before, after, pipe})
-
-    return after
-  }
+  const appendSchema = (res: IMaskerPipeOutput): IMaskerPipeOutput => ({
+    ...res,
+    schema: generateSchema({before: sharedContext, after: res, pipe}),
+  })
 
   return isPromiseLike(res)
     ? (res as Promise<IMaskerPipeOutput>).then(next).then(appendSchema)
@@ -160,21 +153,17 @@ export type ISchemaContext = {
 
 const generateSchema = ({before, after}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
-  let maskerDirectives
-
-  if (after.schema) {
-    return after.schema
-  }
-
-  if (!isEqual(before.value, after.value)) {
-    maskerDirectives = before?.schema?.maskerDirectives || []
-    maskerDirectives.push('test')
-  }
-
-  return {
+  const schema: IMaskerSchema = {
+    ...after.schema,
     type,
-    maskerDirectives,
   }
+
+  if (type !== 'object' && !isEqual(before.value, after.value)) {
+    schema.maskerDirectives = after?.schema?.maskerDirectives || []
+    schema.maskerDirectives.push('test')
+  }
+
+  return schema
 }
 
 const getSchemaType = (value: any): string =>

@@ -182,7 +182,7 @@ describe('#execute', () => {
       expect(result.value).toEqual(expected)
     })
 
-    fit('builds schema while processes the pipeline', () => {
+    it('builds schema while processes the pipeline', () => {
       const pipeline = [striker, splitter]
 
       const value = {
@@ -218,12 +218,56 @@ describe('#execute', () => {
         },
       }
       const expectedSchema = {
-        type: 'object',
+        'type': 'object',
+        'properties': {
+          'foo': {
+            'type': 'object',
+            'properties': {
+              'bar': {
+                'type': 'string',
+                'maskerDirectives': ['test'],
+              },
+            },
+          },
+          'a': {
+            'type': 'object',
+            'properties': {
+              'b': {
+                'type': 'object',
+                'properties': [
+                  {
+                    'type': 'string',
+                    'maskerDirectives': ['test'],
+                  },
+                  {
+                    'type': 'object',
+                    'properties': {
+                      'c': {
+                        'type': 'object',
+                        'properties': {
+                          'd': {
+                            'type': 'string',
+                            'maskerDirectives': ['test'],
+                          },
+                        },
+                      },
+                      'e': {
+                        'type': 'string',
+                        'maskerDirectives': ['test'],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        },
       }
 
       const result = execute.sync({pipeline, value})
-      console.log('result=', JSON.stringify(result.schema, null, 2))
-      expect(result).toMatchObject({value: expectedValue, schema: expectedSchema})
+      // console.log('result=', JSON.stringify(result.schema, null, 2))
+      expect(result.value).toEqual(expectedValue)
+      expect(result.schema).toEqual(expectedSchema)
     })
   })
 })
