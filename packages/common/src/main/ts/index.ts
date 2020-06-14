@@ -57,7 +57,6 @@ export type IMaskerSharedRefs = Map<IContextId, any>
 type IRawContext = {
   value: any
   context?: IEnrichedContext
-  parent?: IEnrichedContext
   pipeline?: IMaskerPipeline
   registry?: IMaskerRegistry
   refs?: any
@@ -68,8 +67,6 @@ type IRawContext = {
 type IEnrichedContext = {
   value: any,
   id: IContextId
-  parent?: IEnrichedContext
-  children: Array<IEnrichedContext>
   registry: IMaskerRegistry
   refs: any
   execute: IExecutor
@@ -91,15 +88,11 @@ export type IExecutorSync = (context: IRawContext) => IMaskerPipeOutput
 
 export const execute: IExecutor = (context: IRawContext) => {
   const sharedContext: IEnrichedContext = normalizeContext(context)
-  const {pipeline, mode, parent} = sharedContext
+  const {pipeline, mode} = sharedContext
   const pipe = getPipe(pipeline[0])
 
   if (!pipe) {
     return context
-  }
-
-  if (parent) {
-    parent.children.push(sharedContext)
   }
 
   const {execSync, exec} = pipe.masker
@@ -110,7 +103,6 @@ export const execute: IExecutor = (context: IRawContext) => {
     : execute({
       ...sharedContext,
       ...res,
-      parent: sharedContext,
       pipeline: res.pipeline || pipeline.slice(1),
     })
 
@@ -135,11 +127,9 @@ export const normalizeContext = ({
   registry = new Map(),
   mode = IExecutionMode.ASYNC,
   originPipeline = pipeline,
-  context: parent,
 }: IRawContext): IEnrichedContext => {
   const id = generateId()
-  const children: IEnrichedContext[] = []
-  const context = {id, parent, children, value, refs, registry, execute, mode, pipeline, originPipeline} as IEnrichedContext
+  const context = {id, value, refs, registry, execute, mode, pipeline, originPipeline} as IEnrichedContext
   context.context = context
 
   return context
@@ -154,8 +144,8 @@ export type ISchemaContext = {
 const generateSchema = ({before, after}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
   const schema: IMaskerSchema = {
-    ...after.schema,
     type,
+    ...after.schema,
   }
 
   if (type !== 'object' && !isEqual(before.value, after.value)) {
