@@ -25,6 +25,7 @@ export interface IMakerPipeAsync {
 }
 
 export interface IMaskerPipe {
+  name: IMaskerPipeName
   exec: IMakerPipeAsync
   execSync: IMakerPipeSync
 }
@@ -141,7 +142,7 @@ export type ISchemaContext = {
   pipe: IMaskerPipelineNormalized
 }
 
-const generateSchema = ({before, after}: ISchemaContext): IMaskerSchema => {
+const generateSchema = ({before, after, pipe: {masker: {name}}}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
   const schema: IMaskerSchema = {
     type,
@@ -150,7 +151,7 @@ const generateSchema = ({before, after}: ISchemaContext): IMaskerSchema => {
 
   if (type !== 'object' && !isEqual(before.value, after.value)) {
     schema.maskerDirectives = after?.schema?.maskerDirectives || []
-    schema.maskerDirectives.push('test')
+    schema.maskerDirectives.push(name)
   }
 
   return schema
@@ -213,11 +214,12 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry
   }
 }
 
-export const createPipe = (execSync?: IMakerPipeSync, exec?: IMakerPipeAsync): IMaskerPipe => {
+export const createPipe = (name: IMaskerPipeName, execSync?: IMakerPipeSync, exec?: IMakerPipeAsync): IMaskerPipe => {
   const _execSync: IMakerPipeSync = execSync || (() => ({value: '****** masker not implemented'}))
   const _exec = exec || promisify(_execSync)
 
   return {
+    name,
     execSync: _execSync,
     exec: _exec,
   }

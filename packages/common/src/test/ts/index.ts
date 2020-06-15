@@ -10,7 +10,7 @@ import {IExecutionMode} from '@qiwi/substrate'
 
 describe('#getPipe', () => {
   const registry = new Map()
-  const pipe = cp(() => ({value: 'pipe'}))
+  const pipe = cp('pipe', () => ({value: 'pipe'}))
   const opts = {}
 
   registry.set('pipe', pipe)
@@ -38,8 +38,8 @@ describe('#getPipe', () => {
 describe('#execute', () => {
   describe('sync', () => {
     it('processes the pipeline', () => {
-      const plain = cp(() => ({value: '***'}))
-      const double = cp(({value}: IMaskerPipeInput) => ({value: value.repeat(2)}))
+      const plain = cp('plain', () => ({value: '***'}))
+      const double = cp('double', ({value}: IMaskerPipeInput) => ({value: value.repeat(2)}))
       const pipeline = [plain, double]
 
       const value = 'foobar'
@@ -49,15 +49,15 @@ describe('#execute', () => {
     })
 
     it('delegates control to the pipe', () => {
-      const pipe1 = cp(() => ({value: 'pipe1'}))
-      const pipe2 = cp(({context, pipeline}) =>
+      const pipe1 = cp('pipe1', () => ({value: 'pipe1'}))
+      const pipe2 = cp('pipe2', ({context, pipeline}) =>
         ({
           value: execute.sync({...context, pipeline: pipeline.slice(1)}).value.repeat(2),
           final: true,
         }),
       )
-      const pipe3 = cp(() => ({value: 'pipe3'}))
-      const pipe4 = cp(() => ({value: 'pipe4'}))
+      const pipe3 = cp('pipe3', () => ({value: 'pipe3'}))
+      const pipe4 = cp('pipe4', () => ({value: 'pipe4'}))
       const pipeline = [pipe1, pipe2, pipe3, pipe4]
 
       const value = 'foobar'
@@ -67,10 +67,10 @@ describe('#execute', () => {
     })
 
     it('stop propagation once `final` flag occurs', () => {
-      const pipe1 = cp(() => ({value: 'pipe1'}))
-      const pipe2 = cp(() => ({value: 'pipe2'}))
-      const pipe3 = cp(() => ({value: 'pipe3', final: true}))
-      const pipe4 = cp(() => ({value: 'pipe4'}))
+      const pipe1 = cp('pipe1', () => ({value: 'pipe1'}))
+      const pipe2 = cp('pipe2', () => ({value: 'pipe2'}))
+      const pipe3 = cp('pipe3', () => ({value: 'pipe3', final: true}))
+      const pipe4 = cp('pipe4', () => ({value: 'pipe4'}))
       const pipeline = [pipe1, pipe2, pipe3, pipe4]
 
       const value = 'foobar'
@@ -82,8 +82,8 @@ describe('#execute', () => {
 
   describe('async', () => {
     it('processes the pipeline', async() => {
-      const plain = cp(() => ({value: '***'}))
-      const double = cp(({value}: IMaskerPipeInput) => ({value: value.repeat(2)}))
+      const plain = cp('plain', () => ({value: '***'}))
+      const double = cp('double', ({value}: IMaskerPipeInput) => ({value: value.repeat(2)}))
       const pipeline = [plain, double]
 
       const value = 'foobar'
@@ -93,15 +93,15 @@ describe('#execute', () => {
     })
 
     it('delegates control to the pipe', async() => {
-      const pipe1 = cp(() => ({value: 'pipe1'}))
-      const pipe2 = cp(undefined, async(context) =>
+      const pipe1 = cp('pipe1', () => ({value: 'pipe1'}))
+      const pipe2 = cp('pipe2', undefined, async(context) =>
         ({
           value: (await execute({...context, pipeline: context.pipeline.slice(1)})).value.repeat(2),
           final: true,
         }),
       )
-      const pipe3 = cp(() => ({value: 'pipe3'}))
-      const pipe4 = cp(() => ({value: 'pipe4'}))
+      const pipe3 = cp('pipe3', () => ({value: 'pipe3'}))
+      const pipe4 = cp('pipe4', () => ({value: 'pipe4'}))
       const pipeline = [pipe1, pipe2, pipe3, pipe4]
 
       const value = 'foobar'
@@ -111,10 +111,10 @@ describe('#execute', () => {
     })
 
     it('stop propagation once `final` flag occurs', async() => {
-      const pipe1 = cp(() => ({value: 'pipe1'}))
-      const pipe2 = cp(() => ({value: 'pipe2'}))
-      const pipe3 = cp(() => ({value: 'pipe3', final: true}))
-      const pipe4 = cp(() => ({value: 'pipe4'}))
+      const pipe1 = cp('pipe1', () => ({value: 'pipe1'}))
+      const pipe2 = cp('pipe2', () => ({value: 'pipe2'}))
+      const pipe3 = cp('pipe3', () => ({value: 'pipe3', final: true}))
+      const pipe4 = cp('pipe4', () => ({value: 'pipe4'}))
       const pipeline = [pipe1, pipe2, pipe3, pipe4]
 
       const value = 'foobar'
@@ -125,11 +125,11 @@ describe('#execute', () => {
   })
 
   describe('behaviour', () => {
-    const striker = cp(({value}) =>
+    const striker = cp('striker', ({value}) =>
       (typeof value === 'string'
         ? {value: value.replace(/[^\s]/g, '*')}
         : {value}))
-    const splitter = cp(({value, execute, context, originPipeline}) =>
+    const splitter = cp('splitter', ({value, execute, context, originPipeline}) =>
       (typeof value === 'object'
         ? ((origin) => {
           const mapped = mapValues(origin, (v) => execute.sync({...context, pipeline: originPipeline, value: v}))
@@ -225,7 +225,7 @@ describe('#execute', () => {
             'properties': {
               'bar': {
                 'type': 'string',
-                'maskerDirectives': ['test'],
+                'maskerDirectives': ['striker'],
               },
             },
           },
@@ -237,7 +237,7 @@ describe('#execute', () => {
                 'properties': [
                   {
                     'type': 'string',
-                    'maskerDirectives': ['test'],
+                    'maskerDirectives': ['striker'],
                   },
                   {
                     'type': 'object',
@@ -247,13 +247,13 @@ describe('#execute', () => {
                         'properties': {
                           'd': {
                             'type': 'string',
-                            'maskerDirectives': ['test'],
+                            'maskerDirectives': ['striker'],
                           },
                         },
                       },
                       'e': {
                         'type': 'string',
-                        'maskerDirectives': ['test'],
+                        'maskerDirectives': ['striker'],
                       },
                     },
                   },
