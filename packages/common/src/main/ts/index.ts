@@ -32,20 +32,10 @@ export const foo = 'bar'
 
 export const execute: IExecutor = (context: IRawContext) => {
   const sharedContext: IEnrichedContext = normalizeContext(context)
-  const {schema, pipeline, mode, value, parent, registry} = sharedContext
+  const {schema, pipeline, mode, parent, registry} = sharedContext
 
   if (schema && !parent) {
-    const _value = clone(value)
-
-    extractMaskerDirectives(schema).forEach(([path, directives]) => {
-      set(_value, path, execute.sync({
-        ...sharedContext,
-        value: get(_value, path),
-        pipeline: directives,
-      }).value)
-    })
-
-    return({...sharedContext, value: _value, schema})
+    return shortCutExecute(sharedContext)
   }
 
   const pipe = getPipe(pipeline[0], registry)
@@ -78,6 +68,34 @@ const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IE
 execute.sync = execSync
 execute.execSync = execSync
 execute.exec = execute
+
+export const shortCutExecute = ({context, schema, value, mode}: IEnrichedContext) => {
+  if (!schema) {
+    return context
+  }
+
+  const _value = clone(value)
+  const directives = extractMaskerDirectives(schema)
+  const inject = (outputs: IMaskerPipeOutput[]): IMaskerPipeOutput => {
+    outputs.forEach(({value}, i) => {
+      const path = directives[i]?.[0]
+      set(_value, path, value)
+    })
+
+    return {...context, value: _value, schema}
+  }
+  const values = directives.map(([path, directives]) =>
+    execute({
+      ...context,
+      value: get(_value, path),
+      pipeline: directives,
+    }),
+  )
+
+  return mode === IExecutionMode.ASYNC
+    ? Promise.all(values).then(inject)
+    : inject(values as IMaskerPipeOutput[])
+}
 
 export const normalizeContext = ({
   pipeline = [],
