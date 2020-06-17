@@ -34,7 +34,9 @@
     "@qiwi/substrate": "^1.18.33",
     "tslib": "^2.0.0",
     "@types/lodash.topairs": "^4.3.6",
-    "lodash.topairs": "^4.3.0"
+    "lodash.topairs": "^4.3.0",
+    "lodash": "^4.17.15",
+    "@types/lodash": "^4.14.155"
   },
   "devDependencies": {
     "@qiwi/libdefkit": "^1.0.2",

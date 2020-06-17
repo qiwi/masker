@@ -24,6 +24,8 @@ export interface IMaskerPipe {
 
 export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerOpts]
 
+export type IMaskerDirectives = Array<IMaskerDirective>
+
 export interface IMaskerPipeOutput {
   value: any
   pipeline?: IMaskerPipeline
@@ -49,6 +51,7 @@ export type IRawContext = {
   value: any
   schema?: IMaskerSchema
   context?: IEnrichedContext
+  parent?: IEnrichedContext
   pipeline?: IMaskerPipeline
   registry?: IMaskerRegistry
   refs?: any
@@ -66,6 +69,7 @@ export type IEnrichedContext = {
   pipeline: IMaskerPipeline
   originPipeline: IMaskerPipeline
   context: IEnrichedContext
+  parent: IEnrichedContext
   schema?: IMaskerSchema
 }
 
@@ -87,7 +91,7 @@ export type ISchemaContext = {
 export type IMaskerSchema = {
   type: any
   maskerDirectives?: Array<IMaskerDirective>
-  properties?: Record<string, IMaskerSchema>
+  properties?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
 }
 
 export type IMaskerPipeName = string

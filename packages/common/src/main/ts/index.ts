@@ -2,9 +2,15 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {
   isPromiseLike,
   promisify,
-  isEqual,
-  generateId, flattenObject,
+  generateId,
+  clone,
 } from './utils'
+
+import {set, get} from 'lodash'
+import {
+  extractMaskerDirectives,
+  generateSchema,
+} from './schema'
 
 import {
   IExecutor,
@@ -16,21 +22,33 @@ import {
   IMaskerPipeSync,
   IMaskerPipeAsync,
   IMaskerPipelineNormalized,
-  IMaskerDirective,
+  // IMaskerDirective,
   IMaskerPipeOutput,
   IMaskerPipeDeclaration,
   IMaskerRegistry,
-  IMaskerSchema,
-  ISchemaContext
 } from './interfaces'
 
 export const foo = 'bar'
 
 export const execute: IExecutor = (context: IRawContext) => {
   const sharedContext: IEnrichedContext = normalizeContext(context)
-  const {pipeline, mode} = sharedContext
-  
-  const pipe = getPipe(pipeline[0])
+  const {schema, pipeline, mode, value, parent, registry} = sharedContext
+
+  if (schema && !parent) {
+    const _value = clone(value)
+
+    extractMaskerDirectives(schema).forEach(([path, directives]) => {
+      set(_value, path, execute.sync({
+        ...sharedContext,
+        value: get(_value, path),
+        pipeline: directives,
+      }).value)
+    })
+
+    return({...sharedContext, value: _value, schema})
+  }
+
+  const pipe = getPipe(pipeline[0], registry)
 
   if (!pipe) {
     return context
@@ -69,35 +87,14 @@ export const normalizeContext = ({
   mode = IExecutionMode.ASYNC,
   originPipeline = pipeline,
   schema,
+  context: parent,
 }: IRawContext): IEnrichedContext => {
   const id = generateId()
-  const context = {id, value, refs, registry, execute, mode, pipeline, originPipeline, schema} as IEnrichedContext
+  const context = {id, parent, value, refs, registry, execute, mode, pipeline, originPipeline, schema} as IEnrichedContext
   context.context = context
 
   return context
 }
-
-const generateSchema = ({before, after, pipe: {masker: {name}}}: ISchemaContext): IMaskerSchema => {
-  const type = getSchemaType(before.value)
-  const schema: IMaskerSchema = {
-    type,
-    ...after.schema,
-  }
-
-  if (type !== 'object' && !isEqual(before.value, after.value)) {
-    schema.maskerDirectives = after?.schema?.maskerDirectives || []
-    schema.maskerDirectives.push(name)
-  }
-
-  return schema
-}
-
-const getSchemaType = (value: any): string =>
-  typeof value === 'string'
-    ? 'string'
-    : typeof value === 'object' && value !== null
-      ? 'object'
-      : 'unknown'
 
 export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry): IMaskerPipelineNormalized | undefined => {
   let masker
