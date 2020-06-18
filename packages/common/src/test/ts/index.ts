@@ -244,7 +244,7 @@ describe('#execute', () => {
         expect(result.schema).toBe(expectedSchema)
       })
 
-      it('uses context.schema if passed (async)', async () => {
+      it('uses context.schema if passed (async)', async() => {
         const result = await execute({schema: expectedSchema, value, registry, mode: IExecutionMode.ASYNC})
 
         expect(result.value).toEqual(expectedValue)

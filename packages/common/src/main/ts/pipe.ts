@@ -5,7 +5,7 @@ import {
   IMaskerPipelineNormalized,
   IMaskerPipeName,
   IMaskerPipeSync,
-  IMaskerRegistry
+  IMaskerRegistry,
 } from './interfaces'
 import {promisify} from './utils'
 
