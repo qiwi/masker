@@ -1,17 +1,15 @@
 import {IExecutionMode} from '@qiwi/substrate'
+import {set, get} from 'lodash'
 import {
   isPromiseLike,
   generateId,
   clone,
 } from './utils'
-
-import {set, get} from 'lodash'
 import {getPipe} from './pipe'
 import {
   extractMaskerDirectives,
   generateSchema,
 } from './schema'
-
 import {
   IExecutor,
   IExecutorSync,
@@ -44,7 +42,6 @@ export const execute: IExecutor = (context: IRawContext) => {
       ...res,
       pipeline: res.pipeline || pipeline.slice(1),
     })
-
   const appendSchema = (res: IMaskerPipeOutput): IMaskerPipeOutput => ({
     ...res,
     schema: generateSchema({before: sharedContext, after: res, pipe}),
