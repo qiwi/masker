@@ -16,12 +16,18 @@ export const extractJsonStrings = (input: string): ReturnType<typeof JSON.parse>
     }, [])
     .map(json => {
       try {
-        return JSON.parse(json)
+        return checkJson(json)
+          ? JSON.parse(json)
+          : undefined
       }
       catch {
         return
       }
     })
     .filter((v) => v !== undefined)
-
 }
+
+// https://stackoverflow.com/a/3710506
+export const checkJson = (str: string): boolean => /^[\],:{}\s]*$/.test(str.replace(/\\["\\\/bfnrtu]/g, '@').
+replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+replace(/(?:^|:|,)(?:\s*\[)+/g, ''))

@@ -1,10 +1,10 @@
 // import {get} from 'lodash'
 
-export const promisify = (fn: Function) => (...args: any[]) => Promise.resolve(fn(...args))
-
 import {deepMap} from './deepmap'
 
 export {deepMap} from './deepmap'
+
+export const promisify = (fn: Function) => (...args: any[]) => Promise.resolve(fn(...args))
 
 export const isPromiseLike = (target: any): boolean =>
   !!target && typeof target.then === 'function' && typeof target.catch === 'function'
