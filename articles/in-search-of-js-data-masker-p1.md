@@ -1,4 +1,4 @@
-## In search of JS data masker: theory
+## In search of JS data masker: requirements
 The problem of masking sensitive data is solved in various ways. Therefore, it is interesting not so much to do a comparison of these solutions, but to think about what aspects are relevant today.
 
 ## Problems
@@ -12,7 +12,7 @@ class UserProfileDto {
   personalSettings: {} // not sensitive data
 }
 ```
-The stage in which we determine the need for data masking and the stage of data output are ofter located in directly unrelated layers.
+The stage in which we determine the need for data masking, and the stage of data output are ofter located in directly unrelated layers.
 
 ### Vulnerability
 Is it possible to output sensitive data to the console? Definitely, yes.
@@ -63,7 +63,7 @@ In practice, we use frameworks that manage internal layers of data independently
 On very lucky, there is a way to inject your custom _masking logger_. Often, for greater reliability, we have to hang a hook on `stdout/stderr` or override native `console`.
 Anyway, detection of sensitive data is also crucial. This process can be implemented in different ways: regexps, functions, binary ops (PAN checksums).
 
-### Modification
+### Distortion
 Masking is not always a complete replacement for content. It is important to maintain a balance between security and perception.
 For clarity, imagine user payments history:
 ```
@@ -71,13 +71,13 @@ Recipient: *** (personal data)
 Sum: $25.00
 Paymethod: credit card *** (sensitive data)
 ```
-With a comparable level of security, this might be in more useful form.
+With a comparable level of security, this might be in more readable form.
 ```
 Recipient: J.S***d
 Sum: $25.00
 Paymethod: credit card 4256 **** **** 3770
 ```
-So modificators should provide the minimum necessary, but not the maximum possible level of data distortion required for a specific context.
+So modifiers should provide the minimum necessary, but not the maximum possible level of data distortion required for a specific context.
 
 ### Chain of responsibility
 The reasoning above suggests the following `IMasker` contract.
@@ -171,9 +171,13 @@ export {
 }
 ```
 
+### Extensibility
+A long-term solution must constantly adapt to new requirements. If the concept of continuous modification lays down in original design, the improvement process will be more efficient.
+How to do it simply? The plugins.
+
 ### Composability
 Although high-level maskers reuse part of the functionality of basic maskers, it’s better to avoid direct dependencies.
-The solution can be based on DI/IoC-container system or the plug-in system. Each custom masker should be declared as provider and be available by alias (interface / name).
+The solution can be based on DI/IoC-container system / some shared registry. Each custom masker should be declared as provider and be available by alias (interface / name).
 In modern JS the context providers is becoming popular ([inversify](https://github.com/inversify/InversifyJS), [awilix](https://github.com/jeffijoe/awilix), [nestjs di](https://docs.nestjs.com/providers)), but not yet widespread enough.
 Let there be a registry of plugins at least.
 ```typescript
