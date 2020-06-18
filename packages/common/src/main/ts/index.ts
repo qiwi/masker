@@ -1,12 +1,12 @@
 import {IExecutionMode} from '@qiwi/substrate'
 import {
   isPromiseLike,
-  promisify,
   generateId,
   clone,
 } from './utils'
 
 import {set, get} from 'lodash'
+import {getPipe} from './pipe'
 import {
   extractMaskerDirectives,
   generateSchema,
@@ -17,15 +17,7 @@ import {
   IExecutorSync,
   IRawContext,
   IEnrichedContext,
-  IMaskerPipe,
-  IMaskerPipeName,
-  IMaskerPipeSync,
-  IMaskerPipeAsync,
-  IMaskerPipelineNormalized,
-  // IMaskerDirective,
   IMaskerPipeOutput,
-  IMaskerPipeDeclaration,
-  IMaskerRegistry,
 } from './interfaces'
 
 export const foo = 'bar'
@@ -114,40 +106,3 @@ export const normalizeContext = ({
   return context
 }
 
-export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry): IMaskerPipelineNormalized | undefined => {
-  let masker
-  let opts
-
-  if (Array.isArray(pipe)) {
-    [masker, opts] = pipe
-  }
-  else {
-    masker = pipe
-  }
-
-  if (typeof masker === 'string') {
-    masker = registry
-      ? registry.get(masker)
-      : undefined
-  }
-
-  if (!masker) {
-    return undefined
-  }
-
-  return {
-    masker,
-    opts,
-  }
-}
-
-export const createPipe = (name: IMaskerPipeName, execSync?: IMaskerPipeSync, exec?: IMaskerPipeAsync): IMaskerPipe => {
-  const _execSync: IMaskerPipeSync = execSync || (() => ({value: '****** masker not implemented'}))
-  const _exec = exec || promisify(_execSync)
-
-  return {
-    name,
-    execSync: _execSync,
-    exec: _exec,
-  }
-}

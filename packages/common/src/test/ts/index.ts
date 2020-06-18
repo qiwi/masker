@@ -1,9 +1,6 @@
 import {IExecutionMode} from '@qiwi/substrate'
-import {
-  execute,
-  getPipe,
-  createPipe as cp,
-} from '../../main/ts'
+import {execute} from '../../main/ts'
+import {createPipe as cp, getPipe} from '../../main/ts/pipe'
 import {mapValues} from '../../main/ts/utils'
 import {IMaskerPipeInput, IMaskerSchema} from '../../main/ts/interfaces'
 
