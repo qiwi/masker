@@ -37,5 +37,5 @@ Without changing the role of control fields, we can use the scheme for validatio
 ```
 
 ### Nesting 
-Upon careful investigation of primitives, nested `JSON`/`XML` may appear in string value. This circumstance, if not ignored, brings a truly huge complexity. Check this out: **json** may contain some **xml** field with an **attribute**, which is a business param for xml gateway in **json** format. 
+Upon careful investigation of primitives, nested `JSON`/`XML` may appear in string values. This circumstance, if not ignored, brings a truly huge complexity. A little far-fetched, but conveys the essence: **json** may contain some **xml** field with an **attribute**, which is a business param for xml gateway in **json** format. 
 And this single string can have **several** such pieces. So the first needed is to find their boundaries before the parsing. Then once each parsed value is modified, it's time to format everything back and put it exactly in the same place.
