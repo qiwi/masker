@@ -1,18 +1,18 @@
-## In search of JS data masker: requirements
+## In search of JS data masker: issues
 The problem of masking sensitive data is solved in various ways. Therefore, it is interesting not so much to do a comparison of these solutions, but to think about what aspects are relevant today.
+Criteria, considerations, limitations and so on.
 
-## Problems
 ### Suspense
-The most maskers use complex analyzers to separate entities that should be hidden.
-They examine field names (like `"password"`, `"token"`, `"secret"`") or data formats (like card PANs) to the entire depth of jsons or xmls. 
-But it’s impossible to cover all cases fully automatically. Sometimes the masking rule can be defined only in the business logic context.
+The most maskers use analyzers to separate entities that should be hidden.
+They examine entry names (like `"password"`, `"token"`, `"secret"`") or data formats (like card PANs). 
+But this heuristic is ambiguous and very fragile. It’s impossible to cover all cases fully automatically. Sometimes the masking rule can only be defined in the business logic context.
 ```javascript
 class UserProfileDto {
   personalData: {}  // sensitive data
   personalSettings: {} // not sensitive data
 }
 ```
-The stage in which we determine the need for data masking, and the stage of data output are ofter located in directly unrelated layers.
+Sometimes, the stage in which we determine the need for data masking, and the stage of data output are ofter located in directly unrelated layers.
 
 ### Vulnerability
 Is it possible to output sensitive data to the console? Definitely, yes.
@@ -54,17 +54,15 @@ maskedStore.set(a, {...a, smthToHide: '***'})
 ```
 [`Reflect.metadata`](https://github.com/rbuckton/reflect-metadata) can also be used for the same purpose. Or even [cls-context](https://github.com/jeff-lewis/cls-hooked).
 
-
-## Notices
-Reflecting on what the masker does, it is obvious that everything comes to two fundamental things: search and change data.
 ### Detection
+Reflecting on what the masker does, it is obvious that everything comes to two fundamental things: search and replace data.
 Schema-based approach applicable if we know the essence of masked data, if we control the point where its created. 
-In practice, we use frameworks that manage internal layers of data independently and unmanageable from the outside.
+In practice, we use frameworks that manage internal layers of data independently and uncontrollable from the outside.
 On very lucky, there is a way to inject your custom _masking logger_. Often, for greater reliability, we have to hang a hook on `stdout/stderr` or override native `console`.
 Anyway, detection of sensitive data is also crucial. This process can be implemented in different ways: regexps, functions, binary ops (PAN checksums).
 
 ### Distortion
-Masking is not always a complete replacement for content. It is important to maintain a balance between security and perception.
+Masking does not always mean a complete replacement for content. It is important to maintain a balance between security and perception.
 For clarity, imagine user payments history:
 ```
 Recipient: *** (personal data)
@@ -188,7 +186,7 @@ interface MaskerRegistry {
 ```
 
 ## Ready-made solutions
-I do not dare to say that there are no libraries suitable for enterprise. Unfortunately, I could not find something mature, that can be taken as a basis for refinement.
+I don't dare to say that there's no library suitable for enterprise. Unfortunately, I could not find something mature, that can be taken as a basis for refinement.
 * [https://www.google.com/search?q=js+sensitive+data](https://www.google.com/search?q=js+sensitive+data)
 * [https://www.google.com/search?q=js+data+masking](https://www.google.com/search?q=js+data+masking)
 * [https://www.npmjs.com/search?q=sensitive%20data](https://www.npmjs.com/search?q=sensitive%20data)

@@ -18,7 +18,7 @@ type IContext = {
 }
 ```
 
-### Directives: masking type
+### Directives
 The hypothesis that only one handler can be applied to a field was rejected first.
 The resolution of the json-schema-like notation does not allow to have pointers for tokens inside the value.
 ```javascript
