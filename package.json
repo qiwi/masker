@@ -38,7 +38,7 @@
     "jest": "^26.0.1",
     "lerna": "^3.22.1",
     "@qiwi/multi-semantic-release": "^3.0.1",
-    "semantic-release": "17.0.8",
+    "semantic-release": "17.1.0",
     "snazzy": "^8.0.0",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
