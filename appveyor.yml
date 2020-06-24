@@ -33,3 +33,7 @@ test_script:
 after_test:
   - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
   - ./cc-test-reporter after-build
+
+deploy_script:
+  - NODE_DEBUG=gh-pages multi-semantic-release
+

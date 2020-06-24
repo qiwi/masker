@@ -3,7 +3,8 @@
   "verifyConditions": [
     "@semantic-release/changelog",
     "@semantic-release/npm",
-    "@semantic-release/git"
+    "@semantic-release/git",
+    "@qiwi/semantic-release-gh-pages-plugin"
   ],
   "prepare": [
     "@semantic-release/changelog",
@@ -12,6 +13,16 @@
   ],
   "publish": [
     "@semantic-release/npm",
-    "@semantic-release/github"
+    "@semantic-release/github",
+    [
+      "@qiwi/semantic-release-gh-pages-plugin",
+      {
+        "branch": "gh-pages",
+        "msg": "updated {{=it.nextRelease.gitTag}}",
+        "src": "./packages/common/docs",
+        "dst": "./common",
+        "pullTagsBranch": ""
+      }
+    ]
   ]
 }
