@@ -20,7 +20,16 @@ install:
 build_script:
   - yarn build
 
+before_test:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 test_script:
   - node --version
   - yarn --version
   - yarn test
+
+after_test:
+  - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
+  - ./cc-test-reporter after-build
