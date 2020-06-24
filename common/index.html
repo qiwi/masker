@@ -1,0 +1,262 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@qiwi/masker-common</title>
+	<meta name="description" content="Documentation for @qiwi/masker-common">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@qiwi/masker-common</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>@qiwi/masker-common</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#qiwimasker" id="qiwimasker" style="color: inherit; text-decoration: none;">
+					<h1>@qiwi/masker</h1>
+				</a>
+				<p>Composite data masking utility.</p>
+				<a href="#goal" id="goal" style="color: inherit; text-decoration: none;">
+					<h2>Goal</h2>
+				</a>
+				<p>Implement instruments, describe practices, contracts to solve sensitive data masking problem in JS/TS.
+				For logs, for public data output and so on.</p>
+				<a href="#status" id="status" style="color: inherit; text-decoration: none;">
+					<h2>Status</h2>
+				</a>
+				<p>🚧 Work in progress 🚧 / Experimental / Early preview</p>
+				<a href="#roadmap" id="roadmap" style="color: inherit; text-decoration: none;">
+					<h3>Roadmap</h3>
+				</a>
+				<ul>
+					<li><input disabled="" type="checkbox"> Introduce (declarative?) masking directives  </li>
+					<li><input disabled="" type="checkbox"> Describe masking strategies and add masking utils  </li>
+					<li><input disabled="" type="checkbox"> Implement masking composer/processor  </li>
+					<li><input disabled="" type="checkbox"> Support logging tools integration  </li>
+				</ul>
+				<a href="#motivation" id="motivation" style="color: inherit; text-decoration: none;">
+					<h2>Motivation</h2>
+				</a>
+				<p>Enterprise development has specific requirements for the masking tools.
+					And it seems that open source solutions do not fully satisfy them.
+				Detailed thoughts on this subject are presented in the article &quot;In search of JS data masker&quot;.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iexecutor.html" class="tsd-kind-icon">IExecutor</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/imasker.html" class="tsd-kind-icon">IMasker</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/imaskercontext.html" class="tsd-kind-icon">IMasker<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/imaskerpipe.html" class="tsd-kind-icon">IMasker<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/imaskerpipeasync.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Async</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/imaskerpipeinput.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Input</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/imaskerpipeoutput.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Output</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/imaskerpipesync.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Sync</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#icontextid" class="tsd-kind-icon">IContext<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#ienrichedcontext" class="tsd-kind-icon">IEnriched<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#iexecutorsync" class="tsd-kind-icon">IExecutor<wbr>Sync</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerdirective" class="tsd-kind-icon">IMasker<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerdirectives" class="tsd-kind-icon">IMasker<wbr>Directives</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskeropts" class="tsd-kind-icon">IMasker<wbr>Opts</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerpipedeclaration" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Declaration</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerpipename" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerpiperef" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerpiperefwithopts" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Ref<wbr>With<wbr>Opts</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerpipeline" class="tsd-kind-icon">IMasker<wbr>Pipeline</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerpipelinenormalized" class="tsd-kind-icon">IMasker<wbr>Pipeline<wbr>Normalized</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerregistry" class="tsd-kind-icon">IMasker<wbr>Registry</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskerschema" class="tsd-kind-icon">IMasker<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#imaskertype" class="tsd-kind-icon">IMasker<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#irawcontext" class="tsd-kind-icon">IRaw<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#ischemacontext" class="tsd-kind-icon">ISchema<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#execsync" class="tsd-kind-icon">exec<wbr>Sync</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#foo" class="tsd-kind-icon">foo</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#checkjson" class="tsd-kind-icon">check<wbr>Json</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#clone" class="tsd-kind-icon">clone</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createpipe" class="tsd-kind-icon">create<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#deepmap" class="tsd-kind-icon">deep<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#execute" class="tsd-kind-icon">execute</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#extractjsonstrings" class="tsd-kind-icon">extract<wbr>Json<wbr>Strings</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#extractmaskerdirectives" class="tsd-kind-icon">extract<wbr>Masker<wbr>Directives</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#flattenobject" class="tsd-kind-icon">flatten<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#generateid" class="tsd-kind-icon">generate<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#generateschema" class="tsd-kind-icon">generate<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getpipe" class="tsd-kind-icon">get<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getschematype" class="tsd-kind-icon">get<wbr>Schema<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#isequal" class="tsd-kind-icon">is<wbr>Equal</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#ispromiselike" class="tsd-kind-icon">is<wbr>Promise<wbr>Like</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#mapvalues" class="tsd-kind-icon">map<wbr>Values</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#normalizecontext" class="tsd-kind-icon">normalize<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#promisify" class="tsd-kind-icon">promisify</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#shortcutexecute" class="tsd-kind-icon">short<wbr>Cut<wbr>Execute</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#unflattenobject" class="tsd-kind-icon">unflatten<wbr>Object</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
