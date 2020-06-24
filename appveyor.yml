@@ -35,5 +35,5 @@ after_test:
   - ./cc-test-reporter after-build
 
 deploy_script:
-  - NODE_DEBUG=gh-pages multi-semantic-release
+  - yarn release
 

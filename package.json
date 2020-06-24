@@ -21,7 +21,7 @@
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || echo 'coveralls push failed :(' && exit 0",
     "docs": "typedoc packages/**/src/main --ignoreCompilerErrors || exit 0",
     "postupdate": "yarn && yarn bootstrap && yarn build && yarn test",
-    "release": "multi-semantic-release"
+    "release": "NODE_DEBUG=gh-pages multi-semantic-release"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
