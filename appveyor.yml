@@ -1,0 +1,26 @@
+image: Ubuntu
+
+environment:
+  nodejs_version: "12"
+
+stack: node 12
+
+branches:
+  except:
+    - gh-pages
+
+skip_tags: true
+
+max_jobs: 1
+
+install:
+  - yarn install
+  - yarn bootstrap
+
+build_script:
+  - yarn build
+
+test_script:
+  - node --version
+  - yarn --version
+  - yarn test
