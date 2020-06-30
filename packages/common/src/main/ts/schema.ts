@@ -37,5 +37,5 @@ export const getSchemaType = (value: any): string =>
   typeof value === 'string'
     ? 'string'
     : typeof value === 'object' && value !== null
-    ? 'object'
-    : 'unknown'
+      ? 'object'
+      : 'unknown'
