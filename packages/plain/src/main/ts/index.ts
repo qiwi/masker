@@ -1,7 +1,7 @@
 import {
   IMaskerPipe,
   IMaskerPipeName,
-  createPipe
+  createPipe,
 } from '@qiwi/masker-common'
 
 export {foo} from '@qiwi/masker-common'
