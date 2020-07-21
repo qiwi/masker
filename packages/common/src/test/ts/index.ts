@@ -222,6 +222,27 @@ describe('#execute', () => {
     registry.set(splitter.name, splitter)
     registry.set(striker.name, striker)
 
+    it('masked output inherits proto of input', () => {
+      const error = new Error('1000')
+      // @ts-ignore
+      error.baz = 'quxqux'
+      const value = {
+        foo: 'bar',
+        error
+      }
+      const pipeline = [striker, splitter]
+      const result = execute.sync({pipeline, value})
+
+      expect(result.value.error).toBeInstanceOf(Error)
+      expect(result.value).toMatchObject({
+        foo: '***',
+        error: {
+          message: '****',
+          baz: '******'
+        }
+      })
+    })
+
     it('supports recursive flow', () => {
       const pipeline = [striker, splitter]
       const result = execute.sync({pipeline, value})
