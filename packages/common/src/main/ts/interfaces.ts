@@ -56,7 +56,8 @@ export type IRawContext = {
   registry?: IMaskerRegistry
   refs?: any
   mode?: IExecutionMode
-  originPipeline?: IMaskerPipeline
+  originPipeline?: IMaskerPipeline,
+  execute?: IExecutor
 }
 
 export type IEnrichedContext = {
