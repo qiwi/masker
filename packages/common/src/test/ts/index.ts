@@ -2,7 +2,7 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {execute} from '../../main/ts'
 import {createPipe as cp, getPipe} from '../../main/ts/pipe'
 import {mapValues} from '../../main/ts/utils'
-import {IMaskerPipeInput, IMaskerSchema} from '../../main/ts/interfaces'
+import {IMaskerPipeInput} from '../../main/ts/interfaces'
 
 describe('#getPipe', () => {
   const registry = new Map()
@@ -153,52 +153,6 @@ describe('#execute', () => {
         ],
       },
     }
-    const expectedSchema: IMaskerSchema = {
-      'type': 'object',
-      'properties': {
-        'foo': {
-          'type': 'object',
-          'properties': {
-            'bar': {
-              'type': 'string',
-              'maskerDirectives': ['striker'],
-            },
-          },
-        },
-        'a': {
-          'type': 'object',
-          'properties': {
-            'b': {
-              'type': 'object',
-              'properties': [
-                {
-                  'type': 'string',
-                  'maskerDirectives': ['striker'],
-                },
-                {
-                  'type': 'object',
-                  'properties': {
-                    'c': {
-                      'type': 'object',
-                      'properties': {
-                        'd': {
-                          'type': 'string',
-                          'maskerDirectives': ['striker'],
-                        },
-                      },
-                    },
-                    'e': {
-                      'type': 'string',
-                      'maskerDirectives': ['striker'],
-                    },
-                  },
-                },
-              ],
-            },
-          },
-        },
-      },
-    }
 
     const striker = cp('striker', ({value}) =>
       (typeof value === 'string'
@@ -247,30 +201,6 @@ describe('#execute', () => {
       const pipeline = [striker, splitter]
       const result = execute.sync({pipeline, value})
       expect(result.value).toEqual(expectedValue)
-    })
-
-    describe('schema', () => {
-      it('builds schema while processes the pipeline', () => {
-        const pipeline = ['striker', 'splitter']
-        const result = execute.sync({pipeline, value, registry})
-
-        expect(result.value).toEqual(expectedValue)
-        expect(result.schema).toEqual(expectedSchema)
-      })
-
-      it('uses context.schema if passed', () => {
-        const result = execute.sync({schema: expectedSchema, value, registry})
-
-        expect(result.value).toEqual(expectedValue)
-        expect(result.schema).toBe(expectedSchema)
-      })
-
-      it('uses context.schema if passed (async)', async() => {
-        const result = await execute({schema: expectedSchema, value, registry, mode: IExecutionMode.ASYNC})
-
-        expect(result.value).toEqual(expectedValue)
-        expect(result.schema).toBe(expectedSchema)
-      })
     })
   })
 })
