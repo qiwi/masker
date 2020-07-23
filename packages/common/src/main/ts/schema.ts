@@ -7,12 +7,12 @@ import {
   IMaskerPipeOutput,
   IMaskerSchema,
   IRawContext,
-  ISchemaContext
+  ISchemaContext,
 } from './interfaces'
 import {clone, flattenObject, isEqual, isPromiseLike} from './utils'
 import {normalizeContext} from './context'
 import {get, set} from 'lodash'
-import {getPipe} from "./pipe";
+import {getPipe} from './pipe'
 
 export const withSchema = (execute: IExecutor): IExecutor => {
   const _execute = (context: IRawContext) => {

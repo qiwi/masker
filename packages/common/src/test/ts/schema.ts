@@ -1,6 +1,6 @@
 import {
   extractMaskerDirectives,
-  withSchema
+  withSchema,
 } from '../../main/ts/schema'
 import {execute as exec} from '../../main/ts/execute'
 import {createPipe as cp} from '../../main/ts/pipe'

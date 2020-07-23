@@ -1,4 +1,4 @@
-import {normalizeContext} from '@qiwi/masker-common'
+import {normalizeContext, execute} from '@qiwi/masker-common'
 import {
   pipe,
   stub,
@@ -24,7 +24,7 @@ describe('plain',() => {
       ]
       cases.forEach(([value, expected]) => {
         const result = {value: expected}
-        const input = normalizeContext({value})
+        const input = normalizeContext({value}, execute)
 
         it(`${value} > ${expected}`, async() => {
           expect(pipe.execSync(input)).toEqual(result)

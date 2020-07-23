@@ -27,7 +27,7 @@ export function mapper(
           ...descriptor,
           value: deep
             ? mapper(deep, descriptor.value, fn, refs, i)
-            : fn(descriptor.value, i)
+            : fn(descriptor.value, i),
         })
       }
     }

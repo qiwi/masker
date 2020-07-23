@@ -42,4 +42,3 @@ const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IE
 execute.sync = execSync
 execute.execSync = execSync
 execute.exec = execute
-

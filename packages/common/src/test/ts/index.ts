@@ -182,7 +182,7 @@ describe('#execute', () => {
       error.baz = 'quxqux'
       const value = {
         foo: 'bar',
-        error
+        error,
       }
       const pipeline = [striker, splitter]
       const result = execute.sync({pipeline, value})
@@ -192,8 +192,8 @@ describe('#execute', () => {
         foo: '***',
         error: {
           message: '****',
-          baz: '******'
-        }
+          baz: '******',
+        },
       })
     })
 
