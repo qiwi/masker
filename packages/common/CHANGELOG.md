@@ -1,3 +1,10 @@
+# @qiwi/masker-common [1.2.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.1.0...@qiwi/masker-common@1.2.0) (2020-07-23)
+
+
+### Features
+
+* inherit proto of input objects ([0a0ebc3](https://github.com/qiwi/masker/commit/0a0ebc37be5b497ebab5c699ab94ae45403ec567))
+
 # @qiwi/masker-common [1.1.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.0.0...@qiwi/masker-common@1.1.0) (2020-06-30)
 
 
