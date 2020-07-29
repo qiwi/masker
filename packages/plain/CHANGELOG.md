@@ -1,3 +1,10 @@
+## @qiwi/masker-plain [1.1.2](https://github.com/qiwi/masker/compare/@qiwi/masker-plain@1.1.1...@qiwi/masker-plain@1.1.2) (2020-07-29)
+
+
+### Bug Fixes
+
+* **plain:** fix typings scope ([4382420](https://github.com/qiwi/masker/commit/4382420dab65d4c4a8826b61a3931229c3087a46))
+
 ## @qiwi/masker-plain [1.1.1](https://github.com/qiwi/masker/compare/@qiwi/masker-plain@1.1.0...@qiwi/masker-plain@1.1.1) (2020-07-23)
 
 
