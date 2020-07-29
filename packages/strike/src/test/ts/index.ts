@@ -19,7 +19,7 @@ describe('strike',() => {
     describe('replaces non-space values with *', () => {
       const cases = [
         ['foo bar', '*** ***'],
-        [null, '***'],
+        [null, '****'],
         [12345, '*****'],
       ]
       cases.forEach(([value, expected]) => {

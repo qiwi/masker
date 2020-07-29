@@ -3,6 +3,7 @@
   "projects": [
     "<rootDir>/packages/common/jest.config.json",
     "<rootDir>/packages/facade/jest.config.json",
-    "<rootDir>/packages/plain/jest.config.json"
+    "<rootDir>/packages/plain/jest.config.json",
+    "<rootDir>/packages/strike/jest.config.json"
   ]
 }
