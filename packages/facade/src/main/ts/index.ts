@@ -1,1 +1,1 @@
-export {foo} from '@qiwi/masker-plain'
+export {foo} from '@qiwi/masker-common'

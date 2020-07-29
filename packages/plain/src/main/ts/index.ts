@@ -4,8 +4,6 @@ import {
   createPipe,
 } from '@qiwi/masker-common'
 
-export {foo} from '@qiwi/masker-common'
-
 export const name: IMaskerPipeName = 'plain'
 
 export const stub = '***'
