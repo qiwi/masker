@@ -11,22 +11,26 @@ describe('#getPipe', () => {
 
   registry.set('pipe', pipe)
 
-  const cases: Array<[string, Parameters<typeof getPipe>, ReturnType<typeof getPipe>]> = [
-    ['returns fn pipe as is', [pipe], {masker: pipe, opts: undefined}],
-    ['finds the pipe by name', ['pipe', registry], {masker: pipe, opts: undefined}],
-    ['returns undefined if not found', ['otherpipe', registry], undefined],
-    ['returns undefined if registry was not passed', ['pipe'], undefined],
-    ['supports options notation', [[pipe, opts]], {masker: pipe, opts}],
-    ['named ref and options', [['pipe', opts], registry], {masker: pipe, opts}],
+  const cases: Array<[string, Parameters<typeof getPipe>, any, Error?]> = [
+    ['returns fn pipe as is', [pipe, registry], {...pipe, opts: undefined}],
+    ['finds the pipe by name', ['pipe', registry], {...pipe, opts: undefined}],
+    ['raises an exception if not found', ['otherpipe', registry], undefined, new Error('Pipe not found: undefined')],
+    ['supports options notation', [[pipe, opts], registry], {...pipe, opts}],
+    ['named ref and options', [['pipe', opts], registry], {...pipe, opts}],
     // @ts-ignore
-    ['boxed ref with no options', [['pipe'], registry], {masker: pipe, opts: undefined}],
+    ['boxed ref with no options', [['pipe'], registry], {...pipe, opts: undefined}],
     // @ts-ignore
-    ['undefined if pipe is not a function', [[undefined]], undefined],
+    ['undefined if pipe is not a function', [[undefined]], undefined, new Error('Pipe not found: undefined')],
   ]
 
-  cases.forEach(([description, input, output]) => {
+  cases.forEach(([description, input, output, error]) => {
     it(description, () => {
-      expect(getPipe(...input)).toEqual(output)
+      if (error) {
+        expect(() => getPipe(...input)).toThrow(error)
+      }
+      else {
+        expect(getPipe(...input)).toEqual(output)
+      }
     })
   })
 })

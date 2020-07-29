@@ -12,13 +12,13 @@ import {
 import {clone, flattenObject, isEqual, isPromiseLike} from './utils'
 import {normalizeContext} from './context'
 import {get, set} from 'lodash'
-import {getPipe} from './pipe'
+// import {getPipe} from './pipe'
 
 export const withSchema = (execute: IExecutor): IExecutor => {
   const _execute = (context: IRawContext) => {
     const sharedContext: IEnrichedContext = normalizeContext(context, _execute)
-    const {schema, parent, pipeline, registry} = sharedContext
-    const pipe = getPipe(pipeline[0], registry)
+    const {schema, parent, pipeline} = sharedContext
+    const pipe = pipeline[0] // getPipe(pipeline[0], registry)
 
     if (schema && !parent) {
       return shortCutExecute(sharedContext)
@@ -92,7 +92,7 @@ export const extractMaskerDirectives = (schema: IMaskerSchema): Array<[string, I
       return m
     }, [])
 
-export const generateSchema = ({before, after, pipe: {masker: {name}}}: ISchemaContext): IMaskerSchema => {
+export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
   const schema: IMaskerSchema = {
     type,

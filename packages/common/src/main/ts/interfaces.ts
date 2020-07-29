@@ -35,7 +35,7 @@ export interface IMaskerPipeOutput {
 
 export interface IMaskerPipeInput extends IEnrichedContext {
   value: any
-  pipeline: IMaskerPipeline
+  pipeline: IMaskerPipelineNormalized
 }
 
 export interface IMaskerContext {
@@ -67,8 +67,8 @@ export type IEnrichedContext = {
   refs: any
   execute: IExecutor
   mode: IExecutionMode
-  pipeline: IMaskerPipeline
-  originPipeline: IMaskerPipeline
+  pipeline: IMaskerPipelineNormalized
+  originPipeline: IMaskerPipelineNormalized
   context: IEnrichedContext
   parent: IEnrichedContext
   schema?: IMaskerSchema
@@ -86,7 +86,7 @@ export type IExecutorSync = (context: IRawContext) => IMaskerPipeOutput
 export type ISchemaContext = {
   before: IMaskerPipeInput,
   after: IMaskerPipeOutput,
-  pipe: IMaskerPipelineNormalized
+  pipe: IMaskerPipeNormalized
 }
 
 export type IMaskerSchema = {
@@ -107,7 +107,8 @@ export type IMaskerPipeDeclaration = IMaskerPipeRef | IMaskerPipeRefWithOpts
 
 export type IMaskerPipeline = Array<IMaskerPipeDeclaration>
 
-export type IMaskerPipelineNormalized = {
-  masker: IMaskerPipe,
+export type IMaskerPipeNormalized = IMaskerPipe & {
   opts?: IMaskerOpts
 }
+
+export type IMaskerPipelineNormalized = Array<IMaskerPipeNormalized>

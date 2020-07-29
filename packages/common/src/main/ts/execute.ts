@@ -2,7 +2,6 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {
   isPromiseLike,
 } from './utils'
-import {getPipe} from './pipe'
 
 import {
   IExecutor,
@@ -15,15 +14,15 @@ import {normalizeContext} from './context'
 
 export const execute: IExecutor = (context: IRawContext) => {
   const sharedContext: IEnrichedContext = normalizeContext(context, execute)
-  const {pipeline, mode, registry} = sharedContext
+  const {pipeline, mode} = sharedContext
 
-  const pipe = getPipe(pipeline[0], registry)
+  const pipe = pipeline[0]
 
   if (!pipe) {
     return context
   }
 
-  const {execSync, exec} = pipe.masker
+  const {execSync, exec} = pipe
   const fn = mode === IExecutionMode.SYNC ? execSync : exec
   const res = fn(sharedContext)
   const next = (res: IMaskerPipeOutput) => res.final

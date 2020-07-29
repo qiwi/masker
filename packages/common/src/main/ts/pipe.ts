@@ -2,14 +2,14 @@ import {
   IMaskerPipe,
   IMaskerPipeAsync,
   IMaskerPipeDeclaration,
-  IMaskerPipelineNormalized,
+  IMaskerPipeNormalized,
   IMaskerPipeName,
   IMaskerPipeSync,
   IMaskerRegistry,
 } from './interfaces'
 import {promisify} from './utils'
 
-export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry): IMaskerPipelineNormalized | undefined => {
+export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry): IMaskerPipeNormalized => {
   let masker
   let opts
 
@@ -21,17 +21,15 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry?: IMaskerRegistry
   }
 
   if (typeof masker === 'string') {
-    masker = registry
-      ? registry.get(masker)
-      : undefined
+    masker = registry.get(masker)
   }
 
   if (!masker) {
-    return undefined
+    throw new Error(`Pipe not found: ${masker}`)
   }
 
   return {
-    masker,
+    ...masker,
     opts,
   }
 }
