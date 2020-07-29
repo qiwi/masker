@@ -44,3 +44,13 @@ And this single string can have **several** such pieces. So the first needed is 
 A recursive pipeline is the universe of questions. It takes too much attention. It is important to keep the focus on _what_, not _how_.
 The best solution would be to use any existing data processor rather than writing yet another one. At least lay on standard interfaces when describing pipes and contexts, use unary functions, etc.
 I told myself after I spent weeks on this routine.
+
+### Fallbacks
+No matter how hard you try, it's impossible to completely avoid errors. This will require a fallback handler or a separate pipeline for exceptions.
+This will also require containerizing the return value, [either monad](https://blog.logrocket.com/elegant-error-handling-with-the-javascript-either-monad-76c7ae4924a1/) or something like that.
+```typescript
+type TValue = {
+  error: any,
+  success: any
+}
+```
