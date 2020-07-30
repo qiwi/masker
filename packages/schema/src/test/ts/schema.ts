@@ -8,7 +8,7 @@ import {
 import {
   extractMaskerDirectives,
   withSchema,
-} from '../../main/ts/schema'
+} from '../../main/ts'
 
 describe('schema', () => {
   describe('#withSchema', () => {

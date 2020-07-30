@@ -1,12 +1,10 @@
 import {get, set} from 'lodash'
 import {IExecutionMode} from '@qiwi/substrate'
 import {
-  getPipe,
   normalizeContext,
   clone,
+  ahook,
   flattenObject,
-  isEqual,
-  isPromiseLike,
   IMaskerPipe,
   IMaskerPipeName,
   IMaskerPipeInput,
@@ -22,25 +20,30 @@ import {
 
 export const name: IMaskerPipeName = 'schema'
 
-export const pipe: IMaskerPipe = {
-  name,
-  exec(cxt: IMaskerPipeInput) {
-    cxt.execute = withSchema(cxt.execute)
-    cxt.originPipeline = cxt.originPipeline.filter((pipe) => pipe.pipe.name !== name)
+const exec = ((cxt: IMaskerPipeInput) => {
+  cxt.execute = withSchema(cxt.execute)
+  cxt.originPipeline = cxt.originPipeline.filter((pipe) => pipe.name !== name)
+  cxt.pipeline = cxt.pipeline.filter((pipe) => pipe.name !== name)
 
-    return cxt.execute(cxt)
-  }
-}
+  // @ts-ignore
+  cxt.context = cxt.parent = undefined
+
+  return cxt.execute(cxt)
+}) as IExecutor
+
+export const pipe = {
+  name,
+  exec,
+  execSync: exec,
+} as IMaskerPipe
 
 export default pipe
-
-// const patch = (cxt:)
 
 export const withSchema = (execute: IExecutor): IExecutor => {
   const _execute = (context: IRawContext) => {
     const sharedContext: IEnrichedContext = normalizeContext(context, _execute)
-    const {schema, parent, pipeline, registry} = sharedContext
-    const pipe = getPipe(pipeline[0], registry)
+    const {schema, parent, pipeline} = sharedContext
+    const pipe = pipeline[0]
 
     if (schema && !parent) {
       return shortCutExecute(sharedContext)
@@ -50,20 +53,17 @@ export const withSchema = (execute: IExecutor): IExecutor => {
       return context
     }
 
-    const res = execute(sharedContext)
     const appendSchema = (res: IMaskerPipeOutput): IMaskerPipeOutput => ({
       ...res,// @ts-ignore
-      schema: generateSchema({before: sharedContext, after: res, pipe}),
+      schema: generateSchema({before: sharedContext, after: {...res, value: res.memo || res.value}, pipe}),
     })
 
-    return isPromiseLike(res)
-        ? (res as Promise<IMaskerPipeOutput>).then(appendSchema)
-        : appendSchema(res as IMaskerPipeOutput)
+    return ahook(execute(sharedContext), appendSchema)
   }
 
   const _execSync = ((opts) => _execute({...opts, mode: IExecutionMode.SYNC})) as IExecutorSync
 
-  _execute.sync = _execSync // () => {throw new Error('QQQQQ')}//
+  _execute.sync = _execSync
   _execute.execSync = _execSync
   _execute.exec = _execute
 
@@ -114,7 +114,9 @@ export const extractMaskerDirectives = (schema: IMaskerSchema): Array<[string, I
           return m
         }, [])
 
-export const generateSchema = ({before, after, pipe: {masker: {name}}}: ISchemaContext): IMaskerSchema => {
+export const isEqual = (a: any, b: any): boolean => a === b
+
+export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
   const schema: IMaskerSchema = {
     type,
@@ -130,8 +132,8 @@ export const generateSchema = ({before, after, pipe: {masker: {name}}}: ISchemaC
 }
 
 export const getSchemaType = (value: any): string =>
-    typeof value === 'string'
-        ? 'string'
-        : typeof value === 'object' && value !== null
-        ? 'object'
-        : 'unknown'
+  typeof value === 'string'
+    ? 'string'
+    : typeof value === 'object' && value !== null
+      ? 'object'
+      : 'unknown'

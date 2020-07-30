@@ -28,6 +28,7 @@ export type IMaskerDirectives = Array<IMaskerDirective>
 
 export interface IMaskerPipeOutput {
   value: any
+  memo?: any
   pipeline?: IMaskerPipeline
   final?: boolean
   schema?: IMaskerSchema
@@ -49,6 +50,7 @@ export type IContextId = string
 
 export type IRawContext = {
   value: any
+  memo?: any
   schema?: IMaskerSchema
   context?: IEnrichedContext
   parent?: IEnrichedContext
@@ -61,7 +63,8 @@ export type IRawContext = {
 }
 
 export type IEnrichedContext = {
-  value: any,
+  value: any
+  memo?: any
   id: IContextId
   registry: IMaskerRegistry
   refs: any

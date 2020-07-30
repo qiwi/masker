@@ -1,6 +1,7 @@
 // import {get} from 'lodash'
 
 import {deepMap} from './deepmap'
+import {ICallable} from "@qiwi/substrate";
 
 export {deepMap, mapValues} from './deepmap'
 
@@ -49,6 +50,10 @@ export const unflattenObject = (src: Record<string, any>): Record<string, any> =
 }
 
 export const clone = (src: any): any => deepMap(src, (v) => v)
+
+export const ahook = (value: any, fn: ICallable) => isPromiseLike(value)
+    ? value.then(fn)
+    : fn(value)
 
 /*export const substitute = (src: any, path: string): any => {
   const chunks: string[] = path.split('.')
