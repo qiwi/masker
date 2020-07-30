@@ -4,6 +4,7 @@ import {ahook} from './utils'
 import {
   IExecutor,
   IExecutorSync,
+  IEnrichedExecutor,
   IRawContext,
   IEnrichedContext,
   IMaskerPipeOutput,
@@ -12,7 +13,19 @@ import {normalizeContext} from './context'
 
 type THookCallback = (res: IMaskerPipeOutput) => ReturnType<IExecutor>
 
-export const execute: IExecutor = (context: IRawContext) => {
+export const enrichExecutor = (execute: IExecutor): IEnrichedExecutor => {
+  const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IExecutorSync
+
+  Object.assign(execute, {
+    sync: execSync,
+    execSync,
+    exec: execute,
+  })
+
+  return execute as IEnrichedExecutor
+}
+
+export const execute: IEnrichedExecutor = enrichExecutor((context: IRawContext) => {
   const sharedContext: IEnrichedContext = normalizeContext(context, execute)
   const {pipeline, mode, execute: _execute} = sharedContext
   const pipe = pipeline[0]
@@ -34,9 +47,4 @@ export const execute: IExecutor = (context: IRawContext) => {
   const m2: THookCallback = (res) => ((res.memo = memo), res)
 
   return ahook(ahook(ahook(fn(sharedContext), m1), next), m2) // Pipeline inside pipeline executor.
-}
-
-const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IExecutorSync
-execute.sync = execSync
-execute.execSync = execSync
-execute.exec = execute
+})

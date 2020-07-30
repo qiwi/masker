@@ -59,7 +59,7 @@ export type IRawContext = {
   refs?: any
   mode?: IExecutionMode
   originPipeline?: IMaskerPipeline,
-  execute?: IExecutor
+  execute?: IEnrichedExecutor
 }
 
 export type IEnrichedContext = {
@@ -68,7 +68,7 @@ export type IEnrichedContext = {
   id: IContextId
   registry: IMaskerRegistry
   refs: any
-  execute: IExecutor
+  execute: IEnrichedExecutor
   mode: IExecutionMode
   pipeline: IMaskerPipelineNormalized
   originPipeline: IMaskerPipelineNormalized
@@ -79,9 +79,13 @@ export type IEnrichedContext = {
 
 export interface IExecutor {
   (context: IRawContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
+}
+
+export interface IEnrichedExecutor extends IExecutor {
+  (context: IRawContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
   sync: IExecutorSync
   execSync: IExecutorSync
-  exec: IExecutor
+  exec: IEnrichedExecutor
   id?: string
 }
 export type IExecutorSync = (context: IRawContext) => IMaskerPipeOutput

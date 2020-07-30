@@ -5,12 +5,13 @@ import {
   clone,
   ahook,
   flattenObject,
+  enrichExecutor,
   IMaskerPipe,
   IMaskerPipeName,
   IMaskerPipeInput,
   IEnrichedContext,
   IExecutor,
-  IExecutorSync,
+  IEnrichedExecutor,
   IMaskerDirectives,
   IMaskerPipeOutput,
   IMaskerSchema,
@@ -39,8 +40,8 @@ export const pipe = {
 
 export default pipe
 
-export const withSchema = (execute: IExecutor): IExecutor => {
-  const _execute = (context: IRawContext) => {
+export const withSchema = (execute: IExecutor): IEnrichedExecutor => {
+  const _execute = enrichExecutor((context: IRawContext) => {
     const sharedContext: IEnrichedContext = normalizeContext(context, _execute)
     const {schema, parent, pipeline} = sharedContext
     const pipe = pipeline[0]
@@ -59,13 +60,7 @@ export const withSchema = (execute: IExecutor): IExecutor => {
     })
 
     return ahook(execute(sharedContext), appendSchema)
-  }
-
-  const _execSync = ((opts) => _execute({...opts, mode: IExecutionMode.SYNC})) as IExecutorSync
-
-  _execute.sync = _execSync
-  _execute.execSync = _execSync
-  _execute.exec = _execute
+  })
 
   return _execute
 }
