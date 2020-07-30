@@ -1,3 +1,13 @@
+## @qiwi/masker-strike [1.1.2](https://github.com/qiwi/masker/compare/@qiwi/masker-strike@1.1.1...@qiwi/masker-strike@1.1.2) (2020-07-30)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.3.2
+
 ## @qiwi/masker-strike [1.1.1](https://github.com/qiwi/masker/compare/@qiwi/masker-strike@1.1.0...@qiwi/masker-strike@1.1.1) (2020-07-30)
 
 
