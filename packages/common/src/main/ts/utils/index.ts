@@ -1,6 +1,7 @@
 // import {get} from 'lodash'
 
 import {ICallable} from '@qiwi/substrate'
+
 import {deepMap} from './deepmap'
 
 export {deepMap, mapValues} from './deepmap'
