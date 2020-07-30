@@ -1,3 +1,18 @@
+## @qiwi/masker-schema [1.0.2](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.0.1...@qiwi/masker-schema@1.0.2) (2020-07-30)
+
+
+### Performance Improvements
+
+* **common:** improve exec builder ([b3ff519](https://github.com/qiwi/masker/commit/b3ff5194675e5517171801fca893a9d839dd6bce))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.3.2
+
 ## @qiwi/masker-schema [1.0.1](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.0.0...@qiwi/masker-schema@1.0.1) (2020-07-30)
 
 
