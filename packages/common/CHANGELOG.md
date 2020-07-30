@@ -1,3 +1,10 @@
+# @qiwi/masker-common [1.3.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.2.0...@qiwi/masker-common@1.3.0) (2020-07-30)
+
+
+### Features
+
+* **common:** apply pipeline normalizer to context ([1be589e](https://github.com/qiwi/masker/commit/1be589e86b45a0dcadf02514a3cb1a81b771499c))
+
 # @qiwi/masker-common [1.2.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.1.0...@qiwi/masker-common@1.2.0) (2020-07-23)
 
 
