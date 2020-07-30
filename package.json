@@ -22,7 +22,7 @@
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || echo 'coveralls push failed :(' && exit 0",
     "docs": "typedoc packages/**/src/main --ignoreCompilerErrors || exit 0",
     "postupdate": "yarn && yarn bootstrap && npx yarn-audit-fix && yarn build && yarn test",
-    "release": "DEBUG=semantic-release:github multi-semantic-release"
+    "release": "DEBUG='semantic-release:github,msr:*' multi-semantic-release"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
@@ -38,7 +38,7 @@
     "find-git-root": "^1.0.4",
     "jest": "^26.2.1",
     "lerna": "^3.22.1",
-    "@qiwi/multi-semantic-release": "^3.8.0",
+    "@qiwi/multi-semantic-release": "^3.8.1-beta",
     "semantic-release": "17.1.1",
     "snazzy": "^8.0.0",
     "ts-jest": "^26.1.4",

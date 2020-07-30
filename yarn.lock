@@ -1520,10 +1520,24 @@
     replace-in-file "^6.0.0"
     tslib "^2.0.0"
 
-"@qiwi/multi-semantic-release@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@qiwi/multi-semantic-release/-/multi-semantic-release-3.8.0.tgz#ee5f370463f8a6a5224191626caf7d544b498352"
-  integrity sha512-nYHXng5Ca6FLzKVbDlwhkMRMpaBCcHXk956z1Ytk+C19ebadoK+NypZJBjJ1Yhw0lNZbX3orDyHK3wzwPT1TDw==
+"@qiwi/masker-common@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-common/-/masker-common-1.2.0.tgz#06068034a9e2e52c74f18326c930fa7aeef9466c"
+  integrity sha512-JAEsNULg9z5phpQGoNdUSz00G2Xyfy2xfrn+p9rypyzVF+nGHCpNpmr3mVjE8FHEeJKmXkDcM9/PxAYvf2PpOw==
+  dependencies:
+    "@qiwi/substrate" "^1.18.36"
+    "@types/lodash" "^4.14.158"
+    "@types/lodash.topairs" "^4.3.6"
+    "@types/xregexp" "^4.3.0"
+    lodash "^4.17.19"
+    lodash.topairs "^4.3.0"
+    tslib "^2.0.0"
+    xregexp "^4.3.0"
+
+"@qiwi/multi-semantic-release@^3.8.1-beta":
+  version "3.8.1-beta"
+  resolved "https://registry.yarnpkg.com/@qiwi/multi-semantic-release/-/multi-semantic-release-3.8.1-beta.tgz#4dd374dd78f78932be25792ed9c99d318698fb16"
+  integrity sha512-vyb8T34Min7+CpBfclQlv7EllWz3hbYtJ4oS2XphY60iwFtUhtJLJjCz+e2ReEpIrAkbiMWamFH4Nur+OTu/CA==
   dependencies:
     bash-glob "^2.0.0"
     blork "^9.2.2"
@@ -3852,6 +3866,11 @@ fast-levenshtein@~2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
+
+fast-luhn@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/fast-luhn/-/fast-luhn-1.1.1.tgz#c99bc1ce057aee16e68f5552c2d65800eda580be"
+  integrity sha512-omf2rT+fZMiaBXpyvOvBEYaoi/s+gdE/hrBGcKEraQIpD7AVTN+ZOaJgabPBJHRWzonjVABelF7KvI+7cij+mg==
 
 fastq@^1.6.0:
   version "1.8.0"
