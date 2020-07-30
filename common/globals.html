@@ -68,6 +68,7 @@
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/ienrichedexecutor.html" class="tsd-kind-icon">IEnriched<wbr>Executor</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iexecutor.html" class="tsd-kind-icon">IExecutor</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/imasker.html" class="tsd-kind-icon">IMasker</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/imaskercontext.html" class="tsd-kind-icon">IMasker<wbr>Context</a></li>
@@ -106,7 +107,7 @@
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable"><a href="globals.html#deepmap" class="tsd-kind-icon">deep<wbr>Map</a></li>
-								<li class="tsd-kind-variable"><a href="globals.html#execsync" class="tsd-kind-icon">exec<wbr>Sync</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#execute" class="tsd-kind-icon">execute</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#foo" class="tsd-kind-icon">foo</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#mapvalues" class="tsd-kind-icon">map<wbr>Values</a></li>
 							</ul>
@@ -118,7 +119,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#checkjson" class="tsd-kind-icon">check<wbr>Json</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#clone" class="tsd-kind-icon">clone</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createpipe" class="tsd-kind-icon">create<wbr>Pipe</a></li>
-								<li class="tsd-kind-function"><a href="globals.html#execute" class="tsd-kind-icon">execute</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#enrichexecutor" class="tsd-kind-icon">enrich<wbr>Executor</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#extractjsonstrings" class="tsd-kind-icon">extract<wbr>Json<wbr>Strings</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#flattenobject" class="tsd-kind-icon">flatten<wbr>Object</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generateid" class="tsd-kind-icon">generate<wbr>Id</a></li>
@@ -143,17 +144,17 @@
 					<div class="tsd-signature tsd-kind-icon">IContext<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L49">packages/common/src/main/ts/interfaces.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L49">packages/common/src/main/ts/interfaces.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="ienrichedcontext" class="tsd-anchor"></a>
 					<h3>IEnriched<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">IEnriched<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">IEnriched<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L65">packages/common/src/main/ts/interfaces.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L65">packages/common/src/main/ts/interfaces.ts:65</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -163,7 +164,7 @@
 								<h5>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a></h5>
 							</li>
 							<li class="tsd-parameter">
-								<h5>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a></h5>
+								<h5>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a></h5>
 							</li>
 							<li class="tsd-parameter">
 								<h5>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a></h5>
@@ -204,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">IExecutor<wbr>Sync<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#irawcontext" class="tsd-signature-type">IRawContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="interfaces/imaskerpipeoutput.html" class="tsd-signature-type">IMaskerPipeOutput</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L87">packages/common/src/main/ts/interfaces.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L91">packages/common/src/main/ts/interfaces.ts:91</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -235,7 +236,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Directive<span class="tsd-signature-symbol">:</span> <a href="globals.html#imaskerpipename" class="tsd-signature-type">IMaskerPipeName</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><a href="globals.html#imaskerpipename" class="tsd-signature-type">IMaskerPipeName</a><span class="tsd-signature-symbol">, </span><a href="globals.html#imaskeropts" class="tsd-signature-type">IMaskerOpts</a><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L25">packages/common/src/main/ts/interfaces.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L25">packages/common/src/main/ts/interfaces.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -245,7 +246,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Directives<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#imaskerdirective" class="tsd-signature-type">IMaskerDirective</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L27">packages/common/src/main/ts/interfaces.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L27">packages/common/src/main/ts/interfaces.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -255,7 +256,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Opts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L105">packages/common/src/main/ts/interfaces.ts:105</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L109">packages/common/src/main/ts/interfaces.ts:109</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -265,7 +266,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Pipe<wbr>Declaration<span class="tsd-signature-symbol">:</span> <a href="globals.html#imaskerpiperef" class="tsd-signature-type">IMaskerPipeRef</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#imaskerpiperefwithopts" class="tsd-signature-type">IMaskerPipeRefWithOpts</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L109">packages/common/src/main/ts/interfaces.ts:109</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L113">packages/common/src/main/ts/interfaces.ts:113</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -275,7 +276,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Pipe<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L101">packages/common/src/main/ts/interfaces.ts:101</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L105">packages/common/src/main/ts/interfaces.ts:105</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -285,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Pipe<wbr>Normalized<span class="tsd-signature-symbol">:</span> <a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>opts<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskeropts" class="tsd-signature-type">IMaskerOpts</a><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L113">packages/common/src/main/ts/interfaces.ts:113</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L117">packages/common/src/main/ts/interfaces.ts:117</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -295,7 +296,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Pipe<wbr>Ref<span class="tsd-signature-symbol">:</span> <a href="globals.html#imaskerpipename" class="tsd-signature-type">IMaskerPipeName</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L103">packages/common/src/main/ts/interfaces.ts:103</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L107">packages/common/src/main/ts/interfaces.ts:107</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -305,7 +306,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Pipe<wbr>Ref<wbr>With<wbr>Opts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="globals.html#imaskerpiperef" class="tsd-signature-type">IMaskerPipeRef</a><span class="tsd-signature-symbol">, </span><a href="globals.html#imaskeropts" class="tsd-signature-type">IMaskerOpts</a><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L107">packages/common/src/main/ts/interfaces.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L111">packages/common/src/main/ts/interfaces.ts:111</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -315,7 +316,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Pipeline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#imaskerpipedeclaration" class="tsd-signature-type">IMaskerPipeDeclaration</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L111">packages/common/src/main/ts/interfaces.ts:111</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L115">packages/common/src/main/ts/interfaces.ts:115</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -325,7 +326,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Pipeline<wbr>Normalized<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#imaskerpipenormalized" class="tsd-signature-type">IMaskerPipeNormalized</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L117">packages/common/src/main/ts/interfaces.ts:117</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L121">packages/common/src/main/ts/interfaces.ts:121</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -335,7 +336,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Registry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#imaskerpipename" class="tsd-signature-type">IMaskerPipeName</a><span class="tsd-signature-symbol">, </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L47">packages/common/src/main/ts/interfaces.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L47">packages/common/src/main/ts/interfaces.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -345,7 +346,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>maskerDirectives<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#imaskerdirective" class="tsd-signature-type">IMaskerDirective</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>properties<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L95">packages/common/src/main/ts/interfaces.ts:95</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L99">packages/common/src/main/ts/interfaces.ts:99</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -369,17 +370,17 @@
 					<div class="tsd-signature tsd-kind-icon">IMasker<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L3">packages/common/src/main/ts/interfaces.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L3">packages/common/src/main/ts/interfaces.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="irawcontext" class="tsd-anchor"></a>
 					<h3>IRaw<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">IRaw<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">?: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">?: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerpipeline" class="tsd-signature-type">IMaskerPipeline</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">?: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerpipeline" class="tsd-signature-type">IMaskerPipeline</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">IRaw<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">?: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">?: </span><a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerpipeline" class="tsd-signature-type">IMaskerPipeline</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">?: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerpipeline" class="tsd-signature-type">IMaskerPipeline</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L51">packages/common/src/main/ts/interfaces.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L51">packages/common/src/main/ts/interfaces.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -389,7 +390,7 @@
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> context<span class="tsd-signature-symbol">?: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a></h5>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> execute<span class="tsd-signature-symbol">?: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> execute<span class="tsd-signature-symbol">?: </span><a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a></h5>
 							</li>
 							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span></h5>
@@ -427,7 +428,7 @@
 					<div class="tsd-signature tsd-kind-icon">ISchema<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>after<span class="tsd-signature-symbol">: </span><a href="interfaces/imaskerpipeoutput.html" class="tsd-signature-type">IMaskerPipeOutput</a><span class="tsd-signature-symbol">; </span>before<span class="tsd-signature-symbol">: </span><a href="interfaces/imaskerpipeinput.html" class="tsd-signature-type">IMaskerPipeInput</a><span class="tsd-signature-symbol">; </span>pipe<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipenormalized" class="tsd-signature-type">IMaskerPipeNormalized</a><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/interfaces.ts#L89">packages/common/src/main/ts/interfaces.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/interfaces.ts#L93">packages/common/src/main/ts/interfaces.ts:93</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -451,7 +452,7 @@
 					<div class="tsd-signature tsd-kind-icon">THook<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>res<span class="tsd-signature-symbol">: </span><a href="interfaces/imaskerpipeoutput.html" class="tsd-signature-type">IMaskerPipeOutput</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/execute.ts#L13">packages/common/src/main/ts/execute.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/execute.ts#L14">packages/common/src/main/ts/execute.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -485,7 +486,7 @@
 					<div class="tsd-signature tsd-kind-icon">deep<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> = mapper.bind(null, true)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/deepmap.ts#L41">packages/common/src/main/ts/utils/deepmap.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/deepmap.ts#L41">packages/common/src/main/ts/utils/deepmap.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -511,35 +512,14 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="execsync" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> exec<wbr>Sync</h3>
-					<div class="tsd-signature tsd-kind-icon">exec<wbr>Sync<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#irawcontext" class="tsd-signature-type">IRawContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="interfaces/imaskerpipeoutput.html" class="tsd-signature-type">IMaskerPipeOutput</a><span class="tsd-signature-symbol"> = ((opts) &#x3D;&gt; execute({...opts, mode: IExecutionMode.SYNC})) as IExecutorSync</span></div>
+					<a name="execute" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> execute</h3>
+					<div class="tsd-signature tsd-kind-icon">execute<span class="tsd-signature-symbol">:</span> <a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a><span class="tsd-signature-symbol"> = enrichExecutor((context: IRawContext) &#x3D;&gt; {const sharedContext: IEnrichedContext &#x3D; normalizeContext(context, execute)const {pipeline, mode, execute: _execute} &#x3D; sharedContextconst pipe &#x3D; pipeline[0]if (!pipe || (context as IMaskerPipeOutput).final) {return context}const {execSync, exec} &#x3D; pipeconst fn &#x3D; mode &#x3D;&#x3D;&#x3D; IExecutionMode.SYNC ? execSync : execconst next: THookCallback &#x3D; (res) &#x3D;&gt; _execute({...sharedContext,...res,pipeline: res.pipeline || pipeline.slice(1),})let memo: anyconst m1: THookCallback &#x3D; (res) &#x3D;&gt; ((memo &#x3D; res.value), res)const m2: THookCallback &#x3D; (res) &#x3D;&gt; ((res.memo &#x3D; memo), res)return ahook(ahook(ahook(fn(sharedContext), m1), next), m2) // Pipeline inside pipeline executor.})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/execute.ts#L39">packages/common/src/main/ts/execute.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/execute.ts#L28">packages/common/src/main/ts/execute.ts:28</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#irawcontext" class="tsd-signature-type">IRawContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/imaskerpipeoutput.html" class="tsd-signature-type">IMaskerPipeOutput</a></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>context: <a href="globals.html#irawcontext" class="tsd-signature-type">IRawContext</a></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="interfaces/imaskerpipeoutput.html" class="tsd-signature-type">IMaskerPipeOutput</a></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="foo" class="tsd-anchor"></a>
@@ -547,7 +527,7 @@
 					<div class="tsd-signature tsd-kind-icon">foo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"bar"</span><span class="tsd-signature-symbol"> = &quot;bar&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/index.ts#L7">packages/common/src/main/ts/index.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/index.ts#L7">packages/common/src/main/ts/index.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -557,7 +537,7 @@
 					<div class="tsd-signature tsd-kind-icon">map<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> = mapper.bind(null, false)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/deepmap.ts#L43">packages/common/src/main/ts/utils/deepmap.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/deepmap.ts#L43">packages/common/src/main/ts/utils/deepmap.ts:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -595,7 +575,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/index.ts#L55">packages/common/src/main/ts/utils/index.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/index.ts#L55">packages/common/src/main/ts/utils/index.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -621,7 +601,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/extract.ts#L31">packages/common/src/main/ts/extract.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/extract.ts#L31">packages/common/src/main/ts/extract.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -644,7 +624,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/index.ts#L53">packages/common/src/main/ts/utils/index.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/index.ts#L53">packages/common/src/main/ts/utils/index.ts:53</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -667,7 +647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/pipe.ts#L37">packages/common/src/main/ts/pipe.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/pipe.ts#L37">packages/common/src/main/ts/pipe.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -687,25 +667,25 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="execute" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> execute</h3>
+					<a name="enrichexecutor" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> enrich<wbr>Executor</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">execute<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#irawcontext" class="tsd-signature-type">IRawContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">enrich<wbr>Executor<span class="tsd-signature-symbol">(</span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/execute.ts#L15">packages/common/src/main/ts/execute.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/execute.ts#L16">packages/common/src/main/ts/execute.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>context: <a href="globals.html#irawcontext" class="tsd-signature-type">IRawContext</a></h5>
+									<h5>execute: <a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -719,7 +699,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/extract.ts#L3">packages/common/src/main/ts/extract.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/extract.ts#L3">packages/common/src/main/ts/extract.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -742,7 +722,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/index.ts#L19">packages/common/src/main/ts/utils/index.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/index.ts#L19">packages/common/src/main/ts/utils/index.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -768,7 +748,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/index.ts#L16">packages/common/src/main/ts/utils/index.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/index.ts#L16">packages/common/src/main/ts/utils/index.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -785,7 +765,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/pipe.ts#L12">packages/common/src/main/ts/pipe.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/pipe.ts#L12">packages/common/src/main/ts/pipe.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -811,7 +791,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/index.ts#L14">packages/common/src/main/ts/utils/index.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/index.ts#L14">packages/common/src/main/ts/utils/index.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -837,7 +817,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/index.ts#L11">packages/common/src/main/ts/utils/index.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/index.ts#L11">packages/common/src/main/ts/utils/index.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -860,7 +840,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/deepmap.ts#L1">packages/common/src/main/ts/utils/deepmap.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/deepmap.ts#L1">packages/common/src/main/ts/utils/deepmap.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -910,19 +890,19 @@
 					<a name="normalizecontext" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> normalize<wbr>Context</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">normalize<wbr>Context<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>rest<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">rest</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span>, execute<span class="tsd-signature-symbol">: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a></li>
+						<li class="tsd-signature tsd-kind-icon">normalize<wbr>Context<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>rest<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">rest</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span>, execute<span class="tsd-signature-symbol">: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/context.ts#L13">packages/common/src/main/ts/context.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/context.ts#L13">packages/common/src/main/ts/context.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>rest<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">rest</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>rest<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">rest</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span></h5>
@@ -931,7 +911,7 @@
 											<h5>origin<wbr>Pipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
 										</li>
 										<li class="tsd-parameter">
-											<h5>parent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/iexecutor.html" class="tsd-signature-type">IExecutor</a><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
+											<h5>parent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>context<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>execute<span class="tsd-signature-symbol">: </span><a href="interfaces/ienrichedexecutor.html" class="tsd-signature-type">IEnrichedExecutor</a><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><a href="globals.html#icontextid" class="tsd-signature-type">IContextId</a><span class="tsd-signature-symbol">; </span>memo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IExecutionMode</span><span class="tsd-signature-symbol">; </span>originPipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>parent<span class="tsd-signature-symbol">: </span><a href="globals.html#ienrichedcontext" class="tsd-signature-type">IEnrichedContext</a><span class="tsd-signature-symbol">; </span>pipeline<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerpipelinenormalized" class="tsd-signature-type">IMaskerPipelineNormalized</a><span class="tsd-signature-symbol">; </span>refs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>registry<span class="tsd-signature-symbol">: </span><a href="globals.html#imaskerregistry" class="tsd-signature-type">IMaskerRegistry</a><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><a href="globals.html#imaskerschema" class="tsd-signature-type">IMaskerSchema</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
 										</li>
 										<li class="tsd-parameter">
 											<h5>pipeline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/imaskerpipe.html" class="tsd-signature-type">IMaskerPipe</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
@@ -968,7 +948,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/context.ts#L41">packages/common/src/main/ts/context.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/context.ts#L41">packages/common/src/main/ts/context.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -994,7 +974,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/index.ts#L9">packages/common/src/main/ts/utils/index.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/index.ts#L9">packages/common/src/main/ts/utils/index.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1017,7 +997,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/masker/blob/d697c4a/packages/common/src/main/ts/utils/index.ts#L38">packages/common/src/main/ts/utils/index.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/masker/blob/4fb64da/packages/common/src/main/ts/utils/index.ts#L38">packages/common/src/main/ts/utils/index.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1042,6 +1022,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ienrichedexecutor.html" class="tsd-kind-icon">IEnriched<wbr>Executor</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/iexecutor.html" class="tsd-kind-icon">IExecutor</a>
 					</li>
@@ -1127,7 +1110,7 @@
 						<a href="globals.html#deepmap" class="tsd-kind-icon">deep<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#execsync" class="tsd-kind-icon">exec<wbr>Sync</a>
+						<a href="globals.html#execute" class="tsd-kind-icon">execute</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#foo" class="tsd-kind-icon">foo</a>
@@ -1148,7 +1131,7 @@
 						<a href="globals.html#createpipe" class="tsd-kind-icon">create<wbr>Pipe</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#execute" class="tsd-kind-icon">execute</a>
+						<a href="globals.html#enrichexecutor" class="tsd-kind-icon">enrich<wbr>Executor</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#extractjsonstrings" class="tsd-kind-icon">extract<wbr>Json<wbr>Strings</a>
