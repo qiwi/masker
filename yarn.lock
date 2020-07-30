@@ -2,6 +2,28 @@
 # yarn lockfile v1
 
 
+"@antongolub/semantic-release-github@0.0.2-beta":
+  version "0.0.2-beta"
+  resolved "https://registry.yarnpkg.com/@antongolub/semantic-release-github/-/semantic-release-github-0.0.2-beta.tgz#ff69e46d56bcef82e8da644bf8b4b1f6be5fc910"
+  integrity sha512-O9iZgG2PwS3xOuITFVETsZyq7jPvnvM9sfiQQqxd+d3E+Ql+hOYT1FVHuZAPIxjGczqfIEmTWlAHsfP1cXzYrA==
+  dependencies:
+    "@octokit/rest" "^17.0.0"
+    "@semantic-release/error" "^2.2.0"
+    aggregate-error "^3.0.0"
+    bottleneck "^2.18.1"
+    debug "^4.0.0"
+    dir-glob "^3.0.0"
+    fs-extra "^9.0.0"
+    globby "^11.0.0"
+    http-proxy-agent "^4.0.0"
+    https-proxy-agent "^5.0.0"
+    issue-parser "^6.0.0"
+    lodash "^4.17.4"
+    mime "^2.4.3"
+    p-filter "^2.0.0"
+    p-retry "^4.0.0"
+    url-join "^4.0.0"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -1520,20 +1542,6 @@
     replace-in-file "^6.0.0"
     tslib "^2.0.0"
 
-"@qiwi/masker-common@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@qiwi/masker-common/-/masker-common-1.2.0.tgz#06068034a9e2e52c74f18326c930fa7aeef9466c"
-  integrity sha512-JAEsNULg9z5phpQGoNdUSz00G2Xyfy2xfrn+p9rypyzVF+nGHCpNpmr3mVjE8FHEeJKmXkDcM9/PxAYvf2PpOw==
-  dependencies:
-    "@qiwi/substrate" "^1.18.36"
-    "@types/lodash" "^4.14.158"
-    "@types/lodash.topairs" "^4.3.6"
-    "@types/xregexp" "^4.3.0"
-    lodash "^4.17.19"
-    lodash.topairs "^4.3.0"
-    tslib "^2.0.0"
-    xregexp "^4.3.0"
-
 "@qiwi/multi-semantic-release@^3.8.1-beta":
   version "3.8.1-beta"
   resolved "https://registry.yarnpkg.com/@qiwi/multi-semantic-release/-/multi-semantic-release-3.8.1-beta.tgz#4dd374dd78f78932be25792ed9c99d318698fb16"
@@ -1631,7 +1639,7 @@
   resolved "https://registry.yarnpkg.com/@semantic-release/error/-/error-2.2.0.tgz#ee9d5a09c9969eade1ec864776aeda5c5cddbbf0"
   integrity sha512-9Tj/qn+y2j+sjCI3Jd+qseGtHjOAeg7dU2/lVcqIQ9TV3QDaDXDYXcoOHU+7o2Hwh8L8ymL4gfuO7KxDs3q2zg==
 
-"@semantic-release/git@9.0.0", "@semantic-release/git@^9.0.0":
+"@semantic-release/git@9.0.0":
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/git/-/git-9.0.0.tgz#304c4883c87d095b1faaae93300f1f1e0466e9a5"
   integrity sha512-AZ4Zha5NAPAciIJH3ipzw/WU9qLAn8ENaoVAhD6srRPxTpTzuV3NhNh14rcAo8Paj9dO+5u4rTKcpetOBluYVw==
@@ -1645,7 +1653,7 @@
     micromatch "^4.0.0"
     p-reduce "^2.0.0"
 
-"@semantic-release/github@7.0.7", "@semantic-release/github@^7.0.0", "@semantic-release/github@^7.0.7":
+"@semantic-release/github@^7.0.0":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@semantic-release/github/-/github-7.0.7.tgz#e3999b06433d08871acd68ecec2b4e212c05d09f"
   integrity sha512-Sai2UucYQ+5rJzKVEVJ4eiZNDdoo0/CzfpValBdeU5h97uJE7t4CoBTmUWkiXlPOx46CSw1+JhI+PHC1PUxVZw==
@@ -1667,7 +1675,7 @@
     p-retry "^4.0.0"
     url-join "^4.0.0"
 
-"@semantic-release/npm@7.0.5", "@semantic-release/npm@^7.0.0", "@semantic-release/npm@^7.0.5":
+"@semantic-release/npm@7.0.5", "@semantic-release/npm@^7.0.0":
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/@semantic-release/npm/-/npm-7.0.5.tgz#61c45691abb863f6939cca6aac958d3c22508632"
   integrity sha512-D+oEmsx9aHE1q806NFQwSC9KdBO8ri/VO99eEz0wWbX2jyLqVyWr7t0IjKC8aSnkkQswg/4KN/ZjfF6iz1XOpw==
