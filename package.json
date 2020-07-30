@@ -29,7 +29,7 @@
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/git": "9.0.0",
-    "@antongolub/semantic-release-github": "0.0.2-beta",
+    "@antongolub/semantic-release-github": "0.0.3-beta",
     "@semantic-release/npm": "7.0.5",
     "@semantic-release/release-notes-generator": "9.0.1",
     "@types/jest": "^26.0.7",
