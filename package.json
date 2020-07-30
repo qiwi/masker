@@ -36,7 +36,7 @@
     "codeclimate-test-reporter": "^0.5.1",
     "coveralls": "^3.1.0",
     "find-git-root": "^1.0.4",
-    "jest": "^26.1.0",
+    "jest": "^26.2.1",
     "lerna": "^3.22.1",
     "@qiwi/multi-semantic-release": "^3.8.0",
     "semantic-release": "17.1.1",
