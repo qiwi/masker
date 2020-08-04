@@ -3,7 +3,7 @@
 It is always interesting to watch how a coherent theory breaks down into harsh reality.
 
 ### Recursion
-A unidirectional pipeline is applicable to strings only; nested objects require a loop to repeat. 
+A unidirectional pipeline is applicable to strings only; nested objects require a loop to repeat.
 
 ### Depth
 Self-calling paves the way for endless cycles. We need a mechanism to limit the depth and number of recursion.
@@ -53,4 +53,20 @@ type TValue = {
   error: any,
   success: any
 }
+```
+
+### Coupling
+When I talk about tight connectivity, I was referring to the contexts of masker using. Practice has shown that explicit and implicit dependencies between the masker pipes are a much bigger problem.
+In order not to fall further into this hell of growing complexity, I had to make a pipeline processor inside the pipeline processor. This is madness.
+```typescript
+  // ...
+  const memo: THookCallback = (res) => ((_memo = res.value), res)
+  const restore: THookCallback = (res) => ((res.memo = _memo), res)
+  const next: THookCallback = (res) => _execute({
+    ...sharedContext,
+    ...res,
+    pipeline: res.pipeline || pipeline.slice(1),
+  })
+
+  return ahook(ahook(ahook(fn(sharedContext), memo), next), restore) // Pipeline inside pipeline executor.
 ```
