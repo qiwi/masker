@@ -22,7 +22,7 @@
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || echo 'coveralls push failed :(' && exit 0",
     "docs": "typedoc packages/**/src/main --ignoreCompilerErrors || exit 0",
     "postupdate": "yarn && yarn bootstrap && npx yarn-audit-fix && yarn build && yarn test",
-    "release": "DEBUG='semantic-release:github,msr:*' multi-semantic-release"
+    "release": "DEBUG='semantic-release:*,msr:*' multi-semantic-release"
   },
   "devDependencies": {
     "@qiwi/semantic-release-gh-pages-plugin": "^4.0.3",

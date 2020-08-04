@@ -9,7 +9,8 @@
       "@qiwi/masker-strike": ["./strike/src/main/ts"],
       "@qiwi/masker-schema": ["./schema/src/main/ts"],
       "@qiwi/masker-pan": ["./pan/src/main/ts"],
-      "@qiwi/masker-json": ["./json/src/main/ts"]
+      "@qiwi/masker-json": ["./json/src/main/ts"],
+      "@qiwi/masker-split": ["./split/src/main/ts"]
     }
   }
 }
