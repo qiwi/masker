@@ -60,10 +60,7 @@
     "type": "git",
     "url": "git+https://github.com/qiwi/masker.git"
   },
-  "keywords": [
-    "json rpc",
-    "json-rpc"
-  ],
+  "keywords": [],
   "author": "Anton Golub <mailbox@antongolub.ru>",
   "license": "MIT",
   "bugs": {

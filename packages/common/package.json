@@ -37,8 +37,6 @@
   "dependencies": {
     "@qiwi/substrate": "^1.18.36",
     "tslib": "^2.0.0",
-    "@types/lodash.topairs": "^4.3.6",
-    "lodash.topairs": "^4.3.0",
     "lodash": "^4.17.19",
     "@types/lodash": "^4.14.158",
     "xregexp": "^4.3.0",
@@ -64,10 +62,7 @@
     "type": "git",
     "url": "git+https://github.com/qiwi/masker.git"
   },
-  "keywords": [
-    "json rpc",
-    "json-rpc"
-  ],
+  "keywords": [],
   "author": "Anton Golub <mailbox@antongolub.ru>",
   "license": "MIT",
   "bugs": {

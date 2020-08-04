@@ -6,6 +6,7 @@ import {
   ahook,
   flattenObject,
   enrichExecutor,
+  isEqual,
   IMaskerPipe,
   IMaskerPipeName,
   IMaskerPipeInput,
@@ -108,8 +109,6 @@ export const extractMaskerDirectives = (schema: IMaskerSchema): Array<[string, I
           }
           return m
         }, [])
-
-export const isEqual = (a: any, b: any): boolean => a === b
 
 export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
