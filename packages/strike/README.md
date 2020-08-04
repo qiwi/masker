@@ -3,7 +3,7 @@ Strike masker pipe.
 
 ## Install
 ```shell script
-yarn add @qiwi/masker-plain
+yarn add @qiwi/masker-strike
 ```
 
 ## Usage
