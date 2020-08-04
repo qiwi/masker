@@ -1580,10 +1580,10 @@
     replace-in-file "^6.0.0"
     tslib "^2.0.0"
 
-"@qiwi/multi-semantic-release@^3.8.2":
-  version "3.8.2"
-  resolved "https://registry.yarnpkg.com/@qiwi/multi-semantic-release/-/multi-semantic-release-3.8.2.tgz#51b85400d45767c15a6c7600d408c30f33255c81"
-  integrity sha512-w0j/bt92MO8PlP6mteVku/N0cBJuCXVo5CFk92HUV156BMhnXS7GCIJI6OHv065LzyFpxU6Rha6Aag78oK50LQ==
+"@qiwi/multi-semantic-release@^3.8.3":
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/@qiwi/multi-semantic-release/-/multi-semantic-release-3.8.3.tgz#3bd6344c60fa2621bdea98f62d378a0cb6f672b9"
+  integrity sha512-K8hIH1NdnWOSLnrDPG4JdowekR+oGMieltvAFCdIejNLYYsOzIoDJ7HfEdAJY7cYoMe2abSKnza3EA+dOLYsrQ==
   dependencies:
     bash-glob "^2.0.0"
     blork "^9.2.2"
