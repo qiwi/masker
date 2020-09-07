@@ -7,6 +7,7 @@ import {
   flattenObject,
   enrichExecutor,
   isEqual,
+  mapValues,
   IMaskerPipe,
   IMaskerPipeName,
   IMaskerPipeInput,
@@ -112,17 +113,38 @@ export const extractMaskerDirectives = (schema: IMaskerSchema): Array<[string, I
 
 export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
-  const schema: IMaskerSchema = {
-    type,
-    ...after.schema,
-  }
+  const schema = extractSchemaFromResult(type, after)
 
   if (type !== 'object' && !isEqual(before.value, after.value)) {
-    schema.maskerDirectives = after?.schema?.maskerDirectives || []
+    schema.maskerDirectives = schema?.maskerDirectives || []
     schema.maskerDirectives.push(name)
   }
 
   return schema
+}
+
+export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput): IMaskerSchema => {
+  if (after.schema) {
+    return {
+      ...after.schema,
+      type,
+    }
+  }
+
+  if (typeof after.value === 'object' && after.value !== null) {
+    const mapped = after.value._split_
+
+    if (mapped) {
+      const properties = mapValues(mapped, ({schema}) => schema)
+
+      return {
+        type,
+        properties,
+      }
+    }
+  }
+
+  return {type}
 }
 
 export const getSchemaType = (value: any): string =>

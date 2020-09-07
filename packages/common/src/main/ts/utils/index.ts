@@ -56,6 +56,13 @@ export const ahook = (value: any, fn: ICallable) => isPromiseLike(value)
     ? value.then(fn)
     : fn(value)
 
+export const defineNonEnum = <T>(target: T, key: string, value: any): T => Object.defineProperty(target, key, {
+  value,
+  enumerable: false,
+  configurable: true,
+  writable: true,
+})
+
 /*export const substitute = (src: any, path: string): any => {
   const chunks: string[] = path.split('.')
   const target = getSubstituteBlank(src)

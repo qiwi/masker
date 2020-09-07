@@ -25,7 +25,7 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry)
   }
 
   if (!masker) {
-    throw new Error(`Pipe not found: ${masker}`)
+    throw new Error(`Pipe not found: ${masker || pipe}`)
   }
 
   return {

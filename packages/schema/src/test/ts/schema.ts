@@ -2,9 +2,9 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {
   execute as exec,
   createPipe as cp,
-  mapValues,
   IMaskerSchema,
 } from '@qiwi/masker-common'
+import { pipe as splitPipe} from '@qiwi/masker-split'
 import {
   extractMaskerDirectives,
   withSchema,
@@ -103,26 +103,13 @@ describe('schema', () => {
       (typeof value === 'string'
         ? {value: value.replace(/[^\s]/g, '*')}
         : {value}))
-    const splitter = cp('splitter', ({value, execute, context, originPipeline}) =>
-      (typeof value === 'object'
-        ? ((origin) => {
-          const mapped = mapValues(origin, (v) => execute.sync({...context, pipeline: originPipeline, value: v}))
-          const value = mapValues(mapped, ({value}) => value)
-          const schema = {
-            type: 'object',
-            properties: mapValues(mapped, ({schema}) => schema),
-          }
-
-          return {value, schema}
-        })(value)
-        : {value}))
 
     const registry = new Map()
-    registry.set(splitter.name, splitter)
+    registry.set(splitPipe.name, splitPipe)
     registry.set(striker.name, striker)
 
     it('builds schema while processes the pipeline', () => {
-      const pipeline = ['striker', 'splitter']
+      const pipeline = ['striker', 'split']
       const result = execute.sync({pipeline, value, registry})
 
       expect(result.value).toEqual(expectedValue)
