@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker-infra",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Data masker infra package",
   "private": false,
   "publishConfig": {
