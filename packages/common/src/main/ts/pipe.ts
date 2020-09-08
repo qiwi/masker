@@ -12,6 +12,7 @@ import {promisify} from './utils'
 export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry): IMaskerPipeNormalized => {
   let masker
   let opts
+  let maskerName
 
   if (Array.isArray(pipe)) {
     [masker, opts] = pipe
@@ -21,11 +22,12 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry)
   }
 
   if (typeof masker === 'string') {
+    maskerName = masker
     masker = registry.get(masker)
   }
 
   if (!masker) {
-    throw new Error(`Pipe not found: ${masker || pipe}`)
+    throw new Error(`Pipe not found: ${maskerName || masker}`)
   }
 
   return {

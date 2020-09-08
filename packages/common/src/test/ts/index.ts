@@ -14,7 +14,7 @@ describe('#getPipe', () => {
   const cases: Array<[string, Parameters<typeof getPipe>, any, Error?]> = [
     ['returns fn pipe as is', [pipe, registry], {...pipe, opts: undefined}],
     ['finds the pipe by name', ['pipe', registry], {...pipe, opts: undefined}],
-    ['raises an exception if not found', ['otherpipe', registry], undefined, new Error('Pipe not found: undefined')],
+    ['raises an exception if not found', ['otherpipe', registry], undefined, new Error('Pipe not found: otherpipe')],
     ['supports options notation', [[pipe, opts], registry], {...pipe, opts}],
     ['named ref and options', [['pipe', opts], registry], {...pipe, opts}],
     // @ts-ignore
