@@ -36,15 +36,21 @@ export const execute: IEnrichedExecutor = enrichExecutor((context: IRawContext) 
 
   const {execSync, exec} = pipe
   const fn = mode === IExecutionMode.SYNC ? execSync : exec
+  const {pre, post} = getAuditor()
   const next: THookCallback = (res) => _execute({
     ...sharedContext,
     ...res,
     pipeline: res.pipeline || pipeline.slice(1),
   })
 
-  let memo: any
-  const m1: THookCallback = (res) => ((memo = res.value), res)
-  const m2: THookCallback = (res) => ((res.memo = memo), res)
-
-  return ahook(ahook(ahook(fn(sharedContext), m1), next), m2) // Pipeline inside pipeline executor.
+  return ahook(ahook(ahook(fn(sharedContext), pre), next), post) // Pipeline inside pipeline executor.
 })
+
+export const getAuditor = (): {pre: THookCallback, post: THookCallback} => {
+  let ownValue: any
+
+  return {
+    pre: (res) => ((ownValue = res.value), res),
+    post: (res) => ((res.ownValue = ownValue), res),
+  }
+}

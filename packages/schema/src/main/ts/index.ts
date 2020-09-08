@@ -58,7 +58,7 @@ export const withSchema = (execute: IExecutor): IEnrichedExecutor => {
 
     const appendSchema = (res: IMaskerPipeOutput): IMaskerPipeOutput => ({
       ...res,// @ts-ignore
-      schema: generateSchema({before: sharedContext, after: {...res, value: res.memo || res.value}, pipe}),
+      schema: generateSchema({before: sharedContext, after: {...res, value: res.ownValue ?? res.value}, pipe}),
     })
 
     return ahook(execute(sharedContext), appendSchema)
