@@ -1,3 +1,18 @@
+# @qiwi/masker-common [1.4.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.3.2...@qiwi/masker-common@1.4.0) (2020-09-08)
+
+
+### Features
+
+* introduce infra package ([117724a](https://github.com/qiwi/masker/commit/117724a6993f97f4e3eb804bc9f8c438eb66a5d7)), closes [#14](https://github.com/qiwi/masker/issues/14)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-infra:** upgraded to 1.0.0
+
 ## @qiwi/masker-common [1.3.2](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.3.1...@qiwi/masker-common@1.3.2) (2020-07-30)
 
 
