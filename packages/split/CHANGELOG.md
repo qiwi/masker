@@ -1,3 +1,18 @@
+# @qiwi/masker-split [1.2.0](https://github.com/qiwi/masker/compare/@qiwi/masker-split@1.1.0...@qiwi/masker-split@1.2.0) (2020-09-08)
+
+
+### Features
+
+* **split:** provide async flow for split pipe ([e72604f](https://github.com/qiwi/masker/commit/e72604f31483deb154fab13fa9859451aff2e2f1))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.5.0
+
 # @qiwi/masker-split [1.1.0](https://github.com/qiwi/masker/compare/@qiwi/masker-split@1.0.0...@qiwi/masker-split@1.1.0) (2020-09-08)
 
 
