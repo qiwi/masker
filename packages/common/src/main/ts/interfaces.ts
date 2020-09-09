@@ -60,6 +60,7 @@ export type IRawContext = {
   mode?: IExecutionMode
   originPipeline?: IMaskerPipeline,
   execute?: IEnrichedExecutor
+  [key: string]: any
 }
 
 export type IEnrichedContext = {
@@ -75,6 +76,7 @@ export type IEnrichedContext = {
   context: IEnrichedContext
   parent: IEnrichedContext
   schema?: IMaskerSchema
+  [key: string]: any
 }
 
 export interface IExecutor {

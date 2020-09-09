@@ -20,18 +20,42 @@ describe('split', () => {
     describe('splits objects/arrays and applies the executor to each item', () => {
       const aaa = '***sync***'
       const bbb = '***async***'
+      const fakeExec = jest.fn(() => Promise.resolve({value: bbb}))
+      const fakeExecSync = jest.fn(() => ({value: aaa}))
       // @ts-ignore
-      const execute = enrichExecutor(jest.fn(() => Promise.resolve({value: bbb})))
+      const execute = enrichExecutor(fakeExec)
       // @ts-ignore
-      const executeSync = enrichExecutor(jest.fn(() => ({value: aaa})))
+      const executeSync = enrichExecutor(fakeExecSync)
 
-      const cases: [string, any, IExecutor, any, any][] = [
+      beforeEach(() => {
+        fakeExec.mockClear()
+        fakeExecSync.mockClear()
+      })
+
+      const cases: [string, any, IExecutor, any, any, string?, ReturnType<typeof jest.fn>?, any?][] = [
+        [
+          'skips strings',
+          pipe.execSync,
+          executeSync,
+          'foobar',
+          'foobar',
+        ],
+        [
+          'skips numbers',
+          pipe.exec,
+          execute,
+          123,
+          123,
+        ],
         [
           'array to array (sync)',
           pipe.execSync,
           executeSync,
           [1, 'foo'],
           [aaa, aaa],
+          undefined,
+          fakeExecSync,
+          {path: '0'},
         ],
         [
           'array to array (async)',
@@ -39,6 +63,9 @@ describe('split', () => {
           execute,
           [1, 'foo'],
           [bbb, bbb],
+          undefined,
+          fakeExec,
+          {path: '0'},
         ],
         [
           'object to object (sync)',
@@ -46,6 +73,9 @@ describe('split', () => {
           executeSync,
           {foo: 'foo', bar: 'bar'},
           {foo: aaa, bar: aaa},
+          undefined,
+          fakeExecSync,
+          {path: 'foo'},
         ],
         [
           'object to object (async)',
@@ -53,15 +83,19 @@ describe('split', () => {
           execute,
           {foo: 'foo', bar: 'bar'},
           {foo: bbb, bar: bbb},
+          'prev',
+          fakeExec,
+          {path: 'prev.foo'},
         ],
       ]
 
-      cases.forEach(([name, handler, execute, input, expected]) =>
+      cases.forEach(([name, handler, execute, input, expected, path, faceExec, fakeArg]) =>
         it(name, async() => {
-          const context = normalizeContext({value: input}, execute)
+          const context = normalizeContext({value: input, path}, execute)
           const result = await handler(context)
 
           expect(result.value).toEqual(expected)
+          faceExec && expect(faceExec).toHaveBeenCalledWith(expect.objectContaining(fakeArg))
         }))
     })
   })
