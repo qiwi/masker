@@ -1,3 +1,18 @@
+# @qiwi/masker-split [1.3.0](https://github.com/qiwi/masker/compare/@qiwi/masker-split@1.2.0...@qiwi/masker-split@1.3.0) (2020-09-10)
+
+
+### Features
+
+* **split:** assign path to exec context ([8488759](https://github.com/qiwi/masker/commit/84887598c752f66cbba76d313fd3ea9fb782571e))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.6.0
+
 # @qiwi/masker-split [1.2.0](https://github.com/qiwi/masker/compare/@qiwi/masker-split@1.1.0...@qiwi/masker-split@1.2.0) (2020-09-08)
 
 
