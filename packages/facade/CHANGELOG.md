@@ -1,3 +1,13 @@
+## @qiwi/masker [1.2.2](https://github.com/qiwi/masker/compare/@qiwi/masker@1.2.1...@qiwi/masker@1.2.2) (2020-09-10)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-plain:** upgraded to 1.2.2
+
 ## @qiwi/masker [1.2.1](https://github.com/qiwi/masker/compare/@qiwi/masker@1.2.0...@qiwi/masker@1.2.1) (2020-09-08)
 
 
