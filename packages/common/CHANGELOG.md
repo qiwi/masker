@@ -1,3 +1,10 @@
+# @qiwi/masker-common [1.6.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.5.0...@qiwi/masker-common@1.6.0) (2020-09-10)
+
+
+### Features
+
+* **split:** assign path to exec context ([8488759](https://github.com/qiwi/masker/commit/84887598c752f66cbba76d313fd3ea9fb782571e))
+
 # @qiwi/masker-common [1.5.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.4.0...@qiwi/masker-common@1.5.0) (2020-09-08)
 
 
