@@ -7,7 +7,7 @@ import {
   flattenObject,
   enrichExecutor,
   isEqual,
-  mapValues,
+  // mapValues,
   IMaskerPipe,
   IMaskerPipeName,
   IMaskerPipeInput,
@@ -82,6 +82,7 @@ export const shortCutExecute = ({context, schema, value, mode, execute}: IEnrich
 
     return {...context, value: _value, schema}
   }
+
   const values = directives.map(([path, directives]) =>
       execute({
         ...context,
@@ -118,6 +119,13 @@ export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): I
   if (type !== 'object' && !isEqual(before.value, after.value)) {
     schema.maskerDirectives = schema?.maskerDirectives || []
     schema.maskerDirectives.push(name)
+    console.log('diff1', 'before.value=', before.value, 'after.value=', after.value)
+    console.log('!!!schema=', schema, 'name=', name)
+  }
+
+  if (type === 'object' && !isEqual(JSON.stringify(before.value), JSON.stringify(after.value))) {
+    console.log('diff2', 'before.value.keys=', Object.keys(before.value), 'after.value.keys=', Object.keys(after.value))
+    console.log('!!!schema=', JSON.stringify(schema, null, 2), 'name=', name)
   }
 
   return schema
@@ -132,10 +140,14 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
   }
 
   if (typeof after.value === 'object' && after.value !== null) {
-    const mapped = after.value._split_
+    const {values, origin} = after.value._split_ || {}
 
-    if (mapped) {
-      const properties = mapValues(mapped, ({schema}) => schema)
+    if (values) {
+      const properties = Object.keys(origin).reduce((m, v: string, i: number) => {
+        m[v] = values[i].schema
+
+        return m
+      }, {} as Record<string, any>)
 
       return {
         type,

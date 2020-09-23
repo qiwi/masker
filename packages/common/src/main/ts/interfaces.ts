@@ -52,6 +52,7 @@ export type IRawContext = {
   value: any
   ownValue?: any
   schema?: IMaskerSchema
+  final?: boolean
   context?: IEnrichedContext
   parent?: IEnrichedContext
   pipeline?: IMaskerPipeline

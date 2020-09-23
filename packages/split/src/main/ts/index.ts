@@ -2,8 +2,7 @@ import {
   IMaskerPipe,
   IMaskerPipeName,
   createPipe,
-  mapValues,
-  defineNonEnum,
+  defineNonEnum, IMaskerPipeOutput, IEnrichedContext,
 } from '@qiwi/masker-common'
 
 export const appendPath = (chunk: string = '', prev: string = '') => `${prev ? prev + '.' : ''}${chunk}`
@@ -22,51 +21,52 @@ export const randomizeKeys = (keys: string[]) => {
 }
 
 // const boxValue = (value: any) => ({value})
+// const echo = <T>(v: T): T => v
 
 const unboxValue = ({value}: any) => value
 
-export const assemble = (values: any[], keys: string[], mapped: any) => {
-  const target: Record<string, any> = Array.isArray(mapped) ? [] : {}
-  const value = randomizeKeys(keys).reduce((m, k, i) => {
-    m[k] = values[i]
+export const assemble = (values: IMaskerPipeOutput[], keys: IMaskerPipeOutput[], origin: any) => {
+  const mapped = {keys, values, origin}
+  const target: Record<string, any> = Array.isArray(origin) ? [] : {}
+  const _values = values.map(unboxValue)
+  const _keys = keys.map(unboxValue)
+  const result = randomizeKeys(_keys).reduce((m, k, i) => {
+    m[k] = _values[i]
     return m
   }, target)
 
-  return defineNonEnum(value, '_split_', mapped)
+  return {value: defineNonEnum(result, '_split_', mapped)}
 }
-const echo = <T>(v: T): T => v
 
 export const name: IMaskerPipeName = 'split'
 
+export const process = ({context, originPipeline, execute, value}: IEnrichedContext, skipPath?: boolean, keys: string[] = Object.keys(value)) => <K>(k: K, i: number) => skipPath && Array.isArray(value)
+  ? ({value: k} as IMaskerPipeOutput)
+  : execute({...context, pipeline: originPipeline, path: skipPath ? undefined : appendPath(keys[i], context.path), value: k})
+
 export const pipe: IMaskerPipe = createPipe(
   name,
-  ({value, execute, context, originPipeline}) =>
+  ({value, context}) =>
     (typeof value === 'object' && value !== null
       ? ((origin) => {
-        const mapped = mapValues(origin, (v, k) => execute.execSync({...context, path: appendPath(k, context.path), pipeline: originPipeline, value: v}))
-        const keys = Object.keys(mapped).map(Array.isArray(mapped) ? echo : (k) => execute.execSync({...context, pipeline: originPipeline, path: undefined, value: k}).value)
-        const values = Object.values(mapped).map(unboxValue)
-        const value = assemble(values, keys, mapped)
+        const _keys = Object.keys(origin)
+        const values = Object.values(origin).map(process(context)) as IMaskerPipeOutput[]
+        const keys = _keys.map(process(context, true)) as IMaskerPipeOutput[]
 
-        return {value}
+        return assemble(values, keys, origin)
+
       })(value)
       : {value}),
 
-  async({value, execute, context, originPipeline}) =>
+  async({value, context}) =>
     (typeof value === 'object' && value !== null
       ? (async(origin) => {
-        const mapped = mapValues(origin, (v, k) => execute.exec({...context, path: appendPath(k, context.path), pipeline: originPipeline, value: v}))
-        const keys = Array.isArray(mapped)
-          ? Object.keys(mapped)
-          : (await Promise.all(Object.keys(mapped).map((k) => execute.exec({...context, pipeline: originPipeline, path: undefined, value: k})))).map(unboxValue)
-        const boxedValues = await Promise.all(Object.values(mapped))
-        const values = boxedValues.map(unboxValue)
 
-        keys.forEach((key, idx) => (mapped[key] = boxedValues[idx]))
+        const values = await Promise.all(Object.values(origin).map(process(context)))
+        const keys = await Promise.all(Object.keys(origin).map(process(context, true)))
 
-        const value = assemble(values, keys, mapped)
+        return assemble(values, keys, origin)
 
-        return {value}
       })(value)
       : {value}),
 )
