@@ -25,25 +25,24 @@
     "release": "DEBUG='semantic-release:*,msr:*' multi-semantic-release"
   },
   "devDependencies": {
-    "@antongolub/semantic-release-github": "0.0.4-beta",
-    "@qiwi/multi-semantic-release": "^3.8.3",
-    "@qiwi/semantic-release-gh-pages-plugin": "^4.0.3",
+    "@qiwi/multi-semantic-release": "^3.8.4",
+    "@qiwi/semantic-release-gh-pages-plugin": "^5.0.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/git": "9.0.0",
+    "@semantic-release/github": "^7.1.1",
     "@semantic-release/npm": "7.0.6",
     "@semantic-release/release-notes-generator": "9.0.1",
-    "@types/jest": "^26.0.13",
-    "@types/node": "^14.10.0",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.2",
     "codeclimate-test-reporter": "^0.5.1",
     "coveralls": "^3.1.0",
     "find-git-root": "^1.0.4",
     "jest": "^26.4.2",
     "lerna": "^3.22.1",
-    "semantic-release": "17.1.1",
     "snazzy": "^8.0.0",
-    "ts-jest": "^26.3.0",
-    "typescript": "^4.0.2"
+    "ts-jest": "^26.4.0",
+    "typescript": "^4.0.3"
   },
   "repository": {
     "type": "git",

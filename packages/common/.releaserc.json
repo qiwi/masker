@@ -1,0 +1,26 @@
+{
+  "branch": "master",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/npm",
+    [
+      "@qiwi/semantic-release-gh-pages-plugin",
+      {
+        "branch": "gh-pages",
+        "src": "./packages/common/docs",
+        "dst": "./common",
+        "pullTagsBranch": ""
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false,
+        "failComment": false
+      }
+    ],
+    "@semantic-release/git"
+  ]
+}

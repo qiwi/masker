@@ -29,14 +29,14 @@
     "build:es5": "mkdir -p target/es5 && tsc -p tsconfig.es5.json",
     "build:es6": "mkdir -p target/es6 && tsc -p tsconfig.es6.json",
     "build:ts": "cp -r src/main/ts/ target/ts/",
-    "build:libdef": "dts-generator --project ./ --out typings/index.d.ts --prefix @qiwi/masker-common/target/es5 --name @qiwi/masker-common --main @qiwi/masker-common/target/es5/index && libdeffix --dts=./typings/index.d.ts --prefix=@qiwi/masker-common/target/es5 && flowgen typings/index.d.ts --output-file flow-typed/index.flow.js",
+    "build:libdef": "libdefkit --tsconfig=tsconfig.es5.json --tsconfig=tsconfig.es6.json",
     "docs": "typedoc --readme README.md --tsconfig tsconfig.json src/main --ignoreCompilerErrors || exit 0",
     "uglify": "for f in $(find target -name '*.js'); do short=${f%.js}; terser -c -m -o $short.js -- $f; done",
     "postupdate": "yarn && yarn build && yarn test"
   },
   "dependencies": {
     "@qiwi/masker-infra": "1.0.0",
-    "@qiwi/substrate": "^1.18.37",
+    "@qiwi/substrate": "^1.19.0",
     "tslib": "^2.0.1",
     "lodash": "^4.17.20",
     "@types/lodash": "^4.14.161",
