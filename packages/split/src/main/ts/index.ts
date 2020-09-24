@@ -4,7 +4,6 @@ import {
   createPipe,
   mapValues,
   defineNonEnum,
-  IMaskerPipeOutput,
 } from '@qiwi/masker-common'
 
 export const appendPath = (chunk: string = '', prev: string = '') => `${prev ? prev + '.' : ''}${chunk}`
@@ -46,7 +45,7 @@ export const pipe: IMaskerPipe = createPipe(
       ? ((origin) => {
         const mapped = mapValues(origin, (v, k) => execute.execSync({...context, path: appendPath(k, context.path), pipeline: originPipeline, value: v}))
         const keys = Object.keys(mapped).map(Array.isArray(mapped) ? echo : (k) => execute.execSync({...context, pipeline: originPipeline, path: undefined, value: k}).value)
-        const values = (Object.values(mapped) as IMaskerPipeOutput[]).map(unboxValue)
+        const values = Object.values(mapped).map(unboxValue)
         const value = assemble(values, keys, mapped)
 
         return {value}
