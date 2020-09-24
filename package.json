@@ -22,7 +22,8 @@
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || echo 'coveralls push failed :(' && exit 0",
     "docs": "typedoc packages/**/src/main --ignoreCompilerErrors || exit 0",
     "postupdate": "yarn && yarn bootstrap && npx yarn-audit-fix --audit-level=moderate && yarn build && yarn test",
-    "release": "DEBUG='semantic-release:*,msr:*' multi-semantic-release"
+    "release:debug": "DEBUG='semantic-release:*,msr:*' multi-semantic-release",
+    "release": "multi-semantic-release"
   },
   "devDependencies": {
     "@qiwi/multi-semantic-release": "^3.8.4",
