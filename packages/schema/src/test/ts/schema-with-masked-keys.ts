@@ -34,17 +34,17 @@ describe('schema', () => {
       },
     }
     const expectedValue = {
-      foo: {
-        bar: '*** *** ***',
+      '***': {
+        '***': '*** *** ***',
       },
-      a: {
-        b: [
+      '*': {
+        '*': [
           '** **',
           {
-            c: {
-              d: '**** **** *',
+            '*': {
+              '*': '**** **** *',
             },
-            e: '****',
+            '*(2)': '****',
           },
         ],
       },
@@ -54,42 +54,49 @@ describe('schema', () => {
       'properties': {
         'foo': {
           'type': 'object',
+          'keyDirectives': ['strike'],
           'properties': {
             'bar': {
               'type': 'string',
-              'maskerDirectives': ['strike'],
+              'valueDirectives': ['strike'],
+              'keyDirectives': ['strike'],
             },
           },
         },
         'a': {
           'type': 'object',
+          'keyDirectives': ['strike'],
           'properties': {
             'b': {
+              'keyDirectives': ['strike'],
               'type': 'object',
-              'properties': [
-                {
+              'properties': {
+                '0': {
                   'type': 'string',
-                  'maskerDirectives': ['strike'],
+                  'valueDirectives': ['strike'],
                 },
-                {
+                '1': {
                   'type': 'object',
                   'properties': {
                     'c': {
                       'type': 'object',
+                      'keyDirectives': ['strike'],
                       'properties': {
                         'd': {
                           'type': 'string',
-                          'maskerDirectives': ['strike'],
+                          'valueDirectives': ['strike'],
+                          'keyDirectives': ['strike'],
                         },
                       },
                     },
                     'e': {
                       'type': 'string',
-                      'maskerDirectives': ['strike'],
+                      'valueDirectives': ['strike'],
+                      'keyDirectives': ['strike'],
                     },
                   },
                 },
-              ],
+              },
             },
           },
         },
@@ -100,7 +107,7 @@ describe('schema', () => {
     registry.set(splitPipe.name, splitPipe)
     registry.set(strikePipe.name, strikePipe)
 
-    fit('builds schema while processes the pipeline', () => {
+    it('builds schema while processes the pipeline', () => {
       const pipeline = ['strike', 'split']
       const result = execute.sync({pipeline, value, registry})
 
@@ -108,7 +115,7 @@ describe('schema', () => {
       expect(result.schema).toEqual(expectedSchema)
     })
 
-    it('uses context.schema if passed', () => {
+    fit('uses context.schema if passed', () => {
       const result = execute.sync({schema: expectedSchema, value, registry})
 
       expect(result.value).toEqual(expectedValue)
@@ -133,7 +140,7 @@ describe('schema', () => {
             'properties': {
               'bar': {
                 'type': 'string',
-                'maskerDirectives': ['strike'],
+                'valueDirectives': ['strike'],
               },
             },
           },
@@ -145,7 +152,7 @@ describe('schema', () => {
                 'properties': [
                   {
                     'type': 'string',
-                    'maskerDirectives': ['strike'],
+                    'valueDirectives': ['strike'],
                   },
                   {
                     'type': 'object',
@@ -155,13 +162,13 @@ describe('schema', () => {
                         'properties': {
                           'd': {
                             'type': 'string',
-                            'maskerDirectives': ['strike'],
+                            'valueDirectives': ['strike'],
                           },
                         },
                       },
                       'e': {
                         'type': 'string',
-                        'maskerDirectives': ['strike'],
+                        'valueDirectives': ['strike'],
                       },
                     },
                   },

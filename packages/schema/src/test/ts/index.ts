@@ -58,7 +58,7 @@ describe('schema',() => {
             'properties': {
               'bar': {
                 'type': 'string',
-                'maskerDirectives': ['strike'],
+                'valueDirectives': ['strike'],
               },
             },
           },
@@ -70,7 +70,7 @@ describe('schema',() => {
                 'properties': [
                   {
                     'type': 'string',
-                    'maskerDirectives': ['strike'],
+                    'valueDirectives': ['strike'],
                   },
                   {
                     'type': 'object',
@@ -80,13 +80,13 @@ describe('schema',() => {
                         'properties': {
                           'd': {
                             'type': 'string',
-                            'maskerDirectives': ['strike'],
+                            'valueDirectives': ['strike'],
                           },
                         },
                       },
                       'e': {
                         'type': 'string',
-                        'maskerDirectives': ['strike'],
+                        'valueDirectives': ['strike'],
                       },
                     },
                   },

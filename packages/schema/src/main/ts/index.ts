@@ -99,7 +99,7 @@ export const shortCutExecute = ({context, schema, value, mode, execute}: IEnrich
 export const extractMaskerDirectives = (schema: IMaskerSchema): Array<[string, IMaskerDirectives]> =>
     Object.keys(flattenObject(schema))
         .reduce((m: Array<[string, IMaskerDirectives]>, key: string) => {
-          const [, directivePath] = key.match(/^(.+\.maskerDirectives)\.\d+$/) || []
+          const [, directivePath] = key.match(/^(.+\.valueDirectives)\.\d+$/) || []
 
           if (directivePath) {
             const directives = get(schema, directivePath) as IMaskerDirectives
@@ -117,15 +117,8 @@ export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): I
   const schema = extractSchemaFromResult(type, after)
 
   if (type !== 'object' && !isEqual(before.value, after.value)) {
-    schema.maskerDirectives = schema?.maskerDirectives || []
-    schema.maskerDirectives.push(name)
-    console.log('diff1', 'before.value=', before.value, 'after.value=', after.value)
-    console.log('!!!schema=', schema, 'name=', name)
-  }
-
-  if (type === 'object' && !isEqual(JSON.stringify(before.value), JSON.stringify(after.value))) {
-    console.log('diff2', 'before.value.keys=', Object.keys(before.value), 'after.value.keys=', Object.keys(after.value))
-    console.log('!!!schema=', JSON.stringify(schema, null, 2), 'name=', name)
+    schema.valueDirectives = schema?.valueDirectives || []
+    schema.valueDirectives.push(name)
   }
 
   return schema
@@ -140,11 +133,13 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
   }
 
   if (typeof after.value === 'object' && after.value !== null) {
-    const {values, origin} = after.value._split_ || {}
+    const {values, origin, keys} = after.value._split_ || {}
 
     if (values) {
       const properties = Object.keys(origin).reduce((m, v: string, i: number) => {
-        m[v] = values[i].schema
+        const keyDirectives = keys[i]?.schema?.valueDirectives
+        const schema = values[i].schema
+        m[v] = keyDirectives ? {...schema, keyDirectives} : schema
 
         return m
       }, {} as Record<string, any>)

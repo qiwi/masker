@@ -60,7 +60,7 @@ describe('schema', () => {
           'properties': {
             'bar': {
               'type': 'string',
-              'maskerDirectives': ['striker'],
+              'valueDirectives': ['striker'],
             },
           },
         },
@@ -72,7 +72,7 @@ describe('schema', () => {
               'properties': [
                 {
                   'type': 'string',
-                  'maskerDirectives': ['striker'],
+                  'valueDirectives': ['striker'],
                 },
                 {
                   'type': 'object',
@@ -82,13 +82,13 @@ describe('schema', () => {
                       'properties': {
                         'd': {
                           'type': 'string',
-                          'maskerDirectives': ['striker'],
+                          'valueDirectives': ['striker'],
                         },
                       },
                     },
                     'e': {
                       'type': 'string',
-                      'maskerDirectives': ['striker'],
+                      'valueDirectives': ['striker'],
                     },
                   },
                 },
@@ -99,8 +99,8 @@ describe('schema', () => {
       },
     }
 
-    const striker = cp('striker', ({value}) =>
-      (typeof value === 'string'
+    const striker = cp('striker', ({value, path}) =>
+      (typeof value === 'string' && path !== undefined
         ? {value: value.replace(/[^\s]/g, '*')}
         : {value}))
 
@@ -141,7 +141,7 @@ describe('schema', () => {
             'properties': {
               'bar': {
                 'type': 'string',
-                'maskerDirectives': ['striker'],
+                'valueDirectives': ['striker'],
               },
             },
           },
@@ -153,7 +153,7 @@ describe('schema', () => {
                 'properties': [
                   {
                     'type': 'string',
-                    'maskerDirectives': ['striker'],
+                    'valueDirectives': ['striker'],
                   },
                   {
                     'type': 'object',
@@ -163,13 +163,13 @@ describe('schema', () => {
                         'properties': {
                           'd': {
                             'type': 'string',
-                            'maskerDirectives': ['striker'],
+                            'valueDirectives': ['striker'],
                           },
                         },
                       },
                       'e': {
                         'type': 'string',
-                        'maskerDirectives': ['striker'],
+                        'valueDirectives': ['striker'],
                       },
                     },
                   },
