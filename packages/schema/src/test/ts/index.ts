@@ -10,7 +10,7 @@ import {
 } from '../../main/ts'
 import {IExecutionMode} from '@qiwi/substrate'
 
-describe('schema',() => {
+describe('schema-index',() => {
   describe('pipe', () => {
     it('name is defined', () => {
       expect(name).toBe('schema')
@@ -22,32 +22,10 @@ describe('schema',() => {
         foo: {
           bar: 'bar bar bar',
         },
-        a: {
-          b: [
-            'bb bb',
-            {
-              c: {
-                d: 'dddd dddd d',
-              },
-              e: 'eeee',
-            },
-          ],
-        },
       }
       const expectedValue = {
-        foo: {
-          bar: '*** *** ***',
-        },
-        a: {
-          b: [
-            '** **',
-            {
-              c: {
-                d: '**** **** *',
-              },
-              e: '****',
-            },
-          ],
+        '***': {
+          '***': '*** *** ***',
         },
       }
       const expectedSchema: IMaskerSchema = {
@@ -59,48 +37,18 @@ describe('schema',() => {
               'bar': {
                 'type': 'string',
                 'valueDirectives': ['strike'],
+                'keyDirectives': ['strike'],
               },
             },
-          },
-          'a': {
-            'type': 'object',
-            'properties': {
-              'b': {
-                'type': 'object',
-                'properties': [
-                  {
-                    'type': 'string',
-                    'valueDirectives': ['strike'],
-                  },
-                  {
-                    'type': 'object',
-                    'properties': {
-                      'c': {
-                        'type': 'object',
-                        'properties': {
-                          'd': {
-                            'type': 'string',
-                            'valueDirectives': ['strike'],
-                          },
-                        },
-                      },
-                      'e': {
-                        'type': 'string',
-                        'valueDirectives': ['strike'],
-                      },
-                    },
-                  },
-                ],
-              },
-            },
+            'keyDirectives': ['strike'],
           },
         },
       }
 
       const registry = new Map()
+      registry.set(schema.name, schema)
       registry.set(split.name, split)
       registry.set(strike.name, strike)
-      registry.set(schema.name, schema)
 
       it('builds schema while processes the pipeline', () => {
         const pipeline = ['schema', 'split', 'strike']

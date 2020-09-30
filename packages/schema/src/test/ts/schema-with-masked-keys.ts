@@ -2,12 +2,9 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {execute as exec, IMaskerSchema} from '@qiwi/masker-common'
 import {pipe as splitPipe} from '@qiwi/masker-split'
 import {pipe as strikePipe} from '@qiwi/masker-strike'
-import {
-  extractMaskerDirectives,
-  withSchema,
-} from '../../main/ts'
+import {withSchema} from '../../main/ts'
 
-describe('schema', () => {
+describe('schema-with-masked-keys', () => {
   describe('#withSchema', () => {
     it('wraps executor with hoc', () => {
       const execute = withSchema(exec)
@@ -127,70 +124,6 @@ describe('schema', () => {
 
       expect(result.value).toEqual(expectedValue)
       expect(result.schema).toBe(expectedSchema)
-    })
-  })
-
-  describe('#extractMaskerDirectives', () => {
-    it('returns pairs of paths and directives', () => {
-      const schema = {
-        'type': 'object',
-        'properties': {
-          'foo': {
-            'type': 'object',
-            'properties': {
-              'bar': {
-                'type': 'string',
-                'valueDirectives': ['strike'],
-              },
-            },
-          },
-          'a': {
-            'type': 'object',
-            'properties': {
-              'b': {
-                'type': 'object',
-                'properties': [
-                  {
-                    'type': 'string',
-                    'valueDirectives': ['strike'],
-                  },
-                  {
-                    'type': 'object',
-                    'properties': {
-                      'c': {
-                        'type': 'object',
-                        'properties': {
-                          'd': {
-                            'type': 'string',
-                            'valueDirectives': ['strike'],
-                          },
-                        },
-                      },
-                      'e': {
-                        'type': 'string',
-                        'valueDirectives': ['strike'],
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          },
-        },
-      }
-
-      // @ts-ignore
-      const result = extractMaskerDirectives(schema)
-
-      expect(result).toEqual({
-        keyDirectives: [],
-        valueDirectives: [
-          ['foo.bar', ['strike']],
-          ['a.b.0', ['strike']],
-          ['a.b.1.c.d', ['strike']],
-          ['a.b.1.e', ['strike']],
-        ],
-      })
     })
   })
 })

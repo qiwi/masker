@@ -69,12 +69,12 @@ describe('schema', () => {
           'properties': {
             'b': {
               'type': 'object',
-              'properties': [
-                {
+              'properties': {
+                '0': {
                   'type': 'string',
                   'valueDirectives': ['striker'],
                 },
-                {
+                '1': {
                   'type': 'object',
                   'properties': {
                     'c': {
@@ -92,7 +92,7 @@ describe('schema', () => {
                     },
                   },
                 },
-              ],
+              },
             },
           },
         },
@@ -183,12 +183,15 @@ describe('schema', () => {
       // @ts-ignore
       const result = extractMaskerDirectives(schema)
 
-      expect(result).toEqual([
-        ['foo.bar', ['striker']],
-        ['a.b.0', ['striker']],
-        ['a.b.1.c.d', ['striker']],
-        ['a.b.1.e', ['striker']],
-      ])
+      expect(result).toEqual({
+        keyDirectives: [],
+        valueDirectives: [
+          ['foo.bar', ['striker']],
+          ['a.b.0', ['striker']],
+          ['a.b.1.c.d', ['striker']],
+          ['a.b.1.e', ['striker']],
+        ],
+      })
     })
   })
 })
