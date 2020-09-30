@@ -115,7 +115,7 @@ describe('schema', () => {
       expect(result.schema).toEqual(expectedSchema)
     })
 
-    fit('uses context.schema if passed', () => {
+    it('uses context.schema if passed', () => {
       const result = execute.sync({schema: expectedSchema, value, registry})
 
       expect(result.value).toEqual(expectedValue)
@@ -182,12 +182,15 @@ describe('schema', () => {
       // @ts-ignore
       const result = extractMaskerDirectives(schema)
 
-      expect(result).toEqual([
-        ['foo.bar', ['strike']],
-        ['a.b.0', ['strike']],
-        ['a.b.1.c.d', ['strike']],
-        ['a.b.1.e', ['strike']],
-      ])
+      expect(result).toEqual({
+        keyDirectives: [],
+        valueDirectives: [
+          ['foo.bar', ['strike']],
+          ['a.b.0', ['strike']],
+          ['a.b.1.c.d', ['strike']],
+          ['a.b.1.e', ['strike']],
+        ],
+      })
     })
   })
 })

@@ -1,4 +1,4 @@
-import {get, set} from 'lodash'
+import {get, set, unset, invert} from 'lodash'
 import {IExecutionMode} from '@qiwi/substrate'
 import {
   normalizeContext,
@@ -20,6 +20,7 @@ import {
   IRawContext,
   ISchemaContext,
 } from '@qiwi/masker-common'
+import {randomizeKeys} from '@qiwi/masker-split'
 
 export const name: IMaskerPipeName = 'schema'
 
@@ -73,44 +74,89 @@ export const shortCutExecute = ({context, schema, value, mode, execute}: IEnrich
   }
 
   const _value = clone(value)
-  const directives = extractMaskerDirectives(schema)
-  const inject = (outputs: IMaskerPipeOutput[]): IMaskerPipeOutput => {
-    outputs.forEach(({value}, i) => {
-      const path = directives[i]?.[0]
-      set(_value, path, value)
-    })
-
-    return {...context, value: _value, schema}
-  }
-
-  const values = directives.map(([path, directives]) =>
-      execute({
-        ...context,
-        value: get(_value, path),
-        pipeline: directives,
-      }),
+  const {keyDirectives, valueDirectives} = extractMaskerDirectives(schema)
+  const processDirectives = (normalizedDirectives: TNormalizedMaskerDirectives, asKeys?: boolean) => normalizedDirectives.map(([path, directives]) =>
+    execute({
+      ...context,
+      path: asKeys ? undefined : path,
+      value: asKeys ? path.slice(path.lastIndexOf('.') + 1) : get(_value, path),
+      pipeline: directives,
+    }),
   )
 
+  const values = processDirectives(valueDirectives)
+  const keys = processDirectives(keyDirectives, true)
+
+  const inject = (target: any, values: IMaskerPipeOutput[], keys: IMaskerPipeOutput[]) => {
+    values.forEach(({value}, i) => {
+      const path = valueDirectives[i]?.[0]
+      set(target, path, value)
+    })
+
+    const _keys = randomizeKeys(keys.map(({value}, i) => {
+      const path = keyDirectives[i]?.[0]
+      return path.slice(0, path.lastIndexOf('.') + 1) + value
+
+    }))
+
+    const getDepth = (str: string): number => (str.match(/\./g))?.length || 0
+
+    const keyMap = invert(keyDirectives.reduce((m, [path], i) => {
+      m[path] = _keys[i]
+      return m
+    }, {} as Record<string, string>))
+
+    _keys.sort((a, b) => getDepth(b) - getDepth(a)).forEach(path => {
+      const _path = keyMap[path]
+      const ref = get(target, _path)
+
+      set(target, path, ref)
+      unset(target, _path)
+    })
+
+    return {...context, value: target, schema}
+  }
+
   return mode === IExecutionMode.ASYNC
-      ? Promise.all(values).then(inject)
-      : inject(values as IMaskerPipeOutput[])
+    ? Promise.all([Promise.all(values), Promise.all(keys)]).then(([values, keys]) => inject(_value, values, keys))
+    : inject(_value, values as IMaskerPipeOutput[], keys as IMaskerPipeOutput[])
 }
 
-export const extractMaskerDirectives = (schema: IMaskerSchema): Array<[string, IMaskerDirectives]> =>
+export type IPath = string
+
+export type TNormalizedMaskerDirectives = [IPath, IMaskerDirectives][]
+
+export type TNormalizedMaskerDirectivesMap = {
+  valueDirectives: TNormalizedMaskerDirectives
+  keyDirectives: TNormalizedMaskerDirectives
+}
+
+const getPropPath = (schemaPath: IPath): IPath => schemaPath.slice(0, schemaPath.lastIndexOf('.'))
+  .split(/properties\.([^.]+)/g)
+  .join('')
+
+const getDirectivesByPath = (schema: IMaskerSchema, path: IPath) => get(schema, path) as IMaskerDirectives
+
+const injectDirective = (normalizedDirectives: TNormalizedMaskerDirectives, path: IPath, schema: IMaskerSchema): TNormalizedMaskerDirectives => {
+  normalizedDirectives.push([getPropPath(path), getDirectivesByPath(schema, path)])
+
+  return normalizedDirectives
+}
+
+export const extractMaskerDirectives = (schema: IMaskerSchema): TNormalizedMaskerDirectivesMap =>
     Object.keys(flattenObject(schema))
-        .reduce((m: Array<[string, IMaskerDirectives]>, key: string) => {
-          const [, directivePath] = key.match(/^(.+\.valueDirectives)\.\d+$/) || []
+        .reduce((m, key: string) => {
+          const [, valueDirectivesPath] = key.match(/^(.+\.valueDirectives)\.\d+$/) || []
+          const [, keyDirectivesPath] = key.match(/^(.+\.keyDirectives)\.\d+$/) || []
 
-          if (directivePath) {
-            const directives = get(schema, directivePath) as IMaskerDirectives
-            const path = directivePath.slice(0, directivePath.lastIndexOf('.'))
-                .split(/properties\.([^.]+)/g)
-                .join('')
+          if (valueDirectivesPath) injectDirective(m.valueDirectives, valueDirectivesPath, schema)
+          if (keyDirectivesPath) injectDirective(m.keyDirectives, keyDirectivesPath, schema)
 
-            m.push([path, directives])
-          }
           return m
-        }, [])
+        }, {
+          valueDirectives: [],
+          keyDirectives: [],
+        })
 
 export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): IMaskerSchema => {
   const type = getSchemaType(before.value)
