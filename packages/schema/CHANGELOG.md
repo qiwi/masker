@@ -1,3 +1,32 @@
+# @qiwi/masker-schema [1.3.0](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.2.1...@qiwi/masker-schema@1.3.0) (2020-09-30)
+
+
+### Bug Fixes
+
+* **schema:** add missed deps ([c5b2a29](https://github.com/qiwi/masker/commit/c5b2a29b0d547f963bd490c9546d053f39bf8aac))
+
+
+### Features
+
+* **schema:** provide key masking by shortCutExec ([e7b3395](https://github.com/qiwi/masker/commit/e7b33957d78723e0f8a9a93561ca698ffed91a00))
+* provide key masking by schema ([3f436cd](https://github.com/qiwi/masker/commit/3f436cdcdca2d0c34bc8f4062196a71a88bab58c))
+* separate values and keys directives ([49ab10c](https://github.com/qiwi/masker/commit/49ab10c5285c90d838c1a021070569df476dcc34))
+
+
+### Performance Improvements
+
+* **package:** up deps ([fee6d3c](https://github.com/qiwi/masker/commit/fee6d3c517f58e603dd38dec686fcc647fef3c6a))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.7.0
+* **@qiwi/masker-split:** upgraded to 1.4.0
+* **@qiwi/masker-strike:** upgraded to 1.2.3
+
 ## @qiwi/masker-schema [1.2.1](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.2.0...@qiwi/masker-schema@1.2.1) (2020-09-10)
 
 
