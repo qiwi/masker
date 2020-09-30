@@ -1,3 +1,13 @@
+## @qiwi/masker-split [1.4.1](https://github.com/qiwi/masker/compare/@qiwi/masker-split@1.4.0...@qiwi/masker-split@1.4.1) (2020-09-30)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.7.1
+
 # @qiwi/masker-split [1.4.0](https://github.com/qiwi/masker/compare/@qiwi/masker-split@1.3.0...@qiwi/masker-split@1.4.0) (2020-09-30)
 
 
