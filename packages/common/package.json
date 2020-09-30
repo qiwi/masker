@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker-common",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Data masker common assets",
   "private": false,
   "publishConfig": {

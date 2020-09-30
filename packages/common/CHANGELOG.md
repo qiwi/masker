@@ -1,3 +1,10 @@
+## @qiwi/masker-common [1.7.1](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.7.0...@qiwi/masker-common@1.7.1) (2020-09-30)
+
+
+### Performance Improvements
+
+* **common:** util refactoring ([7416312](https://github.com/qiwi/masker/commit/7416312619a6d1eefc6e6ccd15c2be6a6d74509f))
+
 # @qiwi/masker-common [1.7.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.6.0...@qiwi/masker-common@1.7.0) (2020-09-30)
 
 
