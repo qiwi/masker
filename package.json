@@ -21,7 +21,7 @@
     "codeclimate:push": "codeclimate-test-reporter < ./coverage/lcov.info",
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || echo 'coveralls push failed :(' && exit 0",
     "docs": "typedoc packages/**/src/main --ignoreCompilerErrors || exit 0",
-    "postupdate": "yarn && yarn bootstrap && npx yarn-audit-fix --audit-level=moderate && yarn build && yarn test",
+    "postupdate": "yarn && yarn bootstrap && npx yarn-audit-fix --audit-level=moderate --npm-v7 && yarn build && yarn test",
     "release:debug": "DEBUG='semantic-release:*,msr:*' multi-semantic-release",
     "release": "multi-semantic-release"
   },
@@ -42,7 +42,7 @@
     "jest": "^26.4.2",
     "lerna": "^3.22.1",
     "snazzy": "^8.0.0",
-    "ts-jest": "^26.4.0",
+    "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
   },
   "repository": {

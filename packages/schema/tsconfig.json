@@ -8,7 +8,9 @@
     "tsBuildInfoFile": "./buildcache/.tsbuildinfo"
   },
   "references": [
-    { "path": "../common" }
+    { "path": "../common" },
+    { "path": "../split" },
+    { "path": "../strike" }
   ],
   "include": [
     "src/main/**/*"

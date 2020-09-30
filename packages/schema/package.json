@@ -37,9 +37,12 @@
   "dependencies": {
     "@qiwi/substrate": "^1.19.0",
     "tslib": "^2.0.1",
-    "@qiwi/masker-common": "1.6.0"
+    "@qiwi/masker-common": "1.6.0",
+    "@qiwi/masker-split": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@qiwi/masker-strike": "*"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qiwi/masker.git"
