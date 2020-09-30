@@ -1,3 +1,18 @@
+## @qiwi/masker [1.2.3](https://github.com/qiwi/masker/compare/@qiwi/masker@1.2.2...@qiwi/masker@1.2.3) (2020-09-30)
+
+
+### Performance Improvements
+
+* **package:** up deps ([fee6d3c](https://github.com/qiwi/masker/commit/fee6d3c517f58e603dd38dec686fcc647fef3c6a))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-plain:** upgraded to 1.2.3
+
 ## @qiwi/masker [1.2.2](https://github.com/qiwi/masker/compare/@qiwi/masker@1.2.1...@qiwi/masker@1.2.2) (2020-09-10)
 
 
