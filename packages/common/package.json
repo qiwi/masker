@@ -35,8 +35,7 @@
     "postupdate": "yarn && yarn build && yarn test"
   },
   "dependencies": {
-    "@qiwi/masker-infra": "1.0.1",
-    "@qiwi/substrate": "^1.19.0",
+    "@qiwi/substrate": "^1.19.1",
     "tslib": "^2.0.1",
     "lodash": "^4.17.20",
     "@types/lodash": "^4.14.161",
@@ -44,7 +43,9 @@
     "@types/xregexp": "^4.3.0",
     "flattie": "^1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@qiwi/masker-infra": "1.0.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qiwi/masker.git"

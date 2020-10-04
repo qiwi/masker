@@ -401,8 +401,8 @@
 
 "@iarna/cli@^1.2.0":
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@iarna/cli/-/cli-1.2.0.tgz#0f7af5e851afe895104583c4ca07377a8094d641"
-  integrity sha512-ukITQAqVs2n9HGmn3car/Ir7d3ta650iXhrG7pjr3EWdFmJuuOVWgYsu7ftsSe5VifEFFhjxVuX9+8F7L8hwcA==
+  resolved "https://registry.npmjs.org/@iarna/cli/-/cli-1.2.0.tgz"
+  integrity "sha1-D3r16FGv6JUQRYPEygc3eoCU1kE= sha512-ukITQAqVs2n9HGmn3car/Ir7d3ta650iXhrG7pjr3EWdFmJuuOVWgYsu7ftsSe5VifEFFhjxVuX9+8F7L8hwcA=="
   dependencies:
     signal-exit "^3.0.2"
     update-notifier "^2.2.0"
@@ -1541,14 +1541,17 @@
     tslib "^2.0.1"
     yargs-parser "^20.2.0"
 
-"@qiwi/multi-semantic-release@^3.8.4":
-  version "3.8.4"
-  resolved "https://registry.npmjs.org/@qiwi/multi-semantic-release/-/multi-semantic-release-3.8.4.tgz"
-  integrity "sha1-c/3GCbJ8szuPTBMg/VJSSFzuTLg= sha512-t6t3OJYKYeIgDbcClZlD+3/10u8fq/IhkEL2Z8ZgVuJ8UbtqipagwKHAV5VGfugiVcJX446X0tOfISfG6hOdGQ=="
+"@qiwi/multi-semantic-release@^3.8.5":
+  version "3.8.5"
+  resolved "https://registry.npmjs.org/@qiwi/multi-semantic-release/-/multi-semantic-release-3.8.5.tgz"
+  integrity sha512-vW4zCJCOc4iCKzLRzl/LjGtFjnk5NUdie61T3sEWMHpJMsguyWV5i1HDhql1TzVuWG9MCHBREyjXFoXNe7ne3w==
   dependencies:
     bash-glob "^2.0.0"
     blork "^9.2.2"
     cosmiconfig "^7.0.0"
+    debug "^4.2.0"
+    detect-indent "^6.0.0"
+    detect-newline "^3.1.0"
     execa "^4.0.3"
     get-stream "^6.0.0"
     git-log-parser "^1.2.0"
@@ -1579,43 +1582,33 @@
     sync-request "^6.1.0"
     tslib "^2.0.1"
 
-"@qiwi/substrate-abstract@1.18.0":
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/@qiwi/substrate-abstract/-/substrate-abstract-1.18.0.tgz#61f50f9cde0566bbbd0284fa4b05ae70eb4366d8"
-  integrity sha512-bfXsP9eiBxbA/9D3M7pyi2UVCJHmbR26JbGi15BY7KwrBd15ZkLhaPfU+ZfA+lw17AR/yr7w8GF/dIcWUDnBFQ==
+"@qiwi/substrate-abstract@1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@qiwi/substrate-abstract/-/substrate-abstract-1.18.1.tgz#b128a6fa20de6fe3e79255311618851145d5bb09"
+  integrity sha512-Urptma9lBdLjL1DoVw3g7duAhhOYy7Uey4+MSak2CBYS0z5DenBfQXXjITZYyE3Mp6r71Kg2s8uCbm5aFX47zA==
   dependencies:
-    "@qiwi/substrate-infra" "1.0.0"
-    "@qiwi/substrate-types" "1.46.0"
+    "@qiwi/substrate-types" "1.46.1"
 
-"@qiwi/substrate-infra@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@qiwi/substrate-infra/-/substrate-infra-1.0.0.tgz#3e2e41e3c714c17f86b70f23c67127a4afa68e8a"
-  integrity sha512-aisKB+bQir3CXpim6aRAses/DEmnufjRGDGFQ2MLXrmzCHiwUPGausr9IDwd0TEzvGhZAg/0Xklk6FUzFagssg==
-
-"@qiwi/substrate-std@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@qiwi/substrate-std/-/substrate-std-1.1.0.tgz#8bb0ef294d2e1848c856a0bd6771e2802803c858"
-  integrity sha512-CsFW0gBAVXckTfqDk224cynH7nycQrl3FDv72zHS9Nhuqn/KUDUQqYfSorkiftTTvezuEvtQj12K69TC7GmFlg==
+"@qiwi/substrate-std@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@qiwi/substrate-std/-/substrate-std-1.1.1.tgz#d592212f0eb03b2a868adf28ccd3084239e00877"
+  integrity sha512-Y/9cmO6qGXW+bJ69CYk1LijRaKqB3goQgOd+eUZCK69bcOoijWpif3qqXtCU4hUD7fRHEmBepMDtPYR0ba0rOg==
   dependencies:
-    "@qiwi/substrate-infra" "1.0.0"
-    "@qiwi/substrate-types" "1.46.0"
+    "@qiwi/substrate-types" "1.46.1"
 
-"@qiwi/substrate-types@1.46.0":
-  version "1.46.0"
-  resolved "https://registry.yarnpkg.com/@qiwi/substrate-types/-/substrate-types-1.46.0.tgz#f54f445ce20008ee224134d989972e09520a7b7e"
-  integrity sha512-S03YAqKoESaYlFtbE5nBANLUwPTG6uevS8VtB2t0FyxP9Mpt5CMjb3Xqk1D+CHHMH8xR1gYnR66hSkaoOiSyTg==
-  dependencies:
-    "@qiwi/substrate-infra" "1.0.0"
+"@qiwi/substrate-types@1.46.1":
+  version "1.46.1"
+  resolved "https://registry.yarnpkg.com/@qiwi/substrate-types/-/substrate-types-1.46.1.tgz#140deeb0fc8708e6861a8904d4a921e25a5c8da7"
+  integrity sha512-GTCfo89s2IDIvKuFo1+eQ7RJCu7yd9rRz0x1IYDiDwoSuF8VmJXUjsW9+Tx96eWpgZIzn8d9uX8q/pa/397glA==
 
-"@qiwi/substrate@^1.19.0":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@qiwi/substrate/-/substrate-1.19.0.tgz#360db226010348519eb325d882c964402e355be9"
-  integrity sha512-Z7b51tUwaSh1F3Ga3wVC2OWZPhHF0JxrZ67f+j48GDJycdKVmaWucJbbvWb0to8hOWHHsh13zXxgMdt3uMg+nw==
+"@qiwi/substrate@^1.19.0", "@qiwi/substrate@^1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@qiwi/substrate/-/substrate-1.19.1.tgz#7917e8dc54c1f286292f2b18c0a02216dcf3fac3"
+  integrity sha512-KqjFuAo8VWczZCg5T+HCOTY7zYXOzRM8HbtSM3FS2bshVGrb9kZ9gLPNSTyz3ad0ePkU0EWPpoiNxM/y2VXPYQ==
   dependencies:
-    "@qiwi/substrate-abstract" "1.18.0"
-    "@qiwi/substrate-infra" "1.0.0"
-    "@qiwi/substrate-std" "1.1.0"
-    "@qiwi/substrate-types" "1.46.0"
+    "@qiwi/substrate-abstract" "1.18.1"
+    "@qiwi/substrate-std" "1.1.1"
+    "@qiwi/substrate-types" "1.46.1"
 
 "@semantic-release/changelog@^5.0.1":
   version "5.0.1"
@@ -3572,7 +3565,7 @@ detect-newline@^2.1.0:
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-2.1.0.tgz#f41f1c10be4b00e87b5f13da680759f2c5bfd3e2"
   integrity sha1-9B8cEL5LAOh7XxPaaAdZ8sW/0+I=
 
-detect-newline@^3.0.0:
+detect-newline@^3.0.0, detect-newline@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-3.1.0.tgz#576f5dfc63ae1a192ff192d8ad3af6308991b651"
   integrity sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==
@@ -4753,9 +4746,9 @@ has@^1.0.3:
     function-bind "^1.1.1"
 
 highlight.js@^10.2.0:
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.2.0.tgz#367151bcf813adebc54822f1cb51d2e1e599619f"
-  integrity sha512-OryzPiqqNCfO/wtFo619W+nPYALM6u7iCQkum4bqRmmlcTikOkmlL06i009QelynBPAlNByTQU6cBB2cOBQtCw==
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.2.1.tgz#09784fe2e95612abbefd510948945d4fe6fa9668"
+  integrity sha512-A+sckVPIb9zQTUydC9lpRX1qRFO/N0OKEh0NwIr65ckvWA/oMY8v9P3+kGRK3w2ULSh9E8v5MszXafodQ6039g==
 
 hook-std@^2.0.0:
   version "2.0.0"
@@ -7359,8 +7352,8 @@ os-homedir@^1.0.0:
 
 os-locale@^2.0.0:
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/os-locale/-/os-locale-2.1.0.tgz#42bc2900a6b5b8bd17376c8e882b65afccf24bf2"
-  integrity sha512-3sslG3zJbEYcaC4YVAvDorjGxc7tv6KVATnLPZONiljsUncvihe9BQoVCEs0RZ1kmf4Hk9OBqlZfJZWI4GanKA==
+  resolved "https://registry.npmjs.org/os-locale/-/os-locale-2.1.0.tgz"
+  integrity "sha1-QrwpAKa1uL0XN2yOiCtlr8zyS/I= sha512-3sslG3zJbEYcaC4YVAvDorjGxc7tv6KVATnLPZONiljsUncvihe9BQoVCEs0RZ1kmf4Hk9OBqlZfJZWI4GanKA=="
   dependencies:
     execa "^0.7.0"
     lcid "^1.0.0"
@@ -7971,9 +7964,9 @@ query-string@^4.1.0:
     strict-uri-encode "^1.0.0"
 
 query-string@^6.8.2:
-  version "6.13.4"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.13.4.tgz#b35a9a3bd4955bce55f94feb0e819b3d0be6f66f"
-  integrity sha512-E2NPIeJoBEJGQNy3ib1k/Z/OkDBUKIo8IV2ZVwbKfoa65IS9unqWWUlLcbfU70Da0qNoxUZZA8CfKUjKLE641Q==
+  version "6.13.5"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.13.5.tgz#99e95e2fb7021db90a6f373f990c0c814b3812d8"
+  integrity sha512-svk3xg9qHR39P3JlHuD7g3nRnyay5mHbrPctEBDUxUkHRifPHXJDhBUycdCC0NBjXoDf44Gb+IsOZL1Uwn8M/Q==
   dependencies:
     decode-uri-component "^0.2.0"
     split-on-first "^1.0.0"
@@ -9248,10 +9241,10 @@ terminal-link@^2.0.0:
     ansi-escapes "^4.2.1"
     supports-hyperlinks "^2.0.0"
 
-terser@^5.3.3:
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-5.3.3.tgz#2592a1cf079df55101fe2b2cb2330f951863860b"
-  integrity sha512-vRQDIlD+2Pg8YMwVK9kMM3yGylG95EIwzBai1Bw7Ot4OBfn3VP1TZn3EWx4ep2jERN/AmnVaTiGuelZSN7ds/A==
+terser@^5.3.4:
+  version "5.3.4"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.3.4.tgz#e510e05f86e0bd87f01835c3238839193f77a60c"
+  integrity sha512-dxuB8KQo8Gt6OVOeLg/rxfcxdNZI/V1G6ze1czFUzPeCFWZRtvZMgSzlZZ5OYBZ4HoG607F6pFPNLekJyV+yVw==
   dependencies:
     commander "^2.20.0"
     source-map "~0.7.2"

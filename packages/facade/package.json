@@ -35,11 +35,13 @@
     "postupdate": "yarn && yarn build && yarn test"
   },
   "dependencies": {
-    "@qiwi/substrate": "^1.19.0",
+    "@qiwi/substrate": "^1.19.1",
     "tslib": "^2.0.1",
     "@qiwi/masker-plain": "1.2.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@qiwi/masker-common": "1.7.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qiwi/masker.git"
