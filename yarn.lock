@@ -8687,17 +8687,17 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-snazzy@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/snazzy/-/snazzy-8.0.0.tgz#97a6d4173d03f6549b98a9dd88362765fac0ef88"
-  integrity sha512-59GS69hQD8FvJoNGeDz8aZtbYhkCFxCPQB1BFzAWiVVwPmS/J6Vjaku0k6tGNsdSxQ0kAlButdkn8bPR2hLcBw==
+snazzy@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/snazzy/-/snazzy-9.0.0.tgz#663639d059efd96c89f2aa63272acfacc5feda1f"
+  integrity sha512-8QZmJb11OiYaUP90Nnjqcj/LEpO8CLgChnP87Wqjv5tNB4djwHaz27VO2usSRR0NmViapeGW04p0aWAMhxxLXg==
   dependencies:
-    chalk "^2.3.0"
-    inherits "^2.0.1"
-    minimist "^1.1.1"
-    readable-stream "^3.0.2"
-    standard-json "^1.0.0"
-    strip-ansi "^4.0.0"
+    chalk "^4.1.0"
+    inherits "^2.0.4"
+    minimist "^1.2.5"
+    readable-stream "^3.6.0"
+    standard-json "^1.1.0"
+    strip-ansi "^6.0.0"
     text-table "^0.2.0"
 
 socks-proxy-agent@^4.0.0:
@@ -8880,7 +8880,7 @@ stack-utils@^2.0.2:
   dependencies:
     escape-string-regexp "^2.0.0"
 
-standard-json@^1.0.0:
+standard-json@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/standard-json/-/standard-json-1.1.0.tgz#33ac0d2eccaddb0556f5ae28c43a35624cf1fb25"
   integrity sha512-nkonX+n5g3pyVBvJZmvRlFtT/7JyLbNh4CtrYC3Qfxihgs8PKX52f6ONKQXORStuBWJ5PI83EUrNXme7LKfiTQ==

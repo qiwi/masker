@@ -41,7 +41,7 @@
     "find-git-root": "^1.0.4",
     "jest": "^26.4.2",
     "lerna": "^3.22.1",
-    "snazzy": "^8.0.0",
+    "snazzy": "^9.0.0",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
   },
