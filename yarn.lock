@@ -4047,10 +4047,10 @@ fast-levenshtein@~2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
-fast-luhn@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/fast-luhn/-/fast-luhn-1.1.1.tgz#c99bc1ce057aee16e68f5552c2d65800eda580be"
-  integrity sha512-omf2rT+fZMiaBXpyvOvBEYaoi/s+gdE/hrBGcKEraQIpD7AVTN+ZOaJgabPBJHRWzonjVABelF7KvI+7cij+mg==
+fast-luhn@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/fast-luhn/-/fast-luhn-2.0.0.tgz#aa41d6ffbda40e55e12f005ab5d09e542e023817"
+  integrity sha512-REI/GKhchu+SflfR6DOusv/KJGp2+rZ0FCANa2GWsxr669BuuLPKrXqImtbGVXlRkkCOM7mZlk8icdLmZeGBog==
 
 fastq@^1.6.0:
   version "1.8.0"

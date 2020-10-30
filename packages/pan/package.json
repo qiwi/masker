@@ -38,7 +38,7 @@
     "@qiwi/substrate": "^1.19.1",
     "tslib": "^2.0.1",
     "@qiwi/masker-common": "1.7.1",
-    "fast-luhn": "^1.1.1"
+    "fast-luhn": "^2.0.0"
   },
   "devDependencies": {},
   "repository": {
