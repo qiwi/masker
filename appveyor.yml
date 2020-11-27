@@ -14,7 +14,9 @@ skip_tags: true
 max_jobs: 1
 
 install:
-  - yarn install
+  - node --version
+  - yarn --version
+  - yarn
   - yarn bootstrap
 
 build_script:
@@ -26,8 +28,6 @@ before_test:
   - ./cc-test-reporter before-build
 
 test_script:
-  - node --version
-  - yarn --version
   - yarn test
 
 after_test:
