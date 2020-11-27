@@ -35,11 +35,11 @@
     "postupdate": "yarn && yarn build && yarn test"
   },
   "dependencies": {
-    "@qiwi/substrate": "^1.19.1",
-    "tslib": "^2.0.1",
+    "@qiwi/substrate": "^1.19.5",
+    "tslib": "^2.0.3",
     "lodash": "^4.17.20",
-    "@types/lodash": "^4.14.161",
-    "xregexp": "^4.3.0",
+    "@types/lodash": "^4.14.165",
+    "xregexp": "^4.4.0",
     "@types/xregexp": "^4.3.0",
     "flattie": "^1.1.0"
   },
