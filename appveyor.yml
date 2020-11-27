@@ -35,5 +35,5 @@ after_test:
   - ./cc-test-reporter after-build
 
 deploy_script:
-  - yarn release
+  - npx -p @qiwi/semrel-toolkit multi-semrel
 
