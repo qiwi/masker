@@ -32,7 +32,7 @@ test_script:
 
 after_test:
   - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
-  - ./cc-test-reporter after-build
+  - sh: ./cc-test-reporter after-build -r ${CC_TEST_REPORTER_ID} --exit-code $?
 
 deploy_script:
   - npx -p @qiwi/semrel-toolkit multi-semrel
