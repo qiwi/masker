@@ -4,66 +4,41 @@ branches:
     - gh-pages
 
 cache:
-  - packages
-  - node_modules
-  - target
-  - docs
-  - typings
-  - flow-typed
+  - node_modules -> appveyor.yml, package.json, yarn.lock
 
 skip_tags: true
 max_jobs: 2
 matrix:
   fast_finish: true
 
+init:
+  - cmd: powershell Install-Product node $env:nodejs_version
+  - sh: nvm install $nodejs_version
+  - node --version
+  - yarn --version
+
+install:
+  - yarn
+  - yarn bootstrap
+
+build_script:
+  - yarn build
+
 environment:
+  nodejs_version: "14"
   matrix:
-    - job_name: Build
-      nodejs_version: "14"
-
-    - job_name: Node 12
+    - job_name: Test
       job_group: Tests
-      job_depends_on: Build
-      nodejs_version: "12"
-
-    - job_name: Node 14
-      job_group: Tests
-      job_depends_on: Build
-      nodejs_version: "14"
 
     - job_name: Deploy
       job_depends_on: Tests
-      nodejs_version: "14"
 
 for:
   -
     matrix:
       only:
-        - job_name: Build
-    environment:
-      nodejs_version: "14"
-    install:
-      - cmd: powershell Install-Product node $env:nodejs_version
-      - sh: nvm install $nodejs_version
-      - node --version
-      - yarn --version
-      - yarn
-      - yarn bootstrap
+        - job_name: Test
 
-    build_script:
-      - yarn build
-  -
-    matrix:
-      only:
-        - job_name: Node 12
-
-    test_script:
-      - yarn test
-
-  -
-    matrix:
-      only:
-        - job_name: Node 14
     before_test:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
@@ -72,10 +47,18 @@ for:
       - yarn test
     after_test:
       - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
-      - ./cc-test-reporter after-build -r ${CC_TEST_REPORTER_ID}
+      - sh: |
+          if [ "$APPVEYOR_PULL_REQUEST_NUMBER" = "" ]; then
+              ./cc-test-reporter after-build -r ${CC_TEST_REPORTER_ID}
+          fi
 
   - matrix:
       only:
+        - APPVEYOR_PULL_REQUEST_NUMBER: ''
         - job_name: Deploy
         - branch: master
-    deploy_script: npx -p @qiwi/semrel-toolkit multi-semrel
+    deploy_script:
+      - sh: |
+          if [ "$APPVEYOR_PULL_REQUEST_NUMBER" = "" ]; then
+              npx -p @qiwi/semrel-toolkit multi-semrel
+          fi
