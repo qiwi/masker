@@ -1,39 +1,81 @@
 image: Ubuntu
-
-environment:
-  nodejs_version: "12"
-
-stack: node 12
-
 branches:
   except:
     - gh-pages
 
+cache:
+  - packages
+  - node_modules
+  - target
+  - docs
+  - typings
+  - flow-typed
+
 skip_tags: true
+max_jobs: 2
+matrix:
+  fast_finish: true
 
-max_jobs: 1
+environment:
+  matrix:
+    - job_name: Build
+      nodejs_version: "14"
 
-install:
-  - node --version
-  - yarn --version
-  - yarn
-  - yarn bootstrap
+    - job_name: Node 12
+      job_group: Tests
+      job_depends_on: Build
+      nodejs_version: "12"
 
-build_script:
-  - yarn build
+    - job_name: Node 14
+      job_group: Tests
+      job_depends_on: Build
+      nodejs_version: "14"
 
-before_test:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+    - job_name: Deploy
+      job_depends_on: Tests
+      nodejs_version: "14"
 
-test_script:
-  - yarn test
+for:
+  -
+    matrix:
+      only:
+        - job_name: Build
+    environment:
+      nodejs_version: "14"
+    install:
+      - cmd: powershell Install-Product node $env:nodejs_version
+      - sh: nvm install $nodejs_version
+      - node --version
+      - yarn --version
+      - yarn
+      - yarn bootstrap
 
-after_test:
-  - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
-  - sh: ./cc-test-reporter after-build -r ${CC_TEST_REPORTER_ID} --exit-code $?
+    build_script:
+      - yarn build
+  -
+    matrix:
+      only:
+        - job_name: Node 12
 
-deploy_script:
-  - npx -p @qiwi/semrel-toolkit multi-semrel
+    test_script:
+      - yarn test
 
+  -
+    matrix:
+      only:
+        - job_name: Node 14
+    before_test:
+      - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+      - chmod +x ./cc-test-reporter
+      - ./cc-test-reporter before-build
+    test_script:
+      - yarn test
+    after_test:
+      - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
+      - ./cc-test-reporter after-build -r ${CC_TEST_REPORTER_ID}
+
+  - matrix:
+      only:
+        - job_name: Deploy
+        - branch: master
+    deploy_script: npx -p @qiwi/semrel-toolkit multi-semrel
