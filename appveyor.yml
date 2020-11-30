@@ -21,30 +21,41 @@ install:
   - yarn
   - yarn bootstrap
 
-build_script:
-  - yarn build
-
 environment:
   nodejs_version: "14"
   matrix:
-    - job_name: Test
+    - job_name: TestNodeJS14
       job_group: Tests
+
+    - job_name: TestNodeJS12
+      job_group: Tests
+      nodejs_version: "12"
 
     - job_name: Deploy
       job_depends_on: Tests
 
 for:
+  - matrix:
+      only:
+        - branch: master
+        - job_name: TestNodeJS12
+    build_script:
+      - yarn build
+    test_script:
+      - yarn test
   -
     matrix:
       only:
-        - job_name: Test
+        - job_name: TestNodeJS14
 
+    build_script:
+      - yarn build
     before_test:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
     test_script:
-      - yarn test
+      - yarn test:report
     after_test:
       - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
       - sh: |
@@ -57,8 +68,7 @@ for:
         - APPVEYOR_PULL_REQUEST_NUMBER: ''
         - job_name: Deploy
         - branch: master
+    build_script:
+      - yarn build
     deploy_script:
-      - sh: |
-          if [ "$APPVEYOR_PULL_REQUEST_NUMBER" = "" ]; then
-              npx -p @qiwi/semrel-toolkit multi-semrel
-          fi
+      - npx -p @qiwi/semrel-toolkit multi-semrel
