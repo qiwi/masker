@@ -1,3 +1,24 @@
+## @qiwi/masker-pan [1.1.5](https://github.com/qiwi/masker/compare/@qiwi/masker-pan@1.1.4...@qiwi/masker-pan@1.1.5) (2021-03-19)
+
+
+### Bug Fixes
+
+* fix docs build scripts ([a9cc0d8](https://github.com/qiwi/masker/commit/a9cc0d8458d5ea22d2a9a63d90ad6662894021d1))
+* **package:** up deps, fix some vuls ([7e1607b](https://github.com/qiwi/masker/commit/7e1607b0434084188fe095763244c6cfd4f8c3b3))
+
+
+### Performance Improvements
+
+* **pkg:** up deps, fix vulns ([3af5c20](https://github.com/qiwi/masker/commit/3af5c205e875a69e0b841e69606f07928b9a3af7))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.7.2
+
 ## @qiwi/masker-pan [1.1.4](https://github.com/qiwi/masker/compare/@qiwi/masker-pan@1.1.3...@qiwi/masker-pan@1.1.4) (2020-09-30)
 
 
