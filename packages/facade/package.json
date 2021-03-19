@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Composite data masking utility",
   "private": false,
   "publishConfig": {
@@ -37,10 +37,10 @@
   "dependencies": {
     "@qiwi/substrate": "^1.20.4",
     "tslib": "^2.1.0",
-    "@qiwi/masker-plain": "1.2.4"
+    "@qiwi/masker-plain": "1.2.5"
   },
   "devDependencies": {
-    "@qiwi/masker-common": "1.7.1"
+    "@qiwi/masker-common": "1.7.2"
   },
   "repository": {
     "type": "git",
