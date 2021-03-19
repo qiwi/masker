@@ -1,3 +1,16 @@
+## @qiwi/masker-infra [1.0.2](https://github.com/qiwi/masker/compare/@qiwi/masker-infra@1.0.1...@qiwi/masker-infra@1.0.2) (2021-03-19)
+
+
+### Bug Fixes
+
+* fix docs build scripts ([a9cc0d8](https://github.com/qiwi/masker/commit/a9cc0d8458d5ea22d2a9a63d90ad6662894021d1))
+* **package:** up deps, fix some vuls ([7e1607b](https://github.com/qiwi/masker/commit/7e1607b0434084188fe095763244c6cfd4f8c3b3))
+
+
+### Performance Improvements
+
+* **pkg:** up deps, fix vulns ([3af5c20](https://github.com/qiwi/masker/commit/3af5c205e875a69e0b841e69606f07928b9a3af7))
+
 ## @qiwi/masker-infra [1.0.1](https://github.com/qiwi/masker/compare/@qiwi/masker-infra@1.0.0...@qiwi/masker-infra@1.0.1) (2020-09-30)
 
 
