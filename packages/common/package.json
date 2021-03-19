@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker-common",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Data masker common assets",
   "private": false,
   "publishConfig": {
@@ -44,7 +44,7 @@
     "flattie": "^1.1.0"
   },
   "devDependencies": {
-    "@qiwi/masker-infra": "1.0.1"
+    "@qiwi/masker-infra": "1.0.2"
   },
   "repository": {
     "type": "git",
