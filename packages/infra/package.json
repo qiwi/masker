@@ -10,7 +10,7 @@
   "scripts": {},
   "dependencies": {},
   "devDependencies": {
-    "@qiwi/libdefkit": "^2.1.8",
+    "@qiwi/libdefkit": "^3.0.0",
     "@types/jest": "^26.0.21",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
