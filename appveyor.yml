@@ -18,18 +18,18 @@ init:
   - yarn --version
 
 install:
-  - yarn
+  - yarn --ignore-engines
   - yarn bootstrap
 
 environment:
-  nodejs_version: "14"
+  nodejs_version: "16"
   matrix:
-    - job_name: TestNodeJS14
+    - job_name: TestNodeJS16
       job_group: Tests
 
-    - job_name: TestNodeJS12
+    - job_name: TestNodeJS14
       job_group: Tests
-      nodejs_version: "12"
+      nodejs_version: "14"
 
     - job_name: Deploy
       job_depends_on: Tests
@@ -38,7 +38,7 @@ for:
   - matrix:
       only:
         - branch: master
-        - job_name: TestNodeJS12
+        - job_name: TestNodeJS14
     build_script:
       - yarn build
     test_script:
@@ -46,7 +46,7 @@ for:
   -
     matrix:
       only:
-        - job_name: TestNodeJS14
+        - job_name: TestNodeJS16
 
     build_script:
       - yarn build
