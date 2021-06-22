@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker-sensor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -37,8 +37,8 @@
   "dependencies": {
     "@qiwi/substrate": "^1.20.9",
     "tslib": "^2.3.0",
-    "@qiwi/masker-common": "1.7.2",
-    "@qiwi/masker-plain": "1.2.5"
+    "@qiwi/masker-common": "1.7.3",
+    "@qiwi/masker-plain": "1.2.6"
   },
   "devDependencies": {},
   "repository": {

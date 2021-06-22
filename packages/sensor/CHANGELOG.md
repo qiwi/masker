@@ -1,3 +1,19 @@
+## @qiwi/masker-sensor [1.0.4](https://github.com/qiwi/masker/compare/@qiwi/masker-sensor@1.0.3...@qiwi/masker-sensor@1.0.4) (2021-06-22)
+
+
+### Performance Improvements
+
+* **package:** update deps, fix vuls ([18e2bb0](https://github.com/qiwi/masker/commit/18e2bb098611e4477cb468551f5a56e94e4473b0))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.7.3
+* **@qiwi/masker-plain:** upgraded to 1.2.6
+
 ## @qiwi/masker-sensor [1.0.3](https://github.com/qiwi/masker/compare/@qiwi/masker-sensor@1.0.2...@qiwi/masker-sensor@1.0.3) (2021-03-19)
 
 
