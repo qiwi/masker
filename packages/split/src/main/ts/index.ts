@@ -49,9 +49,8 @@ export const pipe: IMaskerPipe = createPipe(
   ({value, context}) =>
     (typeof value === 'object' && value !== null
       ? ((origin) => {
-        const _keys = Object.keys(origin)
         const values = Object.values(origin).map(process(context)) as IMaskerPipeOutput[]
-        const keys = _keys.map(process(context, true)) as IMaskerPipeOutput[]
+        const keys = Object.keys(origin).map(process(context, true)) as IMaskerPipeOutput[]
 
         return assemble(values, keys, origin)
 
