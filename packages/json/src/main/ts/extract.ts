@@ -1,30 +1,43 @@
 import XRegExp from 'xregexp'
 
-export const extractJsonStrings = (input: string): ReturnType<typeof JSON.parse>[] => {
+export type TJsonEntry = {
+  value: ReturnType<typeof JSON.parse>
+  start: number
+  end: number
+}
+
+export const extractJsonEntries = (input: string): TJsonEntry[] => {
   const matches = XRegExp.matchRecursive(input, '(\\[|\\{)', '(\\}|\\])', 'g', {
     valueNames: [null, 'left', 'match', 'right'],
   })
 
   // wrap the matches in {}, or in [] respectively
   return matches
-    .reduce<string[]>((memo, match, i) => {
+    .reduce<TJsonEntry[]>((memo, match, i) => {
       if (match.name === 'match') {
-        memo.push(matches[i - 1].value + match.value + matches[i + 1].value)
+        const entry = {
+          value: matches[i - 1].value + match.value + matches[i + 1].value,
+          start: matches[i - 1].start,
+          end: matches[i + 1].end,
+        }
+        memo.push(entry)
       }
 
       return memo
     }, [])
-    .map(json => {
+    .map((entry) => {
       try {
-        return checkJson(json)
-          ? JSON.parse(json)
-          : undefined
+        if (!checkJson(entry.value)) {
+          return
+        }
+        entry.value = JSON.parse(entry.value)
+        return entry
       }
       catch {
         return
       }
     })
-    .filter((v) => v !== undefined)
+    .filter((v) => v !== undefined) as TJsonEntry[]
 }
 
 // https://stackoverflow.com/a/3710506
