@@ -1,6 +1,7 @@
 import XRegExp from 'xregexp'
 
 export type TJsonEntry = {
+  _value: ReturnType<typeof JSON.parse>
   value: ReturnType<typeof JSON.parse>
   start: number
   end: number
@@ -15,8 +16,10 @@ export const extractJsonEntries = (input: string): TJsonEntry[] => {
   return matches
     .reduce<TJsonEntry[]>((memo, match, i) => {
       if (match.name === 'match') {
+        const value = matches[i - 1].value + match.value + matches[i + 1].value
         const entry = {
-          value: matches[i - 1].value + match.value + matches[i + 1].value,
+          _value: value,
+          value,
           start: matches[i - 1].start,
           end: matches[i + 1].end,
         }
