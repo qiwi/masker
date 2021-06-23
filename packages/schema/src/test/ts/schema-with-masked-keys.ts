@@ -2,6 +2,7 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {execute as exec, IMaskerSchema} from '@qiwi/masker-common'
 import {pipe as splitPipe} from '@qiwi/masker-split'
 import {pipe as strikePipe} from '@qiwi/masker-strike'
+
 import {withSchema} from '../../main/ts'
 
 describe('schema-with-masked-keys', () => {

@@ -40,7 +40,7 @@
     "@qiwi/masker-plain": "1.2.6"
   },
   "devDependencies": {
-    "@qiwi/masker-common": "1.7.3"
+    "@qiwi/masker-common": "*"
   },
   "repository": {
     "type": "git",

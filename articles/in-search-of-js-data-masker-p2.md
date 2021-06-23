@@ -57,7 +57,7 @@ type TValue = {
 
 ### Coupling
 When I talk about tight connectivity, I was referring to the contexts of masker using. Practice has shown that explicit and implicit dependencies between the masker pipes are the much bigger problem.
-In order not to fall further into this hell of growing complexity, I had to make a pipeline processor inside the pipeline processor. This is madness.
+In order not to fall further into this hell of growing complexity, I had to make a pipeline processor inside the pipeline processor. This is a pure madness.
 ```typescript
   // ...
   const memo: THookCallback = (res) => ((_memo = res.value), res)

@@ -9,13 +9,13 @@ yarn add @qiwi/masker-json
 ## Usage
 ```typescript
 import {masker} from '@qiwi/masker-common'
-import {pipe} from "@qiwi/masker-json";
-
-masker.register(pipe)
+import {json} from '@qiwi/masker-json'
+import {split} from '@qiwi/masker-split'
+import {strike} from '@qiwi/masker-strike'
 
 masker('{"foo": "bar"}  ', {
-  pipeline: ['json']
+  pipeline: [json, split, strike]
 })
-// [{foo: 'bar'}]
+// '{"foo": "***"}  '
 ```
 
