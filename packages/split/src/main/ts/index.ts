@@ -61,10 +61,10 @@ export const pipe: IMaskerPipe = createPipe(
     (typeof value === 'object' && value !== null
       ? (async(origin) => {
 
-        const values = await Promise.all(Object.values(origin).map(process(context)))
-        const keys = await Promise.all(Object.keys(origin).map(process(context, true)))
+        const values = Promise.all(Object.values(origin).map(process(context)))
+        const keys = Promise.all(Object.keys(origin).map(process(context, true)))
 
-        return assemble(values, keys, origin)
+        return assemble(await values, await keys, origin)
 
       })(value)
       : {value}),

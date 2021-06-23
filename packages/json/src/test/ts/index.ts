@@ -15,7 +15,7 @@ describe('json',() => {
       const cases = [
         [
           '   {"foo": "bar"} and {"a":{"b":"{\\"c\\":\\"d\\"}"}} meets double { "foo": "baz" } { "foo": "baz" } on the same string',
-          '   {"foo": "bar"} and {"a":{"b":"{\\"c\\":\\"d\\"}"}} meets double { "foo": "baz" } { "foo": "baz" } on the same string',
+          '   {"foo":"bar"} and {"a":{"b":"{\\"c\\":\\"d\\"}"}} meets double {"foo":"baz"} {"foo":"baz"} on the same string',
         ],
         [null, null],
         [{}, {}],
@@ -24,7 +24,7 @@ describe('json',() => {
         const result = {value: expected}
         const input = normalizeContext({value}, execute)
 
-        fit(`${value} > ${expected}`, async() => {
+        it(`${value} > ${expected}`, async() => {
           expect(pipe.execSync(input)).toEqual(result)
           expect(await pipe.exec(input)).toEqual(result)
         })
