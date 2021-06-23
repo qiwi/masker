@@ -32,7 +32,7 @@ describe('json',() => {
       })
     })
 
-    fit('applied pipeline to found json entries', () => {
+    it('applied pipeline to found json entries', () => {
       const dcap = cp('dcap', ({value}) => value === 'd' ? {value: 'D'} : {value})
       const pipeline = [dcap, split, pipe]
 

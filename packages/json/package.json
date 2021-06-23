@@ -39,7 +39,9 @@
     "tslib": "^2.3.0",
     "@qiwi/masker-common": "1.7.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@qiwi/masker-split": "*"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qiwi/masker.git"
