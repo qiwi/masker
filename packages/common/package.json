@@ -44,7 +44,7 @@
     "flattie": "^1.1.0"
   },
   "devDependencies": {
-    "@qiwi/masker-infra": "1.0.3"
+    "@qiwi/masker-infra": "*"
   },
   "repository": {
     "type": "git",
