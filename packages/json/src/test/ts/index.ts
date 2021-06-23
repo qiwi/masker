@@ -1,4 +1,5 @@
-import {normalizeContext, execute} from '@qiwi/masker-common'
+import {normalizeContext, execute, createPipe as cp} from '@qiwi/masker-common'
+import {pipe as split} from '@qiwi/masker-split'
 import {
   pipe,
   name,
@@ -29,6 +30,17 @@ describe('json',() => {
           expect(await pipe.exec(input)).toEqual(result)
         })
       })
+    })
+
+    fit('applied pipeline to found json entries', () => {
+      const dcap = cp('dcap', ({value}) => value === 'd' ? {value: 'D'} : {value})
+      const pipeline = [dcap, split, pipe]
+
+      const value = '   {"a":{"b":"{\\"c\\":\\"d\\"}"}} {"e": "d"}   '
+      const expected = '   {"a":{"b":"{\\"c\\":\\"D\\"}"}} {"e":"D"}   '
+      const result = execute.sync({pipeline, value})
+
+      expect(result).toMatchObject({value: expected})
     })
   })
 })
