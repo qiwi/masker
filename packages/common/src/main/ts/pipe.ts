@@ -11,11 +11,11 @@ import {promisify} from './utils'
 
 export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry): IMaskerPipeNormalized => {
   let masker
-  let opts
+  let opts = {}
   let maskerName
 
   if (Array.isArray(pipe)) {
-    [masker, opts] = pipe
+    [masker, opts = {}] = pipe
   }
   else {
     masker = pipe

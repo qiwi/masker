@@ -16,12 +16,13 @@ export interface IMaskerPipeAsync {
   (input: IMaskerPipeInput): Promise<IMaskerPipeOutput>
 }
 
+export type IMaskerOpts = Record<string, any>
+
 export interface IMaskerPipe {
   name: IMaskerPipeName
   exec: IMaskerPipeAsync
   execSync: IMaskerPipeSync
 }
-
 export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerOpts]
 
 export type IMaskerDirectives = Array<IMaskerDirective>
@@ -77,6 +78,7 @@ export type IEnrichedContext = {
   context: IEnrichedContext
   parent: IEnrichedContext
   schema?: IMaskerSchema
+  opts: IMaskerOpts
   [key: string]: any
 }
 
@@ -89,6 +91,7 @@ export interface IEnrichedExecutor extends IExecutor {
   sync: IExecutorSync
   execSync: IExecutorSync
   exec: IEnrichedExecutor
+  opts: IMaskerOpts,
   id?: string
 }
 export type IExecutorSync = (context: IRawContext) => IMaskerPipeOutput
@@ -110,8 +113,6 @@ export type IMaskerPipeName = string
 
 export type IMaskerPipeRef = IMaskerPipeName | IMaskerPipe
 
-export type IMaskerOpts = Record<string, any>
-
 export type IMaskerPipeRefWithOpts = [IMaskerPipeRef, IMaskerOpts]
 
 export type IMaskerPipeDeclaration = IMaskerPipeRef | IMaskerPipeRefWithOpts
@@ -119,7 +120,7 @@ export type IMaskerPipeDeclaration = IMaskerPipeRef | IMaskerPipeRefWithOpts
 export type IMaskerPipeline = Array<IMaskerPipeDeclaration>
 
 export type IMaskerPipeNormalized = IMaskerPipe & {
-  opts?: IMaskerOpts
+  opts: IMaskerOpts
 }
 
 export type IMaskerPipelineNormalized = Array<IMaskerPipeNormalized>

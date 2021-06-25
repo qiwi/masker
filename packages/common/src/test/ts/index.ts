@@ -12,13 +12,13 @@ describe('#getPipe', () => {
   registry.set('pipe', pipe)
 
   const cases: Array<[string, Parameters<typeof getPipe>, any, Error?]> = [
-    ['returns fn pipe as is', [pipe, registry], {...pipe, opts: undefined}],
-    ['finds the pipe by name', ['pipe', registry], {...pipe, opts: undefined}],
+    ['returns fn pipe as is', [pipe, registry], {...pipe, opts: {}}],
+    ['finds the pipe by name', ['pipe', registry], {...pipe, opts: {}}],
     ['raises an exception if not found', ['otherpipe', registry], undefined, new Error('Pipe not found: otherpipe')],
     ['supports options notation', [[pipe, opts], registry], {...pipe, opts}],
     ['named ref and options', [['pipe', opts], registry], {...pipe, opts}],
     // @ts-ignore
-    ['boxed ref with no options', [['pipe'], registry], {...pipe, opts: undefined}],
+    ['boxed ref with no options', [['pipe'], registry], {...pipe, opts: {}}],
     // @ts-ignore
     ['undefined if pipe is not a function', [[undefined]], undefined, new Error('Pipe not found: undefined')],
   ]

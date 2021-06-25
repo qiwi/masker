@@ -13,9 +13,9 @@ import {pipe} from "@qiwi/masker-sensor";
 
 masker.register(pipe)
 
-masker('foo bar baz', {
-  pipeline: ['sensor']
+masker('fooo bar baz foobar qux q', {
+  pipeline: [['sensor', {pattern: /\w{4,}/g}]]
 })
-// *** *** ***
+// **** bar baz ****** qux q
 ```
 
