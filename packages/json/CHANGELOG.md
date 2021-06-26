@@ -1,3 +1,19 @@
+# @qiwi/masker-json [1.2.0](https://github.com/qiwi/masker/compare/@qiwi/masker-json@1.1.6...@qiwi/masker-json@1.2.0) (2021-06-26)
+
+
+### Features
+
+* **json:** provide async json string processing ([2cdb90b](https://github.com/qiwi/masker/commit/2cdb90bd1df72dc943e1a76a4d2561b732c104e3))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.8.0
+* **@qiwi/masker-split:** upgraded to 1.5.0
+
 ## @qiwi/masker-json [1.1.6](https://github.com/qiwi/masker/compare/@qiwi/masker-json@1.1.5...@qiwi/masker-json@1.1.6) (2021-06-22)
 
 
