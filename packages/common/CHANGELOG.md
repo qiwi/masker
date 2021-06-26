@@ -1,3 +1,11 @@
+# @qiwi/masker-common [1.8.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.7.3...@qiwi/masker-common@1.8.0) (2021-06-26)
+
+
+### Features
+
+* **common:** pass pipe opts to exec ([06484c1](https://github.com/qiwi/masker/commit/06484c1614244336e2beceee1e5cd8208a4869bd))
+* **sensor:** support configurable patterns ([da29ffe](https://github.com/qiwi/masker/commit/da29ffe9b10f307243865ad913a2f2b463f35cad))
+
 ## @qiwi/masker-common [1.7.3](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.7.2...@qiwi/masker-common@1.7.3) (2021-06-22)
 
 
