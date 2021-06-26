@@ -73,12 +73,13 @@ export type IEnrichedContext = {
   refs: any
   execute: IEnrichedExecutor
   mode: IExecutionMode
+  opts: IMaskerOpts
+  pipe?: IMaskerPipeNormalized
   pipeline: IMaskerPipelineNormalized
   originPipeline: IMaskerPipelineNormalized
   context: IEnrichedContext
   parent: IEnrichedContext
   schema?: IMaskerSchema
-  opts: IMaskerOpts
   [key: string]: any
 }
 
