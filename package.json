@@ -20,14 +20,14 @@
     "coverage:merge": "node scripts/js/coverage-merge.js",
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || echo 'coveralls push failed :(' && exit 0",
     "docs": "typedoc packages/**/src/main --ignoreCompilerErrors || exit 0",
-    "postupdate": "yarn && yarn bootstrap && npx yarn-audit-fix && yarn build && yarn test",
+    "postupdate": "yarn && yarn bootstrap && npm_config_yes=trye npx yarn-audit-fix && yarn build && yarn test",
     "release:debug": "DEBUG='semantic-release:*,msr:*' multi-semantic-release"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "^0.5.1",
     "coveralls": "^3.1.0",
     "find-git-root": "^1.0.4",
-    "jest": "^27.0.4",
+    "jest": "^27.0.5",
     "lerna": "^4.0.0",
     "snazzy": "^9.0.0"
   },

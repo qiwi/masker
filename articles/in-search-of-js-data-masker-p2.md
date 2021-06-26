@@ -7,7 +7,7 @@ A unidirectional pipeline is applicable to strings only; nested objects require 
 
 ### Depth
 Self-calling paves the way for endless cycles. We need a mechanism to limit the depth and number of recursion.
-In this regard, contexts cannot be completely autonomous and should have signs of nesting.
+In this regard, contexts cannot be completely autonomous and should have some signs of nesting.
 ```typescript
 type IContext = {
   value: any,
