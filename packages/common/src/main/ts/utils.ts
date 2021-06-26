@@ -33,7 +33,14 @@ export const mapDescriptors = (input: any, target: any, fn: (input: any, key?: s
   }
 }
 
-export const promisify = (fn: Function) => (...args: any[]) => Promise.resolve(fn(...args))
+export const asynchronize = <F extends ICallable>(fn: F) => (...args: any[]): Promise<ReturnType<F>> => new Promise((resolve, reject) => {
+  try {
+    resolve(fn(...args))
+  }
+  catch (e) {
+    reject(e)
+  }
+})
 
 export const isPromiseLike = (target: any): boolean =>
   !!target && typeof target.then === 'function' && typeof target.catch === 'function'

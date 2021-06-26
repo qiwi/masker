@@ -7,7 +7,7 @@ import {
   IMaskerPipeSync,
   IMaskerRegistry,
 } from './interfaces'
-import {promisify} from './utils'
+import {asynchronize} from './utils'
 
 export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry): IMaskerPipeNormalized => {
   let masker
@@ -38,7 +38,7 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry)
 
 export const createPipe = (name: IMaskerPipeName, execSync?: IMaskerPipeSync, exec?: IMaskerPipeAsync): IMaskerPipe => {
   const _execSync: IMaskerPipeSync = execSync || (() => ({value: '****** masker not implemented'}))
-  const _exec = exec || promisify(_execSync)
+  const _exec = exec || asynchronize(_execSync)
 
   return {
     name,
