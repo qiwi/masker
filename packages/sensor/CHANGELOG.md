@@ -1,3 +1,20 @@
+# @qiwi/masker-sensor [1.1.0](https://github.com/qiwi/masker/compare/@qiwi/masker-sensor@1.0.4...@qiwi/masker-sensor@1.1.0) (2021-06-26)
+
+
+### Features
+
+* **common:** pass pipe opts to exec ([06484c1](https://github.com/qiwi/masker/commit/06484c1614244336e2beceee1e5cd8208a4869bd))
+* **sensor:** support configurable patterns ([da29ffe](https://github.com/qiwi/masker/commit/da29ffe9b10f307243865ad913a2f2b463f35cad))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.8.0
+* **@qiwi/masker-plain:** upgraded to 1.2.7
+
 ## @qiwi/masker-sensor [1.0.4](https://github.com/qiwi/masker/compare/@qiwi/masker-sensor@1.0.3...@qiwi/masker-sensor@1.0.4) (2021-06-22)
 
 
