@@ -21,15 +21,21 @@ export const normalizeContext = ({
   ...rest
 }: IRawContext, execute: IExecutor): IEnrichedContext => {
   const id = generateId()
+  const _pipeline = normalizePipeline(rest.pipeline || pipeline, registry)
+  const _originPipeline = normalizePipeline(rest.originPipeline || originPipeline, registry)
+  const pipe = _pipeline[0]
+  const opts = pipe?.opts
   const context = {
     value,
     refs,
     registry,
     mode,
-    pipeline: normalizePipeline(pipeline, registry),
-    originPipeline: normalizePipeline(originPipeline, registry),
     execute,
+    opts,
     ...rest,
+    pipeline: _pipeline,
+    originPipeline: _originPipeline,
+    pipe,
     parent,
     id,
   } as IEnrichedContext

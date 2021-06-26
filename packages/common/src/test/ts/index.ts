@@ -1,8 +1,11 @@
 import {IExecutionMode} from '@qiwi/substrate'
-import {execute} from '../../main/ts'
-import {createPipe as cp, getPipe} from '../../main/ts/pipe'
-import {mapValues} from '../../main/ts/utils'
-import {IMaskerPipeInput} from '../../main/ts/interfaces'
+import {
+  createPipe as cp,
+  execute,
+  getPipe,
+  mapValues,
+  IMaskerPipeInput,
+} from '../../main/ts'
 
 describe('#getPipe', () => {
   const registry = new Map()
