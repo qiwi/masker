@@ -1,3 +1,18 @@
+# @qiwi/masker-split [1.5.0](https://github.com/qiwi/masker/compare/@qiwi/masker-split@1.4.3...@qiwi/masker-split@1.5.0) (2021-06-26)
+
+
+### Features
+
+* **json:** provide async json string processing ([2cdb90b](https://github.com/qiwi/masker/commit/2cdb90bd1df72dc943e1a76a4d2561b732c104e3))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.8.0
+
 ## @qiwi/masker-split [1.4.3](https://github.com/qiwi/masker/compare/@qiwi/masker-split@1.4.2...@qiwi/masker-split@1.4.3) (2021-06-22)
 
 
