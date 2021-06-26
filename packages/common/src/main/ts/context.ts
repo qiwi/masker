@@ -11,15 +11,15 @@ import {generateId} from './utils'
 import {getPipe} from './pipe'
 
 export const normalizeContext = ({
-   pipeline = [],
-   value,
-   refs = new WeakMap(),
-   registry = new Map(),
-   mode = IExecutionMode.ASYNC,
-   originPipeline = pipeline,
-   context: parent,
-   ...rest
- }: IRawContext, execute: IExecutor): IEnrichedContext => {
+  pipeline = [],
+  value,
+  refs = new WeakMap(),
+  registry = new Map(),
+  mode = IExecutionMode.ASYNC,
+  originPipeline = pipeline,
+  context: parent,
+  ...rest
+}: IRawContext, execute: IExecutor): IEnrichedContext => {
   const id = generateId()
   const context = {
     value,

@@ -1,4 +1,5 @@
 import {normalizeContext, execute} from '@qiwi/masker-common'
+import {pipe as plainPipe} from '@qiwi/masker-plain'
 import {
   pipe,
   name,
@@ -13,8 +14,13 @@ describe('sensor',() => {
   describe('pipe', () => {
     describe('replaces all values with *', () => {
       const cases = [
+        ['foo bar', 'foo bar', 'public'],
+        ['foo bar', '***', 'secret'],
+        ['foo bar', '***', 'foo', {pattern: /foo/}],
+        ['foo bar', '***', 'foo', {pattern: 'foo'}],
+        ['foo bar', '***', 'bar', {directives: [{pattern: /bar/, pipeline: [plainPipe]}]}],
+        ['foo bar', '***', 'some.long.path-to.secret'],
         ['foo bar', '***', 'token'],
-        ['foo bar', '***', 'some.long.path-to.sensor'],
         ['foo bar', '***', 'credential'],
         ['foo bar', '***', 'password'],
         ['foo bar', '***', 'private'],
@@ -22,9 +28,9 @@ describe('sensor',() => {
         [12345, '***', 'token'],
         [12345, 12345, 'foobar'],
       ]
-      cases.forEach(([value, expected, path]) => {
+      cases.forEach(([value, expected, path, opts = {}]) => {
         const result = expected
-        const input = normalizeContext({value, path}, execute)
+        const input = normalizeContext({value, path, opts}, execute)
 
         it(`${value} > ${expected}`, async() => {
           expect(pipe.execSync(input).value).toBe(result)
