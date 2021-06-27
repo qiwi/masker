@@ -1,5 +1,4 @@
 import {get, set, unset, invert} from 'lodash'
-import {IExecutionMode} from '@qiwi/substrate'
 import {
   normalizeContext,
   clone,
@@ -66,11 +65,10 @@ export const withSchema = (execute: IExecutor): IEnrichedExecutor => {
   return _execute
 }
 
-export const shortCutExecute = ({context, schema, value, mode, execute}: IEnrichedContext) => {
+export const shortCutExecute = ({context, schema, value, sync, execute}: IEnrichedContext) => {
   if (!schema) {
     return context
   }
-
   const _value = clone(value)
   const {keyDirectives, valueDirectives} = extractMaskerDirectives(schema)
   const processDirectives = (normalizedDirectives: TNormalizedMaskerDirectives, asKeys?: boolean) => normalizedDirectives.map(([path, directives]) =>
@@ -115,9 +113,10 @@ export const shortCutExecute = ({context, schema, value, mode, execute}: IEnrich
     return {...context, value: target, schema}
   }
 
-  return mode === IExecutionMode.ASYNC
-    ? Promise.all([Promise.all(values), Promise.all(keys)]).then(([values, keys]) => inject(_value, values, keys))
-    : inject(_value, values as IMaskerPipeOutput[], keys as IMaskerPipeOutput[])
+  return sync
+    // @ts-ignore
+    ? inject(_value, values as IMaskerPipeOutput[], keys as IMaskerPipeOutput[])
+    : Promise.all([Promise.all(values), Promise.all(keys)]).then(([values, keys]) => inject(_value, values, keys))
 }
 
 export type IPath = string

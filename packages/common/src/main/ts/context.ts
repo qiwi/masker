@@ -16,6 +16,7 @@ export const normalizeContext = ({
   refs = new WeakMap(),
   registry = new Map(),
   mode = IExecutionMode.ASYNC,
+  sync = mode === IExecutionMode.SYNC,
   originPipeline = pipeline,
   context: parent,
   ...rest
@@ -29,6 +30,7 @@ export const normalizeContext = ({
     value,
     refs,
     registry,
+    sync,
     mode,
     execute,
     opts,

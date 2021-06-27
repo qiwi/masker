@@ -1,20 +1,13 @@
 import {IExecutionMode} from '@qiwi/substrate'
 import {ahook} from './utils'
 
-import {
-  IExecutor,
-  IExecutorSync,
-  IEnrichedExecutor,
-  IRawContext,
-  IEnrichedContext,
-  IMaskerPipeOutput,
-} from './interfaces'
+import {IEnrichedContext, IEnrichedExecutor, IExecutor, IMaskerPipeOutput, IRawContext, SyncGuard} from './interfaces'
 import {normalizeContext} from './context'
 
 type THookCallback = (res: IMaskerPipeOutput) => ReturnType<IExecutor>
 
 export const enrichExecutor = (execute: IExecutor): IEnrichedExecutor => {
-  const execSync = ((opts) => execute({...opts, mode: IExecutionMode.SYNC})) as IExecutorSync
+  const execSync = ((opts: IRawContext) => execute({...opts, sync: true, mode: IExecutionMode.SYNC}))
 
   Object.assign(execute, {
     sync: execSync,
@@ -25,23 +18,28 @@ export const enrichExecutor = (execute: IExecutor): IEnrichedExecutor => {
   return execute as IEnrichedExecutor
 }
 
-export const execute: IEnrichedExecutor = enrichExecutor((context: IRawContext) => {
+export const execute: IEnrichedExecutor = enrichExecutor(<C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C> => {
   const sharedContext: IEnrichedContext = normalizeContext(context, execute)
-  const {pipeline, pipe, mode, execute: _execute, value} = sharedContext
+  const {pipeline, pipe, mode, execute: _execute, sync} = sharedContext
   if (!pipe || (context as IMaskerPipeOutput).final) {
-    return context
+    return ahook(context, v => v)
   }
 
   const {execSync, exec} = pipe
-  const fn = mode === IExecutionMode.SYNC ? execSync : exec
+  const fn = mode === IExecutionMode.SYNC || sync ? execSync : exec
   const next: THookCallback = (res) => _execute({
     ...sharedContext,
     ...res,
     pipeline: res.pipeline || pipeline.slice(1),
   })
+
+  let _value: any
+  const pre: THookCallback = (res) => {
+    _value = res.value; return res
+  }
   const post: THookCallback = (res) => {
-    res.ownValue = value; return res
+    res.ownValue = _value; return res
   }
 
-  return ahook(ahook(fn({...sharedContext}), next), post) // Pipeline inside pipeline executor.
+  return ahook(ahook(ahook(fn({...sharedContext}), pre), next), post) // Pipeline inside pipeline executor.
 })

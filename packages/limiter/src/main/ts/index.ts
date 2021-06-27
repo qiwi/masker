@@ -7,7 +7,7 @@ import {
   IExecutorSync,
   IEnrichedContext,
   normalizeContext,
-  IRawContext,
+  IRawContext, SyncGuard,
 } from '@qiwi/masker-common'
 
 import {pipe as plainPipe} from '@qiwi/masker-plain'
@@ -19,19 +19,19 @@ export const withLimiter = ({execute, opts: {pipeline, limit, duration}}: IMaske
   const _endsAt = duration ? Date.now() + duration : Number.POSITIVE_INFINITY
   let _limit = limit !== undefined ? limit | 0 : Number.POSITIVE_INFINITY
 
-  const _execute = enrichExecutor((cxt: IRawContext) => {
+  const _execute = enrichExecutor(<C extends IRawContext>(cxt: C): SyncGuard<IMaskerPipeInput, C> => {
     const _cxt: IEnrichedContext = normalizeContext(cxt, _execute)
     if (Date.now() >= _endsAt || _limit-- <= 0) {
-      return execute({..._cxt, execute, pipeline: _pipeline})
+      return execute({..._cxt, execute, pipeline: _pipeline}) as SyncGuard<IMaskerPipeInput, C>
     }
 
-    return execute(_cxt)
+    return execute(_cxt) as SyncGuard<IMaskerPipeInput, C>
   })
 
   return _execute
 }
 
-const exec = ((ctx: IMaskerPipeInput) => {
+const exec = <C extends IMaskerPipeInput>(ctx: C): SyncGuard<IMaskerPipeInput, C> => {
   ctx.execute = withLimiter(ctx)
   ctx.originPipeline = ctx.originPipeline.filter((pipe) => pipe.name !== name)
   ctx.pipeline = ctx.pipeline.filter((pipe) => pipe.name !== name)
@@ -39,9 +39,9 @@ const exec = ((ctx: IMaskerPipeInput) => {
   // @ts-ignore
   ctx.context = ctx.parent = undefined
 
-  return ctx.execute(ctx)
-}) as IExecutorSync
+  return ctx.execute(ctx) as SyncGuard<IMaskerPipeInput, C>
+}
 
-export const pipe = createPipe(name, exec)
+export const pipe = createPipe(name, exec as IExecutorSync)
 
 export default pipe
