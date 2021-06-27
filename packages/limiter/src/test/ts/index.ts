@@ -1,5 +1,4 @@
-import {createPipe, execute, IMaskerPipeOutput, IRawContext, normalizeContext} from '@qiwi/masker-common'
-import {IExecutionMode} from '@qiwi/substrate-types'
+import {createPipe, execute, IRawContext, normalizeContext} from '@qiwi/masker-common'
 import {name, pipe} from '../../main/ts'
 
 describe('limiter',() => {
@@ -53,12 +52,12 @@ describe('limiter',() => {
     cases.forEach(([name, input, result, times]) => {
       const ctx = normalizeContext(input, execute)
       it(name + '(sync)', () => {
-        expect((execute({...ctx, mode: IExecutionMode.SYNC}) as IMaskerPipeOutput).value).toBe(result)
+        expect(execute({...ctx, sync: true}).value).toBe(result)
         expect(barExec).toHaveBeenCalledTimes(times)
       })
 
       it(name + '(async)', async() => {
-        expect((await execute({...ctx, mode: IExecutionMode.ASYNC}) as IMaskerPipeOutput).value).toBe(result)
+        expect((await execute({...ctx})).value).toBe(result)
         expect(barExec).toHaveBeenCalledTimes(times)
       })
     })

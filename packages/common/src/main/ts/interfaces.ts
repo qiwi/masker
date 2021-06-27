@@ -1,4 +1,4 @@
-import {IExecutionMode} from '@qiwi/substrate'
+import {IExecutionMode, Extends} from '@qiwi/substrate'
 
 export type IMaskerType = string
 
@@ -59,6 +59,7 @@ export type IRawContext = {
   pipeline?: IMaskerPipeline
   registry?: IMaskerRegistry
   refs?: any
+  sync?: boolean
   mode?: IExecutionMode
   originPipeline?: IMaskerPipeline,
   execute?: IEnrichedExecutor
@@ -72,6 +73,7 @@ export type IEnrichedContext = {
   registry: IMaskerRegistry
   refs: any
   execute: IEnrichedExecutor
+  sync: boolean
   mode: IExecutionMode
   opts: IMaskerOpts
   pipe?: IMaskerPipeNormalized
@@ -84,11 +86,13 @@ export type IEnrichedContext = {
 }
 
 export interface IExecutor {
-  (context: IRawContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
+  <C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C>
 }
 
+// <C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C>
+
 export interface IEnrichedExecutor extends IExecutor {
-  (context: IRawContext): IMaskerPipeOutput | Promise<IMaskerPipeOutput>
+  <C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C>
   sync: IExecutorSync
   execSync: IExecutorSync
   exec: IEnrichedExecutor
@@ -125,3 +129,23 @@ export type IMaskerPipeNormalized = IMaskerPipe & {
 }
 
 export type IMaskerPipelineNormalized = Array<IMaskerPipeNormalized>
+
+export interface ISyncSensitive {
+  sync?: boolean
+}
+
+export type TSyncDirective = boolean | undefined | ISyncSensitive
+
+export type ParseSync<T> = Extends<
+  T,
+  boolean | undefined,
+  T,
+  T extends ISyncSensitive ? T['sync'] : never
+  >
+
+export type SyncGuard<V, S extends TSyncDirective> = Extends<
+  S,
+  { sync: true } | true,
+  Extends<V, Promise<any>, never, V>,
+  Extends<V, Promise<any>, V, Promise<V>>
+  >

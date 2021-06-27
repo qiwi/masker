@@ -1,5 +1,4 @@
 import {createPipe, IMaskerPipe, IMaskerPipeInput, IMaskerPipeName, IMaskerPipeOutput} from '@qiwi/masker-common'
-import {IExecutionMode} from '@qiwi/substrate-types'
 
 import {extractJsonEntries, TJsonEntry} from './extract'
 
@@ -10,7 +9,7 @@ const injectValues = (entries: TJsonEntry[], outputs: IMaskerPipeOutput[]) => en
 
 export const processSync = ({value, context, execute, originPipeline}: IMaskerPipeInput) => {
   const entries = extractJsonEntries(value)
-  const values = entries.map((entry) => execute({...context, pipeline: originPipeline, mode: IExecutionMode.SYNC, path: undefined, value: entry.value}) as IMaskerPipeOutput)
+  const values = entries.map((entry) => execute({...context, pipeline: originPipeline, sync: true, path: undefined, value: entry.value}))
 
   return populate(value, injectValues(entries, values))
 }
