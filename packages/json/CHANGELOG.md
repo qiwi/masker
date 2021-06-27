@@ -1,3 +1,14 @@
+## @qiwi/masker-json [1.2.1](https://github.com/qiwi/masker/compare/@qiwi/masker-json@1.2.0...@qiwi/masker-json@1.2.1) (2021-06-27)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.8.1
+* **@qiwi/masker-split:** upgraded to 1.5.1
+
 # @qiwi/masker-json [1.2.0](https://github.com/qiwi/masker/compare/@qiwi/masker-json@1.1.6...@qiwi/masker-json@1.2.0) (2021-06-26)
 
 
