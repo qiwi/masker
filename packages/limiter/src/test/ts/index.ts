@@ -1,61 +1,66 @@
-import {createPipe, execute, IMaskerPipeOutput, normalizeContext} from '@qiwi/masker-common'
+import {createPipe, execute, IMaskerPipeOutput, IRawContext, normalizeContext} from '@qiwi/masker-common'
+import {IExecutionMode} from '@qiwi/substrate-types'
 import {name, pipe} from '../../main/ts'
-import {IExecutionMode} from "@qiwi/substrate-types";
 
 describe('limiter',() => {
+
   beforeEach(jest.clearAllMocks)
+
   describe('pipe', () => {
     it('name is defined', () => {
       expect(name).toBe('limiter')
       expect(pipe.name).toBe(name)
     })
 
+    const sleep = (n: number): string => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n)
+    const sleepPipe = createPipe('bar', ({value}) => {
+      sleep(50)
+      return {value}
+    })
     const barExec = jest.fn(({value = ''}) => ({value: value + 'bar'}))
     const barPipe = createPipe('bar', barExec)
 
-    // it('breaks exec invocations by `duration`', () => {
-    //
-    // })
-    it('works as regular exec if no opts passed', () => {
-      const value = 'foo'
-      const input = normalizeContext({
-        mode: IExecutionMode.SYNC,
-        value,
-        pipeline: [pipe, barPipe, pipe, barPipe, pipe, pipe],
-      }, execute)
+    const cases: [string, IRawContext, string, number][] = [
+      [
+        'works as regular exec if no opts passed',
+        {
+          value: 'foo',
+          pipeline: [pipe, barPipe, pipe, barPipe, pipe, pipe],
+        },
+        'foobarbar',
+        2,
+      ],
+      [
+        'breaks exec invocations by `limit`',
+        {
+          value: 'foo',
+          pipeline: [[pipe, {limit: 1}], barPipe, barPipe, barPipe],
+        },
+        '***',
+        1,
+      ],
+      [
+        'breaks exec invocations by `duration`',
+        {
+          value: 'foo',
+          pipeline: [[pipe, {duration: 75}], barPipe, sleepPipe, barPipe, sleepPipe, barPipe, barPipe],
+        },
+        '***',
+        2,
+      ],
+    ]
 
-      expect((execute(input) as IMaskerPipeOutput).value).toBe('foobarbar')
-      expect(barExec).toHaveBeenCalledTimes(2)
-    })
-
-    it('breaks exec invocations by `limit`', () => {
-      const value = 'foo'
-      const opts = {limit: 1}
-      const input = normalizeContext({
-        mode: IExecutionMode.SYNC,
-        value,
-        pipeline: [[pipe, opts], barPipe, barPipe, barPipe],
-      }, execute)
-
-      expect((execute(input) as IMaskerPipeOutput).value).toBe('***')
-      expect(barExec).toHaveBeenCalledTimes(1)
-    })
-
-    /*describe('replaces any value with stub', () => {
-      const cases = [
-        ['foo', stub],
-        [null, stub],
-        [{}, stub],
-      ]
-      cases.forEach(([value, expected]) => {
-        const result = {value: expected}
-        const input = normalizeContext({value}, execute)
-
-        it(`${value} > ${expected}`, async() => {
-          expect(pipe.execSync(input)).toEqual(result)
-          expect(await pipe.exec(input)).toEqual(result)
-        })
+    cases.forEach(([name, input, result, times]) => {
+      const ctx = normalizeContext(input, execute)
+      it(name + '(sync)', () => {
+        expect((execute({...ctx, mode: IExecutionMode.SYNC}) as IMaskerPipeOutput).value).toBe(result)
+        expect(barExec).toHaveBeenCalledTimes(times)
       })
-    })*/
+
+      it(name + '(async)', async() => {
+        expect((await execute({...ctx, mode: IExecutionMode.ASYNC}) as IMaskerPipeOutput).value).toBe(result)
+        expect(barExec).toHaveBeenCalledTimes(times)
+      })
+    })
   })
 })
