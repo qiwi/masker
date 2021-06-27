@@ -1,3 +1,10 @@
+## @qiwi/masker-common [1.8.1](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.8.0...@qiwi/masker-common@1.8.1) (2021-06-27)
+
+
+### Bug Fixes
+
+* **common:** capture err from promisified sync exec ([b819e45](https://github.com/qiwi/masker/commit/b819e45a89c0344db8ed11779716b816c7429370))
+
 # @qiwi/masker-common [1.8.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.7.3...@qiwi/masker-common@1.8.0) (2021-06-26)
 
 
