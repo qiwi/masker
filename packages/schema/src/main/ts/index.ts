@@ -45,8 +45,7 @@ export default pipe
 export const withSchema = (execute: IExecutor): IEnrichedExecutor => {
   const _execute = enrichExecutor((context: IRawContext) => {
     const sharedContext: IEnrichedContext = normalizeContext(context, _execute)
-    const {schema, parent, pipeline} = sharedContext
-    const pipe = pipeline[0]
+    const {schema, parent, pipe} = sharedContext
 
     if (schema && !parent) {
       return shortCutExecute(sharedContext)
@@ -94,8 +93,8 @@ export const shortCutExecute = ({context, schema, value, mode, execute}: IEnrich
 
     const _keys = randomizeKeys(keys.map(({value}, i) => {
       const path = keyDirectives[i]?.[0]
-      return path.slice(0, path.lastIndexOf('.') + 1) + value
 
+      return path.slice(0, path.lastIndexOf('.') + 1) + value
     }))
 
     const getDepth = (str: string): number => (str.match(/\./g))?.length || 0
