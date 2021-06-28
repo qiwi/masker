@@ -2,7 +2,7 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {
   execute as exec,
   createPipe as cp,
-  IMaskerSchema,
+  IMaskerSchema, IMaskerPipeInput,
 } from '@qiwi/masker-common'
 import {pipe as splitPipe} from '@qiwi/masker-split'
 import {
@@ -13,13 +13,13 @@ import {
 describe('schema', () => {
   describe('#withSchema', () => {
     it('wraps executor with hoc', () => {
-      const execute = withSchema(exec)
+      const execute = withSchema({execute: exec} as IMaskerPipeInput)
       expect(execute).toEqual(expect.any(Function))
     })
   })
 
   describe('#execute', () => {
-    const execute = withSchema(exec)
+    const execute = withSchema({execute: exec} as IMaskerPipeInput)
     const value = {
       foo: {
         bar: 'bar bar bar',
@@ -99,7 +99,7 @@ describe('schema', () => {
       },
     }
 
-    const striker = cp('striker', ({value, path}) =>
+    const striker = cp('striker', ({value, path}: IMaskerPipeInput) =>
       (typeof value === 'string' && path !== undefined
         ? {value: value.replace(/[^\s]/g, '*')}
         : {value}))

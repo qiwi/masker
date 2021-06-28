@@ -1,5 +1,5 @@
 import {IExecutionMode} from '@qiwi/substrate'
-import {execute as exec, IMaskerSchema} from '@qiwi/masker-common'
+import {execute as exec, IMaskerPipeInput, IMaskerSchema} from '@qiwi/masker-common'
 import {pipe as splitPipe} from '@qiwi/masker-split'
 import {pipe as strikePipe} from '@qiwi/masker-strike'
 
@@ -8,13 +8,13 @@ import {withSchema} from '../../main/ts'
 describe('schema-with-masked-keys', () => {
   describe('#withSchema', () => {
     it('wraps executor with hoc', () => {
-      const execute = withSchema(exec)
+      const execute = withSchema({execute: exec} as IMaskerPipeInput)
       expect(execute).toEqual(expect.any(Function))
     })
   })
 
   describe('#execute', () => {
-    const execute = withSchema(exec)
+    const execute = withSchema({execute: exec} as IMaskerPipeInput)
     const value = {
       foo: {
         bar: 'bar bar bar',

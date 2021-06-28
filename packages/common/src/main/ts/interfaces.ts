@@ -17,7 +17,7 @@ export interface IMaskerPipeAsync {
 }
 
 export interface IMaskerPipeDual {
-  <C extends IMaskerPipeInput>(input: C): SyncGuard<IMaskerPipeOutput, C>
+  <C extends IMaskerPipeInput = IMaskerPipeInput>(input: C): SyncGuard<IMaskerPipeOutput, C>
 }
 
 export type IMaskerOpts = Record<string, any>

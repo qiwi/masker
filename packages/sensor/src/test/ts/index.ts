@@ -33,7 +33,7 @@ describe('sensor',() => {
         const input = normalizeContext({value, path, opts}, execute)
 
         it(`${value} > ${expected}`, async() => {
-          expect(pipe.execSync(input).value).toBe(result)
+          expect(pipe.execSync({...input, sync: true}).value).toBe(result)
           expect((await pipe.exec(input)).value).toEqual(result)
         })
       })

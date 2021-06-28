@@ -1,4 +1,4 @@
-import {createPipe, execute, IRawContext, normalizeContext} from '@qiwi/masker-common'
+import {createPipe, execute, IMaskerPipeInput, IRawContext, normalizeContext} from '@qiwi/masker-common'
 import {name, pipe} from '../../main/ts'
 
 describe('limiter',() => {
@@ -12,7 +12,7 @@ describe('limiter',() => {
     })
 
     const sleep = (n: number): string => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n)
-    const sleepPipe = createPipe('bar', ({value}) => {
+    const sleepPipe = createPipe('bar', ({value}: IMaskerPipeInput) => {
       sleep(50)
       return {value}
     })
