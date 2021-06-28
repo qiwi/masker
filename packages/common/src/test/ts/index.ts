@@ -53,7 +53,7 @@ describe('#execute', () => {
 
     it('delegates control to the pipe', () => {
       const pipe1 = cp('pipe1', () => ({value: 'pipe1'}))
-      const pipe2 = cp('pipe2', ({context, pipeline}) =>
+      const pipe2 = cp('pipe2', ({context, pipeline}: IMaskerPipeInput) =>
         ({
           value: execute.sync({...context, pipeline: pipeline.slice(1)}).value.repeat(2),
           final: true,
@@ -97,7 +97,7 @@ describe('#execute', () => {
 
     it('delegates control to the pipe', async() => {
       const pipe1 = cp('pipe1', () => ({value: 'pipe1'}))
-      const pipe2 = cp('pipe2', undefined, async(context) =>
+      const pipe2 = cp('pipe2', () => ({value: 'pipe2'}), async(context: IMaskerPipeInput) =>
         ({
           value: (await execute({...context, pipeline: context.pipeline.slice(1)})).value.repeat(2),
           final: true,

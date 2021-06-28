@@ -4,7 +4,6 @@ import {
   enrichExecutor,
   IEnrichedExecutor,
   IMaskerPipeInput,
-  IExecutorSync,
   IEnrichedContext,
   normalizeContext,
   IRawContext,
