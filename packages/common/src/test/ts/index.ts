@@ -161,11 +161,11 @@ describe('#execute', () => {
       },
     }
 
-    const striker = cp('striker', ({value}) =>
+    const striker = cp('striker', ({value}: IMaskerPipeInput) =>
       (typeof value === 'string'
         ? {value: value.replace(/[^\s]/g, '*')}
         : {value}))
-    const splitter = cp('splitter', ({value, execute, context, originPipeline}) =>
+    const splitter = cp('splitter', ({value, execute, context, originPipeline}: IMaskerPipeInput) =>
       (typeof value === 'object'
         ? ((origin) => {
           const mapped = mapValues(origin, (v) => execute.sync({...context, pipeline: originPipeline, value: v}))

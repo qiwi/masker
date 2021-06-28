@@ -1,4 +1,4 @@
-import {normalizeContext, execute, createPipe as cp} from '@qiwi/masker-common'
+import {normalizeContext, execute, createPipe as cp, IMaskerPipeInput} from '@qiwi/masker-common'
 import {pipe as split} from '@qiwi/masker-split'
 import {
   pipe,
@@ -33,7 +33,7 @@ describe('json',() => {
     })
 
     it('applied pipeline to found json entries', () => {
-      const dcap = cp('dcap', ({value}) => value === 'd' ? {value: 'D'} : {value})
+      const dcap = cp('dcap', ({value}: IMaskerPipeInput) => value === 'd' ? {value: 'D'} : {value})
       const pipeline = [dcap, split, pipe]
 
       const value = '   {"a":{"b":"{\\"c\\":\\"d\\"}"}} {"e": "d"}   '
