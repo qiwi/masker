@@ -1753,6 +1753,46 @@
     pkg-dir "^5.0.0"
     tslib "^2.2.0"
 
+"@qiwi/masker-common@1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-common/-/masker-common-1.8.0.tgz#22cbccadc5d61122b8ee848d22aa884a13cd5bf7"
+  integrity sha512-luEc2GTpROGBMpbkskayamAqk7mxycJhxltsiaOsJ67s8a4YaOctXhAKUJMn8HPKMjKSqv8CIGUQrw+ksgIE2Q==
+  dependencies:
+    "@qiwi/substrate" "^1.20.9"
+    "@types/lodash" "^4.14.170"
+    "@types/xregexp" "^4.3.0"
+    flattie "^1.1.0"
+    lodash "^4.17.21"
+    tslib "^2.3.0"
+    xregexp "^5.0.2"
+
+"@qiwi/masker-plain@1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-plain/-/masker-plain-1.2.7.tgz#10f435ccc4919efb5a44bc3a5775a948a8acd363"
+  integrity sha512-BHQht4USjDBUBUjrToHlMHX83EbvMQASaJnbjewaIdIUS8HOdLV3K66wYaprrINf/1qHmP45VtWmFVWwyj6p3Q==
+  dependencies:
+    "@qiwi/masker-common" "1.8.0"
+    "@qiwi/substrate" "^1.20.9"
+    tslib "^2.3.0"
+
+"@qiwi/masker-split@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-split/-/masker-split-1.5.0.tgz#b942469939a80d9ff95178aadcdd750e69c62a5e"
+  integrity sha512-OK0j0fB6zdk7OCxJF6Wt9hwNES+79e2YWS0JbN2531Xfm/rT+Nu6mK3aQ9gayOfMeh4jjPlhLsYugK1VH82eQA==
+  dependencies:
+    "@qiwi/masker-common" "1.8.0"
+    "@qiwi/substrate" "^1.20.9"
+    tslib "^2.3.0"
+
+"@qiwi/masker-strike@1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-strike/-/masker-strike-1.2.7.tgz#8184eca15476d443ae4433e65919ed95b70060c2"
+  integrity sha512-MEiNQeb5BWPYZMDzpZu8DEMLtQhVZVnYWwxt1tCs/UxaOALLx8RAGTpPIIWLl/sSX0KiutGj/YYey6CmLzCoWQ==
+  dependencies:
+    "@qiwi/masker-common" "1.8.0"
+    "@qiwi/substrate" "^1.20.9"
+    tslib "^2.3.0"
+
 "@qiwi/substrate-abstract@1.20.4":
   version "1.20.4"
   resolved "https://registry.yarnpkg.com/@qiwi/substrate-abstract/-/substrate-abstract-1.20.4.tgz#cfa327a63d00368d62de660407dca5d4ef264eaf"

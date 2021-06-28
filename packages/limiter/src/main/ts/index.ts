@@ -7,7 +7,9 @@ import {
   IExecutorSync,
   IEnrichedContext,
   normalizeContext,
-  IRawContext, SyncGuard,
+  IRawContext,
+  SyncGuard,
+  patchExecutor,
 } from '@qiwi/masker-common'
 
 import {pipe as plainPipe} from '@qiwi/masker-plain'
@@ -31,17 +33,8 @@ export const withLimiter = ({execute, opts: {pipeline, limit, duration}}: IMaske
   return _execute
 }
 
-const exec = <C extends IMaskerPipeInput>(ctx: C): SyncGuard<IMaskerPipeInput, C> => {
-  ctx.execute = withLimiter(ctx)
-  ctx.originPipeline = ctx.originPipeline.filter((pipe) => pipe.name !== name)
-  ctx.pipeline = ctx.pipeline.filter((pipe) => pipe.name !== name)
+const exec = patchExecutor(withLimiter, name)
 
-  // @ts-ignore
-  ctx.context = ctx.parent = undefined
-
-  return ctx.execute(ctx) as SyncGuard<IMaskerPipeInput, C>
-}
-
-export const pipe = createPipe(name, exec as IExecutorSync)
+export const pipe = createPipe(name, exec, exec)
 
 export default pipe

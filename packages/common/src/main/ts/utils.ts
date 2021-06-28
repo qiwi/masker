@@ -49,7 +49,7 @@ export const isEqual = (a: any, b: any): boolean => a === b
 
 export const generateId = () => (Math.random() + '').slice(-8) // TODO nanoid?
 
-export const ahook = (value: any, fn: ICallable) => isPromiseLike(value)
+export const hook = (value: any, fn: ICallable) => isPromiseLike(value)
     ? value.then(fn)
     : fn(value)
 
