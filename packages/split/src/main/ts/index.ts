@@ -2,7 +2,7 @@ import {
   IMaskerPipe,
   IMaskerPipeName,
   createPipe,
-  defineNonEnum, IMaskerPipeOutput, IEnrichedContext,
+  defineNonEnum, IMaskerPipeOutput, IEnrichedContext, IMaskerPipeInput,
 } from '@qiwi/masker-common'
 
 export const appendPath = (chunk: string = '', prev: string = '') => `${prev ? prev + '.' : ''}${chunk}`
@@ -46,7 +46,7 @@ export const process = ({context, originPipeline, execute, value}: IEnrichedCont
 
 export const pipe: IMaskerPipe = createPipe(
   name,
-  ({value, context}) =>
+  ({value, context}: IMaskerPipeInput) =>
     (typeof value === 'object' && value !== null
       ? ((origin) => {
         const values = Object.values(origin).map(process(context)) as IMaskerPipeOutput[]
@@ -57,7 +57,7 @@ export const pipe: IMaskerPipe = createPipe(
       })(value)
       : {value}),
 
-  async({value, context}) =>
+  async({value, context}: IMaskerPipeInput) =>
     (typeof value === 'object' && value !== null
       ? (async(origin) => {
 
