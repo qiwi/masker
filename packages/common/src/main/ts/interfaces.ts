@@ -16,12 +16,16 @@ export interface IMaskerPipeAsync {
   (input: IMaskerPipeInput): Promise<IMaskerPipeOutput>
 }
 
+export interface IMaskerPipeDual {
+  <C extends IMaskerPipeInput>(input: C): SyncGuard<IMaskerPipeOutput, C>
+}
+
 export type IMaskerOpts = Record<string, any>
 
 export interface IMaskerPipe {
   name: IMaskerPipeName
-  exec: IMaskerPipeAsync
-  execSync: IMaskerPipeSync
+  exec: IMaskerPipeAsync | IMaskerPipeDual
+  execSync: IMaskerPipeSync | IMaskerPipeDual
 }
 export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerOpts]
 

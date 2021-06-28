@@ -3,12 +3,13 @@
   "projects": [
     "<rootDir>/packages/common/jest.config.json",
     "<rootDir>/packages/facade/jest.config.json",
-    "<rootDir>/packages/plain/jest.config.json",
-    "<rootDir>/packages/strike/jest.config.json",
-    "<rootDir>/packages/schema/jest.config.json",
-    "<rootDir>/packages/pan/jest.config.json",
     "<rootDir>/packages/json/jest.config.json",
-    "<rootDir>/packages/split/jest.config.json",
-    "<rootDir>/packages/sensor/jest.config.json"
+    "<rootDir>/packages/limiter/jest.config.json",
+    "<rootDir>/packages/pan/jest.config.json",
+    "<rootDir>/packages/plain/jest.config.json",
+    "<rootDir>/packages/schema/jest.config.json",
+    "<rootDir>/packages/sensor/jest.config.json",
+    "<rootDir>/packages/strike/jest.config.json",
+    "<rootDir>/packages/split/jest.config.json"
   ]
 }

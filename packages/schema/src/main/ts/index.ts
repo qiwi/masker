@@ -2,46 +2,24 @@ import {get, set, unset, invert} from 'lodash'
 import {
   normalizeContext,
   clone,
-  ahook,
+  hook,
   flattenObject,
   enrichExecutor,
   isEqual,
-  IMaskerPipe,
   IMaskerPipeName,
-  IMaskerPipeInput,
   IEnrichedContext,
-  IExecutor,
   IEnrichedExecutor,
   IMaskerDirectives,
   IMaskerPipeOutput,
   IMaskerSchema,
   IRawContext,
-  ISchemaContext,
+  ISchemaContext, patchExecutor, createPipe, IExecutorSync, TExecutorHook,
 } from '@qiwi/masker-common'
 import {randomizeKeys} from '@qiwi/masker-split'
 
 export const name: IMaskerPipeName = 'schema'
 
-const exec = ((cxt: IMaskerPipeInput) => {
-  cxt.execute = withSchema(cxt.execute)
-  cxt.originPipeline = cxt.originPipeline.filter((pipe) => pipe.name !== name)
-  cxt.pipeline = cxt.pipeline.filter((pipe) => pipe.name !== name)
-
-  // @ts-ignore
-  cxt.context = cxt.parent = undefined
-
-  return cxt.execute(cxt)
-}) as IExecutor
-
-export const pipe = {
-  name,
-  exec,
-  execSync: exec,
-} as IMaskerPipe
-
-export default pipe
-
-export const withSchema = (execute: IExecutor): IEnrichedExecutor => {
+export const withSchema: TExecutorHook = ({execute}): IEnrichedExecutor => {
   const _execute = enrichExecutor((context: IRawContext) => {
     const sharedContext: IEnrichedContext = normalizeContext(context, _execute)
     const {schema, parent, pipe} = sharedContext
@@ -59,11 +37,17 @@ export const withSchema = (execute: IExecutor): IEnrichedExecutor => {
       schema: generateSchema({before: sharedContext, after: {...res, value: res.ownValue ?? res.value}, pipe}),
     })
 
-    return ahook(execute(sharedContext), appendSchema)
+    return hook(execute(sharedContext), appendSchema)
   })
 
   return _execute
 }
+
+const exec = patchExecutor(withSchema, name)
+
+export const pipe = createPipe(name, exec as IExecutorSync)
+
+export default pipe
 
 export const shortCutExecute = ({context, schema, value, sync, execute}: IEnrichedContext) => {
   if (!schema) {
