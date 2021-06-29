@@ -13,18 +13,26 @@ import {
   IMaskerPipeOutput,
   IMaskerSchema,
   IRawContext,
-  ISchemaContext, patchExecutor, createPipe, IExecutorSync, TExecutorHook,
+  ISchemaContext, patchExecutor, createPipe, TExecutorHook,
 } from '@qiwi/masker-common'
 import {randomizeKeys} from '@qiwi/masker-split'
 
 export const name: IMaskerPipeName = 'schema'
 
+declare module '@qiwi/masker-common' {
+  interface IEnrichedContext {
+    schema?: IMaskerSchema
+    shortcut?: boolean
+  }
+}
+
 export const withSchema: TExecutorHook = ({execute}): IEnrichedExecutor => {
   const _execute = enrichExecutor((context: IRawContext) => {
     const sharedContext: IEnrichedContext = normalizeContext(context, _execute)
-    const {schema, parent, pipe} = sharedContext
+    const {schema, pipe} = sharedContext
 
-    if (schema && !parent) {
+    if (schema && !sharedContext.shortcut) {
+      sharedContext.shortcut = true
       return shortCutExecute(sharedContext)
     }
 
@@ -33,11 +41,11 @@ export const withSchema: TExecutorHook = ({execute}): IEnrichedExecutor => {
     }
 
     const appendSchema = (res: IMaskerPipeOutput): IMaskerPipeOutput => ({
-      ...res,// @ts-ignore
-      schema: generateSchema({before: sharedContext, after: {...res, value: res.ownValue ?? res.value}, pipe}),
+      ...res,
+      schema: generateSchema({before: sharedContext, after: {...res, value: res._value ?? res.value}, pipe}),
     })
 
-    return hook(execute(sharedContext), appendSchema)
+    return hook(execute(sharedContext), sharedContext.shortcut ? v => v : appendSchema)
   })
 
   return _execute
@@ -45,7 +53,7 @@ export const withSchema: TExecutorHook = ({execute}): IEnrichedExecutor => {
 
 const exec = patchExecutor(withSchema, name)
 
-export const pipe = createPipe(name, exec as IExecutorSync)
+export const pipe = createPipe(name, exec, exec)
 
 export default pipe
 
