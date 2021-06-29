@@ -33,7 +33,7 @@ export type IMaskerDirectives = Array<IMaskerDirective>
 
 export interface IMaskerPipeOutput {
   value: any
-  ownValue?: any
+  _value?: any
   pipeline?: IMaskerPipeline
   final?: boolean
   schema?: IMaskerSchema
@@ -55,27 +55,25 @@ export type IContextId = string
 
 export type IRawContext = {
   value: any
-  ownValue?: any
+  _value?: any
   schema?: IMaskerSchema
   final?: boolean
   context?: IEnrichedContext
-  parent?: IEnrichedContext
   pipeline?: IMaskerPipeline
   registry?: IMaskerRegistry
-  refs?: any
   sync?: boolean
-  mode?: IExecutionMode
+  mode?: IExecutionMode // Legacy
   originPipeline?: IMaskerPipeline,
   execute?: IEnrichedExecutor
   [key: string]: any
 }
 
-export type IEnrichedContext = {
+export interface IEnrichedContext {
   value: any
-  ownValue?: any
+  _value?: any
   id: IContextId
+  parentId?: IContextId
   registry: IMaskerRegistry
-  refs: any
   execute: IEnrichedExecutor
   sync: boolean
   mode: IExecutionMode
@@ -84,8 +82,6 @@ export type IEnrichedContext = {
   pipeline: IMaskerPipelineNormalized
   originPipeline: IMaskerPipelineNormalized
   context: IEnrichedContext
-  parent: IEnrichedContext
-  schema?: IMaskerSchema
   [key: string]: any
 }
 
@@ -93,14 +89,11 @@ export interface IExecutor {
   <C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C>
 }
 
-// <C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C>
-
 export interface IEnrichedExecutor extends IExecutor {
   <C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C>
   sync: IExecutorSync
   execSync: IExecutorSync
   exec: IEnrichedExecutor
-  opts: IMaskerOpts,
   id?: string
 }
 export type IExecutorSync = (context: IRawContext) => IMaskerPipeOutput

@@ -47,7 +47,7 @@ export const execute: IEnrichedExecutor = enrichExecutor(<C extends IRawContext>
     _value = res.value; return res
   }
   const post: THookCallback = (res) => {
-    res.ownValue = _value; return res
+    res._value = _value; return res
   }
 
   return hook(hook(hook(fn({...sharedContext}), pre), next), post) // Pipeline inside pipeline executor.
