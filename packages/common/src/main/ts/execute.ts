@@ -61,7 +61,7 @@ export const patchExecutor = (execHook: TExecutorHook, name: IMaskerPipeName) =>
   ctx.pipeline = ctx.pipeline.filter((pipe) => pipe.name !== name)
 
   // @ts-ignore
-  ctx.context = ctx.parent = undefined
+  ctx.context = undefined
 
   return ctx.execute(ctx) as SyncGuard<IMaskerPipeInput, C>
 }
