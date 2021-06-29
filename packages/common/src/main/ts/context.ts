@@ -13,7 +13,6 @@ import {getPipe} from './pipe'
 export const normalizeContext = ({
   pipeline = [],
   value,
-  refs = new WeakMap(),
   registry = new Map(),
   mode = IExecutionMode.ASYNC,
   sync = mode === IExecutionMode.SYNC,
@@ -22,13 +21,13 @@ export const normalizeContext = ({
   ...rest
 }: IRawContext, execute: IExecutor): IEnrichedContext => {
   const id = generateId()
+  const parentId = parent?.id
   const _pipeline = normalizePipeline(rest.pipeline || pipeline, registry)
   const _originPipeline = normalizePipeline(rest.originPipeline || originPipeline, registry)
   const pipe = _pipeline[0]
   const opts = pipe?.opts
   const context = {
     value,
-    refs,
     registry,
     sync,
     mode,
@@ -38,8 +37,8 @@ export const normalizeContext = ({
     pipeline: _pipeline,
     originPipeline: _originPipeline,
     pipe,
-    parent,
     id,
+    parentId,
   } as IEnrichedContext
   context.context = context
 
