@@ -56,7 +56,6 @@ export type IContextId = string
 export type IRawContext = {
   value: any
   _value?: any
-  schema?: IMaskerSchema
   final?: boolean
   context?: IEnrichedContext
   pipeline?: IMaskerPipeline
