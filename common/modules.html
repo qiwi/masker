@@ -2709,33 +2709,85 @@ img {
 <div class="container container-main">
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
-			<a href="#qiwimasker" id="qiwimasker" style="color: inherit; text-decoration: none;">
-				<h1>@qiwi/masker</h1>
+			<a href="#qiwimasker-common" id="qiwimasker-common" style="color: inherit; text-decoration: none;">
+				<h1>@qiwi/masker-common</h1>
 			</a>
-			<p>Composite data masking utility</p>
-			<a href="#goal" id="goal" style="color: inherit; text-decoration: none;">
-				<h2>Goal</h2>
+			<p>Masker common components: interfaces, executor, utils</p>
+			<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+				<h2>Install</h2>
 			</a>
-			<p>Implement instruments, describe practices, contracts to solve sensitive data masking problem in JS/TS.
-			For logs, for public data output and so on.</p>
-			<a href="#status" id="status" style="color: inherit; text-decoration: none;">
-				<h2>Status</h2>
+			<pre><code class="language-shell"><span style="color: #000000">yarn add @qiwi/masker-common</span>
+</code></pre>
+			<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+				<h2>Usage</h2>
 			</a>
-			<p>🚧 Work in progress 🚧 / Experimental / Early preview</p>
-			<a href="#roadmap" id="roadmap" style="color: inherit; text-decoration: none;">
-				<h3>Roadmap</h3>
+			<a href="#context" id="context" style="color: inherit; text-decoration: none;">
+				<h3>Context</h3>
 			</a>
-			<ul>
-				<li><input disabled="" type="checkbox"> Introduce (declarative?) masking directives  </li>
-				<li><input disabled="" type="checkbox"> Describe masking strategies and add masking utils  </li>
-				<li><input disabled="" type="checkbox"> Implement masking composer/processor  </li>
-				<li><input disabled="" type="checkbox"> Support logging tools integration  </li>
-			</ul>
-			<a href="#motivation" id="motivation" style="color: inherit; text-decoration: none;">
-				<h2>Motivation</h2>
+			<pre><code class="language-ts"><span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">IEnrichedContext</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">value</span><span style="color: #000000">: </span><span style="color: #267F99">any</span><span style="color: #000000">                </span><span style="color: #008000">// value to process</span>
+<span style="color: #000000">  </span><span style="color: #001080">_value</span><span style="color: #000000">?: </span><span style="color: #267F99">any</span><span style="color: #000000">              </span><span style="color: #008000">// pipe result</span>
+<span style="color: #000000">  </span><span style="color: #001080">id</span><span style="color: #000000">: </span><span style="color: #267F99">IContextId</span><span style="color: #000000">            </span><span style="color: #008000">// ctx unique key</span>
+<span style="color: #000000">  </span><span style="color: #001080">context</span><span style="color: #000000">: </span><span style="color: #267F99">IEnrichedContext</span><span style="color: #000000"> </span><span style="color: #008000">// ctx self ref</span>
+<span style="color: #000000">  </span><span style="color: #001080">parentId</span><span style="color: #000000">?: </span><span style="color: #267F99">IContextId</span><span style="color: #000000">     </span><span style="color: #008000">// parent ctx id</span>
+<span style="color: #000000">  </span><span style="color: #001080">registry</span><span style="color: #000000">: </span><span style="color: #267F99">IMaskerRegistry</span><span style="color: #000000">       </span><span style="color: #008000">// pipe registry attached to ctx</span>
+<span style="color: #000000">  </span><span style="color: #001080">execute</span><span style="color: #000000">: </span><span style="color: #267F99">IEnrichedExecutor</span><span style="color: #000000">      </span><span style="color: #008000">// executor </span>
+<span style="color: #000000">  </span><span style="color: #001080">sync</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000">                   </span><span style="color: #008000">// sync / async switch</span>
+<span style="color: #000000">  </span><span style="color: #001080">mode</span><span style="color: #000000">: </span><span style="color: #267F99">IExecutionMode</span><span style="color: #000000">            </span><span style="color: #008000">// lagacy sync switch</span>
+<span style="color: #000000">  </span><span style="color: #001080">opts</span><span style="color: #000000">: </span><span style="color: #267F99">IMaskerOpts</span><span style="color: #000000">               </span><span style="color: #008000">// current pipe options</span>
+<span style="color: #000000">  </span><span style="color: #001080">pipe</span><span style="color: #000000">?: </span><span style="color: #267F99">IMaskerPipeNormalized</span><span style="color: #000000">              </span><span style="color: #008000">// current pipe ref</span>
+<span style="color: #000000">  </span><span style="color: #001080">pipeline</span><span style="color: #000000">: </span><span style="color: #267F99">IMaskerPipelineNormalized</span><span style="color: #000000">       </span><span style="color: #008000">// actual pipeline</span>
+<span style="color: #000000">  </span><span style="color: #001080">originPipeline</span><span style="color: #000000">: </span><span style="color: #267F99">IMaskerPipelineNormalized</span><span style="color: #000000"> </span><span style="color: #008000">// origin pipeline</span>
+<span style="color: #000000">  [</span><span style="color: #001080">key</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">]: </span><span style="color: #267F99">any</span>
+<span style="color: #000000">}</span>
+</code></pre>
+			<a href="#createpipe" id="createpipe" style="color: inherit; text-decoration: none;">
+				<h3>createPipe()</h3>
 			</a>
-			<p>Enterprise development has specific requirements for the masking tools,
-			but it seems that open source solutions do not fully satisfy them. Let&#39;s try to change this.</p>
+			<p>Creates a pipe entity. Several pipes are combined into a <code>pipeline</code> to be processed by <code>executor</code>.</p>
+			<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">createPipe</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@qiwi/masker-common&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">pipe</span><span style="color: #000000"> = </span><span style="color: #795E26">createPipe</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({</span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;syncfoo&#039;</span><span style="color: #000000">}), </span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({</span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;asyncfoo&#039;</span><span style="color: #000000">}))</span>
+
+<span style="color: #001080">pipe</span><span style="color: #000000">.</span><span style="color: #001080">name</span><span style="color: #000000">       </span><span style="color: #008000">// &#039;foo&#039;</span>
+<span style="color: #001080">pipe</span><span style="color: #000000">.</span><span style="color: #795E26">sync</span><span style="color: #000000">({})   </span><span style="color: #008000">// {value: &#039;syncfoo&#039;}</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">pipe</span><span style="color: #000000">({})  </span><span style="color: #008000">// {value: &#039;asyncfoo&#039;}</span>
+</code></pre>
+			<a href="#getpipe" id="getpipe" style="color: inherit; text-decoration: none;">
+				<h3>getPipe()</h3>
+			</a>
+			<p>Get pipe from registry.</p>
+			<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">getPipe</span><span style="color: #000000">, </span><span style="color: #001080">crearePipe</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">cp</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@qiwi/masker-common&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">pipe</span><span style="color: #000000"> = </span><span style="color: #795E26">cp</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({</span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">}))</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">registry</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Map</span><span style="color: #000000">()</span>
+
+<span style="color: #001080">registry</span><span style="color: #000000">.</span><span style="color: #795E26">set</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">, </span><span style="color: #001080">pipe</span><span style="color: #000000">)</span>
+<span style="color: #795E26">getPipe</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">, </span><span style="color: #001080">registry</span><span style="color: #000000">) </span><span style="color: #008000">// pipe</span>
+</code></pre>
+			<a href="#execute" id="execute" style="color: inherit; text-decoration: none;">
+				<h3>execute()</h3>
+			</a>
+			<p>The pipeline executor. Transforms the target value (ctx) thought the handlers queue. Provides both sync and async modes.</p>
+			<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">createPipe</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">cp</span><span style="color: #000000">, </span><span style="color: #001080">execute</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@qiwi/masker-common&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">pipe1</span><span style="color: #000000"> = </span><span style="color: #795E26">cp</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;pipe1&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({</span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;pipe1&#039;</span><span style="color: #000000">}))</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">pipe2</span><span style="color: #000000"> = </span><span style="color: #795E26">cp</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;pipe2&#039;</span><span style="color: #000000">, ({</span><span style="color: #001080">value</span><span style="color: #000000">}) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({</span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #001080">value</span><span style="color: #000000"> + </span><span style="color: #A31515">&#039;pipe2&#039;</span><span style="color: #000000">}))</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">pipeline</span><span style="color: #000000"> = [</span><span style="color: #001080">pipe1</span><span style="color: #000000">, </span><span style="color: #001080">pipe2</span><span style="color: #000000">]</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">value</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;foobar&#039;</span>
+
+<span style="color: #008000">// async</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">execute</span><span style="color: #000000">({</span><span style="color: #001080">pipeline</span><span style="color: #000000">, </span><span style="color: #001080">value</span><span style="color: #000000">})        </span><span style="color: #008000">// {value: &#039;pipe1pipe2&#039;}</span>
+
+<span style="color: #008000">// sync</span>
+<span style="color: #795E26">execute</span><span style="color: #000000">({</span><span style="color: #001080">pipeline</span><span style="color: #000000">, </span><span style="color: #001080">value</span><span style="color: #000000">, </span><span style="color: #001080">sync:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">})  </span><span style="color: #008000">// {value: &#039;pipe1pipe2&#039;}</span>
+<span style="color: #001080">execute</span><span style="color: #000000">.</span><span style="color: #795E26">sync</span><span style="color: #000000">({</span><span style="color: #001080">pipeline</span><span style="color: #000000">, </span><span style="color: #001080">value</span><span style="color: #000000">})         </span><span style="color: #008000">// {value: &#039;pipe1pipe2&#039;}</span>
+</code></pre>
+			<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+				<h3>License</h3>
+			</a>
+			<p>MIT</p>
 		</div>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
@@ -2764,9 +2816,11 @@ img {
 						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 						<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+						<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 					</ul>
 					<ul class="tsd-legend">
 						<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+						<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 					</ul>
 				</div>
 			</div>

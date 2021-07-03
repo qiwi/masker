@@ -2705,9 +2705,12 @@ img {
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
+			<a href="interfaces.ienrichedcontext.html" class="tsd-kind-icon">IEnriched<wbr>Context</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
 			<a href="interfaces.ienrichedexecutor.html" class="tsd-kind-icon">IEnriched<wbr>Executor</a>
 		</li>
-		<li class=" tsd-kind-interface tsd-parent-kind-module">
+		<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
 			<a href="interfaces.iexecutor.html" class="tsd-kind-icon">IExecutor</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
@@ -2722,6 +2725,9 @@ img {
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
 			<a href="interfaces.imaskerpipeasync.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Async</a>
 		</li>
+		<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+			<a href="interfaces.imaskerpipedual.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Dual</a>
+		</li>
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
 			<a href="interfaces.imaskerpipeinput.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Input</a>
 		</li>
@@ -2729,10 +2735,10 @@ img {
 			<a href="interfaces.imaskerpipeoutput.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Output</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="interfaces.imaskerpipeoutput.html#final" class="tsd-kind-icon">final</a>
+					<a href="interfaces.imaskerpipeoutput.html#_value" class="tsd-kind-icon">_value</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="interfaces.imaskerpipeoutput.html#ownvalue" class="tsd-kind-icon">own<wbr>Value</a>
+					<a href="interfaces.imaskerpipeoutput.html#final" class="tsd-kind-icon">final</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
 					<a href="interfaces.imaskerpipeoutput.html#pipeline" class="tsd-kind-icon">pipeline</a>
@@ -2748,11 +2754,11 @@ img {
 		<li class=" tsd-kind-interface tsd-parent-kind-module">
 			<a href="interfaces.imaskerpipesync.html" class="tsd-kind-icon">IMasker<wbr>Pipe<wbr>Sync</a>
 		</li>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-			<a href="../modules/interfaces.html#icontextid" class="tsd-kind-icon">IContext<wbr>Id</a>
+		<li class=" tsd-kind-interface tsd-parent-kind-module">
+			<a href="interfaces.isyncsensitive.html" class="tsd-kind-icon">ISync<wbr>Sensitive</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-			<a href="../modules/interfaces.html#ienrichedcontext" class="tsd-kind-icon">IEnriched<wbr>Context</a>
+			<a href="../modules/interfaces.html#icontextid" class="tsd-kind-icon">IContext<wbr>Id</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 			<a href="../modules/interfaces.html#iexecutorsync" class="tsd-kind-icon">IExecutor<wbr>Sync</a>
@@ -2802,6 +2808,15 @@ img {
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 			<a href="../modules/interfaces.html#ischemacontext" class="tsd-kind-icon">ISchema<wbr>Context</a>
 		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+			<a href="../modules/interfaces.html#parsesync" class="tsd-kind-icon">Parse<wbr>Sync</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+			<a href="../modules/interfaces.html#syncguard" class="tsd-kind-icon">Sync<wbr>Guard</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/interfaces.html#tsyncdirective" class="tsd-kind-icon">TSync<wbr>Directive</a>
+		</li>
 	</ul>
 </nav>
 <div class="container container-main">
@@ -2821,8 +2836,8 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="interfaces.imaskerpipeoutput.html#_value" class="tsd-kind-icon">_value</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="interfaces.imaskerpipeoutput.html#final" class="tsd-kind-icon">final</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="interfaces.imaskerpipeoutput.html#ownvalue" class="tsd-kind-icon">own<wbr>Value</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="interfaces.imaskerpipeoutput.html#pipeline" class="tsd-kind-icon">pipeline</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="interfaces.imaskerpipeoutput.html#schema" class="tsd-kind-icon">schema</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="interfaces.imaskerpipeoutput.html#value" class="tsd-kind-icon">value</a></li>
@@ -2834,22 +2849,22 @@ img {
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="_value" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> _value</h3>
+				<div class="tsd-signature tsd-kind-icon">_value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/interfaces.ts#L36">interfaces.ts:36</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="final" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagOptional">Optional</span> final</h3>
 				<div class="tsd-signature tsd-kind-icon">final<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/interfaces.ts#L34">interfaces.ts:34</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="ownvalue" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> own<wbr>Value</h3>
-				<div class="tsd-signature tsd-kind-icon">own<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/interfaces.ts#L32">interfaces.ts:32</a></li>
+						<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/interfaces.ts#L38">interfaces.ts:38</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2859,7 +2874,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">pipeline<span class="tsd-signature-symbol">:</span> <a href="../modules/interfaces.html#imaskerpipeline" class="tsd-signature-type" data-tsd-kind="Type alias">IMaskerPipeline</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/interfaces.ts#L33">interfaces.ts:33</a></li>
+						<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/interfaces.ts#L37">interfaces.ts:37</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2869,7 +2884,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">schema<span class="tsd-signature-symbol">:</span> <a href="../modules/interfaces.html#imaskerschema" class="tsd-signature-type" data-tsd-kind="Type alias">IMaskerSchema</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/interfaces.ts#L35">interfaces.ts:35</a></li>
+						<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/interfaces.ts#L39">interfaces.ts:39</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2879,7 +2894,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/interfaces.ts#L31">interfaces.ts:31</a></li>
+						<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/interfaces.ts#L35">interfaces.ts:35</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2893,9 +2908,11 @@ img {
 						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 						<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+						<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 					</ul>
 					<ul class="tsd-legend">
 						<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+						<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 						<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 					</ul>
 				</div>

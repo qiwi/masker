@@ -2704,9 +2704,6 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-function tsd-parent-kind-module">
-			<a href="utils.html#ahook" class="tsd-kind-icon">ahook</a>
-		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 			<a href="utils.html#asynchronize" class="tsd-kind-icon">asynchronize</a>
 		</li>
@@ -2715,6 +2712,9 @@ img {
 		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-module">
 			<a href="utils.html#generateid" class="tsd-kind-icon">generate<wbr>Id</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-module">
+			<a href="utils.html#hook" class="tsd-kind-icon">hook</a>
 		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-module">
 			<a href="utils.html#isequal" class="tsd-kind-icon">is<wbr>Equal</a>
@@ -2739,10 +2739,10 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Functions</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils.html#ahook" class="tsd-kind-icon">ahook</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="utils.html#asynchronize" class="tsd-kind-icon">asynchronize</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="utils.html#definenonenum" class="tsd-kind-icon">define<wbr>Non<wbr>Enum</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils.html#generateid" class="tsd-kind-icon">generate<wbr>Id</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils.html#hook" class="tsd-kind-icon">hook</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils.html#isequal" class="tsd-kind-icon">is<wbr>Equal</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils.html#ispromiselike" class="tsd-kind-icon">is<wbr>Promise<wbr>Like</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils.html#mapdescriptors" class="tsd-kind-icon">map<wbr>Descriptors</a></li>
@@ -2754,32 +2754,6 @@ img {
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Functions</h2>
-			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-				<a name="ahook" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> ahook</h3>
-				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-					<li class="tsd-signature tsd-kind-icon">ahook<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ICallable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/utils.ts#L52">utils.ts:52</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>value: <span class="tsd-signature-type">any</span></h5>
-							</li>
-							<li>
-								<h5>fn: <span class="tsd-signature-type">ICallable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 				<a name="asynchronize" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> asynchronize</h3>
@@ -2790,7 +2764,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/utils.ts#L36">utils.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/utils.ts#L36">utils.ts:36</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2837,7 +2811,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/utils.ts#L56">utils.ts:56</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/utils.ts#L56">utils.ts:56</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2872,10 +2846,36 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/utils.ts#L50">utils.ts:50</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/utils.ts#L50">utils.ts:50</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+				<a name="hook" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> hook</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+					<li class="tsd-signature tsd-kind-icon">hook<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ICallable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/utils.ts#L52">utils.ts:52</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <span class="tsd-signature-type">any</span></h5>
+							</li>
+							<li>
+								<h5>fn: <span class="tsd-signature-type">ICallable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -2889,7 +2889,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/utils.ts#L48">utils.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/utils.ts#L48">utils.ts:48</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2915,7 +2915,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/utils.ts#L45">utils.ts:45</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/utils.ts#L45">utils.ts:45</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2938,7 +2938,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/utils.ts#L17">utils.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/utils.ts#L17">utils.ts:17</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2988,7 +2988,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/b819e45/packages/common/src/main/ts/utils.ts#L7">utils.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/0eb6b3e/packages/common/src/main/ts/utils.ts#L7">utils.ts:7</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3037,9 +3037,11 @@ img {
 						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 						<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+						<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 					</ul>
 					<ul class="tsd-legend">
 						<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+						<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 					</ul>
 				</div>
 			</div>
