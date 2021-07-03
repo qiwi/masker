@@ -1,3 +1,10 @@
+# @qiwi/masker-common [1.9.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.8.1...@qiwi/masker-common@1.9.0) (2021-07-03)
+
+
+### Features
+
+* add error capture pipe/exec hook ([dfe2143](https://github.com/qiwi/masker/commit/dfe214344b64f5ec9628c6149846b752185b0ba1)), closes [#57](https://github.com/qiwi/masker/issues/57)
+
 ## @qiwi/masker-common [1.8.1](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.8.0...@qiwi/masker-common@1.8.1) (2021-06-27)
 
 
