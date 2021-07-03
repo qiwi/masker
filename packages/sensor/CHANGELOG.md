@@ -1,3 +1,14 @@
+## @qiwi/masker-sensor [1.1.2](https://github.com/qiwi/masker/compare/@qiwi/masker-sensor@1.1.1...@qiwi/masker-sensor@1.1.2) (2021-07-03)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.9.0
+* **@qiwi/masker-plain:** upgraded to 1.2.9
+
 ## @qiwi/masker-sensor [1.1.1](https://github.com/qiwi/masker/compare/@qiwi/masker-sensor@1.1.0...@qiwi/masker-sensor@1.1.1) (2021-06-27)
 
 
