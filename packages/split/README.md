@@ -1,4 +1,5 @@
 # @qiwi/masker-split
+Masker plugin to recursively process any kind of js objects
 
 ## Install
 ```shell script

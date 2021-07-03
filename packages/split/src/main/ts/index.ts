@@ -20,9 +20,6 @@ export const randomizeKeys = (keys: string[]) => {
   })
 }
 
-// const boxValue = (value: any) => ({value})
-// const echo = <T>(v: T): T => v
-
 const unboxValue = ({value}: any) => value
 
 export const assemble = (values: IMaskerPipeOutput[], keys: IMaskerPipeOutput[], origin: any) => {

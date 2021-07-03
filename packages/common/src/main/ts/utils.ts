@@ -59,3 +59,6 @@ export const defineNonEnum = <T>(target: T, key: string, value: any): T => Objec
   configurable: true,
   writable: true,
 })
+
+// const boxValue = (value: any) => ({value})
+// const echo = <T>(v: T): T => v
