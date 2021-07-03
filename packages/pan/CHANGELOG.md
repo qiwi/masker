@@ -1,3 +1,13 @@
+## @qiwi/masker-pan [1.1.9](https://github.com/qiwi/masker/compare/@qiwi/masker-pan@1.1.8...@qiwi/masker-pan@1.1.9) (2021-07-03)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.9.0
+
 ## @qiwi/masker-pan [1.1.8](https://github.com/qiwi/masker/compare/@qiwi/masker-pan@1.1.7...@qiwi/masker-pan@1.1.8) (2021-06-27)
 
 
