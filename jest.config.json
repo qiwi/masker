@@ -10,6 +10,7 @@
     "<rootDir>/packages/schema/jest.config.json",
     "<rootDir>/packages/sensor/jest.config.json",
     "<rootDir>/packages/strike/jest.config.json",
-    "<rootDir>/packages/split/jest.config.json"
+    "<rootDir>/packages/split/jest.config.json",
+    "<rootDir>/packages/trycatch/jest.config.json"
   ]
 }
