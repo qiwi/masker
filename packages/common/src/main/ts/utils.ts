@@ -1,4 +1,4 @@
-import {ICallable} from '@qiwi/substrate'
+import {Extends, ICallable} from '@qiwi/substrate'
 
 export {flattie as flattenObject} from 'flattie'
 
@@ -59,6 +59,16 @@ export const defineNonEnum = <T>(target: T, key: string, value: any): T => Objec
   configurable: true,
   writable: true,
 })
+
+export const asArray = <T = any>(value: T): Extends<T, any[], T, T[]> =>
+  (Array.isArray(value) ? value : [value]) as Extends<T, any[], T, T[]>
+
+export const asRegExp = (value: any): RegExp | undefined =>
+  value instanceof RegExp
+    ? value
+    : typeof value === 'string'
+    ? new RegExp(value, 'gi')
+    : undefined
 
 // const boxValue = (value: any) => ({value})
 // const echo = <T>(v: T): T => v

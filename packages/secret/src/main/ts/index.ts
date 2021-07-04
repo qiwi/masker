@@ -1,14 +1,18 @@
 import {
   IMaskerPipe,
   IMaskerPipeName,
-  IMaskerPipeInput,
   IMaskerPipeline,
   IMaskerOpts,
-  createPipe, SyncGuard, IEnrichedContext, IMaskerPipeOutput,
+  createPipe,
+  SyncGuard,
+  IEnrichedContext,
+  IMaskerPipeOutput,
+  asArray,
+  asRegExp,
+  execEcho,
 } from '@qiwi/masker-common'
 
 import {pipe as plainPipe} from '@qiwi/masker-plain'
-import {Extends} from '@qiwi/substrate'
 
 export const name: IMaskerPipeName = 'secret'
 
@@ -35,31 +39,14 @@ export const defaultOpts: TSecretOpts = {
   pipeline: defaultPipeline,
 }
 
-const asArray = <T = any>(value: T): Extends<T, any[], T, T[]> =>
-  (Array.isArray(value) ? value : [value]) as Extends<T, any[], T, T[]>
-
-const asRegExp = (value: any): RegExp | undefined =>
-  value instanceof RegExp
-    ? value
-    : typeof value === 'string'
-      ? new RegExp(value, 'gi')
-      : undefined
-
-export const getDirectives = (opts: TSecretOpts): TSecretDirectiveNormalized[] => {
-  const _directives = asArray(opts.directives || opts) as TSecretDirectives
-
-  return _directives.map(({keyPattern, valuePattern, pipeline = defaultPipeline}) =>
-    ({
-      keyPattern: asRegExp(keyPattern),
-      valuePattern: asRegExp(valuePattern),
-      pipeline,
-    }))
-}
-
-export const execEcho = <C extends IMaskerPipeInput>({value, sync}: C): SyncGuard<IMaskerPipeOutput, C> =>
-  (sync
-    ? {value}
-    : Promise.resolve({value})) as SyncGuard<IMaskerPipeInput, C>
+export const getDirectives = (opts: TSecretOpts): TSecretDirectiveNormalized[] =>
+  (asArray(opts.directives || opts) as TSecretDirectives)
+    .map(({keyPattern, valuePattern, pipeline = defaultPipeline}) =>
+      ({
+        keyPattern: asRegExp(keyPattern),
+        valuePattern: asRegExp(valuePattern),
+        pipeline,
+      }))
 
 export const getPipeline = (value: any, path: string, opts: IMaskerOpts): IMaskerPipeline | undefined =>
   getDirectives({...defaultOpts, ...opts}).find(({valuePattern, keyPattern}) =>

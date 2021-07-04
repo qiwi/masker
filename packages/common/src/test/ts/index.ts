@@ -5,7 +5,16 @@ import {
   getPipe,
   mapValues,
   IMaskerPipeInput,
+  execEcho,
 } from '../../main/ts'
+
+describe('execEcho()', () => {
+  it('returns boxed value', async() => {
+    const value = 'foo'
+    expect(await execEcho({value} as IMaskerPipeInput)).toEqual({value})
+    expect(execEcho({value, sync: true} as IMaskerPipeInput)).toEqual({value})
+  })
+})
 
 describe('#getPipe', () => {
   const registry = new Map()
