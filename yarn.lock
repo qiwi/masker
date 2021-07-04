@@ -1795,6 +1795,37 @@
     pkg-dir "^5.0.0"
     tslib "^2.2.0"
 
+"@qiwi/masker-common@1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-common/-/masker-common-1.8.1.tgz#880e0e30425c434cb14a05841b44cf50abf9440e"
+  integrity sha512-WLJdaMqKWxO5MFJhTA7hJyj0Smy26LsRPLrSXBDEl/65RWGDFyYJehPIdGzuwQEBvEPJxJ9Vr+I2QHa5JNM2CQ==
+  dependencies:
+    "@qiwi/substrate" "^1.20.9"
+    "@types/lodash" "^4.14.170"
+    "@types/xregexp" "^4.3.0"
+    flattie "^1.1.0"
+    lodash "^4.17.21"
+    tslib "^2.3.0"
+    xregexp "^5.0.2"
+
+"@qiwi/masker-plain@1.2.8":
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-plain/-/masker-plain-1.2.8.tgz#7a20961a1c4c8425ece451a87c838380b6d6f630"
+  integrity sha512-WoEYrOISq64rBUUbgmYIQttw0i6Ub8IJm1JYxlqqWqqlBT8krCzfSuAkdA2Ox4USwOfDVPZVol1Q+cpgJBRhcQ==
+  dependencies:
+    "@qiwi/masker-common" "1.8.1"
+    "@qiwi/substrate" "^1.20.9"
+    tslib "^2.3.0"
+
+"@qiwi/masker-strike@1.2.8":
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-strike/-/masker-strike-1.2.8.tgz#d17ff2cfb12b4f14e027120f8150b8cb0f73e27a"
+  integrity sha512-zJPfB2QT6LRcgQwdh+/mC2X1FSy55xSfH201etqR4ukYo59XO0md5B1eaOPsVTiZMf9wRmsUIHW+++MBlTFtAA==
+  dependencies:
+    "@qiwi/masker-common" "1.8.1"
+    "@qiwi/substrate" "^1.20.9"
+    tslib "^2.3.0"
+
 "@qiwi/substrate-abstract@1.20.4":
   version "1.20.4"
   resolved "https://registry.yarnpkg.com/@qiwi/substrate-abstract/-/substrate-abstract-1.20.4.tgz#cfa327a63d00368d62de660407dca5d4ef264eaf"
@@ -1898,6 +1929,11 @@
   integrity sha512-Vs0hm0vPahPMYi9tDjtP66llufgO3ST16WXaSTtDGEl9cewAl3AibmxWw6TINOqHPT9z0uABKAYjT9jNSg4npw==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/debug@^4.1.6":
+  version "4.1.6"
+  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.6.tgz#0b7018723084918a865eff99249c490505df2163"
+  integrity sha512-7fDOJFA/x8B+sO1901BmHlf5dE1cxBU8mRXj8QOEDnn16hhGJv/IHxJtZhvsabZsIMn0eLIyeOKAeqSNJJYTpA==
 
 "@types/find-cache-dir@^3.2.0":
   version "3.2.0"
@@ -3020,6 +3056,13 @@ debug@4, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
   integrity sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
+  dependencies:
+    ms "2.1.2"
+
+debug@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.2.tgz#f0a49c18ac8779e31d4a0c6029dfb76873c7428b"
+  integrity sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==
   dependencies:
     ms "2.1.2"
 

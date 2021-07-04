@@ -34,6 +34,7 @@ export type IMaskerDirectives = Array<IMaskerDirective>
 export interface IMaskerPipeOutput {
   value: any
   _value?: any
+  execute?: IEnrichedExecutor
   pipeline?: IMaskerPipeline
   final?: boolean
   schema?: IMaskerSchema
