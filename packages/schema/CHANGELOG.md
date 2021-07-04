@@ -1,3 +1,15 @@
+## @qiwi/masker-schema [1.4.2](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.4.1...@qiwi/masker-schema@1.4.2) (2021-07-04)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.10.0
+* **@qiwi/masker-split:** upgraded to 1.6.1
+* **@qiwi/masker-strike:** upgraded to 1.3.0
+
 ## @qiwi/masker-schema [1.4.1](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.4.0...@qiwi/masker-schema@1.4.1) (2021-07-03)
 
 
