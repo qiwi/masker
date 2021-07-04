@@ -1,5 +1,5 @@
 # @qiwi/masker-strike
-Strike masker pipe.
+The plugin to ~~strikethough~~ any non-space string chars.
 
 ## Install
 ```shell script
@@ -9,7 +9,7 @@ yarn add @qiwi/masker-strike
 ## Usage
 ```typescript
 import {masker} from '@qiwi/masker-common'
-import {pipe} from "@qiwi/masker-strike";
+import {pipe} from '@qiwi/masker-strike'
 
 masker.register(pipe)
 

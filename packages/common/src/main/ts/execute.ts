@@ -36,7 +36,7 @@ export const execute: IEnrichedExecutor = enrichExecutor(<C extends IRawContext>
 
   const {execSync, exec} = pipe
   const fn = mode === IExecutionMode.SYNC || sync ? execSync : exec
-  const next: THookCallback = (res) => _execute({
+  const next: THookCallback = (res) => (res.execute || _execute)({
     ...sharedContext,
     ...res,
     pipeline: res.pipeline || pipeline.slice(1),
@@ -63,5 +63,5 @@ export const patchExecutor = (execHook: TExecutorHook, name: IMaskerPipeName) =>
   // @ts-ignore
   ctx.context = undefined
 
-  return ctx.execute(ctx) as SyncGuard<IMaskerPipeInput, C>
+  return (ctx.sync ? ctx : Promise.resolve(ctx)) as unknown as SyncGuard<IMaskerPipeInput, C>
 }

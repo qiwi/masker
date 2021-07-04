@@ -47,7 +47,7 @@ export const pipe: IMaskerPipe = createPipe(name, ({value, path, context, execut
     const pipeline = getPipeline(path, opts)
 
     if (pipeline) {
-      return execute.sync({...context, pipeline: [plainPipe]})
+      return execute.sync({...context, pipeline})
     }
   }
 

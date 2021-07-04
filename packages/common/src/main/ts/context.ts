@@ -14,7 +14,7 @@ export const normalizeContext = ({
   pipeline = [],
   value,
   registry = new Map(),
-  mode = IExecutionMode.ASYNC,
+  mode = IExecutionMode.ASYNC, // Legacy flag
   sync = mode === IExecutionMode.SYNC,
   originPipeline = pipeline,
   context: parent,
@@ -24,13 +24,14 @@ export const normalizeContext = ({
   const parentId = parent?.id
   const _pipeline = normalizePipeline(rest.pipeline || pipeline, registry)
   const _originPipeline = normalizePipeline(rest.originPipeline || originPipeline, registry)
+  const _mode = sync === true ? IExecutionMode.SYNC : IExecutionMode.ASYNC
   const pipe = _pipeline[0]
   const opts = pipe?.opts
   const context = {
     value,
     registry,
     sync,
-    mode,
+    mode: _mode,
     execute,
     opts,
     ...rest,
