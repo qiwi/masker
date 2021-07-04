@@ -1,3 +1,4 @@
+import debugFactory, {Debugger} from 'debug'
 import {
   IMaskerPipeName,
   createPipe,
@@ -10,7 +11,6 @@ import {
   patchExecutor,
   IMaskerPipe, hook,
 } from '@qiwi/masker-common'
-import debugFactory, {Debugger} from 'debug'
 
 export type {Debugger}
 

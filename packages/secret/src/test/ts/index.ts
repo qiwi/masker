@@ -1,13 +1,10 @@
-import {normalizeContext, execute} from '@qiwi/masker-common'
+import {execute, normalizeContext} from '@qiwi/masker-common'
 import {pipe as plainPipe} from '@qiwi/masker-plain'
-import {
-  pipe,
-  name,
-} from '../../main/ts'
+import {name, pipe} from '../../main/ts'
 
-describe('sensor',() => {
+describe('secret',() => {
   it('name is defined', () => {
-    expect(name).toBe('sensor')
+    expect(name).toBe('secret')
     expect(pipe.name).toBe(name)
   })
 
@@ -16,9 +13,9 @@ describe('sensor',() => {
       const cases = [
         ['foo bar', 'foo bar', 'public'],
         ['foo bar', '***', 'secret'],
-        ['foo bar', '***', 'foo', {pattern: /foo/}],
-        ['foo bar', '***', 'foo', {pattern: 'foo'}],
-        ['foo bar', '***', 'bar', {directives: [{pattern: /bar/, pipeline: [plainPipe]}]}],
+        ['foo bar', '***', 'foo', {keyPattern: /foo/}],
+        ['foo bar', '***', 'foo', {keyPattern: 'foo'}],
+        ['foo bar', '***', 'bar', {directives: [{keyPattern: /bar/, pipeline: [plainPipe]}]}],
         ['foo bar', '***', 'some.long.path-to.secret'],
         ['foo bar', '***', 'token'],
         ['foo bar', '***', 'credential'],
@@ -29,12 +26,11 @@ describe('sensor',() => {
         [12345, 12345, 'foobar'],
       ]
       cases.forEach(([value, expected, path, opts = {}]) => {
-        const result = expected
         const input = normalizeContext({value, path, opts}, execute)
 
         it(`${value} > ${expected}`, async() => {
-          expect(pipe.execSync({...input, sync: true}).value).toBe(result)
-          expect((await pipe.exec(input)).value).toEqual(result)
+          expect(pipe.execSync({...input, sync: true, context: {...input, sync: true}}).value).toBe(expected)
+          expect((await pipe.exec(input)).value).toEqual(expected)
         })
       })
     })
