@@ -1,3 +1,10 @@
+# @qiwi/masker-common [1.10.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.9.0...@qiwi/masker-common@1.10.0) (2021-07-04)
+
+
+### Features
+
+* add debug pipe, optimize patchExecutor ([1dc94b7](https://github.com/qiwi/masker/commit/1dc94b72964665e62b50fdc5196bf35f91aae75f)), closes [#54](https://github.com/qiwi/masker/issues/54)
+
 # @qiwi/masker-common [1.9.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.8.1...@qiwi/masker-common@1.9.0) (2021-07-03)
 
 
