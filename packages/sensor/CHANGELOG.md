@@ -1,3 +1,19 @@
+# @qiwi/masker-sensor [1.2.0](https://github.com/qiwi/masker/compare/@qiwi/masker-sensor@1.1.2...@qiwi/masker-sensor@1.2.0) (2021-07-04)
+
+
+### Features
+
+* add debug pipe, optimize patchExecutor ([1dc94b7](https://github.com/qiwi/masker/commit/1dc94b72964665e62b50fdc5196bf35f91aae75f)), closes [#54](https://github.com/qiwi/masker/issues/54)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.10.0
+* **@qiwi/masker-plain:** upgraded to 1.2.10
+
 ## @qiwi/masker-sensor [1.1.2](https://github.com/qiwi/masker/compare/@qiwi/masker-sensor@1.1.1...@qiwi/masker-sensor@1.1.2) (2021-07-03)
 
 
