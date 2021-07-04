@@ -41,7 +41,7 @@
     "@qiwi/masker-split": "1.6.0"
   },
   "devDependencies": {
-    "@qiwi/masker-strike": "1.2.8"
+    "@qiwi/masker-strike": "1.2.9"
   },
   "repository": {
     "type": "git",
