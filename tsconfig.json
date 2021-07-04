@@ -11,9 +11,9 @@
       "@qiwi/masker-pan": ["./pan/src/main/ts"],
       "@qiwi/masker-plain": ["./plain/src/main/ts"],
       "@qiwi/masker-schema": ["./schema/src/main/ts"],
-      "@qiwi/masker-sensor": ["./sensor/src/main/ts"],
-      "@qiwi/masker-strike": ["./strike/src/main/ts"],
+      "@qiwi/masker-secret": ["./secret/src/main/ts"],
       "@qiwi/masker-split": ["./split/src/main/ts"],
+      "@qiwi/masker-strike": ["./strike/src/main/ts"],
       "@qiwi/masker-trycatch": ["./trycatch/src/main/ts"],
     }
   }

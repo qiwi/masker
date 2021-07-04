@@ -1,20 +1,20 @@
-# @qiwi/masker-sensor
-Hide sensitive data by path match
+# @qiwi/masker-secret
+Hide sensitive data by pattern match
 
 ## Install
 ```shell script
-yarn add @qiwi/masker-sensor
+yarn add @qiwi/masker-secret
 ```
 
 ## Usage
 ```typescript
 import {masker} from '@qiwi/masker-common'
-import {pipe} from "@qiwi/masker-sensor";
+import {pipe} from '@qiwi/masker-secret'
 
 masker.register(pipe)
 
 masker('fooo bar baz foobar qux q', {
-  pipeline: [['sensor', {pattern: /\w{4,}/g}]]
+  pipeline: [['secret', {pattern: /\w{4,}/g}]]
 })
 // **** bar baz ****** qux q
 ```
