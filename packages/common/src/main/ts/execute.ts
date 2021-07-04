@@ -65,3 +65,8 @@ export const patchExecutor = (execHook: TExecutorHook, name: IMaskerPipeName) =>
 
   return (ctx.sync ? ctx : Promise.resolve(ctx)) as unknown as SyncGuard<IMaskerPipeInput, C>
 }
+
+export const execEcho = <C extends IMaskerPipeInput>({value, sync}: C): SyncGuard<IMaskerPipeOutput, C> =>
+  (sync
+    ? {value}
+    : Promise.resolve({value})) as SyncGuard<IMaskerPipeOutput, C>
