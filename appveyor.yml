@@ -24,6 +24,9 @@ install:
 environment:
   nodejs_version: "14"
   matrix:
+    - job_name: Build
+      job_group: Build
+
     - job_name: TestNodeJS14
       job_group: Tests
 
@@ -37,19 +40,35 @@ environment:
 for:
   - matrix:
       only:
-        - branch: master
-        - job_name: TestNodeJS12
+        - job_name: Build
+    artifacts:
+      - path: artifact.zip
+        name: artifact.zip
     build_script:
       - yarn build
+    after_build:
+      - 7z a artifact.zip packages\*\target packages\*\docs packages\*\flow-typed packages\*\typings
+
+  - matrix:
+      only:
+        - branch: master
+        - job_name: TestNodeJS12
+
+    build_script:
+      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip"
+      - 7z x artifact.zip -y
+
     test_script:
       - yarn test
-  -
-    matrix:
+
+  - matrix:
       only:
         - job_name: TestNodeJS14
 
     build_script:
-      - yarn build
+      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip"
+      - 7z x artifact.zip -y
+
     before_test:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
@@ -68,7 +87,10 @@ for:
         - APPVEYOR_PULL_REQUEST_NUMBER: ''
         - job_name: Deploy
         - branch: master
+
     build_script:
-      - yarn build
+      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip"
+      - 7z x artifact.zip -y
+
     deploy_script:
       - npx -p @qiwi/semrel-toolkit multi-semrel
