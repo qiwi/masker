@@ -1,8 +1,10 @@
 import {Extends, ICallable} from '@qiwi/substrate'
 
+import clone from 'lodash.clonedeep'
+
 export {flattie as flattenObject} from 'flattie'
 
-export {cloneDeep as clone} from 'lodash'
+export {clone}
 
 export const mapValues = (input: any, fn: (input: any, key?: string) => any) => {
   const result = Array.isArray(input) ? [] : {}

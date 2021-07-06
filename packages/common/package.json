@@ -36,15 +36,23 @@
   },
   "dependencies": {
     "@qiwi/substrate": "^1.20.9",
-    "tslib": "^2.3.0",
-    "lodash": "^4.17.21",
-    "@types/lodash": "^4.14.170",
-    "xregexp": "^5.0.2",
     "@types/xregexp": "^4.3.0",
-    "flattie": "^1.1.0"
+    "flattie": "^1.1.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.get": "^4.4.2",
+    "lodash.invert": "^4.3.0",
+    "lodash.set": "^4.3.2",
+    "lodash.unset": "^4.5.2",
+    "tslib": "^2.3.0",
+    "xregexp": "^5.0.2"
   },
   "devDependencies": {
-    "@qiwi/masker-infra": "1.0.3"
+    "@qiwi/masker-infra": "1.0.3",
+    "@types/lodash.clonedeep": "^4.5.6",
+    "@types/lodash.get": "^4.4.6",
+    "@types/lodash.invert": "^4.3.6",
+    "@types/lodash.set": "^4.3.6",
+    "@types/lodash.unset": "^4.5.6"
   },
   "repository": {
     "type": "git",
