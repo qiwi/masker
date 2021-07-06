@@ -1,4 +1,7 @@
-import {get, set, unset, invert} from 'lodash'
+import get from 'lodash.get'
+import set from 'lodash.set'
+import unset from 'lodash.unset'
+import invert from 'lodash.invert'
 import {
   normalizeContext,
   clone,
