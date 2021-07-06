@@ -9,7 +9,8 @@
     "<rootDir>/packages/pan/jest.config.json",
     "<rootDir>/packages/plain/jest.config.json",
     "<rootDir>/packages/schema/jest.config.json",
-    "<rootDir>/packages/secret/jest.config.json",
+    "<rootDir>/packages/secret-key/jest.config.json",
+    "<rootDir>/packages/secret-value/jest.config.json",
     "<rootDir>/packages/split/jest.config.json",
     "<rootDir>/packages/strike/jest.config.json",
     "<rootDir>/packages/trycatch/jest.config.json"
