@@ -26,28 +26,32 @@ environment:
   matrix:
     - job_name: Build
       job_group: Build
+      STAGE: build
 
     - job_name: TestNodeJS14
       job_group: Tests
+      STAGE: testnodejs14
 
     - job_name: TestNodeJS12
       job_group: Tests
       nodejs_version: "12"
+      STAGE: testnodejs12
 
     - job_name: Deploy
       job_depends_on: Tests
+      STAGE: deploy
 
 for:
   - matrix:
       only:
         - job_name: Build
-    artifacts:
-      - path: artifact.zip
-        name: artifact.zip
     build_script:
       - yarn build
       - 7z a artifact.zip README.md packages/*/target packages/*/docs packages/*/flow-typed packages/*/typings
       - appveyor PushArtifact artifact.zip
+    artifacts:
+      - path: artifact.zip
+        name: artifact
 
   - matrix:
       only:
