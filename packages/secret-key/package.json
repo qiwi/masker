@@ -1,11 +1,11 @@
 {
-  "name": "@qiwi/masker-secret",
+  "name": "@qiwi/masker-secret-key",
   "version": "0.0.0",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "description": "Hide sensitive data by pattern",
+  "description": "Hide sensitive data by key/path pattern match",
   "main": "target/es5/index.js",
   "source": "target/ts/index.ts",
   "types": "target/es5/index.d.ts",
