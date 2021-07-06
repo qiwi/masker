@@ -47,15 +47,15 @@ for:
     build_script:
       - yarn build
     after_build:
-      - 7z a artifact.zip packages\*\target packages\*\docs packages\*\flow-typed packages\*\typings
+      - 7z a artifact.zip %APPVEYOR_BUILD_FOLDER%\README.md %APPVEYOR_BUILD_FOLDER%\packages\*\target %APPVEYOR_BUILD_FOLDER%\packages\*\docs %APPVEYOR_BUILD_FOLDER%\packages\*\flow-typed %APPVEYOR_BUILD_FOLDER%\packages\*\typings
 
   - matrix:
       only:
         - branch: master
         - job_name: TestNodeJS12
 
-    build_script:
-      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip"
+    before_test:
+      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip?job=Build"
       - 7z x artifact.zip -y
 
     test_script:
@@ -65,11 +65,9 @@ for:
       only:
         - job_name: TestNodeJS14
 
-    build_script:
-      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip"
-      - 7z x artifact.zip -y
-
     before_test:
+      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip?job=Build"
+      - 7z x artifact.zip -y
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
@@ -88,9 +86,7 @@ for:
         - job_name: Deploy
         - branch: master
 
-    build_script:
-      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip"
-      - 7z x artifact.zip -y
-
     deploy_script:
+      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip?job=Build"
+      - 7z x artifact.zip -y
       - npx -p @qiwi/semrel-toolkit multi-semrel
