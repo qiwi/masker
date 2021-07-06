@@ -46,8 +46,8 @@ for:
         name: artifact.zip
     build_script:
       - yarn build
-    after_build:
-      - 7z a artifact.zip %APPVEYOR_BUILD_FOLDER%\README.md %APPVEYOR_BUILD_FOLDER%\packages\*\target %APPVEYOR_BUILD_FOLDER%\packages\*\docs %APPVEYOR_BUILD_FOLDER%\packages\*\flow-typed %APPVEYOR_BUILD_FOLDER%\packages\*\typings
+      - 7z a artifact.zip README.md packages/*/target packages/*/docs packages/*/flow-typed packages/*/typings
+      - appveyor PushArtifact artifact.zip
 
   - matrix:
       only:
