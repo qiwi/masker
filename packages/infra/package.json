@@ -12,8 +12,8 @@
   "devDependencies": {
     "@qiwi/libdefkit": "^3.0.0",
     "@types/jest": "^26.0.23",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
     "jest": "^27.0.6",
     "terser": "^5.7.1",
     "ts-jest": "^27.0.3",

@@ -1,4 +1,4 @@
-import {asRegExp} from "@qiwi/masker-common";
+import {asRegExp} from '@qiwi/masker-common'
 
 export type TExtractedEntry = {
   _value: ReturnType<typeof JSON.parse>
