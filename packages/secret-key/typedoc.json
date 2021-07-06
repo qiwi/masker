@@ -1,5 +1,5 @@
 {
-  "name": "@qiwi/masker-secret",
+  "name": "@qiwi/masker-secret-key",
   "out": "./docs",
   "entryPoints": ["src/main"],
   "exclude": ["src/test", "**/node_modules/**", "paralleljs"],

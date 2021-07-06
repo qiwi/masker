@@ -5,17 +5,17 @@ import {
   IMaskerPipeNormalized,
   IMaskerPipeName,
   IMaskerPipeSync,
-  IMaskerRegistry, IMaskerPipeDual,
+  IMaskerRegistry, IMaskerPipeDual, IMaskerOpts,
 } from './interfaces'
 import {asynchronize} from './utils'
 
 export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry): IMaskerPipeNormalized => {
   let masker
-  let opts = {}
+  let opts
   let maskerName
 
   if (Array.isArray(pipe)) {
-    [masker, opts = {}] = pipe
+    [masker, opts] = pipe
   }
   else {
     masker = pipe
@@ -32,13 +32,14 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry)
 
   return {
     ...masker,
-    opts,
+    opts: {...masker.opts, ...opts},
   }
 }
 
-export const createPipe = (name: IMaskerPipeName, execSync: IMaskerPipeSync | IMaskerPipeDual, exec?: IMaskerPipeAsync | IMaskerPipeDual): IMaskerPipe =>
+export const createPipe = (name: IMaskerPipeName, execSync: IMaskerPipeSync | IMaskerPipeDual, exec?: IMaskerPipeAsync | IMaskerPipeDual, opts: IMaskerOpts = {}): IMaskerPipe =>
   ({
     name,
     execSync,
     exec: exec || asynchronize(execSync),
+    opts,
   })

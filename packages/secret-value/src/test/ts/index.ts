@@ -11,26 +11,18 @@ describe('secret',() => {
   describe('pipe', () => {
     describe('replaces all values with *', () => {
       const cases = [
-        ['foo bar', 'foo bar', 'public'],
-        ['foo bar', '***', 'secret'],
-        ['foo bar', '***', 'foo', {keyPattern: /foo/}],
-        ['foo bar', '***', 'foo', {keyPattern: 'foo'}],
-        ['foo bar', '***', 'bar', {directives: [{keyPattern: /bar/, pipeline: [plainPipe]}]}],
-        ['foo bar', '***', 'some.long.path-to.secret'],
-        ['foo bar', '***', 'token'],
-        ['foo bar', '***', 'credential'],
-        ['foo bar', '***', 'password'],
-        ['foo bar', '***', 'private'],
-        [null, null],
-        [12345, '***', 'token'],
-        [12345, 12345, 'foobar'],
+        ['foo bar baz baaar qux', 'foo *** baz *** qux', /ba+r/g],
+        ['some string with pwd=foobar and pwd=qux', 'some string with *** and ***', /(?:pwd=)(\s*[^\s]+)/gi],
       ]
-      cases.forEach(([value, expected, path, opts = {}]) => {
-        const input = normalizeContext({value, path, opts}, execute)
+      cases.forEach(([value, expected, pattern]) => {
+        const ctx = normalizeContext({value, opts: {
+          pipeline: [plainPipe],
+          pattern,
+        }}, execute)
 
         it(`${value} > ${expected}`, async() => {
-          expect(pipe.execSync({...input, sync: true, context: {...input, sync: true}}).value).toBe(expected)
-          expect((await pipe.exec(input)).value).toEqual(expected)
+          expect((await pipe.exec(ctx)).value).toEqual(expected)
+          expect(pipe.execSync({...ctx, sync: (ctx.sync = true)}).value).toBe(expected)
         })
       })
     })

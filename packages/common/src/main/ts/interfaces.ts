@@ -25,7 +25,8 @@ export type IMaskerOpts = Record<string, any>
 export interface IMaskerPipe {
   name: IMaskerPipeName
   exec: IMaskerPipeAsync | IMaskerPipeDual
-  execSync: IMaskerPipeSync | IMaskerPipeDual
+  execSync: IMaskerPipeSync | IMaskerPipeDual,
+  opts?: IMaskerOpts
 }
 export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerOpts]
 
