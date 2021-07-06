@@ -18,8 +18,8 @@ init:
   - yarn --version
 
 install:
-  - yarn --ignore-engines
-  - yarn bootstrap
+  - apt-get -y install jq
+  - echo "install"
 
 environment:
   nodejs_version: "14"
@@ -30,10 +30,12 @@ environment:
 
     - job_name: TestNodeJS14
       job_group: Tests
+      job_depends_on: Build
       STAGE: testnodejs14
 
     - job_name: TestNodeJS12
       job_group: Tests
+      job_depends_on: Build
       nodejs_version: "12"
       STAGE: testnodejs12
 
@@ -46,9 +48,8 @@ for:
       only:
         - job_name: Build
     build_script:
-      - yarn build
       - 7z a artifact.zip README.md packages/*/target packages/*/docs packages/*/flow-typed packages/*/typings
-      - appveyor PushArtifact artifact.zip
+      - # appveyor PushArtifact artifact.zip
     artifacts:
       - path: artifact.zip
         name: artifact
@@ -59,7 +60,8 @@ for:
         - job_name: TestNodeJS12
 
     before_test:
-      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip?job=Build"
+      - appveyor SetVariable -Name ARTIFACT_JOB -Value $(curl https://ci.appveyor.com/api/projects/QIWI/masker/builds/$APPVEYOR_BUILD_ID | jq -r '.build.jobs[0].jobId')
+      - appveyor DownloadFile "https://ci.appveyor.com/api/buildjobs/$ARTIFACT_JOB/artifacts/artifact.zip"
       - 7z x artifact.zip -y
 
     test_script:
@@ -70,7 +72,8 @@ for:
         - job_name: TestNodeJS14
 
     before_test:
-      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip?job=Build"
+      - appveyor SetVariable -Name ARTIFACT_JOB -Value $(curl https://ci.appveyor.com/api/projects/QIWI/masker/builds/$APPVEYOR_BUILD_ID | jq -r '.build.jobs[0].jobId')
+      - appveyor DownloadFile "https://ci.appveyor.com/api/buildjobs/$ARTIFACT_JOB/artifacts/artifact.zip"
       - 7z x artifact.zip -y
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
