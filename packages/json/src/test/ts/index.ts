@@ -1,9 +1,11 @@
-import {normalizeContext, execute, createPipe as cp, IMaskerPipeInput} from '@qiwi/masker-common'
-import {pipe as split} from '@qiwi/masker-split'
 import {
-  pipe,
-  name,
-} from '../../main/ts'
+  normalizeContext,
+  execute,
+  createPipe as cp,
+  IMaskerPipeInput,
+} from '@qiwi/masker-common'
+import {pipe as split} from '@qiwi/masker-split'
+import {pipe, name} from '../../main/ts'
 
 describe('json',() => {
   it('name is defined', () => {
@@ -22,12 +24,11 @@ describe('json',() => {
         [{}, {}],
       ]
       cases.forEach(([value, expected]) => {
-        const result = {value: expected}
-        const input = normalizeContext({value}, execute)
+        const ctx = normalizeContext({value}, execute)
 
         it(`${value} > ${expected}`, async() => {
-          expect(pipe.execSync(input)).toEqual(result)
-          expect(await pipe.exec(input)).toEqual(result)
+          expect((await pipe.exec(ctx)).value).toEqual(expected)
+          expect(pipe.execSync({...ctx, sync: (ctx.sync = true)}).value).toEqual(expected)
         })
       })
     })

@@ -9,6 +9,9 @@ import {pipe as plainPipe} from '@qiwi/masker-plain'
 import {extractByRegexp} from './extract'
 import {createExec} from './inject'
 
+export * from './extract'
+export * from './inject'
+
 export const name: IMaskerPipeName = 'secret-value'
 
 export interface TSecretDirective {

@@ -5,7 +5,8 @@
     "outDir": "target/es5"
   },
   "references": [
-    { "path": "../common/tsconfig.es5.json" }
+    { "path": "../common/tsconfig.es5.json" },
+    { "path": "../secret-key/tsconfig.es5.json" }
   ],
   "include": [
     "src/main/**/*"

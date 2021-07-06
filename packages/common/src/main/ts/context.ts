@@ -26,7 +26,7 @@ export const normalizeContext = ({
   const _originPipeline = normalizePipeline(rest.originPipeline || originPipeline, registry)
   const _mode = sync === true ? IExecutionMode.SYNC : IExecutionMode.ASYNC
   const pipe = _pipeline[0]
-  const opts = pipe?.opts
+  const opts = pipe?.opts || {}
   const context = {
     value,
     registry,

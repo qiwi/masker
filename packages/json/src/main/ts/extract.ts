@@ -1,20 +1,15 @@
 import XRegExp from 'xregexp'
 
-export type TJsonEntry = {
-  _value: ReturnType<typeof JSON.parse>
-  value: ReturnType<typeof JSON.parse>
-  start: number
-  end: number
-}
+import {TExtractedEntry} from '@qiwi/masker-secret-value'
 
-export const extractJsonEntries = (input: string): TJsonEntry[] => {
+export const extractJsonEntries = (input: string): TExtractedEntry[] => {
   const matches = XRegExp.matchRecursive(input, '(\\[|\\{)', '(\\}|\\])', 'g', {
     valueNames: [null, 'left', 'match', 'right'],
   })
 
   // wrap the matches in {}, or in [] respectively
   return matches
-    .reduce<TJsonEntry[]>((memo, match, i) => {
+    .reduce<TExtractedEntry[]>((memo, match, i) => {
       if (match.name === 'match') {
         const value = matches[i - 1].value + match.value + matches[i + 1].value
         const entry = {
@@ -40,7 +35,7 @@ export const extractJsonEntries = (input: string): TJsonEntry[] => {
         return
       }
     })
-    .filter((v) => v !== undefined) as TJsonEntry[]
+    .filter((v) => v !== undefined) as TExtractedEntry[]
 }
 
 // https://stackoverflow.com/a/3710506

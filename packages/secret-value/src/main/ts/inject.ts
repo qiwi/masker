@@ -1,4 +1,5 @@
 import {
+  execEcho,
   hook,
   IEnrichedContext,
   IMaskerPipeDual,
@@ -30,4 +31,6 @@ export const populate = (origin: string, entries: TExtractedEntry[]): string =>
 
 export const createExec = (extract: TExtractor): IMaskerPipeDual =>
   <C extends IEnrichedContext>({value, context, opts}: C): SyncGuard<IMaskerPipeOutput, C> =>
-    hook(process(extract(value, opts), context), (entries: TExtractedEntry[]) => ({value: populate(value, entries)}))
+    typeof value === 'string'
+      ? hook(process(extract(value, opts), context), (entries: TExtractedEntry[]) => ({value: populate(value, entries)}))
+      : execEcho(context)
