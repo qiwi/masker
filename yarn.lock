@@ -1950,10 +1950,10 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@^26.0.23":
-  version "26.0.23"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.23.tgz#a1b7eab3c503b80451d019efb588ec63522ee4e7"
-  integrity sha512-ZHLmWMJ9jJ9PTiT58juykZpL7KjwJywFN3Rr2pTSkyQfydf/rk22yS7W8p5DaVUMQ2BQC7oYiU3FjbTM/mYrOA==
+"@types/jest@^26.0.24":
+  version "26.0.24"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.24.tgz#943d11976b16739185913a1936e0de0c4a7d595a"
+  integrity sha512-E/X5Vib8BWqZNRlDxj9vYXhsDwPYbPINqKF9BsnSoon4RQ0D9moEuLD8txgyypFLH7J4+Lho9Nr/c8H0Fi+17w==
   dependencies:
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
@@ -7583,10 +7583,10 @@ tslib@^2.2.0, tslib@^2.3.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
 
-tslint-config-qiwi@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/tslint-config-qiwi/-/tslint-config-qiwi-1.7.1.tgz#47e00a5a4d285969d6f70bfdfb6af3db39a62c21"
-  integrity sha512-Oqw0zm82VGCcDSmUak9G5Hrd2CHGZAHHI/6LY7yWH5QLexDpAyHzcgvZgWH3h/y1Hew8aJhyg2Pc27F5G80W0g==
+tslint-config-qiwi@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/tslint-config-qiwi/-/tslint-config-qiwi-1.8.0.tgz#0bd0d80f08d49172b9c92312441cac4e05c862d2"
+  integrity sha512-Ye/1Tp/b//rUAmR57ptoZcyDqc4OepVH/TWWMA9/0MD9YLg3dnzpuDjM5r49DZ0hSJDgNBvNNZxhiqbWA5eXDQ==
   dependencies:
     tslint-config-standard "^9.0.0"
     tslint-react "^5.0.0"
