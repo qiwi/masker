@@ -23,9 +23,11 @@ export const withLimiter = ({execute, opts: {pipeline, limit, duration}}: IMaske
   const _execute = enrichExecutor(<C extends IRawContext>(cxt: C): SyncGuard<IMaskerPipeInput, C> => {
     const _cxt: IEnrichedContext = normalizeContext(cxt, _execute)
     if (Date.now() >= _endsAt || _limit-- <= 0) {
+      // tslint:disable-next-line
       return execute({..._cxt, execute, pipeline: _pipeline}) as SyncGuard<IMaskerPipeInput, C>
     }
 
+    // tslint:disable-next-line
     return execute(_cxt) as SyncGuard<IMaskerPipeInput, C>
   })
 
