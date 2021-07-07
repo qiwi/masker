@@ -1,3 +1,10 @@
+## @qiwi/masker-common [1.10.1](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.10.0...@qiwi/masker-common@1.10.1) (2021-07-07)
+
+
+### Performance Improvements
+
+* use lodash subutils ([#68](https://github.com/qiwi/masker/issues/68)) ([7889403](https://github.com/qiwi/masker/commit/7889403b5e97888b51298103cf75ba9f2e4cb4cc)), closes [#44](https://github.com/qiwi/masker/issues/44)
+
 # @qiwi/masker-common [1.10.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.9.0...@qiwi/masker-common@1.10.0) (2021-07-04)
 
 
