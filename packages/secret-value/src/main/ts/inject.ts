@@ -17,7 +17,7 @@ export const process = <C extends IMaskerPipeInput>(entries: TExtractedEntry[], 
   const outputs = entries.map(({value}) => execute({...context, value, pipeline: opts.pipeline || originPipeline, path: undefined}))
   return hook(sync
     ? outputs
-    : Promise.all(outputs), (_outputs: IMaskerPipeOutput[]) => injectValues(entries, _outputs)) as SyncGuard<TExtractedEntry[], C>
+    : Promise.all(outputs), (_outputs: IMaskerPipeOutput[]) => injectValues(entries, _outputs))
 }
 
 export const populate = (origin: string, entries: TExtractedEntry[]): string =>
