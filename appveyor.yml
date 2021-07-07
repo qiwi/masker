@@ -16,9 +16,9 @@ init:
   - sh: nvm install $nodejs_version
   - node --version
   - yarn --version
+  - sh: sudo apt-get -y install jq
 
 install:
-  - apt-get -y install jq
   - echo "install"
 
 environment:
