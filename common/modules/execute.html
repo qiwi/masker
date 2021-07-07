@@ -2716,6 +2716,9 @@ img {
 		<li class=" tsd-kind-function tsd-parent-kind-module">
 			<a href="execute.html#enrichexecutor" class="tsd-kind-icon">enrich<wbr>Executor</a>
 		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+			<a href="execute.html#exececho" class="tsd-kind-icon">exec<wbr>Echo</a>
+		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-module">
 			<a href="execute.html#patchexecutor" class="tsd-kind-icon">patch<wbr>Executor</a>
 		</li>
@@ -2744,6 +2747,7 @@ img {
 						<h3>Functions</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="execute.html#enrichexecutor" class="tsd-kind-icon">enrich<wbr>Executor</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="execute.html#exececho" class="tsd-kind-icon">exec<wbr>Echo</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="execute.html#patchexecutor" class="tsd-kind-icon">patch<wbr>Executor</a></li>
 						</ul>
 					</section>
@@ -2758,7 +2762,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">TExecutor<wbr>Hook<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfaces.imaskerpipeinput.html" class="tsd-signature-type" data-tsd-kind="Interface">IMaskerPipeInput</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../interfaces/interfaces.ienrichedexecutor.html" class="tsd-signature-type" data-tsd-kind="Interface">IEnrichedExecutor</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/qiwi/masker/blob/280e7dd/packages/common/src/main/ts/execute.ts#L56">execute.ts:56</a></li>
+						<li>Defined in <a href="https://github.com/qiwi/masker/blob/763ad0e/packages/common/src/main/ts/execute.ts#L56">execute.ts:56</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -2789,7 +2793,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">THook<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>res<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfaces.imaskerpipeoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">IMaskerPipeOutput</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/interfaces.iexecutor.html" class="tsd-signature-type" data-tsd-kind="Interface">IExecutor</a><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/qiwi/masker/blob/280e7dd/packages/common/src/main/ts/execute.ts#L16">execute.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/qiwi/masker/blob/763ad0e/packages/common/src/main/ts/execute.ts#L16">execute.ts:16</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -2823,7 +2827,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">execute<span class="tsd-signature-symbol">:</span> <a href="../interfaces/interfaces.ienrichedexecutor.html" class="tsd-signature-type" data-tsd-kind="Interface">IEnrichedExecutor</a><span class="tsd-signature-symbol"> = ...</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/qiwi/masker/blob/280e7dd/packages/common/src/main/ts/execute.ts#L30">execute.ts:30</a></li>
+						<li>Defined in <a href="https://github.com/qiwi/masker/blob/763ad0e/packages/common/src/main/ts/execute.ts#L30">execute.ts:30</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2840,7 +2844,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/280e7dd/packages/common/src/main/ts/execute.ts#L18">execute.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/763ad0e/packages/common/src/main/ts/execute.ts#L18">execute.ts:18</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2850,6 +2854,35 @@ img {
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="../interfaces/interfaces.ienrichedexecutor.html" class="tsd-signature-type" data-tsd-kind="Interface">IEnrichedExecutor</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+				<a name="exececho" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> exec<wbr>Echo</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">exec<wbr>Echo&lt;C&gt;<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Extends</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>sync<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/interfaces.imaskerpipeoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">IMaskerPipeOutput</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/interfaces.imaskerpipeoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">IMaskerPipeOutput</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/763ad0e/packages/common/src/main/ts/execute.ts#L69">execute.ts:69</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>C<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfaces.imaskerpipeinput.html" class="tsd-signature-type" data-tsd-kind="Interface">IMaskerPipeInput</a></h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-type">C</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Extends</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>sync<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/interfaces.imaskerpipeoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">IMaskerPipeOutput</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/interfaces.imaskerpipeoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">IMaskerPipeOutput</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -2863,7 +2896,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/masker/blob/280e7dd/packages/common/src/main/ts/execute.ts#L58">execute.ts:58</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/masker/blob/763ad0e/packages/common/src/main/ts/execute.ts#L58">execute.ts:58</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
