@@ -1,3 +1,20 @@
+## @qiwi/masker-schema [1.4.3](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.4.2...@qiwi/masker-schema@1.4.3) (2021-07-07)
+
+
+### Performance Improvements
+
+* use lodash subutils ([#68](https://github.com/qiwi/masker/issues/68)) ([7889403](https://github.com/qiwi/masker/commit/7889403b5e97888b51298103cf75ba9f2e4cb4cc)), closes [#44](https://github.com/qiwi/masker/issues/44)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.10.1
+* **@qiwi/masker-split:** upgraded to 1.6.2
+* **@qiwi/masker-strike:** upgraded to 1.3.1
+
 ## @qiwi/masker-schema [1.4.2](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.4.1...@qiwi/masker-schema@1.4.2) (2021-07-04)
 
 
