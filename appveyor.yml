@@ -3,8 +3,8 @@ branches:
   except:
     - gh-pages
 
-cache:
-  - node_modules -> appveyor.yml, package.json, yarn.lock
+# cache:
+#  - node_modules -> appveyor.yml, package.json, yarn.lock
 
 skip_tags: true
 max_jobs: 2
