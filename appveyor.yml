@@ -19,29 +19,26 @@ init:
   - sh: sudo apt-get -y install jq
 
 install:
-  - echo "install"
+  - yarn --ignore-engines
+  - yarn bootstrap
 
 environment:
   nodejs_version: "14"
   matrix:
     - job_name: Build
       job_group: Build
-      STAGE: build
 
     - job_name: TestNodeJS14
       job_group: Tests
       job_depends_on: Build
-      STAGE: testnodejs14
 
     - job_name: TestNodeJS12
       job_group: Tests
       job_depends_on: Build
       nodejs_version: "12"
-      STAGE: testnodejs12
 
     - job_name: Deploy
       job_depends_on: Tests
-      STAGE: deploy
 
 for:
   - matrix:
@@ -92,8 +89,9 @@ for:
         - APPVEYOR_PULL_REQUEST_NUMBER: ''
         - job_name: Deploy
         - branch: master
-
-    deploy_script:
-      - appveyor DownloadFile "https://ci.appveyor.com/api/projects/qiwi/masker/artifacts/artifact.zip?job=Build"
+    before_deploy:
+      - appveyor SetVariable -Name ARTIFACT_JOB -Value $(curl https://ci.appveyor.com/api/projects/QIWI/masker/builds/$APPVEYOR_BUILD_ID | jq -r '.build.jobs[0].jobId')
+      - appveyor DownloadFile "https://ci.appveyor.com/api/buildjobs/$ARTIFACT_JOB/artifacts/artifact.zip"
       - 7z x artifact.zip -y
+    deploy_script:
       - npx -p @qiwi/semrel-toolkit multi-semrel
