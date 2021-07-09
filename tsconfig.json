@@ -6,6 +6,7 @@
       "@qiwi/masker": ["./facade/src/main/ts"],
       "@qiwi/masker-common": ["./common/src/main/ts"],
       "@qiwi/masker-debug": ["./debug/src/main/ts"],
+      "@qiwi/masker-facade": ["./facade/src/main/ts"],
       "@qiwi/masker-json": ["./json/src/main/ts"],
       "@qiwi/masker-limiter": ["./limiter/src/main/ts"],
       "@qiwi/masker-pan": ["./pan/src/main/ts"],

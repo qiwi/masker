@@ -8,7 +8,18 @@
     "tsBuildInfoFile": "./buildcache/.tsbuildinfo"
   },
   "references": [
-    { "path": "../plain" }
+    { "path": "../common" },
+    { "path": "../debug" },
+    { "path": "../json" },
+    { "path": "../limiter" },
+    { "path": "../pan" },
+    { "path": "../plain" },
+    { "path": "../schema" },
+    { "path": "../secret-key" },
+    { "path": "../secret-value" },
+    { "path": "../split" },
+    { "path": "../strike" },
+    { "path": "../trycatch" },
   ],
   "include": [
     "src/main/**/*"

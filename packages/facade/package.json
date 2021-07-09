@@ -37,11 +37,20 @@
   "dependencies": {
     "@qiwi/substrate": "^1.20.9",
     "tslib": "^2.3.0",
-    "@qiwi/masker-plain": "1.2.11"
+    "@qiwi/masker-common": "*",
+    "@qiwi/masker-debug": "*",
+    "@qiwi/masker-json": "*",
+    "@qiwi/masker-limiter": "*",
+    "@qiwi/masker-pan": "*",
+    "@qiwi/masker-plain": "*",
+    "@qiwi/masker-schema": "*",
+    "@qiwi/masker-secret-key": "*",
+    "@qiwi/masker-secret-value": "*",
+    "@qiwi/masker-split": "*",
+    "@qiwi/masker-strike": "*",
+    "@qiwi/masker-trycatch": "*"
   },
-  "devDependencies": {
-    "@qiwi/masker-common": "1.10.1"
-  },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qiwi/masker.git"

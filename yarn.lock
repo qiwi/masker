@@ -1795,6 +1795,37 @@
     pkg-dir "^5.0.0"
     tslib "^2.2.0"
 
+"@qiwi/masker-common@1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-common/-/masker-common-1.10.0.tgz#f46b689e9442e21cd92ed5dfd14d9d467ef112dd"
+  integrity sha512-mUiXzt+q6EcAxMaUloOdIf6VDhjbU3N9dvRly1Sa1xHMony2xz8tHtTFeMDin3XGMKva+OrOt7WrOplCImMz6A==
+  dependencies:
+    "@qiwi/substrate" "^1.20.9"
+    "@types/lodash" "^4.14.170"
+    "@types/xregexp" "^4.3.0"
+    flattie "^1.1.0"
+    lodash "^4.17.21"
+    tslib "^2.3.0"
+    xregexp "^5.0.2"
+
+"@qiwi/masker-plain@1.2.10":
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-plain/-/masker-plain-1.2.10.tgz#b25a6bcc555dc3d265ae929ab3b095e231428aae"
+  integrity sha512-VfVUzgigt0wev4xMkBFzkNP9nKo4ZMNCmHzxZFXlFz1lv/mVSybCkj/stuWak1jALVXti9tppN0Ph+JoND4FTg==
+  dependencies:
+    "@qiwi/masker-common" "1.10.0"
+    "@qiwi/substrate" "^1.20.9"
+    tslib "^2.3.0"
+
+"@qiwi/masker-strike@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@qiwi/masker-strike/-/masker-strike-1.3.0.tgz#5c5adf1e341202d909732f6f2c29bdd0dad95805"
+  integrity sha512-D36Igi8DRndLeQWmmoDP6aOinT27Nz6UJqzMRIvKOw2rTOMdn49iNXah9/h/N6+jtsu9E12SXIE27ghTSobXGA==
+  dependencies:
+    "@qiwi/masker-common" "1.10.0"
+    "@qiwi/substrate" "^1.20.9"
+    tslib "^2.3.0"
+
 "@qiwi/substrate-abstract@1.20.4":
   version "1.20.4"
   resolved "https://registry.yarnpkg.com/@qiwi/substrate-abstract/-/substrate-abstract-1.20.4.tgz#cfa327a63d00368d62de660407dca5d4ef264eaf"
@@ -2002,6 +2033,11 @@
   version "4.14.170"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
   integrity sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==
+
+"@types/lodash@^4.14.170":
+  version "4.14.171"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.171.tgz#f01b3a5fe3499e34b622c362a46a609fdb23573b"
+  integrity sha512-7eQ2xYLLI/LsicL2nejW9Wyko3lcpN6O/z0ZLHrEQsg280zIdCv1t/0m6UtBjUHokCGBQ3gYTbHzDkZ1xOBwwg==
 
 "@types/minimatch@*", "@types/minimatch@^3.0.3":
   version "3.0.3"

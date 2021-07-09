@@ -33,11 +33,11 @@ export const normalizeContext = ({
     sync,
     mode: _mode,
     execute,
-    opts,
     ...rest,
     pipeline: _pipeline,
     originPipeline: _originPipeline,
     pipe,
+    opts,
     id,
     parentId,
   } as IEnrichedContext
