@@ -17,6 +17,7 @@ export const normalizeContext = ({
   mode = IExecutionMode.ASYNC, // Legacy flag
   sync = mode === IExecutionMode.SYNC,
   originPipeline = pipeline,
+  opts = {},
   context: parent,
   ...rest
 }: IRawContext, execute: IExecutor): IEnrichedContext => {
@@ -26,7 +27,7 @@ export const normalizeContext = ({
   const _originPipeline = normalizePipeline(rest.originPipeline || originPipeline, registry)
   const _mode = sync === true ? IExecutionMode.SYNC : IExecutionMode.ASYNC
   const pipe = _pipeline[0]
-  const opts = pipe?.opts || {}
+  const _opts = pipe?.opts || opts
   const context = {
     value,
     registry,
@@ -37,7 +38,7 @@ export const normalizeContext = ({
     pipeline: _pipeline,
     originPipeline: _originPipeline,
     pipe,
-    opts,
+    opts: _opts,
     id,
     parentId,
   } as IEnrichedContext
