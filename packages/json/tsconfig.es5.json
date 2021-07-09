@@ -6,7 +6,7 @@
   },
   "references": [
     { "path": "../common/tsconfig.es5.json" },
-    { "path": "../secret-key/tsconfig.es5.json" }
+    { "path": "../secret-value/tsconfig.es5.json" }
   ],
   "include": [
     "src/main/**/*"

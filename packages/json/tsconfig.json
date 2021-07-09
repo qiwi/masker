@@ -9,7 +9,7 @@
   },
   "references": [
     { "path": "../common" },
-    { "path": "../secret-key" }
+    { "path": "../secret-value" }
   ],
   "include": [
     "src/main/**/*"
