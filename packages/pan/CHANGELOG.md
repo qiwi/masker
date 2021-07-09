@@ -1,3 +1,18 @@
+# @qiwi/masker-pan [1.2.0](https://github.com/qiwi/masker/compare/@qiwi/masker-pan@1.1.11...@qiwi/masker-pan@1.2.0) (2021-07-09)
+
+
+### Features
+
+* **pan:** capture preformatted PANs, handle Number and String objects ([af1305a](https://github.com/qiwi/masker/commit/af1305a01cd3b388b7f30f1ab0f1bd3a0cf22ae8)), closes [#46](https://github.com/qiwi/masker/issues/46)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.11.0
+
 ## @qiwi/masker-pan [1.1.11](https://github.com/qiwi/masker/compare/@qiwi/masker-pan@1.1.10...@qiwi/masker-pan@1.1.11) (2021-07-07)
 
 
