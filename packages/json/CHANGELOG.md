@@ -1,3 +1,20 @@
+## @qiwi/masker-json [1.2.5](https://github.com/qiwi/masker/compare/@qiwi/masker-json@1.2.4...@qiwi/masker-json@1.2.5) (2021-07-09)
+
+
+### Bug Fixes
+
+* **common:** fix pipe opts resolver ([0c20d21](https://github.com/qiwi/masker/commit/0c20d2138f2d8e8319ca492077c2e6795b7c768b))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.11.0
+* **@qiwi/masker-secret-value:** upgraded to 1.0.1
+* **@qiwi/masker-split:** upgraded to 1.6.3
+
 ## @qiwi/masker-json [1.2.4](https://github.com/qiwi/masker/compare/@qiwi/masker-json@1.2.3...@qiwi/masker-json@1.2.4) (2021-07-07)
 
 

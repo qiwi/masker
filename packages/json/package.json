@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker-json",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -37,8 +37,8 @@
   "dependencies": {
     "@qiwi/substrate": "^1.20.9",
     "tslib": "^2.3.0",
-    "@qiwi/masker-common": "1.10.1",
-    "@qiwi/masker-secret-value": "1.0.0"
+    "@qiwi/masker-common": "1.11.0",
+    "@qiwi/masker-secret-value": "1.0.1"
   },
   "devDependencies": {
     "@qiwi/masker-split": "1.6.2"
