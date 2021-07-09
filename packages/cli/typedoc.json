@@ -1,0 +1,12 @@
+{
+  "name": "masquer",
+  "out": "./docs",
+  "entryPoints": ["src/main"],
+  "exclude": ["src/test", "**/node_modules/**", "paralleljs"],
+  "externalPattern": ["**/node_modules/**"],
+  "excludePrivate": false,
+  "hideGenerator": true,
+  "readme": "README.md",
+  "theme": "minimal",
+  "tsconfig": "./tsconfig.es5.json"
+}
