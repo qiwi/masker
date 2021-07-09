@@ -10,29 +10,29 @@ import {
 import {asynchronize} from './utils'
 
 export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry): IMaskerPipeNormalized => {
-  let masker
+  let _pipe
   let opts
   let maskerName
 
   if (Array.isArray(pipe)) {
-    [masker, opts] = pipe
+    [_pipe, opts] = pipe
   }
   else {
-    masker = pipe
+    _pipe = pipe
   }
 
-  if (typeof masker === 'string') {
-    maskerName = masker
-    masker = registry.get(masker)
+  if (typeof _pipe === 'string') {
+    maskerName = _pipe
+    _pipe = registry.get(_pipe)
   }
 
-  if (!masker) {
-    throw new Error(`Pipe not found: ${maskerName || masker}`)
+  if (!_pipe) {
+    throw new Error(`Pipe not found: ${maskerName || _pipe}`)
   }
 
   return {
-    ...masker,
-    opts: {...masker.opts, ...opts},
+    ..._pipe,
+    opts: {..._pipe.opts, ...opts},
   }
 }
 

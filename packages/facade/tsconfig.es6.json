@@ -5,7 +5,18 @@
     "outDir": "target/es6"
   },
   "references": [
-    { "path": "../plain/tsconfig.es6.json" }
+    { "path": "../common/tsconfig.es6.json" },
+    { "path": "../debug/tsconfig.es6.json" },
+    { "path": "../json/tsconfig.es6.json" },
+    { "path": "../limiter/tsconfig.es6.json" },
+    { "path": "../pan/tsconfig.es6.json" },
+    { "path": "../plain/tsconfig.es6.json" },
+    { "path": "../schema/tsconfig.es6.json" },
+    { "path": "../secret-key/tsconfig.es6.json" },
+    { "path": "../secret-value/tsconfig.es6.json" },
+    { "path": "../split/tsconfig.es6.json" },
+    { "path": "../strike/tsconfig.es6.json" },
+    { "path": "../trycatch/tsconfig.es6.json" }
   ],
   "include": [
     "src/main/**/*"
