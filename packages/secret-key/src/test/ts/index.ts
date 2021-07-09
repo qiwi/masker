@@ -2,7 +2,7 @@ import {execute, normalizeContext} from '@qiwi/masker-common'
 import {pipe as plainPipe} from '@qiwi/masker-plain'
 import {defaultOpts, name, pipe} from '../../main/ts'
 
-describe('secret',() => {
+describe('secret-key',() => {
   it('name is defined', () => {
     expect(name).toBe('secret-key')
     expect(pipe.name).toBe(name)
