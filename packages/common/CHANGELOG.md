@@ -1,3 +1,15 @@
+# @qiwi/masker-common [1.11.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.10.1...@qiwi/masker-common@1.11.0) (2021-07-09)
+
+
+### Bug Fixes
+
+* **common:** fix pipe opts resolver ([0c20d21](https://github.com/qiwi/masker/commit/0c20d2138f2d8e8319ca492077c2e6795b7c768b))
+
+
+### Features
+
+* **facade:** add masker factory ([04bd90f](https://github.com/qiwi/masker/commit/04bd90f606a159106e05d45566c135169db8e2da)), closes [#64](https://github.com/qiwi/masker/issues/64)
+
 ## @qiwi/masker-common [1.10.1](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.10.0...@qiwi/masker-common@1.10.1) (2021-07-07)
 
 
