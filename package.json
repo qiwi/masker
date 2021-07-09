@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "lerna clean --yes && lerna run clean",
     "prebuild": "tsc -b packages/facade/tsconfig.es5.json",
-    "build": "yarn clean && yarn prebuild && lerna run build --stream --concurrency 3",
+    "build": "yarn clean && yarn prebuild && lerna run build --stream --concurrency 2",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint --stream --concurrency 1",
     "jest": "jest --runInBand --detectOpenHandles",
