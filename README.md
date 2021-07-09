@@ -9,11 +9,35 @@ For logs, for public data output and so on.
 🚧 Work in progress 🚧 / Experimental / Early preview
 
 ### Roadmap
-- [ ] Introduce (declarative?) masking directives  
+- [x] Implement masking composer/processor
+- [x] Introduce (declarative?) masking directives: [schema](https://github.com/qiwi/masker/tree/master/packages/schema)  
 - [ ] Describe masking strategies and add masking utils  
-- [ ] Implement masking composer/processor  
 - [ ] Support logging tools integration  
 
-## Motivation
-Enterprise development has specific requirements for the masking tools, 
-but it seems that open source solutions do not fully satisfy them. Let's try to change this.
+### Working drafts
+```ts
+import {masker} from '@qiwi/masker'
+
+masker('411111111111111')       // Promise<4111 **** **** 1111>
+masker.sync('4111111111111111') // 4111 **** **** 1111
+
+masker.sync({
+  token: 'foo bar',
+  password: 'bazqux',
+  details: {
+    pans: ['4111111111111111', '1234123412341234'],
+    some: 'value'
+  }
+})
+
+/*
+{
+  token: '***',
+  password: '***',
+  details: {
+    pans: ['4111 **** **** 1111', '1234123412341234'],
+    some: 'value'
+  }
+}
+*/
+```
