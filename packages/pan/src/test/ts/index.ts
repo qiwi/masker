@@ -19,14 +19,18 @@ describe('pan',() => {
           '4324246524356541 4111 **** **** 1111 342gfdgdg 4111 **** **** 1111   ',
         ],
         [4111111111111111, '4111 **** **** 1111'],
+        [new Number(4111111111111111), '4111 **** **** 1111'],
         ['4111111111111111', '4111 **** **** 1111'],
+        [new String('4111111111111111'), '4111 **** **** 1111'],
+        ['4111 1111 1111 1111', '4111 **** **** 1111'],
+        ['4111-1111-1111-1111', '4111 **** **** 1111'],
         [{}, {}],
       ]
       cases.forEach(([value, expected]) => {
         const result = {value: expected}
         const input = normalizeContext({value}, execute)
 
-        it(`${value} > ${expected}`, async() => {
+        it(`${value} (${typeof value})> ${expected}`, async() => {
           expect(pipe.execSync(input)).toEqual(result)
           expect(await pipe.exec(input)).toEqual(result)
         })
