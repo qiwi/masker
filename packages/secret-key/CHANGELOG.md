@@ -1,3 +1,19 @@
+## @qiwi/masker-secret-key [1.0.1](https://github.com/qiwi/masker/compare/@qiwi/masker-secret-key@1.0.0...@qiwi/masker-secret-key@1.0.1) (2021-07-09)
+
+
+### Bug Fixes
+
+* **common:** fix pipe opts resolver ([0c20d21](https://github.com/qiwi/masker/commit/0c20d2138f2d8e8319ca492077c2e6795b7c768b))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.11.0
+* **@qiwi/masker-plain:** upgraded to 1.2.12
+
 # @qiwi/masker-secret-key 1.0.0 (2021-07-07)
 
 
