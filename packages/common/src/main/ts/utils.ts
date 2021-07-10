@@ -1,7 +1,8 @@
 import {Extends, ICallable} from '@qiwi/substrate'
 
 import clone from 'lodash.clonedeep'
-import {IMaskerPipeOutput} from "./interfaces";
+
+import {IMaskerPipeOutput} from './interfaces'
 
 export {flattie as flattenObject} from 'flattie'
 
