@@ -1,3 +1,14 @@
+## @qiwi/masker-limiter [1.0.5](https://github.com/qiwi/masker/compare/@qiwi/masker-limiter@1.0.4...@qiwi/masker-limiter@1.0.5) (2021-07-10)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.12.0
+* **@qiwi/masker-plain:** upgraded to 1.2.13
+
 ## @qiwi/masker-limiter [1.0.4](https://github.com/qiwi/masker/compare/@qiwi/masker-limiter@1.0.3...@qiwi/masker-limiter@1.0.4) (2021-07-09)
 
 
