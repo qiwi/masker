@@ -1,3 +1,10 @@
+# @qiwi/masker-common [1.12.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.11.0...@qiwi/masker-common@1.12.0) (2021-07-10)
+
+
+### Features
+
+* **facade:** add options to masker iface ([1bb4137](https://github.com/qiwi/masker/commit/1bb41378d0b667889aa6aedd9d14c3bc65c4c78d)), closes [#79](https://github.com/qiwi/masker/issues/79)
+
 # @qiwi/masker-common [1.11.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.10.1...@qiwi/masker-common@1.11.0) (2021-07-09)
 
 
