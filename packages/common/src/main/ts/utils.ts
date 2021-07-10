@@ -1,6 +1,7 @@
 import {Extends, ICallable} from '@qiwi/substrate'
 
 import clone from 'lodash.clonedeep'
+import {IMaskerPipeOutput} from "./interfaces";
 
 export {flattie as flattenObject} from 'flattie'
 
@@ -72,7 +73,7 @@ export const asRegExp = (value: any): RegExp | undefined =>
     ? new RegExp(value, 'gi')
     : undefined
 
-export const unboxValue = ({value}: any) => value
+export const unboxValue = <C extends IMaskerPipeOutput = IMaskerPipeOutput>({value}: C): C['value'] => value
 
 // const boxValue = (value: any) => ({value})
 // const echo = <T>(v: T): T => v
