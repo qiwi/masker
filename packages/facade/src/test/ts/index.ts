@@ -28,6 +28,14 @@ describe('facade',() => {
       expect(masker.sync(value)).toEqual(result)
       expect(await masker(value)).toEqual(result)
     })
+
+    it('handles `unbox` flag', async() => {
+      const value = '4111 1111 1111 1111'
+      const result = '4111 **** **** 1111'
+
+      expect(await masker(value, {unbox: false})).toEqual(expect.objectContaining({value: result}))
+      expect(masker.sync(value, {unbox: false})).toEqual(expect.objectContaining({value: result}))
+    })
   })
 
   describe('createMasker()', () => {
