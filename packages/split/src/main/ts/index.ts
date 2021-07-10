@@ -1,8 +1,12 @@
 import {
+  createPipe,
+  defineNonEnum,
+  unboxValue,
   IMaskerPipe,
   IMaskerPipeName,
-  createPipe,
-  defineNonEnum, IMaskerPipeOutput, IEnrichedContext, IMaskerPipeInput,
+  IMaskerPipeOutput,
+  IEnrichedContext,
+  IMaskerPipeInput,
 } from '@qiwi/masker-common'
 
 export const appendPath = (chunk: string = '', prev: string = '') => `${prev ? prev + '.' : ''}${chunk}`
@@ -19,8 +23,6 @@ export const randomizeKeys = (keys: string[]) => {
       : `${k}(${count})`
   })
 }
-
-const unboxValue = ({value}: any) => value
 
 export const assemble = (values: IMaskerPipeOutput[], keys: IMaskerPipeOutput[], origin: any) => {
   const mapped = {keys, values, origin}

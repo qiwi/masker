@@ -1,4 +1,8 @@
-import {asArray, asRegExp} from '../../main/ts'
+import {
+  asArray,
+  asRegExp,
+  unboxValue
+} from '../../main/ts'
 
 describe('utils', () => {
   describe('asArray', () => {
@@ -25,6 +29,12 @@ describe('utils', () => {
       expect(asRegExp(undefined)).toBeUndefined()
       expect(asRegExp({})).toBeUndefined()
       expect(asRegExp(1)).toBeUndefined()
+    })
+  })
+
+  describe('unboxValue', () => {
+    it('extracts value from IMaskerPipeOutput', () => {
+      expect(unboxValue({value: 'foo'})).toBe('foo')
     })
   })
 })
