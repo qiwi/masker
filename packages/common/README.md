@@ -53,7 +53,7 @@ getPipe('foo', registry) // pipe
 ```
 
 ### execute()
-The pipeline executor. Transforms the target value (ctx) thought the handlers queue. Provides both sync and async modes.
+The pipeline executor. Transforms the target value (ctx) via the handlers queue. Provides both sync and async modes.
 ```ts
 import {createPipe as cp, execute} from '@qiwi/masker-common'
 
