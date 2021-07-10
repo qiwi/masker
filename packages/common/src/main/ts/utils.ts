@@ -72,5 +72,7 @@ export const asRegExp = (value: any): RegExp | undefined =>
     ? new RegExp(value, 'gi')
     : undefined
 
+export const unboxValue = ({value}: any) => value
+
 // const boxValue = (value: any) => ({value})
 // const echo = <T>(v: T): T => v

@@ -56,7 +56,7 @@ export type IMaskerRegistry = Map<IMaskerPipeName, IMaskerPipe>
 export type IContextId = string
 
 export type IRawContext = {
-  value: any
+  value?: any
   _value?: any
   final?: boolean
   context?: IEnrichedContext

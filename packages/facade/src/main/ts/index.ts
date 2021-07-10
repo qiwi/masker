@@ -1,7 +1,10 @@
 import {
   execute,
+  hook,
   IMaskerPipeline,
   IMaskerRegistry,
+  IRawContext,
+  unboxValue,
 } from '@qiwi/masker-common'
 
 import {pipe as dbg} from '@qiwi/masker-debug'
@@ -40,23 +43,28 @@ export const pipeline = [
 export interface IMaskerFactoryOpts {
   pipeline?: IMaskerPipeline,
   registry?: IMaskerRegistry
+  unbox?: boolean
 }
 
 export const defaultOptions: IMaskerFactoryOpts = {
   registry,
   pipeline,
+  unbox: true,
 }
 
+export type IMaskerOps = IMaskerFactoryOpts & IRawContext
+
 export type IMasker = {
-  (value: any): Promise<any>
-  sync(value: any): any
+  (value: any, opts?: IRawContext): Promise<any>
+  sync(value: any, opts?: IRawContext): any
 }
 
 export const createMasker = (opts: IMaskerFactoryOpts = {}): IMasker => {
   const _opts = {...defaultOptions, ...opts}
-  const masker = (value: any): Promise<any> => execute({..._opts, value}).then(({value}) => value)
+  const _execute = (ctx: IMaskerOps) => hook(execute(ctx), ctx.unbox ? unboxValue : v => v)
 
-  masker.sync = (value: any): any => execute({..._opts, value, sync: true}).value
+  const masker = (value: any, opts: IRawContext = {}): Promise<any> => _execute({..._opts, ...opts, value})
+  masker.sync = (value: any, opts: IRawContext = {}): any => _execute({..._opts, ...opts, value, sync: true})
 
   return masker
 }
