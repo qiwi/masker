@@ -41,7 +41,7 @@
     "@qiwi/masker-secret-value": "1.0.1"
   },
   "devDependencies": {
-    "@qiwi/masker-split": "1.6.2"
+    "@qiwi/masker-split": "1.6.3"
   },
   "repository": {
     "type": "git",
