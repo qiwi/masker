@@ -49,7 +49,7 @@
     "lodash.unset": "^4.5.2"
   },
   "devDependencies": {
-    "@qiwi/masker-strike": "1.3.2"
+    "@qiwi/masker-strike": "1.3.3"
   },
   "repository": {
     "type": "git",
