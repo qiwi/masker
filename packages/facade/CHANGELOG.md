@@ -1,3 +1,29 @@
+# @qiwi/masker [1.4.0](https://github.com/qiwi/masker/compare/@qiwi/masker@1.3.0...@qiwi/masker@1.4.0) (2021-07-10)
+
+
+### Features
+
+* **facade:** add options to masker iface ([1bb4137](https://github.com/qiwi/masker/commit/1bb41378d0b667889aa6aedd9d14c3bc65c4c78d)), closes [#79](https://github.com/qiwi/masker/issues/79)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.12.0
+* **@qiwi/masker-debug:** upgraded to 1.0.3
+* **@qiwi/masker-json:** upgraded to 1.2.6
+* **@qiwi/masker-limiter:** upgraded to 1.0.5
+* **@qiwi/masker-pan:** upgraded to 1.2.1
+* **@qiwi/masker-plain:** upgraded to 1.2.13
+* **@qiwi/masker-schema:** upgraded to 1.4.5
+* **@qiwi/masker-secret-key:** upgraded to 1.0.2
+* **@qiwi/masker-secret-value:** upgraded to 1.0.2
+* **@qiwi/masker-split:** upgraded to 1.6.4
+* **@qiwi/masker-strike:** upgraded to 1.3.3
+* **@qiwi/masker-trycatch:** upgraded to 1.0.4
+
 # @qiwi/masker [1.3.0](https://github.com/qiwi/masker/compare/@qiwi/masker@1.2.11...@qiwi/masker@1.3.0) (2021-07-09)
 
 
