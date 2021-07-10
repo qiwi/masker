@@ -15,7 +15,7 @@ describe('debug',() => {
     const successPipe = createPipe('success', () => ({value: 'success'}))
     const cases: [string, IRawContext, string][] = [
       [
-        'does now affect the success flow',
+        'logs pipe\'s input and output contexts',
         {
           value: 'foo',
           pipeline: [[pipe, {debug}], successPipe],
@@ -34,9 +34,10 @@ describe('debug',() => {
         expect(debug).toHaveBeenCalledTimes(4)
       })
 
-      // it(name + '(async)', async() => {
-      //   expect((await execute({...ctx})).value).toBe(result)
-      // })
+      it(name + '(async)', async() => {
+        expect((await execute({...ctx})))
+        expect(debug).toHaveBeenCalledTimes(4)
+      })
     })
   })
 })

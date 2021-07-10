@@ -1,5 +1,5 @@
 # @qiwi/masker-json
-JSON extractor pipe.
+JSON extractor pipe
 
 ## Install
 ```shell script
