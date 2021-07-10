@@ -1,7 +1,7 @@
 import {
   asArray,
   asRegExp,
-  unboxValue
+  unboxValue,
 } from '../../main/ts'
 
 describe('utils', () => {
