@@ -1,3 +1,14 @@
+## @qiwi/masker-secret-value [1.0.2](https://github.com/qiwi/masker/compare/@qiwi/masker-secret-value@1.0.1...@qiwi/masker-secret-value@1.0.2) (2021-07-10)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.12.0
+* **@qiwi/masker-plain:** upgraded to 1.2.13
+
 ## @qiwi/masker-secret-value [1.0.1](https://github.com/qiwi/masker/compare/@qiwi/masker-secret-value@1.0.0...@qiwi/masker-secret-value@1.0.1) (2021-07-09)
 
 
