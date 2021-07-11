@@ -1,3 +1,18 @@
+## @qiwi/masker-debug [1.0.4](https://github.com/qiwi/masker/compare/@qiwi/masker-debug@1.0.3...@qiwi/masker-debug@1.0.4) (2021-07-11)
+
+
+### Performance Improvements
+
+* **common:** remove redundant exec on pipeline ending ([0a32b33](https://github.com/qiwi/masker/commit/0a32b3322b0493471cb062543cdeada1f14f50a5))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.12.1
+
 ## @qiwi/masker-debug [1.0.3](https://github.com/qiwi/masker/compare/@qiwi/masker-debug@1.0.2...@qiwi/masker-debug@1.0.3) (2021-07-10)
 
 
