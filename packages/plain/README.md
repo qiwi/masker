@@ -8,14 +8,14 @@ yarn add @qiwi/masker-plain
 
 ## Usage
 ```typescript
-import {masker} from '@qiwi/masker-common'
-import {pipe} from "@qiwi/masker-plain";
-
-masker.register(pipe)
+import {masker} from '@qiwi/masker'
+import {pipe as plain} from '@qiwi/masker-plain'
 
 masker('foobar', {
-  pipeline: ['plain']
+  pipeline: [plain]
 })
 // ***
 ```
 
+## License
+[MIT](https://github.com/qiwi/masker/blob/master/LICENSE)

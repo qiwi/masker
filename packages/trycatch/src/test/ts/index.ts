@@ -12,7 +12,7 @@ describe('trycatch',() => {
     })
 
     const successPipe = createPipe('bar', () => ({value: 'success'}))
-    const errorPipe = createPipe('bar', () => {
+    const errorPipe = createPipe('err', () => {
       throw new Error('Error')
     })
 
