@@ -8,14 +8,14 @@ yarn add @qiwi/masker-strike
 
 ## Usage
 ```typescript
-import {masker} from '@qiwi/masker-common'
+import {masker} from '@qiwi/masker'
 import {pipe} from '@qiwi/masker-strike'
 
-masker.register(pipe)
-
-masker('foo bar baz', {
+masker.sync('foo bar baz', {
   pipeline: ['strike']
 })
 // *** *** ***
 ```
 
+## License
+[MIT](https://github.com/qiwi/masker/blob/master/LICENSE)

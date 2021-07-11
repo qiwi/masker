@@ -95,4 +95,4 @@ const masked = masker.sync(obj, {
 ```
 
 ## License
-MIT
+[MIT](https://github.com/qiwi/masker/blob/master/LICENSE)

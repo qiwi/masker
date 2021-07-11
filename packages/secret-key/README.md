@@ -8,14 +8,14 @@ yarn add @qiwi/masker-secret-key
 
 ## Usage
 ```typescript
-import {masker} from '@qiwi/masker-common'
-import {pipe} from '@qiwi/masker-secret-key'
-
-masker.register(pipe)
+import {masker} from '@qiwi/masker'
+import {pipe as secretKey} from '@qiwi/masker-secret-key'
 
 masker({ secret: 'foo' }, {
-  pipeline: [['secret-key', {pattern: /secret/g, pupeline: ['plain']}]]
+  pipeline: [[secretKey, {pattern: /secret/g, pupeline: ['plain']}]]
 })
 // {secret: '***'}
 ```
 
+## License
+[MIT](https://github.com/qiwi/masker/blob/master/LICENSE)

@@ -71,5 +71,5 @@ execute({pipeline, value, sync: true})  // {value: 'pipe1pipe2'}
 execute.sync({pipeline, value})         // {value: 'pipe1pipe2'}
 ```
 
-### License
-MIT
+## License
+[MIT](https://github.com/qiwi/masker/blob/master/LICENSE)

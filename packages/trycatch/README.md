@@ -8,15 +8,21 @@ yarn add @qiwi/masker-trycatch
 
 ## Usage
 ```typescript
-import {masker} from '@qiwi/masker-common'
-import {pipe} from "@qiwi/masker-trycatch";
+import {masker} from '@qiwi/masker'
+import {createPipe} from '@qiwi/masker-common'
+import {pipe} from '@qiwi/masker-trycatch'
 
-masker.register(pipe)
-
-masker('foobar', {
-  pipeline: ['trycatch', {
-    pipeline: ['plain']
-  }]
+const errorPipe = createPipe('err', () => {
+  throw new Error('Error')
 })
+
+masker.sync('foobar', {
+  pipeline: [['trycatch', {pipeline: ['plain']}], errorPipe]
+})
+
+// '***'
 ```
+
+## License
+[MIT](https://github.com/qiwi/masker/blob/master/LICENSE)
 
