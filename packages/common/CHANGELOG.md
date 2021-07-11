@@ -1,3 +1,15 @@
+## @qiwi/masker-common [1.12.1](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.12.0...@qiwi/masker-common@1.12.1) (2021-07-11)
+
+
+### Bug Fixes
+
+* **common:** let exec path be self-invoked ([12762b6](https://github.com/qiwi/masker/commit/12762b606202801f648a1a2e134813fc5457de9a))
+
+
+### Performance Improvements
+
+* **common:** remove redundant exec on pipeline ending ([0a32b33](https://github.com/qiwi/masker/commit/0a32b3322b0493471cb062543cdeada1f14f50a5))
+
 # @qiwi/masker-common [1.12.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.11.0...@qiwi/masker-common@1.12.0) (2021-07-10)
 
 
