@@ -27,8 +27,6 @@ export const enrichExecutor = (execute: IExecutor): IEnrichedExecutor => {
   return execute as IEnrichedExecutor
 }
 
-
-
 export const execute: IEnrichedExecutor = enrichExecutor(<C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C> => {
   const sharedContext: IEnrichedContext = normalizeContext(context, execute)
   const {pipeline, pipe, mode, execute: _execute, sync, final} = sharedContext
