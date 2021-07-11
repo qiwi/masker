@@ -63,4 +63,4 @@ masker before <ref *2> {
 ```
 
 ## License
-MIT
+[MIT](https://github.com/qiwi/masker/blob/master/LICENSE)

@@ -72,6 +72,7 @@ export type IRawContext = {
 export interface IEnrichedContext {
   value: any
   _value?: any
+  final?: boolean
   id: IContextId
   parentId?: IContextId
   registry: IMaskerRegistry

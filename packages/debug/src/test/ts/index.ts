@@ -29,14 +29,13 @@ describe('debug',() => {
       it(name + '(sync)', () => {
         expect(execute({...ctx, sync: true}).value).toBe(result)
         expect(debug).toHaveBeenCalledWith('before', expect.objectContaining({value: ctx.value}))
-        expect(debug).toHaveBeenCalledWith('before', expect.objectContaining({value: result}))
         expect(debug).toHaveBeenCalledWith('after', expect.objectContaining({value: result}))
-        expect(debug).toHaveBeenCalledTimes(4)
+        expect(debug).toHaveBeenCalledTimes(2)
       })
 
       it(name + '(async)', async() => {
         expect((await execute({...ctx})))
-        expect(debug).toHaveBeenCalledTimes(4)
+        expect(debug).toHaveBeenCalledTimes(2)
       })
     })
   })
