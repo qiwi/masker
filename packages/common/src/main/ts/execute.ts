@@ -12,6 +12,7 @@ import {
   SyncGuard,
 } from './interfaces'
 import {normalizeContext} from './context'
+import {createPipe} from './pipe'
 
 export type THookCallback = (res: IMaskerPipeOutput) => ReturnType<IExecutor>
 
@@ -71,6 +72,10 @@ export const patchExecutor = (execHook: TExecutorHook, name: IMaskerPipeName) =>
   ctx.originPipeline = ctx.originPipeline.filter((pipe) => pipe.name !== name)
   ctx.pipeline = ctx.pipeline.filter((pipe) => pipe.name !== name)
 
+  // To let exec-patch be self-invoked
+  if (ctx.pipeline.length === 0) {
+    ctx.pipeline = [createPipe('echo', (v: any) => v)]
+  }
   // @ts-ignore
   ctx.context = undefined
 
