@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker-secret-key",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -37,7 +37,7 @@
   "dependencies": {
     "@qiwi/substrate": "^1.20.9",
     "tslib": "^2.3.0",
-    "@qiwi/masker-common": "1.12.0",
+    "@qiwi/masker-common": "1.12.1",
     "@qiwi/masker-plain": "1.2.13"
   },
   "devDependencies": {},
