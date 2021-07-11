@@ -13,9 +13,11 @@ import {json} from '@qiwi/masker-json'
 import {split} from '@qiwi/masker-split'
 import {strike} from '@qiwi/masker-strike'
 
-masker('{"foo": "bar"}  ', {
+masker('{"foo": "bar"}  foo bar', {
   pipeline: [json, split, strike]
 })
-// '{"foo": "***"}  '
+// '{"***": "***"}  foo bar'
 ```
 
+## License
+[MIT](https://github.com/qiwi/masker/blob/master/LICENSE)
