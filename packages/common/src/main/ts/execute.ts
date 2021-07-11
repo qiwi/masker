@@ -27,20 +27,33 @@ export const enrichExecutor = (execute: IExecutor): IEnrichedExecutor => {
   return execute as IEnrichedExecutor
 }
 
+
+
 export const execute: IEnrichedExecutor = enrichExecutor(<C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C> => {
   const sharedContext: IEnrichedContext = normalizeContext(context, execute)
-  const {pipeline, pipe, mode, execute: _execute, sync} = sharedContext
-  if (!pipe || (context as IMaskerPipeOutput).final) {
-    return hook(context, v => v)
-  }
+  const {pipeline, pipe, mode, execute: _execute, sync, final} = sharedContext
 
-  const {execSync, exec} = pipe
-  const fn = mode === IExecutionMode.SYNC || sync ? execSync : exec
-  const next: THookCallback = (res) => (res.execute || _execute)({
-    ...sharedContext,
-    ...res,
-    pipeline: res.pipeline || pipeline.slice(1),
-  })
+  const exec: THookCallback = () => {
+    if (!pipe || final) {
+      return hook(context, v => v)
+    }
+
+    const {execSync, exec} = pipe
+    const fn = mode === IExecutionMode.SYNC || sync ? execSync : exec
+    return fn(sharedContext)
+  }
+  const next: THookCallback = (res) => {
+    const _ctx = {
+      ...sharedContext,
+      ...res,
+      execute: res.execute || _execute,
+      pipeline: res.pipeline || pipeline.slice(1),
+    }
+
+    return (_ctx.final || _ctx.pipeline.length === 0)
+      ? hook(_ctx, v => v)
+      : _ctx.execute(_ctx)
+  }
 
   let _value: any
   const pre: THookCallback = (res) => {
@@ -50,7 +63,7 @@ export const execute: IEnrichedExecutor = enrichExecutor(<C extends IRawContext>
     res._value = _value; return res
   }
 
-  return hook(hook(hook(fn({...sharedContext}), pre), next), post) // Pipeline inside pipeline executor.
+  return hook(hook(hook(exec(sharedContext), pre), next), post) // Pipeline inside pipeline executor.
 })
 
 export type TExecutorHook = (ctx: IMaskerPipeInput) => IEnrichedExecutor
