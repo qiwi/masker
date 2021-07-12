@@ -1,11 +1,12 @@
 import {
-  execute,
-  hook,
+  createMasker,
+  IMasker,
+  IMaskerFactoryOpts,
   IMaskerPipeline,
   IMaskerRegistry,
-  IRawContext,
-  unboxValue,
 } from '@qiwi/masker-common'
+
+export * from '@qiwi/masker-common'
 
 import {pipe as dbg} from '@qiwi/masker-debug'
 import {pipe as json} from '@qiwi/masker-json'
@@ -32,7 +33,7 @@ export const registry: IMaskerRegistry = new Map()
   .set(strike.name, strike)
   .set(trycatch.name, trycatch)
 
-export const pipeline = [
+export const pipeline: IMaskerPipeline = [
   trycatch,
   json,
   secretKey,
@@ -40,33 +41,10 @@ export const pipeline = [
   split,
 ]
 
-export interface IMaskerFactoryOpts {
-  pipeline?: IMaskerPipeline,
-  registry?: IMaskerRegistry
-  unbox?: boolean
-}
-
 export const defaultOptions: IMaskerFactoryOpts = {
   registry,
   pipeline,
   unbox: true,
 }
 
-export type IMaskerOps = IMaskerFactoryOpts & IRawContext
-
-export type IMasker = {
-  (value: any, opts?: IRawContext): Promise<any>
-  sync(value: any, opts?: IRawContext): any
-}
-
-export const createMasker = (opts: IMaskerFactoryOpts = {}): IMasker => {
-  const _opts = {...defaultOptions, ...opts}
-  const _execute = (ctx: IMaskerOps) => hook(execute(ctx), ctx.unbox ? unboxValue : v => v)
-
-  const masker = (value: any, opts: IRawContext = {}): Promise<any> => _execute({..._opts, ...opts, value})
-  masker.sync = (value: any, opts: IRawContext = {}): any => _execute({..._opts, ...opts, value, sync: true})
-
-  return masker
-}
-
-export const masker: IMasker = createMasker()
+export const masker: IMasker = createMasker(defaultOptions)

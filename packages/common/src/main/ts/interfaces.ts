@@ -1,11 +1,16 @@
 import {IExecutionMode, Extends} from '@qiwi/substrate'
 
-export type IMaskerType = string
+export interface IMaskerFactoryOpts {
+  pipeline?: IMaskerPipeline
+  registry?: IMaskerRegistry
+  unbox?: boolean
+}
 
-export interface IMasker {
-  type: IMaskerType
-  (context: IMaskerContext): Promise<any>
-  sync?: (context: IMaskerContext) => any
+export type IMaskerOpts = IMaskerFactoryOpts & IRawContext
+
+export type IMasker = {
+  (value: any, opts?: IRawContext): Promise<any>
+  sync(value: any, opts?: IRawContext): any
 }
 
 export interface IMaskerPipeSync {
@@ -20,15 +25,15 @@ export interface IMaskerPipeDual {
   <C extends IMaskerPipeInput = IMaskerPipeInput>(input: C): SyncGuard<IMaskerPipeOutput, C>
 }
 
-export type IMaskerOpts = Record<string, any>
+export type IMaskerPipeOpts = Record<string, any>
 
 export interface IMaskerPipe {
   name: IMaskerPipeName
   exec: IMaskerPipeAsync | IMaskerPipeDual
   execSync: IMaskerPipeSync | IMaskerPipeDual,
-  opts?: IMaskerOpts
+  opts?: IMaskerPipeOpts
 }
-export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerOpts]
+export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerPipeOpts]
 
 export type IMaskerDirectives = Array<IMaskerDirective>
 
@@ -79,7 +84,7 @@ export interface IEnrichedContext {
   execute: IEnrichedExecutor
   sync: boolean
   mode: IExecutionMode
-  opts: IMaskerOpts
+  opts: IMaskerPipeOpts
   pipe?: IMaskerPipeNormalized
   pipeline: IMaskerPipelineNormalized
   originPipeline: IMaskerPipelineNormalized
@@ -117,14 +122,14 @@ export type IMaskerPipeName = string
 
 export type IMaskerPipeRef = IMaskerPipeName | IMaskerPipe
 
-export type IMaskerPipeRefWithOpts = [IMaskerPipeRef, IMaskerOpts]
+export type IMaskerPipeRefWithOpts = [IMaskerPipeRef, IMaskerPipeOpts]
 
 export type IMaskerPipeDeclaration = IMaskerPipeRef | IMaskerPipeRefWithOpts
 
 export type IMaskerPipeline = Array<IMaskerPipeDeclaration>
 
 export type IMaskerPipeNormalized = IMaskerPipe & {
-  opts: IMaskerOpts
+  opts: IMaskerPipeOpts
 }
 
 export type IMaskerPipelineNormalized = Array<IMaskerPipeNormalized>
