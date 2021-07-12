@@ -7,7 +7,7 @@ yarn add @qiwi/masker-limiter
 ```
 
 ## Usage
-To limit the execution depth:
+To limit the execution steps:
 ```typescript
 import {createMasker, pipeline, createPipe} from '@qiwi/masker-common'
 import {pipe as limiter} from '@qiwi/masker-limiter'
@@ -37,15 +37,18 @@ masker.sync(obj)
   '***(3)': '***',
 }
 ```
-To limit exec duration:
+To limit the exec duration:
 ```ts
+import {createMasker, pipeline, createPipe} from '@qiwi/masker-common'
+import {pipe as limiter} from '@qiwi/masker-limiter'
+
 let delay = 0
 const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
 const echoPipe = createPipe(
   'echo',
   ({value}: any) => ({value}),
   async({value}: any) => {
-    // NOTE split executes queues in palarallel, so we use progressive delay
+    // NOTE split executes queues in parallel, so we use progressive delay
     await sleep(delay += 25)
     return {value}
   },

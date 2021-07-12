@@ -1,4 +1,5 @@
 # @qiwi/masker
+[![Maintainability](https://api.codeclimate.com/v1/badges/6205424ac673cb3f2bb8/maintainability)](https://codeclimate.com/github/qiwi/masker/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6205424ac673cb3f2bb8/test_coverage)](https://codeclimate.com/github/qiwi/masker/test_coverage)  
 Composite data masking utility
 
 ## Goal
@@ -6,13 +7,14 @@ Implement instruments, describe practices, contracts to solve sensitive data mas
 For logs, for public data output and so on.
 
 ## Status
-🚧 Work in progress 🚧 / Experimental / Early preview
+🚧 Work in progress / MVP#0 is available for testing  
+⚠️ **Not ready for production yet**
 
 ### Roadmap
 - [x] Implement masking composer/processor
 - [x] Introduce (declarative?) masking directives: [schema](https://github.com/qiwi/masker/tree/master/packages/schema)  
-- [x] Describe masking strategies and add masking utils  
-- [ ] Support logging tools integration  
+- [x] Describe masking strategies and add masking utils
+- [ ] Support logging tools integration
 
 ### Working drafts
 ```ts
