@@ -38,7 +38,7 @@
     "@qiwi/substrate": "^1.20.9",
     "tslib": "^2.3.0",
     "@qiwi/masker-common": "1.12.1",
-    "@qiwi/masker-plain": "1.2.13"
+    "@qiwi/masker-plain": "1.2.14"
   },
   "devDependencies": {
     "@qiwi/masker": "1.4.1"
