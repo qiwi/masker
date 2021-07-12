@@ -37,6 +37,7 @@ export const pipeline: IMaskerPipeline = [
   trycatch,
   json,
   secretKey,
+  secretValue,
   pan,
   split,
 ]
