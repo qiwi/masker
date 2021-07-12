@@ -6,7 +6,7 @@ import {
   IMaskerPipeSync,
   IMaskerRegistry,
   IMaskerPipeDual,
-  IMaskerOpts,
+  IMaskerPipeOpts,
 } from './interfaces'
 import {asynchronize} from './utils'
 
@@ -37,7 +37,7 @@ export const getPipe = (pipe: IMaskerPipeDeclaration, registry: IMaskerRegistry)
   }
 }
 
-export const createPipe = (name: IMaskerPipeName, execSync: IMaskerPipeSync | IMaskerPipeDual, exec?: IMaskerPipeAsync | IMaskerPipeDual, opts: IMaskerOpts = {}): IMaskerPipeNormalized =>
+export const createPipe = (name: IMaskerPipeName, execSync: IMaskerPipeSync | IMaskerPipeDual, exec?: IMaskerPipeAsync | IMaskerPipeDual, opts: IMaskerPipeOpts = {}): IMaskerPipeNormalized =>
   ({
     name,
     execSync,
