@@ -15,6 +15,7 @@ describe('facade',() => {
           pans: ['4111111111111111', '1234123412341234'],
           some: 'value',
         },
+        text: 'foo bar password=value baz',
       }
       const result = {
         token: '***',
@@ -23,6 +24,7 @@ describe('facade',() => {
           pans: ['4111 **** **** 1111', '1234123412341234'],
           some: 'value',
         },
+        text: 'foo bar *** baz',
       }
 
       expect(masker.sync(value)).toEqual(result)
