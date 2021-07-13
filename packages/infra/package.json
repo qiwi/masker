@@ -7,7 +7,11 @@
     "access": "public"
   },
   "files": [],
-  "scripts": {},
+  "scripts": {
+    "build": "exit 0",
+    "test": "exit 0",
+    "lint": "exit 0"
+  },
   "dependencies": {},
   "devDependencies": {
     "@qiwi/libdefkit": "^3.0.0",
