@@ -1,5 +1,4 @@
-import {createMasker, registry} from '@qiwi/masker'
-import {createPipe} from '@qiwi/masker-common'
+import {createMasker, createPipe, registry} from '@qiwi/masker'
 import {pipe as limiter} from '../../main/ts'
 
 describe('limiter', () => {

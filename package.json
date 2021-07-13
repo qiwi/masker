@@ -10,25 +10,22 @@
   "scripts": {
     "clean": "lerna clean --yes && lerna run clean",
     "prebuild": "tsc -b packages/facade/tsconfig.es5.json",
-    "build": "yarn clean && yarn prebuild && lerna run build --stream --concurrency 2",
-    "bootstrap": "lerna bootstrap",
-    "lint": "lerna run lint --stream --concurrency 1",
+    "build": "yarn clean && yarn prebuild && yarn workspaces run build",
+    "lint": "yarn workspaces run lint",
     "jest": "jest --runInBand --detectOpenHandles",
     "test:report": "yarn test && yarn coveralls:push",
     "test": "yarn lint && yarn jest",
-    "test:concurrent": "lerna run test --concurrency 1 --stream --no-prefix && yarn coverage:merge",
+    "test:concurrent": "yarn workspaces run test && yarn coverage:merge",
     "coverage:merge": "node scripts/js/coverage-merge.js",
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || echo 'coveralls push failed :(' && exit 0",
     "docs": "typedoc packages/**/src/main --ignoreCompilerErrors || exit 0",
-    "postupdate": "yarn && yarn bootstrap && npm_config_yes=trye npx yarn-audit-fix && yarn build && yarn test",
+    "postupdate": "yarn && npm_config_yes=true npx yarn-audit-fix && yarn build && yarn test",
     "release:debug": "DEBUG='semantic-release:*,msr:*' multi-semantic-release"
   },
   "devDependencies": {
-    "codeclimate-test-reporter": "^0.5.1",
     "coveralls": "^3.1.1",
     "find-git-root": "^1.0.4",
     "jest": "^27.0.6",
-    "lerna": "^4.0.0",
     "snazzy": "^9.0.0"
   },
   "repository": {
