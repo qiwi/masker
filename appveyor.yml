@@ -12,15 +12,14 @@ matrix:
   fast_finish: true
 
 init:
+  - sh: sudo apt-get -y install jq
   - cmd: powershell Install-Product node $env:nodejs_version
   - sh: nvm install $nodejs_version
   - node --version
   - yarn --version
-  - sh: sudo apt-get -y install jq
 
 install:
   - yarn --ignore-engines
-  - yarn bootstrap
 
 environment:
   nodejs_version: "14"
