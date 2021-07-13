@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Composite data masking utility",
   "private": false,
   "publishConfig": {
@@ -40,7 +40,7 @@
     "@qiwi/masker-common": "1.12.1",
     "@qiwi/masker-debug": "1.0.4",
     "@qiwi/masker-json": "1.2.7",
-    "@qiwi/masker-limiter": "1.0.6",
+    "@qiwi/masker-limiter": "1.0.7",
     "@qiwi/masker-pan": "1.2.2",
     "@qiwi/masker-plain": "1.2.14",
     "@qiwi/masker-schema": "1.4.6",

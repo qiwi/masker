@@ -1,3 +1,18 @@
+# @qiwi/masker [1.5.0](https://github.com/qiwi/masker/compare/@qiwi/masker@1.4.1...@qiwi/masker@1.5.0) (2021-07-13)
+
+
+### Features
+
+* **facade:** add `secret-value` plugin to default pipeline ([64a8247](https://github.com/qiwi/masker/commit/64a82474586637433cdf63e7866cf65011118ef3))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-limiter:** upgraded to 1.0.7
+
 ## @qiwi/masker [1.4.1](https://github.com/qiwi/masker/compare/@qiwi/masker@1.4.0...@qiwi/masker@1.4.1) (2021-07-11)
 
 
