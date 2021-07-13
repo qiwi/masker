@@ -26,4 +26,19 @@ describe('createMasker()', () => {
       .sync('value', {pipeline: [barPipe]}))
       .toEqual('bar')
   })
+
+  it('uses custom registry if passed', () => {
+    const fooPipe = createPipe('foo', () => ({value: 'foo'}))
+    const barPipe = createPipe('bar', ({value}: any) => ({value: value + 'bar'}))
+    const customRegistry = new Map()
+      .set(fooPipe.name, fooPipe)
+      .set(barPipe.name, barPipe)
+
+    const customMasker = createMasker({
+      registry: customRegistry,
+      pipeline: ['foo', 'bar'],
+    })
+
+    expect(customMasker.sync('any')).toBe('foobar')
+  })
 })

@@ -43,7 +43,7 @@ describe('limiter', () => {
       )
       const masker = createMasker({
         registry,
-        pipeline: [[limiter, {duration: 100}], echoPipe, 'split'],
+        pipeline: [[limiter, {duration: 105}], echoPipe, 'split'],
       })
       const obj = ['foo', 'bar', 'baz']
       expect(await masker(obj)).toEqual(['foo', '***', '***'])
