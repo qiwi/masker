@@ -1,10 +1,11 @@
-import {pipeline, createMasker} from '@qiwi/masker'
+import {pipeline, createMasker, registry} from '@qiwi/masker'
 import {pipe as schema} from '@qiwi/masker-schema'
 
 describe('schema', () => {
   describe('works as described in README', () => {
     it('example #1', () => {
       const masker = createMasker({
+        registry,
         pipeline: [schema, ...pipeline],
       })
 
@@ -57,6 +58,7 @@ describe('schema', () => {
         baz: 'baz',
       }
       const masker = createMasker({
+        registry,
         pipeline: [schema, ...pipeline],
       })
       const masked = masker.sync(obj, {

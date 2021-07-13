@@ -66,12 +66,16 @@ const _res = masker.sync(obj, {unbox: false, schema: res.schema})
 The properties, which have no `valueDirectives` or `keyDirectives`, will be not processed at all. 
 Masker wouldn't even try to observe its inners. This feature makes a lot of sense if you deal with huge same-structured objects.
 ```ts
+import {pipeline, createMasker, registry} from '@qiwi/masker'
+import {pipe as schema} from '@qiwi/masker-schema'
+
 const obj = {
   foo: 'foo foo',
   bar: 'bar',
   baz: 'baz',
 }
 const masker = createMasker({
+  registry,
   pipeline: [schema, ...pipeline],
 })
 const masked = masker.sync(obj, {
