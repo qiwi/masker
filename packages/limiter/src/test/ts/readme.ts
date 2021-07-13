@@ -30,7 +30,7 @@ describe('limiter', () => {
       })
     })
 
-    it('example #2', async () => {
+    it('example #2', async() => {
       let delay = 0
       const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
       const echoPipe = createPipe(
