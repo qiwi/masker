@@ -9,11 +9,12 @@ yarn add @qiwi/masker-limiter
 ## Usage
 To limit the execution steps:
 ```typescript
-import {createMasker, pipeline, createPipe} from '@qiwi/masker-common'
+import {createMasker, pipeline, createPipe, registry} from '@qiwi/masker'
 import {pipe as limiter} from '@qiwi/masker-limiter'
 
 const echo = createPipe('echo', (v) => ({v}))
 const masker = createMasker({
+  registry,
   pipeline: [[limiter, {limit: 7, pipeline: ['plain']}], 'split', echo]
 })
 const obj = {
@@ -39,7 +40,7 @@ masker.sync(obj)
 ```
 To limit the exec duration:
 ```ts
-import {createMasker, pipeline, createPipe} from '@qiwi/masker-common'
+import {createMasker, pipeline, registry, createPipe} from '@qiwi/masker'
 import {pipe as limiter} from '@qiwi/masker-limiter'
 
 let delay = 0
@@ -54,6 +55,7 @@ const echoPipe = createPipe(
   },
 )
 const masker = createMasker({
+  registry,
   pipeline: [[limiter, {duration: 100}], echoPipe, 'split'],
 })
 const obj = ['foo', 'bar', 'baz']
