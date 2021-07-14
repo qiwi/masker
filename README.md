@@ -45,9 +45,28 @@ export interface IMaskerPipe {
   opts?: IMaskerPipeOpts
 }
 ```
-Each pipe has full context control. It can override next steps, change the executor impl (replace, append hook, etc), 
-create internal masker threads, parallelize invocation queues and sync them back together.
+Each pipe has full `context` control. It can override next steps, change the executor impl (replace, append hook, etc), 
+create internal masker threads, parallelize invocation queues and sync them back together, and so on.
 
+**Context**
+```ts
+export interface IMaskerPipeInput {
+  value: any                // value to process
+  _value?: any              // pipe result
+  id: IContextId            // ctx unique key
+  context: IMaskerPipeInput // ctx self ref
+  parentId?: IContextId     // parent ctx id
+  registry: IMaskerRegistry       // pipe registry attached to ctx
+  execute: IEnrichedExecutor      // executor 
+  sync: boolean                   // sync / async switch
+  mode: IExecutionMode            // lagacy sync switch
+  opts: IMaskerOpts               // current pipe options
+  pipe?: IMaskerPipeNormalized              // current pipe ref
+  pipeline: IMaskerPipelineNormalized       // actual pipeline
+  originPipeline: IMaskerPipelineNormalized // origin pipeline
+  [key: string]: any
+}
+```
 
 ## Usage
 ### JS/TS API
@@ -103,6 +122,29 @@ const customMasker = createMasker({
 })
 ```
 
+**createPipe()** is a pretty simple `pipe` factory:
+```ts
+export const createPipe = (name: IMaskerPipeName, execSync: IMaskerPipeSync | IMaskerPipeDual, exec?: IMaskerPipeAsync | IMaskerPipeDual, opts: IMaskerPipeOpts = {}): IMaskerPipeNormalized =>
+({
+  name,
+  execSync,
+  exec: exec || asynchronize(execSync),
+  opts,
+})
+```
+
+**pipeline** is an array of pipes: normalized pipes, pipe names, pipes with opts, etc:
+```ts
+import {pipe as splitPipe} from '@qiwi/masker-split'
+
+const pipeline = [
+  splitPipe,
+  'pan',
+  ['secret-value', {
+    pattern: /(token|pwd|password|credential|secret)?=\s*[^ ]+/i,
+  }]]
+```
+
 **registry** is a regular map that refers all known plugins by their names. It's required for:
 * pipeline normalization. You may just use pipe `name` instead of pipe ref. `['split', 'strike']`
 * [masker-schema](https://github.com/qiwi/masker/tree/master/packages/schema)-like plugins to resolve masking directives.
@@ -135,6 +177,7 @@ npx masquer "4111 1111 1111 1111"
 |[masquer](https://github.com/qiwi/masker/tree/master/packages/cli)| CLI for [@qiwi/masker](https://github.com/qiwi/masker/tree/master/packages/facade) | [![npm](https://img.shields.io/npm/v/masquer/latest.svg?label=&color=09e)](https://www.npmjs.com/package/masquer)
 |[@qiwi/masker-common](https://github.com/qiwi/masker/tree/master/packages/common)| Masker common components: interfaces, executor, utils | [![npm](https://img.shields.io/npm/v/@qiwi/masker-common/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-common)
 |[@qiwi/masker-debug](https://github.com/qiwi/masker/tree/master/packages/debug)| Debug plugin to observe pipe effects | [![npm](https://img.shields.io/npm/v/@qiwi/masker-debug/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-debug)
+|[@qiwi/masker-infra](https://github.com/qiwi/masker/tree/master/packages/infra)| Infra package: build configs, tools, etc | [![npm](https://img.shields.io/npm/v/@qiwi/masker-infra/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-infra)
 |[@qiwi/masker-json](https://github.com/qiwi/masker/tree/master/packages/json)| Plugin to search and parse JSONs chunks in strings | [![npm](https://img.shields.io/npm/v/@qiwi/masker-json/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-json)
 |[@qiwi/masker-limiter](https://github.com/qiwi/masker/tree/master/packages/limiter)| Plugin to limit masking steps count and duration | [![npm](https://img.shields.io/npm/v/@qiwi/masker-limiter/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-limiter)
 |[@qiwi/masker-pan](https://github.com/qiwi/masker/tree/master/packages/pan)| Plugin to search and conceal [PANs](https://en.wikipedia.org/wiki/Payment_card_number) | [![npm](https://img.shields.io/npm/v/@qiwi/masker-pan/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-pan)
