@@ -8,7 +8,7 @@
   ],
   "private": true,
   "scripts": {
-    "clean": "lerna clean --yes && lerna run clean",
+    "clean": "rimraf packages/*/target packages/*/typings packages/*/buildcache packages/*/docs packages/*/coverage",
     "prebuild": "tsc -b packages/facade/tsconfig.es5.json",
     "build": "yarn clean && yarn prebuild && yarn workspaces run build",
     "lint": "yarn workspaces run lint",
