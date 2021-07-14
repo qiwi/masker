@@ -37,13 +37,13 @@ describe('limiter', () => {
         'echo',
         ({value}: any) => ({value}),
         async({value}: any) => {
-          await sleep(delay += 25)
+          await sleep(delay += 50)
           return {value}
         },
       )
       const masker = createMasker({
         registry,
-        pipeline: [[limiter, {duration: 105}], echoPipe, 'split'],
+        pipeline: [[limiter, {duration: 200}], echoPipe, 'split'],
       })
       const obj = ['foo', 'bar', 'baz']
       expect(await masker(obj)).toEqual(['foo', '***', '***'])
