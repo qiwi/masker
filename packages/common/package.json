@@ -36,12 +36,7 @@
   },
   "dependencies": {
     "@qiwi/substrate": "^1.20.9",
-    "@types/xregexp": "^4.3.0",
-    "flattie": "^1.1.0",
-    "lodash.clonedeep": "^4.5.0",
-    "@types/lodash.clonedeep": "^4.5.6",
-    "tslib": "^2.3.0",
-    "xregexp": "^5.0.2"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@qiwi/masker-infra": "1.0.3"

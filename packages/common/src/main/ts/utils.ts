@@ -1,12 +1,6 @@
 import {Extends, ICallable} from '@qiwi/substrate'
 
-import clone from 'lodash.clonedeep'
-
 import {IMaskerPipeOutput} from './interfaces'
-
-export {flattie as flattenObject} from 'flattie'
-
-export {clone}
 
 export const mapValues = (input: any, fn: (input: any, key?: string) => any) => {
   const result = Array.isArray(input) ? [] : {}
