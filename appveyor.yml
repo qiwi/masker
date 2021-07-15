@@ -53,8 +53,10 @@ for:
 
   - matrix:
       only:
-        - branch: master
         - job_name: TestNodeJS12
+    branches:
+      only:
+        - master
 
     before_test:
       - appveyor SetVariable -Name ARTIFACT_JOB -Value $(curl https://ci.appveyor.com/api/projects/QIWI/masker/builds/$APPVEYOR_BUILD_ID | jq -r '.build.jobs[0].jobId')
@@ -88,7 +90,9 @@ for:
       only:
         - APPVEYOR_PULL_REQUEST_NUMBER: ''
         - job_name: Deploy
-        - branch: master
+    branches:
+      only:
+        - master
     before_deploy:
       - appveyor SetVariable -Name ARTIFACT_JOB -Value $(curl https://ci.appveyor.com/api/projects/QIWI/masker/builds/$APPVEYOR_BUILD_ID | jq -r '.build.jobs[0].jobId')
       - appveyor DownloadFile "https://ci.appveyor.com/api/buildjobs/$ARTIFACT_JOB/artifacts/artifact.zip"
