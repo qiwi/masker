@@ -2,11 +2,11 @@ import get from 'lodash.get'
 import set from 'lodash.set'
 import unset from 'lodash.unset'
 import invert from 'lodash.invert'
+import clone from 'lodash.clonedeep'
+import {flattie as flattenObject} from 'flattie'
 import {
   normalizeContext,
-  clone,
   hook,
-  flattenObject,
   enrichExecutor,
   isEqual,
   IMaskerPipeName,
