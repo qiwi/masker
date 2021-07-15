@@ -16,7 +16,7 @@ npx masquer "4111 1111 1111 1111"
 
 ## Purpose
 Implement instruments, describe practices, contracts to solve sensitive data masking problem in JS/TS.
-For safe logging, for public data output, for internal mimt-proxies (kuber sensitive-data-policy) and so on.
+For secure logging, for public data output, for internal mimt-proxies (kuber sensitive-data-policy) and so on.
 
 ### Status
 🚧 Work in progress / MVP#0 is available for testing  
@@ -45,7 +45,7 @@ export interface IMaskerPipe {
   opts?: IMaskerPipeOpts
 }
 ```
-During the execution, pipe handler takes full control of the `context`. It can override next steps, change the executor impl (replace, append hook, etc), 
+During the execution, pipe handler takes full control of the `context`. It can override next steps, change the `executor` impl (replace, append hook, etc), 
 create internal masker threads, parallelize invocation queues and sync them back together, and so on.
 
 ### Context
@@ -99,7 +99,7 @@ masker.sync({
   }
 }
 ```
-You may also call `masker` with custom `pipeline` and `registry` options to override default behavior.
+You may also call `masker` with custom `pipeline` and `registry` options to override the default behavior.
 ```ts
 masker.sync({
   token: 'foo bar',
