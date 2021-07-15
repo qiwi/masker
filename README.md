@@ -14,9 +14,9 @@ npx masquer "4111 1111 1111 1111"
 # returns 4111 **** **** 1111
 ```
 
-## Goal
+## Purpose
 Implement instruments, describe practices, contracts to solve sensitive data masking problem in JS/TS.
-For logs, for public data output and so on.
+For safe logging, for public data output, for internal mimt-proxies (kuber sensitive-data-policy) and so on.
 
 ### Status
 🚧 Work in progress / MVP#0 is available for testing  
@@ -36,7 +36,7 @@ For logs, for public data output and so on.
 
 ### Design
 The masker bases on the middleware pattern: it takes some data and pushes it forward the `pipeline`. 
-The output of each `pipe` is the input for the next one. Each pipe is dual interface data processor:
+The output of each `pipe` is the input for the next one. Each pipe is a dual interface data processor:
 ```ts
 export interface IMaskerPipe {
   name: IMaskerPipeName
@@ -45,10 +45,10 @@ export interface IMaskerPipe {
   opts?: IMaskerPipeOpts
 }
 ```
-Each pipe has full `context` control. It can override next steps, change the executor impl (replace, append hook, etc), 
+During the execution, pipe handler takes full control of the `context`. It can override next steps, change the executor impl (replace, append hook, etc), 
 create internal masker threads, parallelize invocation queues and sync them back together, and so on.
 
-**Context**
+### Context
 ```ts
 export interface IMaskerPipeInput {
   value: any                // value to process
@@ -70,7 +70,9 @@ export interface IMaskerPipeInput {
 
 ## Usage
 ### JS/TS API
-Default **masker** may be used to handle the most basic cases: [PANs](https://en.wikipedia.org/wiki/Payment_card_number), 
+#### masker
+The main interface — entry point to the masking processor.
+Default `masker` may be used to handle the most basic cases: [PANs](https://en.wikipedia.org/wiki/Payment_card_number), 
 passwords, tokens in strings and objects.
 ```ts
 import {masker} from '@qiwi/masker'
@@ -97,7 +99,7 @@ masker.sync({
   }
 }
 ```
-If you need a custom pipeline for a single case, you may call `masker` with `pipeline` option.
+You may also call `masker` with custom `pipeline` and `registry` options to override default behavior.
 ```ts
 masker.sync({
   token: 'foo bar',
@@ -113,16 +115,31 @@ masker.sync({
 }
 ```
 
-If the operation is repeated, it is recommended to **createMasker()** instead.
+#### createMasker()
+A factory to produce `maskers` with custom presets. Syntactic sugar for **execute()**
+```ts
+export const createMasker = (_opts: IMaskerFactoryOpts = {}): IMasker => {
+  const _execute = (ctx: IMaskerOpts) =>
+    // NOTE unbox is enabled by default
+    hook(execute(ctx), (ctx.unbox ?? _opts.unbox) !== false ? unboxValue : v => v)
+
+  const masker = (value: any, opts: IRawContext = {}): Promise<any> => _execute({..._opts, ...opts, value})
+  masker.sync = (value: any, opts: IRawContext = {}): any => _execute({..._opts, ...opts, value, sync: true})
+
+  return masker
+}
+```
 ```ts
 import {createMasker, registry} from '@qiwi/masker'
-const customMasker = createMasker({
+const panMasker = createMasker({
   registry,
   pipeline: ['split', 'pan']
 })
 ```
+Note, when `unbox` option is set to `false`, you obtain a raw `IMaskerPipeOutput` as a result. 
 
-**createPipe()** is a pretty simple `pipe` factory:
+#### createPipe()
+A pretty simple `pipe` factory:
 ```ts
 export const createPipe = (name: IMaskerPipeName, execSync: IMaskerPipeSync | IMaskerPipeDual, exec?: IMaskerPipeAsync | IMaskerPipeDual, opts: IMaskerPipeOpts = {}): IMaskerPipeNormalized =>
 ({
@@ -132,8 +149,28 @@ export const createPipe = (name: IMaskerPipeName, execSync: IMaskerPipeSync | IM
   opts,
 })
 ```
+You can easily introduce your own handlers for any cases.
+```ts
+const fooPipe = createPipe('foo', ({path, value}) =>
+  path.length > 3
+    ? {value: 'foo'}
+    : {value}
+)
+masker.sync({aaaa: 'aaa', 'bbb': 'bbb'}, {pipeline: ['split', fooPipe]})
+// {aaaa: 'foo', bbb: 'bbb'}
+```
+Pipe nesting is simple and flexible:
+```ts
+const fooPipe = createPipe('foo', () => ({value: 'foo'}))
+const foobarPipe = createPipe('foobar', ({value, sync, context}) =>
+  sync === true
+    ? fooPipe.execSync({...context})
+    : ({value: 'bar'})
+)
+```
 
-**pipeline** is an array of pipes: normalized pipes, pipe names, pipes with opts, etc:
+#### pipeline
+`pipeline` is an array of pipes: normalized pipes, pipe names, pipes with opts, etc:
 ```ts
 import {pipe as splitPipe} from '@qiwi/masker-split'
 
@@ -145,10 +182,12 @@ const pipeline = [
   }]]
 ```
 
-**registry** is a regular map that refers all known plugins by their names. It's required for:
+#### registry
+`registry` is a regular `Map` that provides plugin-by-name resolution for pipelines. 
+It's required for:
 * pipeline normalization. You may just use pipe `name` instead of pipe ref. `['split', 'strike']`
 * [masker-schema](https://github.com/qiwi/masker/tree/master/packages/schema)-like plugins to resolve masking directives.
-This
+
 ```ts
 const fooPipe = createPipe('foo', () => ({value: 'foo'}))
 const barPipe = createPipe('bar', ({value}) => ({value: value + 'bar'}))
@@ -164,6 +203,25 @@ const customMasker = createMasker({
 customMasker.sync('any') // foobar
 ```
 
+#### execute()
+The masker engine. Gets `context` as input, returns the last pipe's result as output.
+```ts
+import {createPipe as cp, execute} from '@qiwi/masker-common'
+
+const pipe1 = cp('pipe1', () => ({value: 'pipe1'}))
+const pipe2 = cp('pipe2', ({value}) => ({value: value + 'pipe2'}))
+const pipeline = [pipe1, pipe2]
+
+const value = 'foobar'
+
+// async
+await execute({pipeline, value})        // {value: 'pipe1pipe2'}
+
+// sync
+execute({pipeline, value, sync: true})  // {value: 'pipe1pipe2'}
+execute.sync({pipeline, value})         // {value: 'pipe1pipe2'}
+```
+
 ### CLI
 ```shell script
 npx masquer "4111 1111 1111 1111"
@@ -171,6 +229,8 @@ npx masquer "4111 1111 1111 1111"
 ```
 
 ## Packages
+There is also a bunch of plugins, that extend the masking scenarios. Please follow their internal docs.
+
 | Package | Description | Version
 |---|---|---
 |[@qiwi/masker](https://github.com/qiwi/masker/tree/master/packages/facade)| Composite data masking utility with common pipeline preset | [![npm](https://img.shields.io/npm/v/@qiwi/masker/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker)
