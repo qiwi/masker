@@ -69,12 +69,12 @@ describe('schema', () => {
           'properties': {
             'b': {
               'type': 'array',
-              'properties': {
-                '0': {
+              'items': [
+                {
                   'type': 'string',
                   'valueDirectives': ['striker'],
                 },
-                '1': {
+                {
                   'type': 'object',
                   'properties': {
                     'c': {
@@ -92,7 +92,7 @@ describe('schema', () => {
                     },
                   },
                 },
-              },
+              ],
             },
           },
         },
@@ -150,7 +150,7 @@ describe('schema', () => {
             'properties': {
               'b': {
                 'type': 'array',
-                'properties': [
+                'items': [
                   {
                     'type': 'string',
                     'valueDirectives': ['striker'],
