@@ -66,8 +66,8 @@ describe('schema-with-masked-keys', () => {
           'keyDirectives': ['strike'],
           'properties': {
             'b': {
+              'type': 'array',
               'keyDirectives': ['strike'],
-              'type': 'object',
               'properties': {
                 '0': {
                   'type': 'string',
