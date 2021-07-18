@@ -137,7 +137,8 @@ describe('schema', () => {
       const value = {
         pans: ['4111111111111111', '4111111111111111'],
       }
-      const result = await execute({value, registry, pipeline: ['split', 'pan'], mode: IExecutionMode.ASYNC})
+      const pipeline = ['split', 'pan']
+      const result = await execute({value, registry, pipeline, mode: IExecutionMode.ASYNC})
 
       expect(result.schema).toEqual({
         type: 'object',
@@ -151,6 +152,12 @@ describe('schema', () => {
           },
         },
       })
+
+      expect(await execute({value, schema: result.schema, registry, pipeline, sync: true})).toEqual(expect.objectContaining({
+        value: {
+          pans: ['4111 **** **** 1111', '4111 **** **** 1111'],
+        },
+      }))
     })
   })
 
