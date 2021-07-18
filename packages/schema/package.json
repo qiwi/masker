@@ -37,7 +37,6 @@
   "dependencies": {
     "@qiwi/substrate": "^1.20.9",
     "tslib": "^2.3.0",
-    "flattie": "^1.1.0",
     "@qiwi/masker-common": "1.12.1",
     "@qiwi/masker-split": "1.6.5",
     "@types/lodash.get": "^4.4.6",

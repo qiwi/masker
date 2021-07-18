@@ -112,7 +112,7 @@ export type ISchemaContext = {
 }
 
 export type IMaskerSchema = {
-  type: any
+  type?: any
   valueDirectives?: Array<IMaskerDirective>
   keyDirectives?: Array<IMaskerDirective>
   properties?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
