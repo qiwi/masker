@@ -220,7 +220,14 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
       }, isArray ? [] : {} as Record<string, any>)
 
       if (isArray) {
-        return {type, items: properties}
+        const snapshot = JSON.stringify(properties[0])
+        // compaction: if all items schemas are equal, use a single declaration
+        const items = Object.values(properties)
+          // FIXME Use normal comparator: _.eq or smth similar
+          .every((item) => JSON.stringify(item) === snapshot)
+          ? properties[0]
+          : properties
+        return {type, items}
       }
 
       return {
