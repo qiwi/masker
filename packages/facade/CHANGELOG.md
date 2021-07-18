@@ -1,3 +1,24 @@
+## @qiwi/masker [1.5.1](https://github.com/qiwi/masker/compare/@qiwi/masker@1.5.0...@qiwi/masker@1.5.1) (2021-07-18)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.13.0
+* **@qiwi/masker-debug:** upgraded to 1.0.5
+* **@qiwi/masker-json:** upgraded to 1.2.8
+* **@qiwi/masker-limiter:** upgraded to 1.0.8
+* **@qiwi/masker-pan:** upgraded to 1.2.3
+* **@qiwi/masker-plain:** upgraded to 1.2.15
+* **@qiwi/masker-schema:** upgraded to 1.5.0
+* **@qiwi/masker-secret-key:** upgraded to 1.0.4
+* **@qiwi/masker-secret-value:** upgraded to 1.0.4
+* **@qiwi/masker-split:** upgraded to 1.6.6
+* **@qiwi/masker-strike:** upgraded to 1.3.5
+* **@qiwi/masker-trycatch:** upgraded to 1.0.6
+
 # @qiwi/masker [1.5.0](https://github.com/qiwi/masker/compare/@qiwi/masker@1.4.1...@qiwi/masker@1.5.0) (2021-07-13)
 
 

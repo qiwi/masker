@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Composite data masking utility",
   "private": false,
   "publishConfig": {
@@ -37,18 +37,18 @@
   "dependencies": {
     "@qiwi/substrate": "^1.20.9",
     "tslib": "^2.3.0",
-    "@qiwi/masker-common": "1.12.1",
-    "@qiwi/masker-debug": "1.0.4",
-    "@qiwi/masker-json": "1.2.7",
-    "@qiwi/masker-limiter": "1.0.7",
-    "@qiwi/masker-pan": "1.2.2",
-    "@qiwi/masker-plain": "1.2.14",
-    "@qiwi/masker-schema": "1.4.6",
-    "@qiwi/masker-secret-key": "1.0.3",
-    "@qiwi/masker-secret-value": "1.0.3",
-    "@qiwi/masker-split": "1.6.5",
-    "@qiwi/masker-strike": "1.3.4",
-    "@qiwi/masker-trycatch": "1.0.5"
+    "@qiwi/masker-common": "1.13.0",
+    "@qiwi/masker-debug": "1.0.5",
+    "@qiwi/masker-json": "1.2.8",
+    "@qiwi/masker-limiter": "1.0.8",
+    "@qiwi/masker-pan": "1.2.3",
+    "@qiwi/masker-plain": "1.2.15",
+    "@qiwi/masker-schema": "1.5.0",
+    "@qiwi/masker-secret-key": "1.0.4",
+    "@qiwi/masker-secret-value": "1.0.4",
+    "@qiwi/masker-split": "1.6.6",
+    "@qiwi/masker-strike": "1.3.5",
+    "@qiwi/masker-trycatch": "1.0.6"
   },
   "devDependencies": {},
   "repository": {
