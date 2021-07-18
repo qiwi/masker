@@ -11,7 +11,6 @@ import {
   IMaskerPipeName,
   IEnrichedContext,
   IEnrichedExecutor,
-  IMaskerDirectives,
   IMaskerPipeOutput,
   IMaskerSchema,
   IRawContext,
@@ -114,15 +113,6 @@ export const shortCutExecute = ({context, schema, value, sync, execute}: IEnrich
     : Promise.all([Promise.all(values), Promise.all(keys)]).then(([values, keys]) => inject(_value, values, keys))
 }
 
-export type IPath = string
-
-export type TNormalizedMaskerDirectives = [IPath, IMaskerDirectives][]
-
-export type TNormalizedMaskerDirectivesMap = {
-  valueDirectives: TNormalizedMaskerDirectives
-  keyDirectives: TNormalizedMaskerDirectives
-}
-
 interface IDirective {
   path: string
   pipeline: IMaskerDirective[]
@@ -198,6 +188,17 @@ export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): I
   return schema
 }
 
+// If all items schemas are equal, use a single declaration
+const compactItemsSchema = (properties: Record<any, any>) => {
+  const snapshot = JSON.stringify(properties[0])
+
+  return Object.values(properties)
+    // FIXME Use normal comparator: _.eq or smth similar
+    .every((item) => JSON.stringify(item) === snapshot)
+    ? properties[0]
+    : properties
+}
+
 export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput): IMaskerSchema => {
   if (after.schema) {
     return {
@@ -206,7 +207,7 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
     }
   }
 
-  if (typeof after.value === 'object' && after.value !== null) {
+  if (isObject(after.value)) {
     const {values, origin, keys} = after.value._split_ || {}
     const isArray = Array.isArray(after.value)
 
@@ -219,21 +220,9 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
         return m
       }, isArray ? [] : {} as Record<string, any>)
 
-      if (isArray) {
-        const snapshot = JSON.stringify(properties[0])
-        // compaction: if all items schemas are equal, use a single declaration
-        const items = Object.values(properties)
-          // FIXME Use normal comparator: _.eq or smth similar
-          .every((item) => JSON.stringify(item) === snapshot)
-          ? properties[0]
-          : properties
-        return {type, items}
-      }
-
-      return {
-        type,
-        properties,
-      }
+      return isArray
+        ? {type, items: compactItemsSchema(properties)}
+        : {type, properties}
     }
   }
 
