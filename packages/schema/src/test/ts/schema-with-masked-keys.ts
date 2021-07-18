@@ -1,9 +1,9 @@
 import {IExecutionMode} from '@qiwi/substrate'
-import {execute as exec, IMaskerPipeInput, IMaskerSchema} from '@qiwi/masker-common'
+import {execute as exec, IMaskerPipeInput} from '@qiwi/masker-common'
 import {pipe as splitPipe} from '@qiwi/masker-split'
 import {pipe as strikePipe} from '@qiwi/masker-strike'
 
-import {withSchema} from '../../main/ts'
+import {withSchema, IMaskerSchema} from '../../main/ts'
 
 describe('schema-with-masked-keys', () => {
   describe('#withSchema', () => {

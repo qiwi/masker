@@ -1,14 +1,12 @@
-import {
-  execute,
-  IMaskerSchema,
-} from '@qiwi/masker-common'
+import {IExecutionMode} from '@qiwi/substrate'
+import {execute} from '@qiwi/masker-common'
 import {pipe as split} from '@qiwi/masker-split'
 import {pipe as strike} from '@qiwi/masker-strike'
 import {
   pipe as schema,
   name,
+  IMaskerSchema,
 } from '../../main/ts'
-import {IExecutionMode} from '@qiwi/substrate'
 
 describe('schema-index',() => {
   describe('pipe', () => {

@@ -2,13 +2,14 @@ import {IExecutionMode} from '@qiwi/substrate'
 import {
   execute as exec,
   createPipe as cp,
-  IMaskerSchema, IMaskerPipeInput,
+  IMaskerPipeInput,
 } from '@qiwi/masker-common'
 import {pipe as splitPipe} from '@qiwi/masker-split'
 import {pipe as panPipe} from '@qiwi/masker-pan'
 import {
   extractMaskerDirectives,
   withSchema,
+  IMaskerSchema,
 } from '../../main/ts'
 
 describe('schema', () => {
