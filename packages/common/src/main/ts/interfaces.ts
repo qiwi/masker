@@ -33,9 +33,6 @@ export interface IMaskerPipe {
   execSync: IMaskerPipeSync | IMaskerPipeDual,
   opts?: IMaskerPipeOpts
 }
-export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerPipeOpts]
-
-export type IMaskerDirectives = Array<IMaskerDirective>
 
 export interface IMaskerPipeOutput {
   value: any
@@ -43,7 +40,6 @@ export interface IMaskerPipeOutput {
   execute?: IEnrichedExecutor
   pipeline?: IMaskerPipeline
   final?: boolean
-  schema?: IMaskerSchema
 }
 
 export interface IMaskerPipeInput extends IEnrichedContext {
@@ -109,14 +105,6 @@ export type ISchemaContext = {
   before: IMaskerPipeInput,
   after: IMaskerPipeOutput,
   pipe: IMaskerPipeNormalized
-}
-
-export type IMaskerSchema = {
-  type?: any
-  valueDirectives?: Array<IMaskerDirective>
-  keyDirectives?: Array<IMaskerDirective>
-  properties?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
-  items?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
 }
 
 export type IMaskerPipeName = string

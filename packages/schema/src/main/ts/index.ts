@@ -12,23 +12,22 @@ import {
   IEnrichedContext,
   IEnrichedExecutor,
   IMaskerPipeOutput,
-  IMaskerSchema,
   IRawContext,
   ISchemaContext,
   patchExecutor,
   createPipe,
-  TExecutorHook, IMaskerDirective,
+  TExecutorHook,
 } from '@qiwi/masker-common'
 import {randomizeKeys} from '@qiwi/masker-split'
 
-export const name: IMaskerPipeName = 'schema'
+import {
+  IMaskerSchema,
+  IMaskerDirectives,
+} from './interfaces'
 
-declare module '@qiwi/masker-common' {
-  interface IEnrichedContext {
-    schema?: IMaskerSchema
-    shortcut?: boolean
-  }
-}
+export * from './interfaces'
+
+export const name: IMaskerPipeName = 'schema'
 
 export const withSchema: TExecutorHook = ({execute}): IEnrichedExecutor => {
   const _execute = enrichExecutor((context: IRawContext) => {
@@ -115,7 +114,7 @@ export const shortCutExecute = ({context, schema, value, sync, execute}: IEnrich
 
 interface IDirective {
   path: string
-  pipeline: IMaskerDirective[]
+  pipeline: IMaskerDirectives
   type: string
   depth: number
 }
