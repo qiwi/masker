@@ -16,7 +16,10 @@ import {
   IMaskerPipeOutput,
   IMaskerSchema,
   IRawContext,
-  ISchemaContext, patchExecutor, createPipe, TExecutorHook,
+  ISchemaContext,
+  patchExecutor,
+  createPipe,
+  TExecutorHook,
 } from '@qiwi/masker-common'
 import {randomizeKeys} from '@qiwi/masker-split'
 
@@ -124,7 +127,7 @@ export type TNormalizedMaskerDirectivesMap = {
 }
 
 const getPropPath = (schemaPath: IPath): IPath => schemaPath.slice(0, schemaPath.lastIndexOf('.'))
-  .split(/properties\.([^.]+)/g)
+  .split(/(?:properties|items)\.([^.]+)/g)
   .join('')
 
 const getDirectivesByPath = (schema: IMaskerSchema, path: IPath) => get(schema, path) as IMaskerDirectives
@@ -172,6 +175,7 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
 
   if (typeof after.value === 'object' && after.value !== null) {
     const {values, origin, keys} = after.value._split_ || {}
+    const isArray = Array.isArray(after.value)
 
     if (values) {
       const properties = Object.keys(origin).reduce((m, v: string, i: number) => {
@@ -180,7 +184,11 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
         m[v] = keyDirectives ? {...schema, keyDirectives} : schema
 
         return m
-      }, {} as Record<string, any>)
+      }, isArray ? [] : {} as Record<string, any>)
+
+      if (isArray) {
+        return {type, items: properties}
+      }
 
       return {
         type,

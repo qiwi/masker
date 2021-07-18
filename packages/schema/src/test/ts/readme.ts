@@ -28,8 +28,8 @@ describe('schema', () => {
             type: 'object',
             properties: {
               pans: {
-                type: 'object',
-                properties: {0: {type: 'string', valueDirectives: ['pan']}, 1: {type: 'string'}},
+                type: 'array',
+                items: [{type: 'string', valueDirectives: ['pan']}, {type: 'string'}],
               }, some: {type: 'string'},
             },
           },

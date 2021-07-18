@@ -116,6 +116,7 @@ export type IMaskerSchema = {
   valueDirectives?: Array<IMaskerDirective>
   keyDirectives?: Array<IMaskerDirective>
   properties?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
+  items?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
 }
 
 export type IMaskerPipeName = string

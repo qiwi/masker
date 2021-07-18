@@ -68,12 +68,12 @@ describe('schema-with-masked-keys', () => {
             'b': {
               'type': 'array',
               'keyDirectives': ['strike'],
-              'properties': {
-                '0': {
+              'items': [
+                {
                   'type': 'string',
                   'valueDirectives': ['strike'],
                 },
-                '1': {
+                {
                   'type': 'object',
                   'properties': {
                     'c': {
@@ -94,7 +94,7 @@ describe('schema-with-masked-keys', () => {
                     },
                   },
                 },
-              },
+              ],
             },
           },
         },
