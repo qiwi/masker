@@ -12,6 +12,18 @@ export type IMaskerSchema = {
   items?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
 }
 
+export interface IMaskerDirectiveNormalized {
+  path: string
+  pipeline: IMaskerDirectives
+  type: string
+  depth: number
+}
+
+export interface IDirectivesMap {
+  valueDirectives: IMaskerDirectiveNormalized[]
+  keyDirectives: IMaskerDirectiveNormalized[]
+}
+
 declare module '@qiwi/masker-common' {
   interface IEnrichedContext {
     schema?: IMaskerSchema
