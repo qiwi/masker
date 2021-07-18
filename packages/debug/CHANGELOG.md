@@ -1,3 +1,13 @@
+## @qiwi/masker-debug [1.0.5](https://github.com/qiwi/masker/compare/@qiwi/masker-debug@1.0.4...@qiwi/masker-debug@1.0.5) (2021-07-18)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.13.0
+
 ## @qiwi/masker-debug [1.0.4](https://github.com/qiwi/masker/compare/@qiwi/masker-debug@1.0.3...@qiwi/masker-debug@1.0.4) (2021-07-11)
 
 
