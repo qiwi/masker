@@ -68,7 +68,7 @@ describe('schema', () => {
           'type': 'object',
           'properties': {
             'b': {
-              'type': 'object',
+              'type': 'array',
               'properties': {
                 '0': {
                   'type': 'string',
@@ -149,7 +149,7 @@ describe('schema', () => {
             'type': 'object',
             'properties': {
               'b': {
-                'type': 'object',
+                'type': 'array',
                 'properties': [
                   {
                     'type': 'string',

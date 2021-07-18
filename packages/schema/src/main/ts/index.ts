@@ -154,7 +154,7 @@ export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): I
   const type = getSchemaType(before.value)
   const schema = extractSchemaFromResult(type, after)
 
-  if (type !== 'object' && !isEqual(before.value, after.value)) {
+  if (type !== 'object' && type !== 'array' && !isEqual(before.value, after.value)) {
     schema.valueDirectives = schema?.valueDirectives || []
     schema.valueDirectives.push(name)
   }
@@ -193,8 +193,8 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
 }
 
 export const getSchemaType = (value: any): string =>
-  typeof value === 'string'
-    ? 'string'
-    : typeof value === 'object' && value !== null
-      ? 'object'
-      : 'unknown'
+  Array.isArray(value)
+    ? 'array'
+    : value === null
+      ? 'null'
+      : typeof value
