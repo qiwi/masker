@@ -1,3 +1,22 @@
+# @qiwi/masker-schema [1.5.0](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.4.6...@qiwi/masker-schema@1.5.0) (2021-07-18)
+
+
+### Features
+
+* **schema:** handle array type ([640dc6f](https://github.com/qiwi/masker/commit/640dc6f452e244c2bd7c598e1ff3400562dee92a)), closes [#84](https://github.com/qiwi/masker/issues/84)
+* **schema:** if all array items schemas are equal, use a single declaration ([6f4d660](https://github.com/qiwi/masker/commit/6f4d660c70c9f0b43ddf073ddece798a9948b369)), closes [#84](https://github.com/qiwi/masker/issues/84)
+* **schema:** use array for items props declaration ([aa6cb13](https://github.com/qiwi/masker/commit/aa6cb13dec9caaed33cf2ed0f828d15a51969143)), closes [#84](https://github.com/qiwi/masker/issues/84)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.13.0
+* **@qiwi/masker-split:** upgraded to 1.6.6
+* **@qiwi/masker-strike:** upgraded to 1.3.5
+
 ## @qiwi/masker-schema [1.4.6](https://github.com/qiwi/masker/compare/@qiwi/masker-schema@1.4.5...@qiwi/masker-schema@1.4.6) (2021-07-11)
 
 
