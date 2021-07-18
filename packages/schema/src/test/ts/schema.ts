@@ -186,10 +186,10 @@ describe('schema', () => {
       expect(result).toEqual({
         keyDirectives: [],
         valueDirectives: [
-          ['foo.bar', ['striker']],
-          ['a.b.0', ['striker']],
-          ['a.b.1.c.d', ['striker']],
-          ['a.b.1.e', ['striker']],
+          {type: 'string', path: 'a.b.1.c.d', pipeline: ['striker'], depth: 5},
+          {type: 'string', path: 'a.b.1.e', pipeline: ['striker'], depth: 4},
+          {type: 'string', path: 'a.b.0', pipeline: ['striker'], depth: 3},
+          {type: 'string', path: 'foo.bar', pipeline: ['striker'], depth: 2},
         ],
       })
     })

@@ -2204,11 +2204,6 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
-flattie@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/flattie/-/flattie-1.1.0.tgz#1459504209f2001c478751b4e2fb69d6b1ee3241"
-  integrity sha512-xU99gDEnciIwJdGcBmNHnzTJ/w5AT+VFJOu6sTB6WM8diOYNA3Sa+K1DiEBQ7XH4QikQq3iFW1U+jRVcotQnBw==
-
 flowgen@1.14.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/flowgen/-/flowgen-1.14.1.tgz#a1da7cbe78bd3897291257dc60c566e14540c95a"
