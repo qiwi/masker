@@ -1,3 +1,10 @@
+# @qiwi/masker-common [1.13.0](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.12.1...@qiwi/masker-common@1.13.0) (2021-07-18)
+
+
+### Features
+
+* **schema:** use array for items props declaration ([aa6cb13](https://github.com/qiwi/masker/commit/aa6cb13dec9caaed33cf2ed0f828d15a51969143)), closes [#84](https://github.com/qiwi/masker/issues/84)
+
 ## @qiwi/masker-common [1.12.1](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.12.0...@qiwi/masker-common@1.12.1) (2021-07-11)
 
 
