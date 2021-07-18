@@ -1,3 +1,14 @@
+## @qiwi/masker-trycatch [1.0.6](https://github.com/qiwi/masker/compare/@qiwi/masker-trycatch@1.0.5...@qiwi/masker-trycatch@1.0.6) (2021-07-18)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.13.0
+* **@qiwi/masker-plain:** upgraded to 1.2.15
+
 ## @qiwi/masker-trycatch [1.0.5](https://github.com/qiwi/masker/compare/@qiwi/masker-trycatch@1.0.4...@qiwi/masker-trycatch@1.0.5) (2021-07-11)
 
 
