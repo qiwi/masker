@@ -52,45 +52,45 @@ describe('schema-with-masked-keys', () => {
       'properties': {
         'foo': {
           'type': 'object',
-          'keyDirectives': ['strike'],
+          'maskKeys': ['strike'],
           'properties': {
             'bar': {
               'type': 'string',
-              'valueDirectives': ['strike'],
-              'keyDirectives': ['strike'],
+              'maskValues': ['strike'],
+              'maskKeys': ['strike'],
             },
           },
         },
         'a': {
           'type': 'object',
-          'keyDirectives': ['strike'],
+          'maskKeys': ['strike'],
           'properties': {
             'b': {
               'type': 'array',
-              'keyDirectives': ['strike'],
+              'maskKeys': ['strike'],
               'items': [
                 {
                   'type': 'string',
-                  'valueDirectives': ['strike'],
+                  'maskValues': ['strike'],
                 },
                 {
                   'type': 'object',
                   'properties': {
                     'c': {
                       'type': 'object',
-                      'keyDirectives': ['strike'],
+                      'maskKeys': ['strike'],
                       'properties': {
                         'd': {
                           'type': 'string',
-                          'valueDirectives': ['strike'],
-                          'keyDirectives': ['strike'],
+                          'maskValues': ['strike'],
+                          'maskKeys': ['strike'],
                         },
                       },
                     },
                     'e': {
                       'type': 'string',
-                      'valueDirectives': ['strike'],
-                      'keyDirectives': ['strike'],
+                      'maskValues': ['strike'],
+                      'maskKeys': ['strike'],
                     },
                   },
                 },

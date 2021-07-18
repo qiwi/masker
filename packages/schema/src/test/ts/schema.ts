@@ -62,7 +62,7 @@ describe('schema', () => {
           'properties': {
             'bar': {
               'type': 'string',
-              'valueDirectives': ['striker'],
+              'maskValues': ['striker'],
             },
           },
         },
@@ -74,7 +74,7 @@ describe('schema', () => {
               'items': [
                 {
                   'type': 'string',
-                  'valueDirectives': ['striker'],
+                  'maskValues': ['striker'],
                 },
                 {
                   'type': 'object',
@@ -84,13 +84,13 @@ describe('schema', () => {
                       'properties': {
                         'd': {
                           'type': 'string',
-                          'valueDirectives': ['striker'],
+                          'maskValues': ['striker'],
                         },
                       },
                     },
                     'e': {
                       'type': 'string',
-                      'valueDirectives': ['striker'],
+                      'maskValues': ['striker'],
                     },
                   },
                 },
@@ -147,13 +147,13 @@ describe('schema', () => {
             type: 'array',
             items: {
               type: 'string',
-              valueDirectives: ['pan'],
+              maskValues: ['pan'],
             },
           },
         },
       })
 
-      expect(await execute({value, schema: result.schema, registry, pipeline, sync: true})).toEqual(expect.objectContaining({
+      expect(await execute({value, schema: result.schema, registry, pipeline})).toEqual(expect.objectContaining({
         value: {
           pans: ['4111 **** **** 1111', '4111 **** **** 1111'],
         },
@@ -171,7 +171,7 @@ describe('schema', () => {
             'properties': {
               'bar': {
                 'type': 'string',
-                'valueDirectives': ['striker'],
+                'maskValues': ['striker'],
               },
             },
           },
@@ -183,7 +183,7 @@ describe('schema', () => {
                 'items': [
                   {
                     'type': 'string',
-                    'valueDirectives': ['striker'],
+                    'maskValues': ['striker'],
                   },
                   {
                     'type': 'object',
@@ -193,13 +193,13 @@ describe('schema', () => {
                         'properties': {
                           'd': {
                             'type': 'string',
-                            'valueDirectives': ['striker'],
+                            'maskValues': ['striker'],
                           },
                         },
                       },
                       'e': {
                         'type': 'string',
-                        'valueDirectives': ['striker'],
+                        'maskValues': ['striker'],
                       },
                     },
                   },
@@ -214,8 +214,8 @@ describe('schema', () => {
       const result = extractMaskerDirectives(schema)
 
       expect(result).toEqual({
-        keyDirectives: [],
-        valueDirectives: [
+        maskKeys: [],
+        maskValues: [
           {type: 'string', path: 'a.b.1.c.d', pipeline: ['striker'], depth: 5},
           {type: 'string', path: 'a.b.1.e', pipeline: ['striker'], depth: 4},
           {type: 'string', path: 'a.b.0', pipeline: ['striker'], depth: 3},

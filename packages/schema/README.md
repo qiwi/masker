@@ -2,8 +2,20 @@
 Masker scheme builder and executor
 
 ## Features
-* Builds object's `schema` on masking 
-* Applies `schema` to object as a directive
+* Builds object `schema` on masking 
+* Applies masker `schema` to object as a directive
+
+Masker schema is a superset of a regular json-schema. 
+It introduces `maskValues` and `maskKeys` directives to declare pipelines for object parts.
+```ts
+export interface IMaskerSchema {
+  type?: any
+  maskValues?: Array<IMaskerDirective>
+  maskKeys?: Array<IMaskerDirective>
+  properties?: Record<string, IMaskerSchema>
+  items?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
+}
+```
 
 ## Install
 ```shell script
@@ -43,14 +55,14 @@ const res = masker.sync(obj, {unbox: false})
 {
   type: 'object',
   properties: {
-    token: {type: 'string', valueDirectives: ['plain', 'secret-key']},
-    password: {type: 'string', valueDirectives: ['plain', 'secret-key']},
+    token: {type: 'string', maskValues: ['plain', 'secret-key']},
+    password: {type: 'string', maskValues: ['plain', 'secret-key']},
     details: {
       type: 'object',
       properties: {
         pans: {
           type: 'object',
-          properties: {0: {type: 'string', valueDirectives: ['pan']}, 1: {type: 'string'}},
+          properties: {0: {type: 'string', maskValues: ['pan']}, 1: {type: 'string'}},
         }, some: {type: 'string'},
       },
     },
@@ -63,7 +75,7 @@ Now `res.schema` may be applied to similar objects/instances.
 const _res = masker.sync(obj, {unbox: false, schema: res.schema})
 ```
 
-The properties, which have no `valueDirectives` or `keyDirectives`, will be not processed at all. 
+The entries, which have no `maskValues` or `maskKeys`, will be not processed at all. 
 Masker wouldn't even try to observe its inners. This feature makes a lot of sense if you deal with huge same-structured objects.
 ```ts
 import {pipeline, createMasker, registry} from '@qiwi/masker'
@@ -84,7 +96,7 @@ const masked = masker.sync(obj, {
     properties: {
       foo: {
         type: 'string',
-        valueDirectives: ['strike'],
+        maskValues: ['strike'],
       },
     },
   },

@@ -22,14 +22,14 @@ describe('schema', () => {
       expect(res.schema).toEqual({
         type: 'object',
         properties: {
-          token: {type: 'string', valueDirectives: ['plain', 'secret-key']},
-          password: {type: 'string', valueDirectives: ['plain', 'secret-key']},
+          token: {type: 'string', maskValues: ['plain', 'secret-key']},
+          password: {type: 'string', maskValues: ['plain', 'secret-key']},
           details: {
             type: 'object',
             properties: {
               pans: {
                 type: 'array',
-                items: [{type: 'string', valueDirectives: ['pan']}, {type: 'string'}],
+                items: [{type: 'string', maskValues: ['pan']}, {type: 'string'}],
               }, some: {type: 'string'},
             },
           },
@@ -67,7 +67,7 @@ describe('schema', () => {
           properties: {
             foo: {
               type: 'string',
-              valueDirectives: ['strike'],
+              maskValues: ['strike'],
             },
           },
         },
