@@ -1,3 +1,13 @@
+## masquer [1.0.4](https://github.com/qiwi/masker/compare/masquer@1.0.3...masquer@1.0.4) (2021-07-18)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker:** upgraded to 1.5.1
+
 ## masquer [1.0.3](https://github.com/qiwi/masker/compare/masquer@1.0.2...masquer@1.0.3) (2021-07-13)
 
 
