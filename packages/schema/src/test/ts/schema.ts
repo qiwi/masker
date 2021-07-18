@@ -5,6 +5,7 @@ import {
   IMaskerSchema, IMaskerPipeInput,
 } from '@qiwi/masker-common'
 import {pipe as splitPipe} from '@qiwi/masker-split'
+import {pipe as panPipe} from '@qiwi/masker-pan'
 import {
   extractMaskerDirectives,
   withSchema,
@@ -106,6 +107,7 @@ describe('schema', () => {
 
     const registry = new Map()
     registry.set(splitPipe.name, splitPipe)
+    registry.set(panPipe.name, panPipe)
     registry.set(striker.name, striker)
 
     it('builds schema while processes the pipeline', () => {
@@ -128,6 +130,26 @@ describe('schema', () => {
 
       expect(result.value).toEqual(expectedValue)
       expect(result.schema).toBe(expectedSchema)
+    })
+
+    it('applies schema `compaction` to array items if possible', async() => {
+      const value = {
+        pans: ['4111111111111111', '4111111111111111'],
+      }
+      const result = await execute({value, registry, pipeline: ['split', 'pan'], mode: IExecutionMode.ASYNC})
+
+      expect(result.schema).toEqual({
+        type: 'object',
+        properties: {
+          pans: {
+            type: 'array',
+            items: {
+              type: 'string',
+              valueDirectives: ['pan'],
+            },
+          },
+        },
+      })
     })
   })
 
