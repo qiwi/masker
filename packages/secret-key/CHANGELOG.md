@@ -1,3 +1,14 @@
+## @qiwi/masker-secret-key [1.0.4](https://github.com/qiwi/masker/compare/@qiwi/masker-secret-key@1.0.3...@qiwi/masker-secret-key@1.0.4) (2021-07-18)
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.13.0
+* **@qiwi/masker-plain:** upgraded to 1.2.15
+
 ## @qiwi/masker-secret-key [1.0.3](https://github.com/qiwi/masker/compare/@qiwi/masker-secret-key@1.0.2...@qiwi/masker-secret-key@1.0.3) (2021-07-11)
 
 
