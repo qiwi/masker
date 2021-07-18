@@ -4,10 +4,10 @@ export type IMaskerDirective = IMaskerPipeName | [IMaskerPipeName, IMaskerPipeOp
 
 export type IMaskerDirectives = Array<IMaskerDirective>
 
-export type IMaskerSchema = {
+export interface IMaskerSchema {
   type?: any
-  valueDirectives?: Array<IMaskerDirective>
-  keyDirectives?: Array<IMaskerDirective>
+  maskValues?: Array<IMaskerDirective>
+  maskKeys?: Array<IMaskerDirective>
   properties?: Record<string, IMaskerSchema>
   items?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
 }
@@ -20,8 +20,8 @@ export interface IMaskerDirectiveNormalized {
 }
 
 export interface IDirectivesMap {
-  valueDirectives: IMaskerDirectiveNormalized[]
-  keyDirectives: IMaskerDirectiveNormalized[]
+  maskValues: IMaskerDirectiveNormalized[]
+  maskKeys: IMaskerDirectiveNormalized[]
 }
 
 declare module '@qiwi/masker-common' {
