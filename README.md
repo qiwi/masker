@@ -3,12 +3,104 @@
 Composite data masking utility
 
 ### TL;DR
+
+#### Default preset
 ```ts
 import {masker} from '@qiwi/masker'
 
+// Suitable for the most cases: strings, objects, json strings, which may contain any standard secret keys, values or card PANs.
 masker('411111111111111')       // Promise<4111 **** **** 1111>
 masker.sync('4111111111111111') // 4111 **** **** 1111
 ```
+
+#### Custom pipeline
+```ts
+import {masker, registry} from '@qiwi/masker'
+
+masker.sync({
+  secret: 'foo',
+  nested: {
+    pans: [4111111111111111]
+  },
+  foo: 'str with printed password=foo and smth else',
+  json: 'str with json inside {"secret":"bar"} {"4111111111111111":"bar"}',
+}, {
+  registry, // stores the plugins
+  pipeline: [
+    'split',          // to recursively process target object's childen. The same `pipeline` will be applied to internal keys and values
+    'pan',            // to mask card PANs
+    'secret-key',     // to conceal the values of sectitily named field like `secret` or `token` (pattern is configurable)
+    'secret-value',   // to replace sensitive parts of strings (pattern is configurable)
+    'json',           // to find jsons in strings
+  ]
+})
+
+// result:
+{
+  secret: '***',      // secret-key
+  nested: { // split
+    pans: [ // split
+      '4111 **** **** 1111' // pan
+    ],  
+  },
+  foo: 'str with printed *** and smth else',  // secret-value
+  // json
+  // chunk#1: split, secret-key
+  // chunk#2: split, pan (applied to key!)
+  json: 'str with json inside {"secret":"***"} {"4111 **** **** 1111":"bar"}'
+}
+```
+
+#### Masking schema
+```ts
+import {masker} from '@qiwi/masker';
+
+masker.sync({
+  fo: 'fo',
+  foo: 'bar',
+  foofoo: 'barbar',
+  baz: 'qux',
+  arr:  [4111111111111111, 1234123412341234]
+}, {
+  pipeline: ['schema'],
+  schema: {
+    type: 'object',
+    properties: {
+      fo: {
+        type: 'string',
+        maskKeys: ['plain']
+      },
+      foo: {
+        type: 'string',
+        maskKeys: ['plain']
+      },
+      foofoo: {
+        type: 'string',
+        maskKeys: ['strike'],
+        maskValues: ['plain']
+      },
+      arr: {
+        type: 'array',
+        items: {
+          type: 'number',
+          maskValues: ['pan']
+        }
+      }
+    }
+  }
+})
+
+// result:
+{
+  baz: 'qux',
+  arr: [ '4111 **** **** 1111', '1234123412341234' ],
+  '***': 'fo',
+  '***(2)': 'bar',
+  '******': '***',
+}
+```
+
+#### CLI
 ```shell script
 npx masquer "4111 1111 1111 1111"
 # returns 4111 **** **** 1111
