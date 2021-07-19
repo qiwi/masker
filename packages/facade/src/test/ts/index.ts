@@ -28,7 +28,7 @@ describe('facade',() => {
         secret: '***',
         nested: {pans: [ '4111 **** **** 1111' ]},
         foo: 'str with printed *** and smth else',
-        json: 'str with json inside {"secret":"***"} {"4111 **** **** 1111":"bar"}'
+        json: 'str with json inside {"secret":"***"} {"4111 **** **** 1111":"bar"}',
       })
     })
 
