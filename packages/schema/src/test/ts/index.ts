@@ -34,11 +34,11 @@ describe('schema-index',() => {
             'properties': {
               'bar': {
                 'type': 'string',
-                'maskValues': ['strike'],
-                'maskKeys': ['strike'],
+                'maskValue': ['strike'],
+                'maskKey': ['strike'],
               },
             },
-            'maskKeys': ['strike'],
+            'maskKey': ['strike'],
           },
         },
       }

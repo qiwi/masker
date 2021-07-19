@@ -19,7 +19,7 @@ export const shortCutExecute = ({context, schema, value, sync, execute}: IEnrich
     return context
   }
   const _value = clone(value)
-  const {maskKeys, maskValues} = extractMaskerDirectives(schema, value)
+  const {maskKey, maskValue} = extractMaskerDirectives(schema, value)
   const processDirectives = (normalizedDirectives: IMaskerDirectiveNormalized[], asKeys?: boolean) => normalizedDirectives.map(({path, pipeline}) =>
     execute({
       ...context,
@@ -29,22 +29,22 @@ export const shortCutExecute = ({context, schema, value, sync, execute}: IEnrich
     }),
   )
 
-  const values = processDirectives(maskValues)
-  const keys = processDirectives(maskKeys, true)
+  const values = processDirectives(maskValue)
+  const keys = processDirectives(maskKey, true)
 
   const inject = (target: any, values: IMaskerPipeOutput[], keys: IMaskerPipeOutput[]) => {
     values.forEach(({value}, i) => {
-      const path = maskValues[i]?.path
+      const path = maskValue[i]?.path
       set(target, path, value)
     })
 
     const _keys = randomizeKeys(keys.map(({value}, i) => {
-      const path = maskKeys[i]?.path
+      const path = maskKey[i]?.path
 
       return path.slice(0, path.lastIndexOf('.') + 1) + value
     }))
 
-    const keyMap = invert(maskKeys.reduce((m, {path}, i) => {
+    const keyMap = invert(maskKey.reduce((m, {path}, i) => {
       m[path] = _keys[i]
       return m
     }, {} as Record<string, string>))
@@ -67,17 +67,17 @@ export const shortCutExecute = ({context, schema, value, sync, execute}: IEnrich
 }
 
 export const extractMaskerDirectives = (
-  {type, properties, maskKeys, maskValues, items}: IMaskerSchema,
+  {type, properties, maskKey, maskValue, items}: IMaskerSchema,
   value: any,
   path = '',
   memo: IDirectivesMap = {
-    maskValues: [],
-    maskKeys: [],
+    maskValue: [],
+    maskKey: [],
   },
   depth = 0): IDirectivesMap => {
 
-  pushDirective(memo.maskKeys, path, type, depth, maskKeys)
-  pushDirective(memo.maskValues, path, type, depth, maskValues)
+  pushDirective(memo.maskKey, path, type, depth, maskKey)
+  pushDirective(memo.maskValue, path, type, depth, maskValue)
 
   if (isObject(properties)) {
     Object.entries(properties as Record<any, any>).forEach(([_k, _v]) => {
@@ -110,8 +110,8 @@ export const extractMaskerDirectives = (
 const compareDepth = (a: IMaskerDirectiveNormalized, b: IMaskerDirectiveNormalized) => b.depth - a.depth
 
 const sortMaskerDirectivesByDepth = (m: IDirectivesMap): void => {
-  m.maskKeys.sort(compareDepth)
-  m.maskValues.sort(compareDepth)
+  m.maskKey.sort(compareDepth)
+  m.maskValue.sort(compareDepth)
 }
 
 const pushDirective = (memo: IMaskerDirectiveNormalized[], path: string, type: string, depth: number, pipeline?: IMaskerDirective[]): void => {

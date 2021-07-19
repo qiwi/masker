@@ -3,7 +3,6 @@
 Composite data masking utility
 
 ### TL;DR
-
 #### Default preset
 ```ts
 import {masker} from '@qiwi/masker'
@@ -68,22 +67,22 @@ masker.sync({
     properties: {
       fo: {
         type: 'string',
-        maskKeys: ['plain']
+        maskKey: ['plain']
       },
       foo: {
         type: 'string',
-        maskKeys: ['plain']
+        maskKey: ['plain']
       },
       foofoo: {
         type: 'string',
-        maskKeys: ['strike'],
-        maskValues: ['plain']
+        maskKey: ['strike'],
+        maskValue: ['plain']
       },
       arr: {
         type: 'array',
         items: {
           type: 'number',
-          maskValues: ['pan']
+          maskValue: ['pan']
         }
       }
     }

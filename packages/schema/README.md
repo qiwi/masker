@@ -6,12 +6,12 @@ Masker scheme builder and executor
 * Applies masker `schema` to object as a directive
 
 Masker schema is a superset of a regular json-schema. 
-It introduces `maskValues` and `maskKeys` directives to declare pipelines for object parts.
+It introduces `maskValue` and `maskKey` directives to declare pipelines for object parts.
 ```ts
 export interface IMaskerSchema {
   type?: any
-  maskValues?: Array<IMaskerDirective>
-  maskKeys?: Array<IMaskerDirective>
+  maskValue?: Array<IMaskerDirective>
+  maskKey?: Array<IMaskerDirective>
   properties?: Record<string, IMaskerSchema>
   items?: Record<string, IMaskerSchema> | Array<IMaskerSchema>
 }
@@ -55,14 +55,14 @@ const res = masker.sync(obj, {unbox: false})
 {
   type: 'object',
   properties: {
-    token: {type: 'string', maskValues: ['plain', 'secret-key']},
-    password: {type: 'string', maskValues: ['plain', 'secret-key']},
+    token: {type: 'string', maskValue: ['plain', 'secret-key']},
+    password: {type: 'string', maskValue: ['plain', 'secret-key']},
     details: {
       type: 'object',
       properties: {
         pans: {
           type: 'object',
-          properties: {0: {type: 'string', maskValues: ['pan']}, 1: {type: 'string'}},
+          properties: {0: {type: 'string', maskValue: ['pan']}, 1: {type: 'string'}},
         }, some: {type: 'string'},
       },
     },
@@ -75,7 +75,7 @@ Now `res.schema` may be applied to similar objects/instances.
 const _res = masker.sync(obj, {unbox: false, schema: res.schema})
 ```
 
-The entries, which have no `maskValues` or `maskKeys`, will be not processed at all. 
+The entries, which have no `maskValue` or `maskKey`, will be not processed at all. 
 Masker wouldn't even try to observe its inners. This feature makes a lot of sense if you deal with huge same-structured objects.
 ```ts
 import {pipeline, createMasker, registry} from '@qiwi/masker'
@@ -96,7 +96,7 @@ const masked = masker.sync(obj, {
     properties: {
       foo: {
         type: 'string',
-        maskValues: ['strike'],
+        maskValue: ['strike'],
       },
     },
   },

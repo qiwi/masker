@@ -62,7 +62,7 @@ describe('schema', () => {
           'properties': {
             'bar': {
               'type': 'string',
-              'maskValues': ['striker'],
+              'maskValue': ['striker'],
             },
           },
         },
@@ -74,7 +74,7 @@ describe('schema', () => {
               'items': [
                 {
                   'type': 'string',
-                  'maskValues': ['striker'],
+                  'maskValue': ['striker'],
                 },
                 {
                   'type': 'object',
@@ -84,13 +84,13 @@ describe('schema', () => {
                       'properties': {
                         'd': {
                           'type': 'string',
-                          'maskValues': ['striker'],
+                          'maskValue': ['striker'],
                         },
                       },
                     },
                     'e': {
                       'type': 'string',
-                      'maskValues': ['striker'],
+                      'maskValue': ['striker'],
                     },
                   },
                 },
@@ -147,7 +147,7 @@ describe('schema', () => {
             type: 'array',
             items: {
               type: 'string',
-              maskValues: ['pan'],
+              maskValue: ['pan'],
             },
           },
         },
@@ -171,7 +171,7 @@ describe('schema', () => {
             'properties': {
               'bar': {
                 'type': 'string',
-                'maskValues': ['striker'],
+                'maskValue': ['striker'],
               },
             },
           },
@@ -183,7 +183,7 @@ describe('schema', () => {
                 'items': [
                   {
                     'type': 'string',
-                    'maskValues': ['striker'],
+                    'maskValue': ['striker'],
                   },
                   {
                     'type': 'object',
@@ -193,13 +193,13 @@ describe('schema', () => {
                         'properties': {
                           'd': {
                             'type': 'string',
-                            'maskValues': ['striker'],
+                            'maskValue': ['striker'],
                           },
                         },
                       },
                       'e': {
                         'type': 'string',
-                        'maskValues': ['striker'],
+                        'maskValue': ['striker'],
                       },
                     },
                   },
@@ -214,8 +214,8 @@ describe('schema', () => {
       const result = extractMaskerDirectives(schema)
 
       expect(result).toEqual({
-        maskKeys: [],
-        maskValues: [
+        maskKey: [],
+        maskValue: [
           {type: 'string', path: 'a.b.1.c.d', pipeline: ['striker'], depth: 5},
           {type: 'string', path: 'a.b.1.e', pipeline: ['striker'], depth: 4},
           {type: 'string', path: 'a.b.0', pipeline: ['striker'], depth: 3},

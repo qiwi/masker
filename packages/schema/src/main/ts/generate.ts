@@ -7,8 +7,8 @@ export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): I
   const schema = extractSchemaFromResult(type, after)
 
   if (type !== 'object' && type !== 'array' && !isEqual(before.value, after.value)) {
-    schema.maskValues = schema?.maskValues || []
-    schema.maskValues.push(name)
+    schema.maskValue = schema?.maskValue || []
+    schema.maskValue.push(name)
   }
 
   return schema
@@ -39,9 +39,9 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
 
     if (values) {
       const properties = Object.keys(origin).reduce((m, v: string, i: number) => {
-        const maskKeys = keys[i]?.schema?.maskValues
+        const maskKey = keys[i]?.schema?.maskValue
         const schema = values[i].schema
-        m[v] = maskKeys ? {...schema, maskKeys} : schema
+        m[v] = maskKey ? {...schema, maskKey} : schema
 
         return m
       }, isArray ? [] : {} as Record<string, any>)
