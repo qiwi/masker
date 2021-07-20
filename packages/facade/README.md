@@ -13,7 +13,7 @@ yarn add @qiwi/masker
 
 ## Usage
 ### masker
-Default masker is applicable for the most cases: for strings, objects, json strings, which may contain any standard secret [keys](https://github.com/qiwi/masker/tree/master/packages/secret-key), [values](https://github.com/qiwi/masker/tree/master/packages/secret-value) or [PANs](https://github.com/qiwi/masker/tree/master/packages/pan).
+Default masker is applicable for most std cases: for strings, objects, json strings, which may contain any standard secret [keys](https://github.com/qiwi/masker/tree/master/packages/secret-key), [values](https://github.com/qiwi/masker/tree/master/packages/secret-value) or [PANs](https://github.com/qiwi/masker/tree/master/packages/pan).
 ```ts
 import {masker} from '@qiwi/masker'
 

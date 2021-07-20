@@ -2,12 +2,32 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/36cy67t5tldbckce/branch/master?svg=true)](https://ci.appveyor.com/project/QIWI/masker/branch/master) [![Maintainability](https://api.codeclimate.com/v1/badges/6205424ac673cb3f2bb8/maintainability)](https://codeclimate.com/github/qiwi/masker/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6205424ac673cb3f2bb8/test_coverage)](https://codeclimate.com/github/qiwi/masker/test_coverage)  
 Composite data masking utility
 
+## Purpose
+Implement instruments, describe practices, contracts to solve sensitive data masking problem in JS/TS.
+For secure logging, for public data output, for internal mimt-proxies (kuber sensitive-data-policy) and so on.
+
+### Status
+🚧 Work in progress / MVP#0 is available for testing  
+⚠️ **Not ready for production yet**
+
+### Roadmap
+- [x] Implement masking composer/processor
+- [x] Introduce (declarative?) masking directives: [schema](https://github.com/qiwi/masker/tree/master/packages/schema)
+- [x] Describe masking strategies and add masking utils
+- [ ] Support logging tools integration
+
+### Key features
+* Both sync and async API
+* Declarative configuration
+* Deep customization
+* TS and Flow typings
+
 ### TL;DR
 #### Default preset
 ```ts
 import {masker} from '@qiwi/masker'
 
-// Suitable for the most cases: strings, objects, json strings, which may contain any standard secret keys/values or card PANs.
+// Suitable for most std cases: strings, objects, json strings, which may contain any standard secret keys/values or card PANs.
 masker('411111111111111')       // Promise<4111 **** **** 1111>
 masker.sync('4111111111111111') // 4111 **** **** 1111
 ```
@@ -105,27 +125,7 @@ npx masquer "4111 1111 1111 1111"
 # returns 4111 **** **** 1111
 ```
 
-## Purpose
-Implement instruments, describe practices, contracts to solve sensitive data masking problem in JS/TS.
-For secure logging, for public data output, for internal mimt-proxies (kuber sensitive-data-policy) and so on.
-
-### Status
-🚧 Work in progress / MVP#0 is available for testing  
-⚠️ **Not ready for production yet**
-
-### Roadmap
-- [x] Implement masking composer/processor
-- [x] Introduce (declarative?) masking directives: [schema](https://github.com/qiwi/masker/tree/master/packages/schema)  
-- [x] Describe masking strategies and add masking utils
-- [ ] Support logging tools integration
-
-### Key features
-* Both sync and async API
-* Declarative configuration
-* Deep customization
-* TS and Flow typings
-
-### Design
+## Design
 The masker bases on the middleware pattern: it takes some data and pushes it forward the `pipeline`. 
 The output of each `pipe` is the input for the next one. Each pipe is a dual interface data processor:
 ```ts
@@ -136,7 +136,7 @@ export interface IMaskerPipe {
   opts?: IMaskerPipeOpts
 }
 ```
-During the execution, pipe handler takes full control of the `context`. It can override next steps, change the `executor` impl (replace, append hook, etc), 
+During the execution, every pipe handler takes full control of the `context`. It can override next steps, change the `executor` impl (replace, append hook, etc), 
 create internal masker threads, parallelize invocation queues and sync them back together, and so on.
 
 ### Context
@@ -148,7 +148,7 @@ export interface IMaskerPipeInput {
   context: IMaskerPipeInput // ctx self ref
   parentId?: IContextId     // parent ctx id
   registry: IMaskerRegistry       // pipe registry attached to ctx
-  execute: IEnrichedExecutor      // executor 
+  execute: IExecutor              // executor 
   sync: boolean                   // sync / async switch
   mode: IExecutionMode            // lagacy sync switch
   opts: IMaskerOpts               // current pipe options
@@ -159,8 +159,16 @@ export interface IMaskerPipeInput {
 }
 ```
 
-## Usage
-### JS/TS API
+### Sync / async
+Both. In different situations, each api has disadvantages and advantages.
+For this reason, the masker provides a choice:
+```ts
+masker(data)                // async
+masker.sync(data)           // sync
+masker(data, {sync: true})  // sync
+```
+
+## JS/TS API
 #### masker
 The main interface — entry point to the masking processor.
 Default `masker` may be used to handle the most basic cases: [PANs](https://en.wikipedia.org/wiki/Payment_card_number), 
