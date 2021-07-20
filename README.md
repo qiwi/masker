@@ -22,6 +22,7 @@ Composite data masking utility
     - [Context](#context)
     - [Sync / async](#sync-/-async)
 - [Documentation](#documentation)
+- [Contributing](#contributing)
 - [Packages](#packages)
 - [License](#license)
 
@@ -202,7 +203,7 @@ logger.log({
 
 ## Design
 ### Middleware
-The masker bases on the middleware pattern: it takes some data and pushes it forward the `pipeline`. 
+The masker bases on [the middleware pattern](https://www.google.com/search?q=middleware+pattern+javascript): it takes a piece of data and pushes it forward the `pipeline`. 
 The output of each `pipe` is the input for the next one. Each pipe is a dual interface data processor:
 ```ts
 export interface IMaskerPipe {
@@ -216,7 +217,7 @@ During the execution, every pipe handler takes full control of the `context`. It
 create internal masker threads, parallelize invocation queues and sync them back together, and so on.
 
 ### Context
-During the processing, each pipe is fed with normalized context which consists of:
+Each pipe is fed with a normalized context which consists of:
 ```ts
 export interface IMaskerPipeInput {
   value: any                // value to process
@@ -237,7 +238,7 @@ export interface IMaskerPipeInput {
 ```
 
 ### Sync / async
-Both. In different situations, each api has disadvantages and advantages.
+Both. In different situations, each approach has pros and cons.
 For this reason, the masker provides a choice:
 ```ts
 masker(data)                // async
@@ -250,7 +251,7 @@ masker(data, {sync: true})  // sync
 * [CLI](https://github.com/qiwi/masker/blob/master/CLI.md)
 
 ## Packages
-There is also a bunch of plugins, that extend the masking scenarios. Please follow their internal docs.
+There is also a bunch of plugins, that extend the available masking scenarios. Please follow their internal docs.
 
 | Package | Description | Version
 |---|---|---
@@ -269,6 +270,11 @@ There is also a bunch of plugins, that extend the masking scenarios. Please foll
 |[@qiwi/masker-split](https://github.com/qiwi/masker/tree/master/packages/split)| Executor hook to recursively process any object inners | [![npm](https://img.shields.io/npm/v/@qiwi/masker-split/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-split)
 |[@qiwi/masker-strike](https://github.com/qiwi/masker/tree/master/packages/strike)| Plugin to ~~strikethough~~ any non-space string chars | [![npm](https://img.shields.io/npm/v/@qiwi/masker-strike/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-strike)
 |[@qiwi/masker-trycatch](https://github.com/qiwi/masker/tree/master/packages/trycatch)| Executor hook to capture and handle exceptions | [![npm](https://img.shields.io/npm/v/@qiwi/masker-trycatch/latest.svg?label=&color=09e)](https://www.npmjs.com/package/@qiwi/masker-trycatch)
+
+## Contributing
+Feel free to open any issues: for bugs, feature requests or questions. 
+You're always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes. 
+Any feedback is appreciated.
 
 ## License
 [MIT](https://github.com/qiwi/masker/blob/master/LICENSE)
