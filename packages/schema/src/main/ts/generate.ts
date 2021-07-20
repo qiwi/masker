@@ -1,5 +1,5 @@
-import {IMaskerPipeOutput, ISchemaContext, isEqual} from '@qiwi/masker-common'
-import {IMaskerSchema} from './interfaces'
+import {IMaskerPipeOutput, isEqual} from '@qiwi/masker-common'
+import {IMaskerSchema, ISchemaContext} from './interfaces'
 import {isObject} from './utils'
 
 export const generateSchema = ({before, after, pipe: {name}}: ISchemaContext): IMaskerSchema => {

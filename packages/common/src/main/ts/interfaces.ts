@@ -47,11 +47,6 @@ export interface IMaskerPipeInput extends IEnrichedContext {
   pipeline: IMaskerPipelineNormalized
 }
 
-export interface IMaskerContext {
-  target: any
-  next: Function
-}
-
 export type IMaskerRegistry = Map<IMaskerPipeName, IMaskerPipe>
 
 export type IContextId = string
@@ -93,19 +88,12 @@ export interface IExecutor {
 }
 
 export interface IEnrichedExecutor extends IExecutor {
-  <C extends IRawContext>(context: C): SyncGuard<IMaskerPipeOutput, C>
   sync: IExecutorSync
   execSync: IExecutorSync
   exec: IEnrichedExecutor
   id?: string
 }
 export type IExecutorSync = (context: IRawContext) => IMaskerPipeOutput
-
-export type ISchemaContext = {
-  before: IMaskerPipeInput,
-  after: IMaskerPipeOutput,
-  pipe: IMaskerPipeNormalized
-}
 
 export type IMaskerPipeName = string
 
