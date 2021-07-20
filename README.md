@@ -18,9 +18,6 @@ Composite data masking utility
     - [Console](#console)
     - [Winston](#winston)
 - [Design](#design)
-    - [Middleware](#middleware)
-    - [Context](#context)
-    - [Sync / async](#sync-/-async)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Packages](#packages)
@@ -213,6 +210,8 @@ export interface IMaskerPipe {
   opts?: IMaskerPipeOpts
 }
 ```
+
+### True dynamic
 During the execution, every pipe handler takes full control of the `context`. It can override next steps, change the `executor` impl (replace, append hook, etc), 
 create internal masker threads, parallelize invocation queues and sync them back together, and so on.
 
