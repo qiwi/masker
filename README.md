@@ -7,7 +7,7 @@ Composite data masking utility
 ```ts
 import {masker} from '@qiwi/masker'
 
-// Suitable for the most cases: strings, objects, json strings, which may contain any standard secret keys, values or card PANs.
+// Suitable for the most cases: strings, objects, json strings, which may contain any standard secret keys/values or card PANs.
 masker('411111111111111')       // Promise<4111 **** **** 1111>
 masker.sync('4111111111111111') // 4111 **** **** 1111
 ```
@@ -24,12 +24,12 @@ masker.sync({
   foo: 'str with printed password=foo and smth else',
   json: 'str with json inside {"secret":"bar"} {"4111111111111111":"bar"}',
 }, {
-  registry, // stores the plugins
+  registry,           // plugin storage
   pipeline: [
-    'split',          // to recursively process target object's childen. The same `pipeline` will be applied to internal keys and values
+    'split',          // to recursively process object's children. The origin `pipeline` will be applied to internal keys and values
     'pan',            // to mask card PANs
-    'secret-key',     // to conceal the values of sectitily named field like `secret` or `token` (pattern is configurable)
-    'secret-value',   // to replace sensitive parts of strings (pattern is configurable)
+    'secret-key',     // to conceal sensitive fields like `secret` or `token` (pattern is configurable)
+    'secret-value',   // to replace sensitive parts of strings like `token=foobar` (pattern is configurable)
     'json',           // to find jsons in strings
   ]
 })
