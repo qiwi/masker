@@ -14,6 +14,7 @@ Composite data masking utility
     - [Custom pipeline](#custom-pipeline)
     - [Masking schema](#masking-schema)
     - [CLI](#cli)
+    - [Playground](#playground)
 - [Integration](#integration)
     - [Console](#console)
     - [Winston](#winston)
@@ -157,6 +158,9 @@ masker.sync({
 npx masquer "4111 1111 1111 1111"
 # returns 4111 **** **** 1111
 ```
+
+### Playground
+[codesandbox.io/s/qiwi-masker-sandbox-ngrnu](https://codesandbox.io/s/qiwi-masker-sandbox-ngrnu?file=/src/index.js)
 
 ## Integration
 ### Console
