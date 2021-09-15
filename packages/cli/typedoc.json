@@ -7,6 +7,6 @@
   "excludePrivate": false,
   "hideGenerator": true,
   "readme": "README.md",
-  "theme": "minimal",
+  "theme": "defaultl",
   "tsconfig": "./tsconfig.es5.json"
 }
