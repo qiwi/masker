@@ -1,7 +1,7 @@
 ## @qiwi/masker API
 #### masker
-The main interface — entry point to the masking processor.
-Default `masker` may be used to handle the most basic cases: [PANs](https://en.wikipedia.org/wiki/Payment_card_number),
+`masker` is the main interface and the entry point to the masking processor.
+Default `masker` impl covers the most basic cases: [PANs](https://en.wikipedia.org/wiki/Payment_card_number),
 passwords, tokens in strings and objects.
 ```ts
 import {masker} from '@qiwi/masker'
@@ -28,7 +28,7 @@ masker.sync({
   }
 }
 ```
-You may also call `masker` with custom `pipeline` and `registry` options to override the default behavior.
+You may also invoke `masker` with a custom `pipeline` and `registry` options to override the default behavior.
 ```ts
 masker.sync({
   token: 'foo bar',
