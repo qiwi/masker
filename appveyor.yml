@@ -22,12 +22,12 @@ install:
   - yarn --ignore-engines
 
 environment:
-  nodejs_version: "14"
+  nodejs_version: "16"
   matrix:
     - job_name: Build
       job_group: Build
 
-    - job_name: TestNodeJS14
+    - job_name: TestNodeJS16
       job_group: Tests
       job_depends_on: Build
 
@@ -68,7 +68,7 @@ for:
 
   - matrix:
       only:
-        - job_name: TestNodeJS14
+        - job_name: TestNodeJS16
 
     before_test:
       - appveyor SetVariable -Name ARTIFACT_JOB -Value $(curl https://ci.appveyor.com/api/projects/QIWI/masker/builds/$APPVEYOR_BUILD_ID | jq -r '.build.jobs[0].jobId')
