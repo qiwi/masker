@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker-split",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -37,7 +37,7 @@
   "dependencies": {
     "@qiwi/substrate": "^1.20.10",
     "tslib": "^2.3.1",
-    "@qiwi/masker-common": "1.13.0"
+    "@qiwi/masker-common": "1.13.1"
   },
   "devDependencies": {},
   "repository": {
