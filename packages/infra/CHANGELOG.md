@@ -1,3 +1,10 @@
+## @qiwi/masker-infra [1.0.4](https://github.com/qiwi/masker/compare/@qiwi/masker-infra@1.0.3...@qiwi/masker-infra@1.0.4) (2021-11-04)
+
+
+### Bug Fixes
+
+* update deps, fix some vuls ([d303201](https://github.com/qiwi/masker/commit/d303201ab664ad185d0e64243301796611041274))
+
 ## @qiwi/masker-infra [1.0.3](https://github.com/qiwi/masker/compare/@qiwi/masker-infra@1.0.2...@qiwi/masker-infra@1.0.3) (2021-06-22)
 
 
