@@ -1,3 +1,18 @@
+## @qiwi/masker-strike [1.3.6](https://github.com/qiwi/masker/compare/@qiwi/masker-strike@1.3.5...@qiwi/masker-strike@1.3.6) (2021-11-04)
+
+
+### Bug Fixes
+
+* update deps, fix some vuls ([d303201](https://github.com/qiwi/masker/commit/d303201ab664ad185d0e64243301796611041274))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-common:** upgraded to 1.13.1
+
 ## @qiwi/masker-strike [1.3.5](https://github.com/qiwi/masker/compare/@qiwi/masker-strike@1.3.4...@qiwi/masker-strike@1.3.5) (2021-07-18)
 
 
