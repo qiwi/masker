@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/masker-common",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "Data masker common assets",
   "private": false,
   "publishConfig": {
@@ -39,7 +39,7 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@qiwi/masker-infra": "1.0.3"
+    "@qiwi/masker-infra": "1.0.4"
   },
   "repository": {
     "type": "git",
