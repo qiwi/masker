@@ -1,3 +1,18 @@
+## @qiwi/masker-common [1.13.2](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.13.1...@qiwi/masker-common@1.13.2) (2021-11-18)
+
+
+### Performance Improvements
+
+* update deps ([e2e0f2d](https://github.com/qiwi/masker/commit/e2e0f2d9020d8f53d9e67d748a0566030ad367f6))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker-infra:** upgraded to 1.0.5
+
 ## @qiwi/masker-common [1.13.1](https://github.com/qiwi/masker/compare/@qiwi/masker-common@1.13.0...@qiwi/masker-common@1.13.1) (2021-11-04)
 
 
