@@ -1,3 +1,18 @@
+## masquer [1.0.6](https://github.com/qiwi/masker/compare/masquer@1.0.5...masquer@1.0.6) (2021-11-18)
+
+
+### Performance Improvements
+
+* update deps ([e2e0f2d](https://github.com/qiwi/masker/commit/e2e0f2d9020d8f53d9e67d748a0566030ad367f6))
+
+
+
+
+
+### Dependencies
+
+* **@qiwi/masker:** upgraded to 1.5.3
+
 ## masquer [1.0.5](https://github.com/qiwi/masker/compare/masquer@1.0.4...masquer@1.0.5) (2021-11-04)
 
 
