@@ -98,4 +98,4 @@ for:
       - appveyor DownloadFile "https://ci.appveyor.com/api/buildjobs/$ARTIFACT_JOB/artifacts/artifact.zip"
       - 7z x artifact.zip -y
     deploy_script:
-      - npx -p @qiwi/semrel-toolkit multi-semrel
+      - npm_config_yes=true npx -p @qiwi/semrel-toolkit multi-semrel
