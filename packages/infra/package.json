@@ -14,7 +14,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@qiwi/libdefkit": "^3.1.1",
+    "@qiwi/libdefkit": "^4.0.0",
     "@types/jest": "^27.0.3",
     "jest": "^27.3.1",
     "terser": "^5.10.0",
