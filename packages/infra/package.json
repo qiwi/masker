@@ -23,7 +23,7 @@
     "tslint-config-qiwi": "^1.9.0",
     "typedoc": "^0.22.9",
     "typescript": "^4.5.2",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.0.0",
     "@swissquote/crafty-preset-jest": "^1.17.2",
     "benchmark": "^2.1.4"
   },
