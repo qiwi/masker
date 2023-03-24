@@ -35,7 +35,7 @@
     "postupdate": "yarn && yarn build && yarn test"
   },
   "dependencies": {
-    "@qiwi/substrate": "^1.20.11",
+    "@qiwi/substrate": "^2.0.0",
     "tslib": "^2.3.1",
     "@qiwi/masker-common": "1.13.2"
   },
