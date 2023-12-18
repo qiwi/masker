@@ -2,7 +2,6 @@
   "name": "@qiwi/masker-common",
   "version": "1.13.2",
   "description": "Data masker common assets",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
@@ -25,21 +24,20 @@
     "lint": "tslint -p tsconfig.test.json src/**/*.ts",
     "lint:fix": "yarn lint --fix",
     "clean": "rimraf target typings buildcache",
-    "build": "yarn build:es5 && yarn build:es6 && yarn build:ts && yarn build:libdef && yarn docs && yarn uglify",
+    "build": "yarn build:es5 && yarn build:es6 && yarn build:ts && yarn docs && yarn uglify",
     "build:es5": "mkdir -p target/es5 && tsc -p tsconfig.es5.json",
     "build:es6": "mkdir -p target/es6 && tsc -p tsconfig.es6.json",
     "build:ts": "cp -r src/main/ts/ target/ts/",
-    "build:libdef": "libdefkit --tsconfig=tsconfig.es5.json --tsconfig=tsconfig.es6.json",
     "docs": "typedoc",
     "uglify": "for f in $(find target -name '*.js'); do short=${f%.js}; terser -c -m -o $short.js -- $f; done",
     "postupdate": "yarn && yarn build && yarn test"
   },
   "dependencies": {
-    "@qiwi/substrate": "^1.20.11",
-    "tslib": "^2.3.1"
+    "@qiwi/substrate": "^2.0.4",
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@qiwi/masker-infra": "1.0.5"
+    "@qiwi/masker-infra": "workspaces:^*"
   },
   "repository": {
     "type": "git",
@@ -51,7 +49,5 @@
   "bugs": {
     "url": "https://github.com/qiwi/masker/issues"
   },
-  "homepage": "https://github.com/qiwi/masker#readme",
-  "peerDependencies": {},
-  "optionalDependencies": {}
+  "homepage": "https://github.com/qiwi/masker#readme"
 }
