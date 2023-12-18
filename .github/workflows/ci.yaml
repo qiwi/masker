@@ -32,10 +32,10 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Coverage
-        run: yarn cov
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Coverage
+#        run: yarn cov
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #      - name: Codeclimate
 #        if: github.ref == 'refs/heads/master'

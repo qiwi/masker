@@ -25,7 +25,7 @@ const compactItemsSchema = (properties: Record<any, any>) => {
     : properties
 }
 
-export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput): IMaskerSchema => {
+export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput & {schema?: IMaskerSchema}): IMaskerSchema => {
   if (after.schema) {
     return {
       ...after.schema,
@@ -38,13 +38,13 @@ export const extractSchemaFromResult = (type: string, after: IMaskerPipeOutput):
     const isArray = Array.isArray(after.value)
 
     if (values) {
-      const properties = Object.keys(origin).reduce((m, v: string, i: number) => {
+      const properties = Object.keys(origin).reduce<Record<string, any>>((m, v: string, i: number) => {
         const maskKey = keys[i]?.schema?.maskValue
         const schema = values[i].schema
         m[v] = maskKey ? {...schema, maskKey} : schema
 
         return m
-      }, isArray ? [] : {} as Record<string, any>)
+      }, isArray ? [] : {})
 
       return isArray
         ? {type, items: compactItemsSchema(properties)}
