@@ -58,10 +58,10 @@ export const defineNonEnum = <T>(target: T, key: string, value: any): T => Objec
   writable: true,
 })
 
-export const asArray = <T = any>(value: T): Extends<T, any[], T, T[]> =>
+export const asArray = <T = any>(value?: T): Extends<T, any[], T, T[]> =>
   (Array.isArray(value) ? value : [value]) as Extends<T, any[], T, T[]>
 
-export const asRegExp = (value: any): RegExp | undefined =>
+export const asRegExp = (value?: any): RegExp | undefined =>
   value instanceof RegExp
     ? value
     : typeof value === 'string'
