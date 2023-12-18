@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rimraf packages/*/target packages/*/typings packages/*/buildcache packages/*/docs packages/*/coverage",
     "prebuild": "tsc -b packages/facade/tsconfig.es5.json",
-    "build": "yarn clean && yarn prebuild && yarn workspaces run build",
+    "_build": "yarn clean && yarn prebuild && yarn workspaces foreach -A --parallel --topological-dev --no-private --interlaced run build",
     "lint": "yarn workspaces run lint",
     "jest": "jest --runInBand --detectOpenHandles",
     "test:report": "yarn test && yarn coveralls:push",
@@ -25,7 +25,7 @@
   "devDependencies": {
     "coveralls": "^3.1.1",
     "find-git-root": "^1.0.4",
-    "jest": "^27.3.1",
+    "jest": "^29.7.0",
     "snazzy": "^9.0.0"
   },
   "repository": {
@@ -46,5 +46,6 @@
   "bugs": {
     "url": "https://github.com/qiwi/masker/issues"
   },
-  "homepage": "https://github.com/qiwi/masker#readme"
+  "homepage": "https://github.com/qiwi/masker#readme",
+  "packageManager": "yarn@4.0.2"
 }

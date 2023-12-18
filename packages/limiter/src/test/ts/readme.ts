@@ -1,9 +1,11 @@
-import {createMasker, createPipe, registry} from '@qiwi/masker'
+import {createMasker, createPipe} from '@qiwi/masker-common'
+import {pipe as split} from '@qiwi/masker-split'
 import {pipe as limiter} from '../../main/ts'
 
 describe('limiter', () => {
   describe('works as written in readme', () => {
     it('example #1', () => {
+      const registry = []
       const echo = createPipe('echo', ({value}: any) => ({value}))
       const masker = createMasker({
         registry,
