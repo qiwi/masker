@@ -11,6 +11,7 @@ describe('limiter',() => {
       expect(pipe.name).toBe(name)
     })
 
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const sleep = (n: number): string => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n)
     const sleepPipe = createPipe('bar', ({value}: IMaskerPipeInput) => {
       sleep(50)

@@ -61,6 +61,7 @@ export const shortCutExecute = ({context, schema, value, sync, execute}: IEnrich
   }
 
   return sync
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     ? inject(_value, values as IMaskerPipeOutput[], keys as IMaskerPipeOutput[])
     : Promise.all([Promise.all(values), Promise.all(keys)]).then(([values, keys]) => inject(_value, values, keys))

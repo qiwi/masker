@@ -21,8 +21,8 @@ describe('secret-key',() => {
         ['foo bar', '***', 'password'],
         ['foo bar', '***', 'private'],
         [null, null],
-        [12345, '***', 'token'],
-        [12345, 12345, 'foobar'],
+        [12_345, '***', 'token'],
+        [12_345, 12_345, 'foobar'],
       ]
       cases.forEach(([value, expected, path, opts = defaultOpts]) => {
         const ctx = normalizeContext({value, path, opts}, execute)

@@ -1,0 +1,6 @@
+{
+  "extends": ["eslint-config-qiwi"],
+  "rules": {
+    "sonarjs/no-duplicate-string": "off"
+  }
+}

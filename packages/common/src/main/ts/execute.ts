@@ -76,6 +76,7 @@ export const patchExecutor = (execHook: TExecutorHook, name: IMaskerPipeName) =>
   if (ctx.pipeline.length === 0) {
     ctx.pipeline = [createPipe('echo', (v: any) => v)]
   }
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   ctx.context = undefined
 

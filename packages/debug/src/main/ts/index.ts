@@ -12,7 +12,7 @@ import {
   IMaskerPipe, hook,
 } from '@qiwi/masker-common'
 
-export type {Debugger}
+
 
 export const name: IMaskerPipeName = 'debug'
 
@@ -45,3 +45,5 @@ const exec = patchExecutor(withDebug, name)
 export const pipe = createPipe(name, exec, exec)
 
 export default pipe
+
+export {type Debugger} from 'debug'

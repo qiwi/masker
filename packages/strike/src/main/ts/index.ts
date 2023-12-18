@@ -11,7 +11,7 @@ export const stub = '*'
 
 export const pipe: IMaskerPipe = createPipe(name, ({value}: IMaskerPipeInput) => ({
   value: (typeof value === 'string' || typeof value === 'number')
-    ? value.toString().replace(/[^\s\r\n\t]/gi, stub)
+    ? value.toString().replace(/\S/gi, stub)
     : value,
 }))
 

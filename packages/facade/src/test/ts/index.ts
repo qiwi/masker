@@ -10,7 +10,7 @@ describe('facade',() => {
     it('example #1 (root)', () => {
       const res = masker.sync({
         secret: 'foo',
-        nested: {pans: [4111111111111111]},
+        nested: {pans: [4_111_111_111_111_111]},
         foo: 'str with printed password=foo and smth else',
         json: 'str with json inside {"secret":"bar"} {"4111111111111111":"bar"}',
       }, {
@@ -38,7 +38,7 @@ describe('facade',() => {
         foo: 'bar',
         foofoo: 'barbar',
         baz: 'qux',
-        arr:  [4111111111111111, 1234123412341234],
+        arr:  [4_111_111_111_111_111, 1_234_123_412_341_234],
       }, {
         pipeline: ['schema'],
         schema: {

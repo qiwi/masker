@@ -8,7 +8,7 @@ describe('utils', () => {
   describe('asArray', () => {
     it('wraps non-array to array', () => {
       expect(asArray({})).toEqual([{}])
-      expect(asArray(undefined)).toEqual([undefined])
+      expect(asArray()).toEqual([undefined])
     })
     it('returns array as is', () => {
       expect(asArray([{}])).toEqual([{}])
@@ -26,7 +26,7 @@ describe('utils', () => {
     })
     it('returns undefined otherwise', () => {
       expect(asRegExp(null)).toBeUndefined()
-      expect(asRegExp(undefined)).toBeUndefined()
+      expect(asRegExp()).toBeUndefined()
       expect(asRegExp({})).toBeUndefined()
       expect(asRegExp(1)).toBeUndefined()
     })

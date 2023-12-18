@@ -103,7 +103,7 @@ describe('schema', () => {
 
     const striker = cp('striker', ({value, path}: IMaskerPipeInput) =>
       (typeof value === 'string' && path !== undefined
-        ? {value: value.replace(/[^\s]/g, '*')}
+        ? {value: value.replace(/\S/g, '*')}
         : {value}))
 
     const registry = new Map()
@@ -210,6 +210,7 @@ describe('schema', () => {
         },
       }
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const result = extractMaskerDirectives(schema)
 
