@@ -9,9 +9,8 @@
   "private": true,
   "scripts": {
     "clean": "rimraf packages/*/target packages/*/typings packages/*/buildcache packages/*/docs packages/*/coverage",
-    "prebuild": "tsc -b packages/facade/tsconfig.es5.json",
-    "_build": "yarn clean && yarn prebuild && yarn workspaces foreach -A --parallel --topological-dev --no-private --interlaced run build",
-    "lint": "yarn workspaces run lint",
+    "build": "npx zx-bulk-release --dry-run",
+    "lint": "yarn workspaces foreach -A --parallel --no-private --interlaced run lint",
     "jest": "jest --runInBand --detectOpenHandles",
     "test:report": "yarn test && yarn coveralls:push",
     "test": "yarn lint && yarn jest",

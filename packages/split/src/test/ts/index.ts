@@ -22,8 +22,10 @@ describe('split', () => {
       const bbb = '***async***'
       const fakeExec = jest.fn(() => Promise.resolve({value: bbb}))
       const fakeExecSync = jest.fn(() => ({value: aaa}))
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const execute = enrichExecutor(fakeExec)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const executeSync = enrichExecutor(fakeExecSync)
 

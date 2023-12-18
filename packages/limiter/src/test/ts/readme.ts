@@ -36,6 +36,7 @@ describe('limiter', () => {
 
     it('example #2', async() => {
       let delay = 0
+      // eslint-disable-next-line unicorn/consistent-function-scoping
       const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
       const echoPipe = createPipe(
         'echo',

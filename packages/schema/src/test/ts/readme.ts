@@ -1,5 +1,24 @@
-import {pipeline, createMasker, registry} from '@qiwi/masker'
+import {createMasker} from '@qiwi/masker-common'
 import {pipe as schema} from '@qiwi/masker-schema'
+import {pipe as plain} from '@qiwi/masker-plain'
+import {pipe as secretKey} from '@qiwi/masker-secret-key'
+import {pipe as secretValue} from '@qiwi/masker-secret-value'
+import {pipe as split} from '@qiwi/masker-split'
+import {pipe as pan} from '@qiwi/masker-pan'
+import {pipe as strike} from '@qiwi/masker-strike'
+
+const registry = new Map()
+  .set(plain.name, plain)
+  .set(secretKey.name, secretKey)
+  .set(pan.name, pan)
+  .set(strike.name, strike)
+
+const pipeline = [
+  secretKey,
+  secretValue,
+  pan,
+  split,
+]
 
 describe('schema', () => {
   describe('works as described in README', () => {

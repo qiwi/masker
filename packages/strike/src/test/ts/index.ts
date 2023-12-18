@@ -20,7 +20,7 @@ describe('strike',() => {
       const cases = [
         ['foo bar', '*** ***'],
         [null, null],
-        [12345, '*****'],
+        [12_345, '*****'],
       ]
       cases.forEach(([value, expected]) => {
         const result = {value: expected}

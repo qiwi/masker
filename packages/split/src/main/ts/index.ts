@@ -9,7 +9,7 @@ import {
   IMaskerPipeInput,
 } from '@qiwi/masker-common'
 
-export const appendPath = (chunk: string = '', prev: string = '') => `${prev ? prev + '.' : ''}${chunk}`
+export const appendPath = (chunk = '', prev = '') => `${prev ? prev + '.' : ''}${chunk}`
 
 export const randomizeKeys = (keys: string[]) => {
   const counters: Record<string, number> = {}

@@ -22,7 +22,7 @@
   "scripts": {
     "test": "yarn lint && yarn jest",
     "jest": "jest -w=1 --config=jest.config.json",
-    "lint": "tslint -p tsconfig.test.json src/**/*.ts",
+    "lint": "eslint -c src/test/lint/.eslintrc.json src",
     "lint:fix": "yarn lint --fix",
     "clean": "rimraf target typings buildcache",
     "build": "yarn build:es5 && yarn build:es6 && yarn build:ts && yarn docs",

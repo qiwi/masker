@@ -1,5 +1,5 @@
-import {execSync} from 'child_process'
-import {resolve} from 'path'
+import {execSync} from 'node:child_process'
+import {resolve} from 'node:path'
 
 describe('masquer',() => {
   it('applies @qiwi/masker to the input', () => {

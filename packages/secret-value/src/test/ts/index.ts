@@ -12,7 +12,7 @@ describe('secret-value',() => {
     describe('replaces all values with *', () => {
       const cases = [
         ['foo bar baz baaar qux', 'foo *** baz *** qux', /ba+r/g],
-        ['some string with pwd=foobar and pwd=qux', 'some string with *** and ***', /(?:pwd=)(\s*[^\s]+)/gi],
+        ['some string with pwd=foobar and pwd=qux', 'some string with *** and ***', /pwd=(\s*\S+)/gi],
       ]
       cases.forEach(([value, expected, pattern]) => {
         const ctx = normalizeContext({value, opts: {

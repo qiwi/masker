@@ -39,6 +39,6 @@ export const extractJsonEntries = (input: string): TExtractedEntry[] => {
 }
 
 // https://stackoverflow.com/a/3710506
-export const checkJson = (str: string): boolean => /^[\],:{}\s]*$/.test(str.replace(/\\["\\\/bfnrtu]/g, '@').
-replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+export const checkJson = (str: string): boolean => /^[\s,:\]{}]*$/.test(str.replace(/\\["/\\bfnrtu]/g, '@').
+replace(/"[^\n\r"\\]*"|true|false|null|-?\d+(?:\.\d*)?(?:[Ee][+-]?\d+)?/g, ']').
 replace(/(?:^|:|,)(?:\s*\[)+/g, ''))

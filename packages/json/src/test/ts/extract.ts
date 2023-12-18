@@ -6,19 +6,19 @@ describe('#extractJsonStrings', () => {
 
     expect(extractJsonEntries(input)).toEqual([
       {
-        _value: '{\"foo\":\"bar\"}',
+        _value: '{"foo":"bar"}',
         value: {foo: 'bar'},
         end: 14,
         start: 1,
       },
       {
-        _value: '{\"a\":{\"b\":\"{\\\"c\\\":\\\"d\\\"}\"}}',
+        _value: '{"a":{"b":"{\\"c\\":\\"d\\"}"}}',
         value: {a: {b: '{"c":"d"}'}},
         end: 46,
         start: 19,
       },
       {
-        _value: '{\"foo\":\"baz\"}',
+        _value: '{"foo":"baz"}',
         value: {foo: 'baz'},
         end: 66,
         start: 53,

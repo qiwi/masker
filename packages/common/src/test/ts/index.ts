@@ -29,8 +29,10 @@ describe('#getPipe', () => {
     ['raises an exception if not found', ['otherpipe', registry], undefined, new Error('Pipe not found: otherpipe')],
     ['supports options notation', [[pipe, opts], registry], {...pipe, opts}],
     ['named ref and options', [['pipe', opts], registry], {...pipe, opts}],
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     ['boxed ref with no options', [['pipe'], registry], {...pipe, opts: {}}],
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     ['undefined if pipe is not a function', [[undefined]], undefined, new Error('Pipe not found: undefined')],
   ]
@@ -172,7 +174,7 @@ describe('#execute', () => {
 
     const striker = cp('striker', ({value}: IMaskerPipeInput) =>
       (typeof value === 'string'
-        ? {value: value.replace(/[^\s]/g, '*')}
+        ? {value: value.replace(/\S/g, '*')}
         : {value}))
     const splitter = cp('splitter', ({value, execute, context, originPipeline}: IMaskerPipeInput) =>
       (typeof value === 'object'
@@ -188,12 +190,9 @@ describe('#execute', () => {
         })(value)
         : {value}))
 
-    const registry = new Map()
-    registry.set(splitter.name, splitter)
-    registry.set(striker.name, striker)
-
     it('masked output inherits proto of input', () => {
       const error = new Error('1000')
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       error.baz = 'quxqux'
       const value = {
