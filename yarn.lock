@@ -947,21 +947,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@qiwi/masker-common@workspace:packages/common, @qiwi/masker-common@workspaces:^*":
+"@qiwi/masker-common@workspace:^, @qiwi/masker-common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-common@workspace:packages/common"
   dependencies:
-    "@qiwi/masker-infra": "workspaces:^*"
+    "@qiwi/masker-infra": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-debug@workspace:packages/debug, @qiwi/masker-debug@workspaces:^*":
+"@qiwi/masker-debug@workspace:^, @qiwi/masker-debug@workspace:packages/debug":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-debug@workspace:packages/debug"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     "@types/debug": "npm:^4.1.12"
     debug: "npm:^4.3.4"
@@ -969,7 +969,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-infra@workspace:packages/infra, @qiwi/masker-infra@workspaces:^*":
+"@qiwi/masker-infra@workspace:^, @qiwi/masker-infra@workspace:packages/infra":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-infra@workspace:packages/infra"
   dependencies:
@@ -988,12 +988,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-json@workspace:packages/json, @qiwi/masker-json@workspaces:^*":
+"@qiwi/masker-json@workspace:^, @qiwi/masker-json@workspace:packages/json":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-json@workspace:packages/json"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
-    "@qiwi/masker-secret-value": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
+    "@qiwi/masker-secret-value": "workspace:^"
     "@qiwi/masker-split": "npm:1.6.8"
     "@qiwi/substrate": "npm:^2.0.4"
     "@types/xregexp": "npm:^4.3.0"
@@ -1002,12 +1002,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-limiter@workspace:packages/limiter, @qiwi/masker-limiter@workspaces:^*":
+"@qiwi/masker-limiter@workspace:^, @qiwi/masker-limiter@workspace:packages/limiter":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-limiter@workspace:packages/limiter"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
-    "@qiwi/masker-plain": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
+    "@qiwi/masker-plain": "workspace:^"
     "@qiwi/masker-split": "workspace:*"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
@@ -1022,42 +1022,42 @@ __metadata:
     find-git-root: "npm:^1.0.4"
     jest: "npm:^29.7.0"
     snazzy: "npm:^9.0.0"
-    zx-bulk-release: "npm:^2.13.1"
+    zx-bulk-release: "npm:^2.14.0"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-pan@workspace:packages/pan, @qiwi/masker-pan@workspaces:^*":
+"@qiwi/masker-pan@workspace:^, @qiwi/masker-pan@workspace:packages/pan":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-pan@workspace:packages/pan"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     fast-luhn: "npm:^2.0.2"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-plain@workspace:packages/plain, @qiwi/masker-plain@workspaces:^*":
+"@qiwi/masker-plain@workspace:^, @qiwi/masker-plain@workspace:packages/plain":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-plain@workspace:packages/plain"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-schema@workspace:packages/schema, @qiwi/masker-schema@workspaces:^*":
+"@qiwi/masker-schema@workspace:^, @qiwi/masker-schema@workspace:packages/schema":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-schema@workspace:packages/schema"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
-    "@qiwi/masker-pan": "workspaces:^*"
-    "@qiwi/masker-plain": "workspaces:^*"
-    "@qiwi/masker-secret-key": "workspaces:^*"
-    "@qiwi/masker-secret-value": "workspaces:^*"
-    "@qiwi/masker-split": "workspaces:^*"
-    "@qiwi/masker-strike": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
+    "@qiwi/masker-pan": "workspace:^"
+    "@qiwi/masker-plain": "workspace:^"
+    "@qiwi/masker-secret-key": "workspace:^"
+    "@qiwi/masker-secret-value": "workspace:^"
+    "@qiwi/masker-split": "workspace:^"
+    "@qiwi/masker-strike": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     "@types/lodash.clonedeep": "npm:^4.5.9"
     "@types/lodash.get": "npm:^4.4.9"
@@ -1073,75 +1073,75 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-secret-key@workspace:packages/secret-key, @qiwi/masker-secret-key@workspaces:^*":
+"@qiwi/masker-secret-key@workspace:^, @qiwi/masker-secret-key@workspace:packages/secret-key":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-secret-key@workspace:packages/secret-key"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
-    "@qiwi/masker-plain": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
+    "@qiwi/masker-plain": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-secret-value@workspace:packages/secret-value, @qiwi/masker-secret-value@workspaces:^*":
+"@qiwi/masker-secret-value@workspace:^, @qiwi/masker-secret-value@workspace:packages/secret-value":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-secret-value@workspace:packages/secret-value"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
-    "@qiwi/masker-plain": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
+    "@qiwi/masker-plain": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-split@npm:1.6.8, @qiwi/masker-split@workspace:*, @qiwi/masker-split@workspace:packages/split, @qiwi/masker-split@workspaces:^*":
+"@qiwi/masker-split@npm:1.6.8, @qiwi/masker-split@workspace:*, @qiwi/masker-split@workspace:^, @qiwi/masker-split@workspace:packages/split":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-split@workspace:packages/split"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-strike@workspace:packages/strike, @qiwi/masker-strike@workspaces:^*":
+"@qiwi/masker-strike@workspace:^, @qiwi/masker-strike@workspace:packages/strike":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-strike@workspace:packages/strike"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker-trycatch@workspace:packages/trycatch, @qiwi/masker-trycatch@workspaces:^*":
+"@qiwi/masker-trycatch@workspace:^, @qiwi/masker-trycatch@workspace:packages/trycatch":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker-trycatch@workspace:packages/trycatch"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
-    "@qiwi/masker-plain": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
+    "@qiwi/masker-plain": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
   languageName: unknown
   linkType: soft
 
-"@qiwi/masker@workspace:packages/facade, @qiwi/masker@workspaces:^*":
+"@qiwi/masker@workspace:^, @qiwi/masker@workspace:packages/facade":
   version: 0.0.0-use.local
   resolution: "@qiwi/masker@workspace:packages/facade"
   dependencies:
-    "@qiwi/masker-common": "workspaces:^*"
-    "@qiwi/masker-debug": "workspaces:^*"
-    "@qiwi/masker-json": "workspaces:^*"
-    "@qiwi/masker-limiter": "workspaces:^*"
-    "@qiwi/masker-pan": "workspaces:^*"
-    "@qiwi/masker-plain": "workspaces:^*"
-    "@qiwi/masker-schema": "workspaces:^*"
-    "@qiwi/masker-secret-key": "workspaces:^*"
-    "@qiwi/masker-secret-value": "workspaces:^*"
-    "@qiwi/masker-split": "workspaces:^*"
-    "@qiwi/masker-strike": "workspaces:^*"
-    "@qiwi/masker-trycatch": "workspaces:^*"
+    "@qiwi/masker-common": "workspace:^"
+    "@qiwi/masker-debug": "workspace:^"
+    "@qiwi/masker-json": "workspace:^"
+    "@qiwi/masker-limiter": "workspace:^"
+    "@qiwi/masker-pan": "workspace:^"
+    "@qiwi/masker-plain": "workspace:^"
+    "@qiwi/masker-schema": "workspace:^"
+    "@qiwi/masker-secret-key": "workspace:^"
+    "@qiwi/masker-secret-value": "workspace:^"
+    "@qiwi/masker-split": "workspace:^"
+    "@qiwi/masker-strike": "workspace:^"
+    "@qiwi/masker-trycatch": "workspace:^"
     "@qiwi/substrate": "npm:^2.0.4"
     tslib: "npm:^2.6.2"
   languageName: unknown
@@ -5659,7 +5659,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "masquer@workspace:packages/cli"
   dependencies:
-    "@qiwi/masker": "workspaces:^*"
+    "@qiwi/masker": "workspace:^"
     tslib: "npm:^2.6.2"
   bin:
     masquer: ./target/es5/index.js
@@ -8367,9 +8367,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zx-bulk-release@npm:^2.13.1":
-  version: 2.13.1
-  resolution: "zx-bulk-release@npm:2.13.1"
+"zx-bulk-release@npm:^2.14.0":
+  version: 2.14.0
+  resolution: "zx-bulk-release@npm:2.14.0"
   dependencies:
     "@semrel-extra/topo": "npm:^1.14.1"
     cosmiconfig: "npm:^9.0.0"
@@ -8378,7 +8378,7 @@ __metadata:
     zx-extra: "npm:^2.6.4"
   bin:
     zx-bulk-release: src/main/js/cli.js
-  checksum: 2c39ce367532824b11305df168ae2b820629686e014bbf4affe3415218a4f2b3acd4e8e8fa43f519aafe03f4520cc2c790f454217df7fb77bad4c3b19ef7f9de
+  checksum: 2891ebe210913c28c76bc35c0e5e8b405c21a07a8e71aaa385106545bdb8e9a326e666de1104c216d19b10f3b80ae726b38c55b00c94ea430cf7dcef61773a3e
   languageName: node
   linkType: hard
 

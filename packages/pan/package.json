@@ -33,7 +33,7 @@
     "postupdate": "yarn && yarn build && yarn test"
   },
   "dependencies": {
-    "@qiwi/masker-common": "workspaces:^*",
+    "@qiwi/masker-common": "workspace:^",
     "@qiwi/substrate": "^2.0.4",
     "fast-luhn": "^2.0.2",
     "tslib": "^2.6.2"

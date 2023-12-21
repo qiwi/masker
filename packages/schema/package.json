@@ -33,8 +33,8 @@
     "postupdate": "yarn && yarn build && yarn test"
   },
   "dependencies": {
-    "@qiwi/masker-common": "workspaces:^*",
-    "@qiwi/masker-split": "workspaces:^*",
+    "@qiwi/masker-common": "workspace:^",
+    "@qiwi/masker-split": "workspace:^",
     "@qiwi/substrate": "^2.0.4",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/lodash.get": "^4.4.9",
@@ -49,11 +49,11 @@
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@qiwi/masker-pan": "workspaces:^*",
-    "@qiwi/masker-plain": "workspaces:^*",
-    "@qiwi/masker-secret-key": "workspaces:^*",
-    "@qiwi/masker-secret-value": "workspaces:^*",
-    "@qiwi/masker-strike": "workspaces:^*"
+    "@qiwi/masker-pan": "workspace:^",
+    "@qiwi/masker-plain": "workspace:^",
+    "@qiwi/masker-secret-key": "workspace:^",
+    "@qiwi/masker-secret-value": "workspace:^",
+    "@qiwi/masker-strike": "workspace:^"
   },
   "repository": {
     "type": "git",
