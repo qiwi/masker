@@ -39,30 +39,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.23.0":
-  version: 7.23.0
-  resolution: "@babel/core@npm:7.23.0"
-  dependencies:
-    "@ampproject/remapping": "npm:^2.2.0"
-    "@babel/code-frame": "npm:^7.22.13"
-    "@babel/generator": "npm:^7.23.0"
-    "@babel/helper-compilation-targets": "npm:^7.22.15"
-    "@babel/helper-module-transforms": "npm:^7.23.0"
-    "@babel/helpers": "npm:^7.23.0"
-    "@babel/parser": "npm:^7.23.0"
-    "@babel/template": "npm:^7.22.15"
-    "@babel/traverse": "npm:^7.23.0"
-    "@babel/types": "npm:^7.23.0"
-    convert-source-map: "npm:^2.0.0"
-    debug: "npm:^4.1.0"
-    gensync: "npm:^1.0.0-beta.2"
-    json5: "npm:^2.2.3"
-    semver: "npm:^6.3.1"
-  checksum: dd8f988e9ea82b449aaeb3f0c510e39839d9af61ca99391c7d7d06cd1005f21b93cc8d18ee1f3b929a2a37fbda1ee4b0d9304574f02cc365dc327edc6d0348ef
-  languageName: node
-  linkType: hard
-
-"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3":
+"@babel/core@npm:7.23.6, @babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3":
   version: 7.23.6
   resolution: "@babel/core@npm:7.23.6"
   dependencies:
@@ -85,7 +62,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/generator@npm:^7.23.0, @babel/generator@npm:^7.23.6, @babel/generator@npm:^7.7.2":
+"@babel/generator@npm:^7.23.6, @babel/generator@npm:^7.7.2":
   version: 7.23.6
   resolution: "@babel/generator@npm:7.23.6"
   dependencies:
@@ -97,7 +74,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-compilation-targets@npm:^7.22.15, @babel/helper-compilation-targets@npm:^7.23.6":
+"@babel/helper-compilation-targets@npm:^7.23.6":
   version: 7.23.6
   resolution: "@babel/helper-compilation-targets@npm:7.23.6"
   dependencies:
@@ -145,7 +122,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-module-transforms@npm:^7.23.0, @babel/helper-module-transforms@npm:^7.23.3":
+"@babel/helper-module-transforms@npm:^7.23.3":
   version: 7.23.3
   resolution: "@babel/helper-module-transforms@npm:7.23.3"
   dependencies:
@@ -206,7 +183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helpers@npm:^7.23.0, @babel/helpers@npm:^7.23.6":
+"@babel/helpers@npm:^7.23.6":
   version: 7.23.6
   resolution: "@babel/helpers@npm:7.23.6"
   dependencies:
@@ -228,7 +205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.20.7, @babel/parser@npm:^7.22.15, @babel/parser@npm:^7.23.0, @babel/parser@npm:^7.23.6":
+"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.20.7, @babel/parser@npm:^7.22.15, @babel/parser@npm:^7.23.6":
   version: 7.23.6
   resolution: "@babel/parser@npm:7.23.6"
   bin:
@@ -391,16 +368,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-modules-commonjs@npm:7.23.0":
-  version: 7.23.0
-  resolution: "@babel/plugin-transform-modules-commonjs@npm:7.23.0"
+"@babel/plugin-transform-modules-commonjs@npm:7.23.3":
+  version: 7.23.3
+  resolution: "@babel/plugin-transform-modules-commonjs@npm:7.23.3"
   dependencies:
-    "@babel/helper-module-transforms": "npm:^7.23.0"
+    "@babel/helper-module-transforms": "npm:^7.23.3"
     "@babel/helper-plugin-utils": "npm:^7.22.5"
     "@babel/helper-simple-access": "npm:^7.22.5"
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 65085c8f2578b0c272b3969b78e54430ea3217fca8de7a21ded845a74ddf2d97aee284559da102d826fcb8aed5a79d09536a6e4610d868f539d7bc382eb319ff
+  checksum: a3bc082d0dfe8327a29263a6d721cea608d440bc8141ba3ec6ba80ad73d84e4f9bbe903c27e9291c29878feec9b5dee2bd0563822f93dc951f5d7fc36bdfe85b
   languageName: node
   linkType: hard
 
@@ -425,7 +402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/traverse@npm:^7.23.0, @babel/traverse@npm:^7.23.6":
+"@babel/traverse@npm:^7.23.6":
   version: 7.23.6
   resolution: "@babel/traverse@npm:7.23.6"
   dependencies:
@@ -974,7 +951,7 @@ __metadata:
   resolution: "@qiwi/masker-infra@workspace:packages/infra"
   dependencies:
     "@qiwi/libdefkit": "npm:^5.0.0"
-    "@swissquote/crafty-preset-jest": "npm:^1.23.0"
+    "@swissquote/crafty-preset-jest": "npm:^1.24.0"
     "@types/jest": "npm:^29.5.11"
     benchmark: "npm:^2.1.4"
     eslint: "npm:^8.56.0"
@@ -996,7 +973,7 @@ __metadata:
     "@qiwi/masker-secret-value": "workspace:^"
     "@qiwi/masker-split": "npm:1.6.8"
     "@qiwi/substrate": "npm:^2.0.4"
-    "@types/xregexp": "npm:^4.3.0"
+    "@types/xregexp": "npm:^4.4.0"
     tslib: "npm:^2.6.2"
     xregexp: "npm:^5.1.1"
   languageName: unknown
@@ -1228,40 +1205,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty-commons@npm:1.23.0"
+"@swissquote/crafty-commons@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty-commons@npm:1.24.0"
   dependencies:
-    caniuse-lite: "npm:^1.0.30001542"
-  checksum: 2aea7d1a3834d7ec080ce8883c3c6d4730af8871b3cdaf390779b0e068e4131195e0451bcb47da9c35821a7ac7be37aa7e03a49368460f69435c6a73f96477d1
+    caniuse-lite: "npm:^1.0.30001570"
+  checksum: b584790ba9a936bf39591c315cf03b46033ddd9fb9e6e8f9a66f4ed07563660f82050a277ab0b2a8204ec6631b7742ef06b69860ae265ca6505f85f827742738
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-jest@npm:^1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty-preset-jest@npm:1.23.0"
+"@swissquote/crafty-preset-jest@npm:^1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty-preset-jest@npm:1.24.0"
   dependencies:
-    "@babel/core": "npm:7.23.0"
-    "@babel/plugin-transform-modules-commonjs": "npm:7.23.0"
-    "@swissquote/crafty": "npm:1.23.0"
+    "@babel/core": "npm:7.23.6"
+    "@babel/plugin-transform-modules-commonjs": "npm:7.23.3"
+    "@swissquote/crafty": "npm:1.24.0"
     jest-cli: "npm:29.7.0"
     jest-environment-jsdom: "npm:29.7.0"
-  checksum: bcb814a328ad6235344f2354598240b5875777aae66e18549de93e3889edd8e2d5bf3009560a72241d120478365976d89a073f2d1100540faf2d7e874265c0cd
+  checksum: 93bccfaa4e68e32ec97b5150aa1ba412af31fd1eb54ce663aafc5ff7ce008fd55d657d1d81ea25c58ac50566e7532ffacb55d469e4233deaef9522a4ee804aea
   languageName: node
   linkType: hard
 
-"@swissquote/crafty@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty@npm:1.23.0"
+"@swissquote/crafty@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty@npm:1.24.0"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.23.0"
+    "@swissquote/crafty-commons": "npm:1.24.0"
     fsevents: "npm:~2.3.3"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     crafty: src/bin.cjs
-  checksum: 908ec66c0b345cf1f5e76955cf87b13a5075e10deabd4cf18d4904d85da3ae4839c4eb975a11d210566db46bed13684f741d10a50b0700855fa762a8b3a333ab
+  checksum: 9cc8f2471f01ff791d7b735a2922f7b69dbae47933ca629600ecc04ff3595249c3c4b84c029ab485c53d4b17336208866a946c44a4d8c6544c07f160dd6d2355
   languageName: node
   linkType: hard
 
@@ -1617,10 +1594,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/xregexp@npm:^4.3.0":
-  version: 4.3.0
-  resolution: "@types/xregexp@npm:4.3.0"
-  checksum: f4f3c6ef2c2fd2075ba0535b96893a1f2dcb93eabe1c66332844303bea050e8b494e21cfe9192e1ddac2423e33ce8bd195398f166671a5993cef77402cf8d41e
+"@types/xregexp@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "@types/xregexp@npm:4.4.0"
+  dependencies:
+    xregexp: "npm:*"
+  checksum: d864c0ea7754ed855c75ea7251248317842ae6d72acfa22cd5fd58f4e5740a6867357ad8a484040f2fc02cf67d9e004b42b95968fe0edfcc5681ae51232bfc6c
   languageName: node
   linkType: hard
 
@@ -2370,7 +2349,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001542, caniuse-lite@npm:^1.0.30001565":
+"caniuse-lite@npm:^1.0.30001565, caniuse-lite@npm:^1.0.30001570":
   version: 1.0.30001570
   resolution: "caniuse-lite@npm:1.0.30001570"
   checksum: a9b939e003dd70580cc18bce54627af84f298af7c774415c8d6c99871e7cee13bd8278b67955a979cd338369c73e8821a10b37e607d1fff2fbc8ff92fc489653
@@ -8294,7 +8273,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xregexp@npm:^5.1.1":
+"xregexp@npm:*, xregexp@npm:^5.1.1":
   version: 5.1.1
   resolution: "xregexp@npm:5.1.1"
   dependencies:
