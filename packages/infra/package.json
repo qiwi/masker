@@ -12,7 +12,7 @@
     "lint": "exit 0"
   },
   "devDependencies": {
-    "@qiwi/libdefkit": "^5.0.0",
+    "@qiwi/libdefkit": "^6.0.0",
     "@swissquote/crafty-preset-jest": "^1.24.0",
     "@types/jest": "^29.5.11",
     "benchmark": "^2.1.4",
