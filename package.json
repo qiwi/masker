@@ -45,5 +45,5 @@
     "url": "https://github.com/qiwi/masker/issues"
   },
   "homepage": "https://github.com/qiwi/masker#readme",
-  "packageManager": "yarn@4.2.2"
+  "packageManager": "yarn@4.5.1"
 }
