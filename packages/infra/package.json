@@ -23,7 +23,7 @@
     "terser": "^5.26.0",
     "ts-jest": "^29.1.1",
     "typedoc": "^0.26.0",
-    "typescript": "^5.3.3"
+    "typescript": "^7.0.0"
   },
   "repository": {
     "type": "git",
