@@ -22,7 +22,7 @@
   "devDependencies": {
     "coveralls": "^3.1.1",
     "find-git-root": "^1.0.4",
-    "jest": "^29.7.0",
+    "jest": "^30.0.0",
     "snazzy": "^9.0.0",
     "zx-bulk-release": "^2.14.0"
   },
